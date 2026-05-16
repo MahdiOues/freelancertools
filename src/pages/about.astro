@@ -1,0 +1,32 @@
+---
+import Page from '../layouts/Page.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About FreelancerTools",
+  "url": "https://freelancertools.io/about/"
+};
+---
+
+<Page
+  title="About FreelancerTools"
+  description="FreelancerTools builds free calculators and tools for freelancers, founders, and finance professionals. Learn about our mission and methodology."
+  canonicalUrl="https://freelancertools.io/about/"
+  schema={schema}
+>
+  <article class="trust-page">
+    <h1>About FreelancerTools</h1>
+    <p>FreelancerTools is a free collection of calculators, document generators, and financial tools built for independent professionals — freelancers, consultants, founders, and small business owners who need professional-grade tools without paying for software they use twice a year.</p>
+    <p>Every tool on this site runs entirely in your browser. No data is stored on our servers. No account is required. The calculations use publicly available formulas from the IRS, the Social Security Administration, the Bureau of Labor Statistics, and standard financial mathematics.</p>
+
+    <h2>Our methodology</h2>
+    <p>Every calculator is built from primary sources. Tax brackets come from IRS Publication 15. BMI formulas follow WHO standards. Mortgage calculations use the standard amortization formula used by lenders. Where estimates are involved — such as credit score simulations — we note this clearly with a disclaimer on the tool page.</p>
+
+    <h2>Limitations and disclaimers</h2>
+    <p>FreelancerTools provides informational tools only. Nothing on this site constitutes financial, legal, medical, or tax advice. For decisions involving significant money, health, or legal obligations, consult a licensed professional. Calculator results are estimates and may not reflect your exact situation.</p>
+
+    <h2>Contact</h2>
+    <p>Questions, corrections, or suggestions: use the <a href="/contact/">contact page</a> to reach the FreelancerTools team.</p>
+  </article>
+</Page>

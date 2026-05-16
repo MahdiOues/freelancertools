@@ -1,0 +1,162 @@
+---
+import Tool from '../../layouts/Tool.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Scientific Calculator",
+  "description": "Full-featured online scientific calculator with sin, cos, tan, log, ln, and more. Keyboard support and calculation history.",
+  "url": "https://freelancertools.io/math/scientific-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Scientific Calculator Online"
+  description="Full scientific calculator with trigonometry, logarithms, exponents, and factorials. Keyboard input supported. Shows calculation history."
+  canonicalUrl="https://freelancertools.io/math/scientific-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Scientific Calculator' }]}
+  relatedTools={[
+    { name: 'Percentage Calculator', href: '/math/percentage-calculator/', category: 'Math' },
+    { name: 'Unit Converter', href: '/math/unit-converter/', category: 'Math' },
+    { name: 'GPA Calculator', href: '/math/gpa-calculator/', category: 'Math' },
+    { name: 'Time Zone Converter', href: '/math/time-zone-converter/', category: 'Math' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Scientific Calculator</h1>
+      <p class="subhead">A full-featured calculator for trigonometry, logarithms, and advanced math. Type expressions or use the buttons.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Scientific Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div style="background:var(--surface-sunken);border-radius:var(--radius-md);padding:16px;margin-bottom:16px;">
+          <input type="text" id="display" value="" readonly style="width:100%;background:transparent;border:none;font-size:24px;font-weight:700;text-align:right;color:var(--text-primary);font-family:monospace;outline:none;" />
+          <div id="history" style="font-size:13px;color:var(--text-muted);text-align:right;min-height:20px;font-family:monospace;"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="sin">sin</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="cos">cos</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="tan">tan</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="log">log</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="ln">ln</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="sqrt">√</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="sqr">x²</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="pow">xʸ</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="fact">x!</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="pi">π</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="e">e</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="(">(</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action=")">)</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="clear">C</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="backspace">⌫</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="7">7</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="8">8</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="9">9</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="/">÷</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="CE">CE</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="4">4</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="5">5</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="6">6</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="*">×</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="%">%</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="1">1</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="2">2</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="3">3</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="-">−</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="+/-">±</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="0">0</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action=".">.</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="=" style="background:var(--brand-primary);color:#fff;border:none;">=</button>
+          <button class="btn btn-secondary sc-btn" style="padding:12px;font-size:14px;" data-action="+">+</button>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>Scientific calculator features</h2>
+      <p>This free online scientific calculator handles everything from basic arithmetic to advanced functions. Use it for trigonometry (sin, cos, tan), logarithms (log base 10, natural log), exponents, square roots, factorials, and more. You can type expressions directly or use the button interface.</p>
+      <p>Keyboard support: type numbers and operators directly, press Enter to calculate. The calculation history shows your last 10 results so you can reference previous work.</p>
+      <h2>Common uses</h2>
+      <p>Students use scientific calculators for algebra, trigonometry, and calculus. Professionals use them for engineering, physics, finance, and data analysis. This calculator handles everything a standard TI-30 or Casio fx can do — for free, in your browser, with no downloads required.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+const display = document.getElementById('display');
+const historyEl = document.getElementById('history');
+let hist = [];
+
+document.querySelectorAll('.sc-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const action = this.dataset.action;
+    handleAction(action);
+  });
+});
+
+document.addEventListener('keydown', function(e) {
+  const key = e.key;
+  if (key >= '0' && key <= '9') handleAction(key);
+  else if (['+','-','*','/','.','(',')'].includes(key)) handleAction(key);
+  else if (key === 'Enter') { e.preventDefault(); handleAction('='); }
+  else if (key === 'Backspace') handleAction('backspace');
+  else if (key === 'Escape') handleAction('clear');
+});
+
+function handleAction(action) {
+  if (action === 'clear' || action === 'CE') {
+    display.value = '';
+    return;
+  }
+  if (action === 'backspace') {
+    display.value = display.value.slice(0, -1);
+    return;
+  }
+  if (action === '=') {
+    try {
+      const result = Function('"use strict"; return (' + display.value + ')')();
+      if (typeof result === 'number' && isFinite(result)) {
+        hist.unshift(display.value + ' = ' + result);
+        if (hist.length > 10) hist.pop();
+        historyEl.innerHTML = hist.join('<br>');
+        display.value = result.toString();
+      }
+    } catch { display.value = 'Error'; }
+    return;
+  }
+  if (action === '+/-') {
+    if (display.value.startsWith('-')) display.value = display.value.slice(1);
+    else display.value = '-' + display.value;
+    return;
+  }
+  if (action === 'sin') { display.value = Math.sin(parseFloat(display.value) || 0); return; }
+  if (action === 'cos') { display.value = Math.cos(parseFloat(display.value) || 0); return; }
+  if (action === 'tan') { display.value = Math.tan(parseFloat(display.value) || 0); return; }
+  if (action === 'log') { display.value = Math.log10(parseFloat(display.value) || 0); return; }
+  if (action === 'ln') { display.value = Math.log(parseFloat(display.value) || 0); return; }
+  if (action === 'sqrt') { display.value = Math.sqrt(parseFloat(display.value) || 0); return; }
+  if (action === 'sqr') { const v = parseFloat(display.value) || 0; display.value = v * v; return; }
+  if (action === 'fact') {
+    let n = parseInt(display.value) || 0;
+    if (n < 0) { display.value = 'Error'; return; }
+    let r = 1; for (let i = 2; i <= n; i++) r *= i; display.value = r; return;
+  }
+  if (action === 'pi') { display.value = Math.PI; return; }
+  if (action === 'e') { display.value = Math.E; return; }
+  if (action === 'pow') { display.value += '**'; return; }
+  if (action === '%') { display.value += '/100*'; return; }
+  if (action === '*') action = '*';
+  if (action === '/') action = '/';
+  display.value += action;
+}
+</script>

@@ -1,0 +1,36 @@
+---
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AdZone from '../components/AdZone.astro';
+import CategoryHubExtras from '../components/CategoryHubExtras.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  ogImage?: string;
+}
+const props = Astro.props;
+---
+
+<Base title={props.title} description={props.description} canonicalUrl={props.canonicalUrl} schema={props.schema} ogImage={props.ogImage}>
+  <slot name="head" slot="head" />
+  <Header />
+  <div class="page-shell">
+    <aside class="sidebar sidebar-left" aria-label="Advertisement">
+      <AdZone size="skyscraper" />
+      <AdZone size="skyscraper" />
+    </aside>
+    <main class="content-column">
+      <slot />
+      <CategoryHubExtras />
+    </main>
+    <aside class="sidebar sidebar-right" aria-label="Advertisement">
+      <AdZone size="skyscraper" />
+      <AdZone size="skyscraper" />
+    </aside>
+  </div>
+  <Footer />
+</Base>

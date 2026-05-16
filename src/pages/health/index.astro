@@ -1,0 +1,82 @@
+---
+import Page from '../../layouts/Page.astro';
+import AdZone from '../../components/AdZone.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Health & Fitness Calculators",
+  "description": "Free health calculators — BMI, TDEE, calories burned, pregnancy due date, sleep cycles, and water intake.",
+};
+const accent = 'var(--cat-health)';
+const accentBg = 'var(--cat-health-bg)';
+---
+
+<Page
+  title="Free Health Calculators — BMI, TDEE, Calories, Sleep & More"
+  description="Free health and fitness calculators. Calculate your BMI, TDEE, calories burned, pregnancy due date, ideal sleep schedule, and daily water intake."
+  canonicalUrl="https://freelancertools.io/health/"
+  schema={schema}
+>
+  <div class="cat-color-bar" style="--cat-color: var(--cat-health);"></div>
+  <div class="container">
+    <Breadcrumb items={[{ label: 'Health' }]} />
+    <div class="cat-hero" style={`--cat-color:${accent};--cat-bg:${accentBg};`}>
+      <span class="cat-hero-badge" style={`color:${accent};background:${accentBg};border:1px solid rgba(219,39,119,0.15);`}>Health</span>
+      <h1>Health and fitness calculators</h1>
+      <p>Track your health metrics with free, science-based calculators. BMI, calorie targets, sleep optimization, and more — no sign-up required.</p>
+    </div>
+
+    <AdZone size="leaderboard" />
+
+    <section>
+      <div style="display: grid; gap: 20px;">
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/health/bmi-calculator/">BMI Calculator</a></h3>
+          <p>Calculate your Body Mass Index and see your weight category. Shows healthy weight range for your height. Metric and imperial supported.</p>
+          <a href="/health/bmi-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/health/tdee-calculator/">TDEE Calculator</a></h3>
+          <p>Calculate your Total Daily Energy Expenditure and Basal Metabolic Rate. Get calorie targets for weight loss, maintenance, and muscle gain.</p>
+          <a href="/health/tdee-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/health/calories-burned/">Calories Burned Calculator</a></h3>
+          <p>Estimate calories burned for 40+ activities based on your weight and duration. Uses MET values from the Compendium of Physical Activities.</p>
+          <a href="/health/calories-burned/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <AdZone size="square" />
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/health/due-date-calculator/">Pregnancy Due Date Calculator</a></h3>
+          <p>Calculate your estimated due date, current week of pregnancy, and trimester. Supports LMP, conception date, and IVF transfer date.</p>
+          <a href="/health/due-date-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/health/sleep-calculator/">Sleep Calculator</a></h3>
+          <p>Find the ideal bedtime or wake-up time based on 90-minute sleep cycles. Wake up feeling refreshed between cycles.</p>
+          <a href="/health/sleep-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/health/water-intake/">Water Intake Calculator</a></h3>
+          <p>Calculate how much water you should drink daily based on your weight, activity level, and climate. Get an hourly drinking schedule.</p>
+          <a href="/health/water-intake/" class="hub-tool-link">Use this tool →</a>
+        </div>
+      </div>
+    </section>
+
+    <AdZone size="square" />
+
+    <section>
+      <h2>Related categories</h2>
+      <ul>
+        <li><a href="/math/">Math calculators & converters</a></li>
+        <li><a href="/finance/">Finance tools for freelancers</a></li>
+        <li><a href="/freelancer/">Freelancer business tools</a></li>
+      </ul>
+    </section>
+
+    <AdZone size="footer" />
+  </div>
+</Page>

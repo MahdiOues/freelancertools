@@ -1,0 +1,241 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+import DocTemplatePicker from '../../components/DocTemplatePicker.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free AI NDA Generator",
+  "description": "Create a mutual or one-way non-disclosure agreement tailored to your project using AI.",
+  "url": "https://freelancertools.io/legal/nda-generator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free AI NDA Generator"
+  description="Create a mutual or one-way non-disclosure agreement tailored to your project. Covers confidentiality terms, exclusions, and duration."
+  canonicalUrl="https://freelancertools.io/legal/nda-generator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Legal', href: '/legal/' }, { label: 'NDA Generator' }]}
+  relatedTools={[
+    { name: 'Contract Generator', href: '/legal/contract-generator/', category: 'Legal' },
+    { name: 'Contract Summarizer', href: '/legal/contract-summarizer/', category: 'Legal' },
+    { name: 'Invoice Generator', href: '/freelancer/invoice-generator/', category: 'Freelancer' },
+    { name: 'Proposal Generator', href: '/freelancer/proposal-generator/', category: 'Freelancer' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>NDA Generator</h1>
+      <p class="subhead">Create a professional non-disclosure agreement in seconds. AI-generated, ready to sign.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>NDA Generator</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Disclosing party" tip="The person or company sharing the confidential information — usually you or your client depending on the situation." /></label>
+          <input type="text" id="party1" placeholder="e.g. Acme Corp" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Receiving party" tip="The person or company receiving and agreeing to keep confidential the disclosed information." /></label>
+          <input type="text" id="party2" placeholder="e.g. Jane Doe" />
+        </div>
+      </div>
+      <div class="field">
+          <label class="field-label"><KpiTooltip label="Purpose of disclosure" tip="A description of what exactly is considered confidential under this agreement. Be specific — vague definitions are harder to enforce." /></label>
+        <textarea id="purpose" placeholder="Describe why confidential information is being shared..."></textarea>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label">NDA type</label>
+          <select id="ndaType">
+            <option value="Mutual">Mutual (both parties)</option>
+            <option value="One-way">One-way (disclosing party only)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Duration (years)" tip="How long the confidentiality obligation lasts after signing. 2–5 years is typical for freelance work; perpetual NDAs are harder to enforce." /></label>
+          <input type="number" id="duration" value="3" />
+        </div>
+      </div>
+      <DocTemplatePicker />
+
+      <button id="generateBtn" class="btn btn-primary btn-full">Generate NDA</button>
+
+      <div id="errorMsg" style="display: none; margin-top: 12px; font-size: 14px; color: var(--danger);"></div>
+
+      <div class="doc-output-wrap" id="doc-output-wrap" style="display:none">
+        <div id="doc-output"></div>
+        <div class="btn-row">
+          <button class="btn btn-secondary" id="copyBtn" type="button">Copy text</button>
+          <button class="btn btn-secondary" id="btn-pdf" type="button">Export as PDF</button>
+        </div>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>When you need an NDA</h2>
+      <p>A Non-Disclosure Agreement (NDA) protects confidential information shared between parties. Use it when discussing a potential partnership, sharing proprietary business information, or hiring a contractor who will have access to sensitive data.</p>
+      <p>This generator creates a professional NDA that covers the key elements: definition of confidential information, exclusions, obligations of the receiving party, term, and return of materials.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+import { renderDocument } from '/src/scripts/doc-renderer.js';
+
+let selectedTemplate = 'classic';
+let lastDocData = null;
+
+document.addEventListener('tpl:change', e => {
+  selectedTemplate = e.detail.template;
+  if (lastDocData) {
+    document.getElementById('doc-output').innerHTML =
+      renderDocument(lastDocData, selectedTemplate);
+  }
+});
+
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function fill(template, data) { return template.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] ?? ''); }
+
+const INTROS = [
+  "This Non-Disclosure Agreement is entered into by {{party1}} ('Disclosing Party') and {{party2}} ('Receiving Party').",
+  "{{party1}} and {{party2}} agree to the following confidentiality terms.",
+  "This Agreement is made between {{party1}}, who will share certain confidential information, and {{party2}}, who agrees to protect it.",
+  "In connection with a potential business relationship, {{party1}} and {{party2}} enter this NDA.",
+  "This NDA governs the disclosure of confidential information from {{party1}} to {{party2}}.",
+  "{{party2}} agrees to keep confidential any information shared by {{party1}} under the terms below.",
+  "The purpose of this agreement is to protect proprietary information shared between {{party1}} and {{party2}}.",
+  "To facilitate discussions of mutual interest, {{party1}} and {{party2}} enter this confidentiality agreement.",
+  "This document establishes confidentiality obligations between {{party1}} ('Discloser') and {{party2}} ('Recipient').",
+  "{{party1}} and {{party2}} wish to explore a working relationship and agree to protect each other's confidential information as follows.",
+];
+
+const DEFS = [
+  "Confidential Information includes all business, financial, technical, and operational data shared regarding {{purpose}}.",
+  "For purposes of {{purpose}}, Confidential Information means any non-public information, documentation, or materials disclosed.",
+  "Confidential Information covers any data, strategies, processes, or intellectual property discussed in connection with {{purpose}}.",
+  "All information disclosed in relation to {{purpose}} that is marked as confidential or reasonably understood to be confidential is protected under this agreement.",
+  "Confidential Information includes, but is not limited to, business plans, financial data, technical specifications, and customer lists relevant to {{purpose}}.",
+  "Any information related to {{purpose}} that gives the disclosing party a competitive advantage is considered Confidential Information.",
+  "Protected information includes all proprietary materials, trade secrets, and business knowledge shared regarding {{purpose}}.",
+  "Confidential Information comprises all written, oral, or electronic information disclosed concerning {{purpose}}.",
+  "The term Confidential Information covers any sensitive business data exchanged during discussions about {{purpose}}.",
+  "Confidential Information is any non-public information pertaining to {{purpose}} that the designating party marks as confidential at the time of disclosure.",
+];
+
+const OBLIGATIONS = [
+  "The Receiving Party agrees to hold all Confidential Information in strict confidence and to use it solely for evaluating the business relationship.",
+  "The Receiving Party shall not disclose, copy, or distribute any Confidential Information without prior written consent from the Disclosing Party.",
+  "Confidential Information must be stored securely and accessed only by individuals who need to know it for the authorized purpose.",
+  "The Receiving Party agrees to protect Confidential Information with the same degree of care used to protect its own sensitive information.",
+  "Neither party may use Confidential Information for any purpose other than the intended business relationship without explicit permission.",
+  "The Receiving Party shall limit access to Confidential Information to employees or representatives bound by equivalent confidentiality obligations.",
+  "Confidential Information may not be reverse-engineered, decompiled, or analyzed for competitive purposes.",
+  "The Receiving Party will notify the Disclosing Party immediately upon discovering any unauthorized use or disclosure of Confidential Information.",
+  "All Confidential Information must be returned or destroyed upon request or upon termination of discussions.",
+  "The Receiving Party agrees not to remove confidentiality markings or otherwise alter Confidential Information without authorization.",
+];
+
+const EXCLUSIONS = [
+  "Confidential Information does not include information that is publicly known, already in the Receiving Party's possession, or independently developed.",
+  "The following are excluded: (a) public information, (b) information received from a third party without restriction, (c) independently developed information.",
+  "Information that becomes publicly available through no fault of the Receiving Party is not considered Confidential Information.",
+  "Exclusions apply to information the Receiving Party can demonstrate was known prior to disclosure or developed independently.",
+  "Confidential Information excludes data that is or becomes generally available to the public without breach of this agreement.",
+  "Information obtained from a third party without confidentiality obligations is not covered by this agreement.",
+  "The Receiving Party may disclose Confidential Information if required by law, with prompt notice to the Disclosing Party.",
+  "Information independently developed by the Receiving Party without reference to Confidential Information is excluded from this agreement.",
+  "Statistical or aggregated data that cannot be linked to specific Confidential Information is not subject to this agreement.",
+  "Exclusions: (1) publicly available information, (2) pre-existing knowledge, (3) third-party information, (4) independent development.",
+];
+
+const DURATIONS = [
+  "This agreement remains in effect for {{duration}} years from the date of signing. Confidentiality obligations survive termination of discussions.",
+  "The confidentiality obligations under this agreement shall last for a period of {{duration}} years.",
+  "This NDA is binding for {{duration}} years from the effective date. Confidential Information must be protected throughout this period.",
+  "The term of this agreement is {{duration}} years. After this period, confidentiality obligations cease except for trade secrets.",
+  "Both parties agree to maintain confidentiality for {{duration}} years from the effective date of this agreement.",
+  "Confidentiality obligations survive for {{duration}} years after the disclosure of Confidential Information.",
+  "This agreement is effective for {{duration}} years. Upon expiration, each party must return or destroy all Confidential Information.",
+  "The obligations of this NDA extend {{duration}} years from the last disclosure of Confidential Information.",
+  "This NDA continues for {{duration}} years. The Receiving Party's obligations apply during and after any business discussions.",
+  "The term of confidentiality is {{duration}} years. Trade secret protections continue as long as the information remains a trade secret.",
+];
+
+const GOVERNING_LAWS = [
+  "This agreement shall be governed by and construed in accordance with the laws of the State of New York.",
+  "Any disputes arising under this NDA shall be resolved in the courts of the State of California.",
+  "This agreement is governed by the laws of the State of Delaware. Both parties consent to jurisdiction in Delaware.",
+  "The laws of the State of Texas shall govern this agreement.",
+  "This NDA is governed by English law. The parties submit to the exclusive jurisdiction of the English courts.",
+  "The courts of the Province of Ontario shall have exclusive jurisdiction over any disputes related to this agreement.",
+  "This agreement shall be governed by the laws of the State of Washington.",
+  "The laws of the State of Illinois govern this NDA.",
+  "This NDA is governed by the federal laws of Australia.",
+  "The laws of the State of Florida shall apply to this agreement.",
+];
+
+function displayDocument(sections, meta) {
+  lastDocData = { ...meta, sections };
+  const wrap = document.getElementById('doc-output-wrap');
+  document.getElementById('doc-output').innerHTML =
+    renderDocument(lastDocData, selectedTemplate);
+  wrap.style.display = 'block';
+  wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function generate() {
+  const party1 = document.getElementById('party1').value || '[Disclosing Party]';
+  const party2 = document.getElementById('party2').value || '[Receiving Party]';
+  const purpose = document.getElementById('purpose').value || '[Purpose]';
+  const ndaType = document.getElementById('ndaType').value;
+  const duration = document.getElementById('duration').value || '3';
+
+  const data = { party1, party2, purpose, duration };
+
+  const context = ndaType === 'Mutual'
+    ? 'This is a Mutual Non-Disclosure Agreement where both parties agree to protect each other\'s confidential information.'
+    : 'This is a One-Way Non-Disclosure Agreement where the Disclosing Party shares information and the Receiving Party agrees to protect it.';
+
+  document.getElementById('errorMsg').style.display = 'none';
+
+  const sections = [
+    { heading: 'Introduction', body: context + ' ' + fill(pick(INTROS), data) },
+    { heading: 'Definition of Confidential Information', body: fill(pick(DEFS), data) },
+    { heading: 'Obligations', body: pick(OBLIGATIONS) },
+    { heading: 'Exclusions', body: pick(EXCLUSIONS) },
+    { heading: 'Duration', body: fill(pick(DURATIONS), data) },
+    { heading: 'Governing Law', body: pick(GOVERNING_LAWS) },
+  ];
+
+  displayDocument(sections, {
+    title: 'Non-Disclosure Agreement',
+    from: party1,
+    to: party2,
+    date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+    docType: 'nda'
+  });
+}
+
+function copyDoc() {
+  const el = document.getElementById('doc-output');
+  navigator.clipboard.writeText(el.textContent || el.innerText);
+}
+
+document.getElementById('generateBtn').addEventListener('click', generate);
+document.getElementById('copyBtn').addEventListener('click', copyDoc);
+document.getElementById('btn-pdf').addEventListener('click', () => window.print());
+</script>

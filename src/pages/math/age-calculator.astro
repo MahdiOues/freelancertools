@@ -1,0 +1,115 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Age Calculator",
+  "description": "Calculate exact age in years, months, and days. Includes next birthday countdown and fun facts about time lived.",
+  "url": "https://freelancertools.io/math/age-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Age Calculator — How Old Am I?"
+  description="Calculate your exact age in years, months, and days. See days until your next birthday and fun facts about how long you've been alive."
+  canonicalUrl="https://freelancertools.io/math/age-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Age Calculator' }]}
+  relatedTools={[
+    { name: 'Date Calculator', href: '/math/date-calculator/', category: 'Math' },
+    { name: 'GPA Calculator', href: '/math/gpa-calculator/', category: 'Math' },
+    { name: 'Unit Converter', href: '/math/unit-converter/', category: 'Math' },
+    { name: 'Scientific Calculator', href: '/math/scientific-calculator/', category: 'Math' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Age Calculator</h1>
+      <p class="subhead">Find out your exact age down to the day. Plus fun facts about how long you've been alive.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Age Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Date of birth" tip="Your birth date." /></label>
+            <input type="date" id="dob" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Target date" tip="The date to calculate age at. Defaults to today." /></label>
+            <input type="date" id="target" />
+          </div>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter your date of birth to calculate age.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How to calculate age</h2>
+      <p>Age is calculated as the difference between two dates: the target date (usually today) and the date of birth. The calculator computes the exact number of years, months, and days you have been alive. It accounts for leap years and different month lengths automatically.</p>
+      <p>Your exact age matters for legal documents, retirement planning, insurance quotes, and medical guidelines. Many age-related rules are based on your age in completed years, not your age rounded up.</p>
+      <h2>Fun facts about time</h2>
+      <p>The average person lives about 27,375 days (75 years). In that time, your heart beats about 2.5 billion times. You will spend roughly 25 years sleeping, 3 years eating, and 1 year on the toilet. Use the fun facts section of this calculator to see your personal numbers.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+document.getElementById('dob').valueAsDate = new Date('1990-01-01');
+document.getElementById('target').valueAsDate = new Date();
+
+function calculate() {
+  const dob = new Date(document.getElementById('dob').value);
+  const target = new Date(document.getElementById('target').value);
+  if (isNaN(dob.getTime()) || isNaN(target.getTime())) {
+    document.getElementById('resultArea').innerHTML = `<div class="result-empty">Please enter valid dates.</div>`;
+    return;
+  }
+  let years = target.getFullYear() - dob.getFullYear();
+  let months = target.getMonth() - dob.getMonth();
+  let days = target.getDate() - dob.getDate();
+  if (days < 0) { months--; const prevMonth = new Date(target.getFullYear(), target.getMonth(), 0); days += prevMonth.getDate(); }
+  if (months < 0) { years--; months += 12; }
+  const totalDays = Math.floor((target - dob) / (1000 * 60 * 60 * 24));
+  const nextBday = new Date(target.getFullYear(), dob.getMonth(), dob.getDate());
+  if (nextBday < target) nextBday.setFullYear(nextBday.getFullYear() + 1);
+  const daysUntil = Math.floor((nextBday - target) / (1000 * 60 * 60 * 24));
+  const heartbeats = Math.floor(totalDays * 24 * 60 * 100);
+  const hoursSlept = Math.floor(totalDays * 8);
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">${years}y ${months}m ${days}d</div>
+        <div class="result-label">Exact age</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${totalDays.toLocaleString()}</div>
+        <div class="result-label">Total days lived</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="color:var(--brand-accent);">${daysUntil}</div>
+        <div class="result-label">Days until next birthday</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border-light);">
+      <p style="font-size:13px;color:var(--text-muted);">Fun facts: ~${heartbeats.toLocaleString()} heartbeats so far • ~${hoursSlept.toLocaleString()} hours slept</p>
+    </div>
+  `;
+}
+['dob','target'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

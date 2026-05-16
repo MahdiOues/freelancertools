@@ -1,0 +1,258 @@
+---
+import Tool from '../../layouts/ToolWithExcel.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+import DocTemplatePicker from '../../components/DocTemplatePicker.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free AI Proposal Generator",
+  "description": "Create a professional project proposal in minutes using AI. Covers overview, deliverables, timeline, and investment.",
+  "url": "https://freelancertools.io/freelancer/proposal-generator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free AI Proposal Generator"
+  description="Create a professional project proposal in minutes using AI. Covers overview, deliverables, timeline, and investment."
+  canonicalUrl="https://freelancertools.io/freelancer/proposal-generator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Freelancer', href: '/freelancer/' }, { label: 'Proposal Generator' }]}
+  relatedTools={[
+    { name: 'Freelancer Rate Calculator', href: '/freelancer/rate-calculator/', category: 'Freelancer' },
+    { name: 'Invoice Generator', href: '/freelancer/invoice-generator/', category: 'Freelancer' },
+    { name: 'Contract Generator', href: '/legal/contract-generator/', category: 'Legal' },
+    { name: 'NDA Generator', href: '/legal/nda-generator/', category: 'Legal' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Proposal Generator</h1>
+      <p class="subhead">Win more clients with professional proposals. Fill in your project details and get a complete proposal ready to send.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Proposal Generator</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Your name" tip="Your name as the freelancer or agency owner submitting the proposal." /></label>
+          <input type="text" id="yourName" placeholder="Your name" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Client name" tip="The name of the person or company you're pitching to. Personalizing the proposal to their name increases acceptance rates." /></label>
+          <input type="text" id="clientName" placeholder="Client name" />
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Project title" tip="A clear name for the project that matches what the client described. Mirror their language back to them where possible." /></label>
+        <input type="text" id="projectTitle" placeholder="e.g. Website Redesign Project" />
+      </div>
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Project overview" tip="Your understanding of what the client needs and why. Demonstrating you understand their problem is more persuasive than listing your services." /></label>
+        <textarea id="overview" placeholder="Brief overview of the project..."></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Deliverables" tip="What you will specifically produce or complete. Concrete deliverables reduce perceived risk for the client." /></label>
+        <textarea id="deliverables" placeholder="List key deliverables, one per line..." rows="4"></textarea>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Timeline" tip="Your estimated schedule from kickoff to final delivery. Include key milestones to show you've thought through the work." /></label>
+          <input type="text" id="timeline" placeholder="e.g. 6 weeks" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Investment range ($)" tip="Your price range for the project. Using a range (e.g. $2,000–$2,500) instead of a fixed price gives flexibility and anchors the conversation." /></label>
+          <input type="text" id="investment" placeholder="e.g. 8,000 - 12,000" />
+        </div>
+      </div>
+      <DocTemplatePicker />
+
+      <button id="generateBtn" class="btn btn-primary btn-full">Generate Proposal</button>
+
+      <div id="errorMsg" style="display: none; margin-top: 12px; font-size: 14px; color: var(--danger);"></div>
+
+      <div class="doc-output-wrap" id="doc-output-wrap" style="display:none">
+        <div id="doc-output"></div>
+        <div class="btn-row">
+          <button class="btn btn-secondary" id="copyBtn" type="button">Copy text</button>
+          <button class="btn btn-secondary" id="btn-pdf" type="button">Export as PDF</button>
+        </div>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>Why proposals win clients</h2>
+      <p>A well-written proposal shows you understand the client's needs, have a clear plan, and are worth the investment. It sets you apart from freelancers who send a one-paragraph email with a price.</p>
+      <p>This generator walks you through the key sections of a professional proposal: project overview, approach, deliverables, timeline, investment, and next steps. Fill in each section and get a complete document ready to customize.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+import { renderDocument } from '/src/scripts/doc-renderer.js';
+
+let selectedTemplate = 'classic';
+let lastDocData = null;
+
+document.addEventListener('tpl:change', e => {
+  selectedTemplate = e.detail.template;
+  if (lastDocData) {
+    document.getElementById('doc-output').innerHTML =
+      renderDocument(lastDocData, selectedTemplate);
+  }
+});
+
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function fill(template, data) { return template.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] ?? ''); }
+
+const openings = [
+  "Dear {{clientName}}, thank you for considering {{yourName}} for {{projectTitle}}. This proposal outlines how I plan to deliver exactly what you need.",
+  "Hi {{clientName}}, I've put together this proposal for {{projectTitle}} based on our conversation and my understanding of your goals.",
+  "{{clientName}}, I'm excited about the opportunity to work on {{projectTitle}}. Here's how I'd approach it.",
+  "This proposal is prepared by {{yourName}} for {{clientName}} regarding {{projectTitle}}. It outlines scope, timeline, and investment.",
+  "Dear {{clientName}}, I've reviewed your brief for {{projectTitle}} and I'm confident I can deliver what you're looking for. Here's my plan.",
+  "{{clientName}}, below is my proposal for {{projectTitle}}. I've designed this to address your core goals directly.",
+  "Thank you for the opportunity, {{clientName}}. This document covers everything you need to make a decision about {{projectTitle}}.",
+  "{{yourName}} is pleased to submit this proposal for {{projectTitle}} to {{clientName}}.",
+  "{{clientName}}, I appreciate you sharing the details of {{projectTitle}}. Here's how I'd bring it to life.",
+  "This is a proposal from {{yourName}} to {{clientName}} for {{projectTitle}}, covering scope, approach, timeline, and fee."
+];
+
+const understandings = [
+  "I understand that {{clientName}} needs {{overview}}. My goal is to deliver a solution that meets these requirements effectively.",
+  "Based on our discussion, {{overview}} is the core need. I've structured my approach around solving this.",
+  "{{clientName}} has outlined the following: {{overview}}. I believe my experience aligns well with these needs.",
+  "My understanding of the project is: {{overview}}. I've designed the approach below to directly address this.",
+  "From our conversations, I know {{clientName}} is looking for {{overview}}. Here's how I'll deliver.",
+  "The key objectives I've identified are: {{overview}}. My approach focuses on achieving each one.",
+  "{{clientName}} needs {{overview}}. I've taken this as the foundation for the proposal below.",
+  "After reviewing the requirements, I understand the scope as: {{overview}}. The plan reflects this.",
+  "I recognize that {{clientName}} is seeking {{overview}}. My methodology is built specifically around this goal.",
+  "The project centers on {{overview}}. My approach targets this directly with proven methods."
+];
+
+const approaches = [
+  "My approach combines proven methodologies with creative problem-solving. I begin with research and discovery, move into execution, and iterate based on feedback.",
+  "I follow a structured 4-phase approach: Discovery, Strategy, Execution, and Delivery. Each phase includes clear milestones and checkpoints.",
+  "My methodology is built around three pillars: understanding your audience, designing for impact, and delivering on time.",
+  "I take a collaborative approach, working closely with you at every stage to ensure alignment and quality.",
+  "My process is: (1) Research and Analysis, (2) Strategy Development, (3) Creative Execution, (4) Quality Assurance, (5) Delivery.",
+  "I approach every project with a focus on outcomes. Each phase is designed to move toward measurable results.",
+  "My workflow is agile and transparent. You'll see progress at every stage and have opportunities to provide input.",
+  "I combine deep expertise with a fresh perspective. The result is work that's both strategic and creative.",
+  "My methodology: Listen, Plan, Create, Refine, Deliver. Each step builds on the last for maximum quality.",
+  "I take a results-driven approach. Every decision is measured against your core objectives and expected outcomes."
+];
+
+const deliverableItems = [
+  "The following deliverables will be provided: {{deliverables}}. Each deliverable includes up to 2 rounds of revisions.",
+  "Deliverables: {{deliverables}}. All final files will be delivered in source and export formats.",
+  "You will receive the following upon completion: {{deliverables}}. Source files are included.",
+  "{{deliverables}} — these are the specific outputs I will produce and deliver to you.",
+  "My commitment is to deliver: {{deliverables}}. Each item will meet the quality standards we agree upon.",
+  "Deliverables included: {{deliverables}}. Additional items can be scoped separately.",
+  "The project includes these deliverables: {{deliverables}}. All files will be organized and documented.",
+  "Here's what you'll receive: {{deliverables}}. Each will be delivered according to the timeline below.",
+  "Final deliverables consist of: {{deliverables}}. I own the work until final payment; you own it after.",
+  "What's included: {{deliverables}}. Each deliverable is designed to meet your specific requirements."
+];
+
+const timelines = [
+  "The project timeline is estimated at {{timeline}} from kickoff to final delivery. Key milestones will be shared in a detailed schedule.",
+  "Timeline: {{timeline}}. I will provide a week-by-week breakdown at project start.",
+  "Estimated completion within {{timeline}}. The schedule depends on timely feedback and approvals.",
+  "I anticipate completing this project in {{timeline}}. A detailed milestone calendar will be shared upon kickoff.",
+  "From start to finish: {{timeline}}. This includes all phases from discovery through final delivery.",
+  "The timeline for this project is {{timeline}}. I'll keep you updated on progress throughout.",
+  "Project duration: {{timeline}}. This includes time for research, creation, revisions, and final delivery.",
+  "Scheduled delivery within {{timeline}}. Delays in feedback may extend this timeline proportionally.",
+  "The estimated timeline is {{timeline}}. I recommend weekly check-ins to stay on track.",
+  "Completion target: {{timeline}}. I will prioritize milestones that impact other parts of the project."
+];
+
+const investments = [
+  "Investment: \${{investment}}. This covers all work described in the scope, deliverables, and up to 2 revision rounds.",
+  "The total investment for this project is \${{investment}}. Payment is due 50% upfront and 50% on delivery.",
+  "Project fee: \${{investment}}. This includes strategy, execution, and delivery as outlined above.",
+  "Investment: \${{investment}}. Work outside this scope will be quoted at my standard hourly rate.",
+  "The cost of this project is \${{investment}}. This represents my best estimate based on the requirements provided.",
+  "Fee: \${{investment}}. This is a fixed price covering all deliverables and revisions described in this proposal.",
+  "Total investment: \${{investment}}. I require 50% to begin and the balance upon completion.",
+  "The project investment is \${{investment}}. This includes all work through final delivery and revisions.",
+  "Price: \${{investment}}. A 50% deposit secures your spot; the remaining 50% is due on delivery.",
+  "My fee for this project is \${{investment}}. This is a fixed price, not an estimate."
+];
+
+const closings = [
+  "I'm excited about the possibility of working with {{clientName}} on this project. Please let me know if you have any questions. — {{yourName}}",
+  "Thank you for considering my proposal. I'm available to discuss any aspect in more detail. — {{yourName}}",
+  "I look forward to the opportunity to contribute to {{clientName}}'s success. Please reach out with any questions.",
+  "This proposal is valid for 14 days. I'd be happy to hop on a call to discuss it further. — {{yourName}}",
+  "Thank you for your time and consideration. I'm confident I can deliver exceptional results for {{clientName}}.",
+  "I would love to work with {{clientName}} on this project. Let me know when you'd like to get started. — {{yourName}}",
+  "Please feel free to reach out if you'd like to discuss this proposal or make adjustments. — {{yourName}}",
+  "I'm ready to start as soon as you are. Thank you for the opportunity. — {{yourName}}",
+  "I hope this proposal reflects my enthusiasm for this project. Looking forward to your feedback. — {{yourName}}",
+  "Thank you, {{clientName}}. I look forward to building something great together. — {{yourName}}"
+];
+
+function displayDocument(sections, meta) {
+  lastDocData = { ...meta, sections };
+  const wrap = document.getElementById('doc-output-wrap');
+  document.getElementById('doc-output').innerHTML =
+    renderDocument(lastDocData, selectedTemplate);
+  wrap.style.display = 'block';
+  wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function generate() {
+  const yourName = document.getElementById('yourName').value || '[Your Name]';
+  const clientName = document.getElementById('clientName').value || '[Client Name]';
+  const projectTitle = document.getElementById('projectTitle').value || '[Project Title]';
+  const overview = document.getElementById('overview').value || '[Overview]';
+  const deliverables = document.getElementById('deliverables').value || '[Deliverables]';
+  const timeline = document.getElementById('timeline').value || '[Timeline]';
+  const investment = document.getElementById('investment').value || '[Investment]';
+
+  const data = { yourName, clientName, projectTitle, overview, deliverables, timeline, investment };
+
+  document.getElementById('errorMsg').style.display = 'none';
+
+  const sections = [
+    { heading: 'Opening', body: fill(pick(openings), data) },
+    { heading: 'Understanding of Needs', body: fill(pick(understandings), data) },
+    { heading: 'Approach', body: pick(approaches) },
+    { heading: 'Deliverables', body: fill(pick(deliverableItems), data) },
+    { heading: 'Timeline', body: fill(pick(timelines), data) },
+    { heading: 'Investment', body: fill(pick(investments), data) },
+    { heading: 'Closing', body: fill(pick(closings), data) },
+  ];
+
+  displayDocument(sections, {
+    title: 'Project Proposal',
+    from: yourName,
+    to: clientName,
+    date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+    docType: 'proposal'
+  });
+}
+
+function copyDoc() {
+  const el = document.getElementById('doc-output');
+  navigator.clipboard.writeText(el.textContent || el.innerText);
+}
+
+document.getElementById('generateBtn').addEventListener('click', generate);
+document.getElementById('copyBtn').addEventListener('click', copyDoc);
+document.getElementById('btn-pdf').addEventListener('click', () => window.print());
+</script>

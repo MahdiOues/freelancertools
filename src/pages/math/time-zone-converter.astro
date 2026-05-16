@@ -1,0 +1,170 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Time Zone Converter",
+  "description": "Convert times across multiple time zones simultaneously. Perfect for scheduling with international clients and remote teams.",
+  "url": "https://freelancertools.io/math/time-zone-converter/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Time Zone Converter — Schedule Across Time Zones"
+  description="Convert times across multiple time zones instantly. Perfect for freelancers scheduling with international clients. Add as many time zones as you need."
+  canonicalUrl="https://freelancertools.io/math/time-zone-converter/"
+  schema={schema}
+  breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Time Zone Converter' }]}
+  relatedTools={[
+    { name: 'Date Calculator', href: '/math/date-calculator/', category: 'Math' },
+    { name: 'Age Calculator', href: '/math/age-calculator/', category: 'Math' },
+    { name: 'Unit Converter', href: '/math/unit-converter/', category: 'Math' },
+    { name: 'Percentage Calculator', href: '/math/percentage-calculator/', category: 'Math' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Time Zone Converter</h1>
+      <p class="subhead">Find a time that works across all time zones. Add multiple zones and see the converted times instantly.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Time Zone Converter</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Date" tip="The date for the meeting or event." /></label>
+            <input type="date" id="date" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Time" tip="The time for the meeting or event." /></label>
+            <input type="time" id="time" value="09:00" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="From timezone" tip="The timezone of the original time." /></label>
+          <select id="fromZone"></select>
+        </div>
+        <div class="field">
+          <label class="field-label">To timezones</label>
+          <div id="zones"></div>
+        </div>
+        <button id="addZone" class="btn btn-secondary" style="width:100%;margin-top:8px;">+ Add another timezone</button>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Select timezones to see converted times.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>Scheduling across time zones</h2>
+      <p>For freelancers and remote teams, scheduling across time zones is a daily challenge. This tool helps you find overlapping working hours and avoid the confusion of time zone abbreviations that change with daylight saving time. Using IANA time zone names, it accurately handles DST transitions for every region.</p>
+      <p>The browser's Intl.DateTimeFormat API provides all time zone data natively — no external dependencies needed. Add as many time zones as you need to see everyone's local time at a glance.</p>
+      <h2>Tips for cross-timezone scheduling</h2>
+      <p>🌅 Morning in EST overlaps with afternoon in CET and evening in IST. 🌇 Afternoon in EST works for morning in PST and late evening in AEST. Avoid scheduling meetings that fall outside 8 AM–6 PM local time for any participant. Use this converter to find the sweet spot that works for everyone.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+const commonZones = [
+  'America/New_York', 'America/Chicago', 'America/Denver', 'America/Los_Angeles',
+  'America/Anchorage', 'Pacific/Honolulu', 'Europe/London', 'Europe/Paris',
+  'Europe/Berlin', 'Europe/Moscow', 'Asia/Dubai', 'Asia/Kolkata',
+  'Asia/Shanghai', 'Asia/Tokyo', 'Asia/Singapore', 'Australia/Sydney',
+  'Australia/Perth', 'Pacific/Auckland', 'America/Sao_Paulo', 'Africa/Lagos',
+  'Africa/Cairo', 'America/Toronto', 'America/Vancouver', 'America/Mexico_City'
+];
+
+let zoneCount = 0;
+const IntlDTF = Intl.DateTimeFormat;
+
+function populateFromZone() {
+  const sel = document.getElementById('fromZone');
+  const userTz = IntlDTF().resolvedOptions().timeZone;
+  commonZones.forEach(z => {
+    const off = getOffset(z);
+    sel.innerHTML += `<option value="${z}">${z} (${off})</option>`;
+  });
+  sel.value = commonZones.includes(userTz) ? userTz : 'America/New_York';
+}
+
+function getOffset(tz) {
+  try {
+    const now = new Date();
+    const formatter = new IntlDTF('en', { timeZone: tz, timeZoneName: 'short' });
+    const parts = formatter.formatToParts(now);
+    const tzPart = parts.find(p => p.type === 'timeZoneName');
+    return tzPart ? tzPart.value : '';
+  } catch { return ''; }
+}
+
+function addZoneRow(tz) {
+  zoneCount++;
+  const div = document.createElement('div');
+  div.style.cssText = 'display:grid;grid-template-columns:1fr auto;gap:8px;margin-bottom:8px;align-items:center;';
+  const sel = document.createElement('select');
+  sel.className = 'zone-select';
+  sel.style.cssText = 'padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);background:var(--surface-sunken);font-size:14px;color:var(--text-primary);';
+  commonZones.forEach(z => {
+    const off = getOffset(z);
+    sel.innerHTML += `<option value="${z}">${z} (${off})</option>`;
+  });
+  if (tz) sel.value = tz;
+  const btn = document.createElement('button');
+  btn.className = 'btn btn-secondary';
+  btn.style.cssText = 'padding:8px 12px;font-size:13px;';
+  btn.textContent = 'X';
+  btn.addEventListener('click', function() { div.remove(); convert(); });
+  div.appendChild(sel);
+  div.appendChild(btn);
+  document.getElementById('zones').appendChild(div);
+  sel.addEventListener('change', convert);
+  convert();
+}
+
+function convert() {
+  const dateVal = document.getElementById('date').value;
+  const timeVal = document.getElementById('time').value || '09:00';
+  const from = document.getElementById('fromZone').value;
+  const date = dateVal ? new Date(dateVal + 'T' + timeVal + ':00') : new Date('2026-01-01T' + timeVal + ':00');
+  const zSelects = document.querySelectorAll('.zone-select');
+  if (zSelects.length === 0) {
+    document.getElementById('resultArea').innerHTML = `<div class="result-empty">Add at least one timezone to convert to.</div>`;
+    return;
+  }
+  let html = '<table style="width:100%;border-collapse:collapse;font-size:14px;"><thead><tr style="border-bottom:2px solid var(--border);"><th style="text-align:left;padding:8px 12px;">Timezone</th><th style="text-align:right;padding:8px 12px;">Local time</th><th style="text-align:right;padding:8px 12px;">Date</th></tr></thead><tbody>';
+  html += `<tr style="border-bottom:1px solid var(--border-light);"><td style="padding:8px 12px;font-weight:600;">${from}</td><td style="padding:8px 12px;text-align:right;font-weight:600;">${timeVal}</td><td style="padding:8px 12px;text-align:right;">${date.toLocaleDateString()}</td></tr>`;
+  zSelects.forEach(sel => {
+    const tz = sel.value;
+    try {
+      const opts = { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false };
+      const timeStr = new IntlDTF('en', opts).format(date);
+      const dateOpts = { timeZone: tz, month: 'short', day: 'numeric', year: 'numeric' };
+      const dateStr = new IntlDTF('en', dateOpts).format(date);
+      html += `<tr style="border-bottom:1px solid var(--border-light);"><td style="padding:8px 12px;">${tz}</td><td style="padding:8px 12px;text-align:right;font-weight:600;">${timeStr}</td><td style="padding:8px 12px;text-align:right;">${dateStr}</td></tr>`;
+    } catch(e) {
+      html += `<tr><td style="padding:8px 12px;">${tz}</td><td style="padding:8px 12px;text-align:right;" colspan="2">Invalid timezone</td></tr>`;
+    }
+  });
+  html += '</tbody></table>';
+  document.getElementById('resultArea').innerHTML = html;
+}
+
+document.getElementById('addZone').addEventListener('click', function() { addZoneRow(''); });
+document.getElementById('date').valueAsDate = new Date();
+['date','time','fromZone'].forEach(id => document.getElementById(id).addEventListener('input', convert));
+populateFromZone();
+addZoneRow('Europe/London');
+addZoneRow('Asia/Kolkata');
+</script>

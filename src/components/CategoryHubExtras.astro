@@ -1,0 +1,177 @@
+---
+import Faq from './Faq.astro';
+
+const path = Astro.url.pathname;
+const hubData = {
+  '/finance/': {
+    recommendations: [
+      ['If you are comparing debt options:', '/finance/loan-comparison/', 'Use the Loan Comparison Calculator to compare APR, fees, and total repayment.'],
+      ['If you are planning long-term savings:', '/finance/compound-interest/', 'Start with the Compound Interest Calculator to see how time and contributions change your ending balance.'],
+      ['If your paycheck feels confusing:', '/finance/paycheck-calculator/', 'Use the Paycheck Calculator to separate federal tax, FICA, and state withholding.'],
+      ['If you need a monthly plan:', '/finance/budget-planner/', 'Use the Budget Planner to turn income into spending and savings targets.'],
+    ],
+    faqs: [
+      { question: 'Are these finance calculators financial advice?', answer: 'No. They are planning tools that use standard formulas and public data. For investments, taxes, loans, or retirement decisions involving meaningful money, consult a qualified professional.' },
+      { question: 'Which finance tool should I use first?', answer: 'Start with the calculator closest to the decision in front of you: loan comparison for borrowing, budget planner for monthly cash flow, and compound interest or retirement calculators for long-term planning.' },
+      { question: 'Do these tools store my financial data?', answer: 'No. Calculator inputs run in your browser and are not stored on FreelancerTools servers.' },
+      { question: 'How often are tax-related tools updated?', answer: 'Tax and withholding pages include last-updated markers and should be reviewed each January when federal and state agencies publish annual changes.' },
+    ],
+    posts: [
+      ['/blog/comparing-loans-apr-fees/', 'Comparing loans: APR, fees, and total cost'],
+      ['/blog/what-is-compound-interest/', 'What is compound interest?'],
+      ['/blog/how-to-read-your-paycheck/', 'How to read your paycheck'],
+      ['/blog/50-30-20-budget-rule/', 'How to build a monthly budget'],
+    ],
+  },
+  '/math/': {
+    recommendations: [
+      ['If you need a quick everyday answer:', '/math/percentage-calculator/', 'Use the Percentage Calculator for discounts, increases, and reverse percentages.'],
+      ['If you are converting measurements:', '/math/unit-converter/', 'Use the Unit Converter for length, weight, temperature, volume, and speed.'],
+      ['If you are a student:', '/math/gpa-calculator/', 'Use the GPA Calculator to model how future grades affect your average.'],
+      ['If you work with dates:', '/math/date-calculator/', 'Use the Date Calculator for deadlines, durations, and workday planning.'],
+    ],
+    faqs: [
+      { question: 'Are the math calculators free?', answer: 'Yes. The math tools are free, browser-based, and do not require an account.' },
+      { question: 'Do conversion pages include static values?', answer: 'Yes. Programmatic conversion pages include indexable conversion tables for common values as well as an interactive converter.' },
+      { question: 'Can I use these calculators for schoolwork?', answer: 'Yes, but show your working when required. The tools are best used to check calculations and understand formulas.' },
+      { question: 'Which tool handles multiple unit types?', answer: 'The Unit Converter handles multiple categories. Individual conversion pages are better for specific searches such as centimeters to inches.' },
+    ],
+    posts: [
+      ['/blog/how-to-calculate-percentages/', 'How to calculate percentages'],
+      ['/blog/how-to-convert-units/', 'How to convert units'],
+      ['/blog/how-to-calculate-age/', 'How to calculate your exact age'],
+      ['/blog/time-zone-conversion-guide/', 'Time zone conversion guide'],
+    ],
+  },
+  '/health/': {
+    recommendations: [
+      ['If you want a quick weight-screening number:', '/health/bmi-calculator/', 'Start with the BMI Calculator, then read the limitations carefully.'],
+      ['If you are setting calorie targets:', '/health/tdee-calculator/', 'Use the TDEE Calculator to estimate maintenance, loss, and gain calories.'],
+      ['If you track workouts:', '/health/calories-burned/', 'Use the Calories Burned Calculator to estimate activity energy use.'],
+      ['If you are planning sleep:', '/health/sleep-calculator/', 'Use the Sleep Calculator to line up wake times with sleep cycles.'],
+    ],
+    faqs: [
+      { question: 'Are health calculators medical advice?', answer: 'No. They are screening and planning aids only. Consult a healthcare provider before making health decisions.' },
+      { question: 'Why do BMI and TDEE results differ from real life?', answer: 'The formulas use population averages. Muscle mass, medication, medical conditions, age, and activity tracking accuracy can all affect real results.' },
+      { question: 'Which health tool should I start with?', answer: 'Use BMI for a broad weight-category screen, TDEE for calorie planning, and calories burned for activity estimates.' },
+      { question: 'Do health inputs get stored?', answer: 'No. The calculations run in your browser and are not sent to FreelancerTools servers.' },
+    ],
+    posts: [
+      ['/blog/what-is-bmi-and-its-limitations/', 'What is BMI and its limitations?'],
+      ['/blog/how-many-calories-do-you-need-tdee/', 'How many calories do you need?'],
+      ['/blog/how-many-calories-does-exercise-burn/', 'How many calories exercise burns'],
+      ['/blog/science-of-sleep-how-much/', 'The science of sleep'],
+    ],
+  },
+  '/legal/': {
+    recommendations: [
+      ['If you are starting a client project:', '/legal/contract-generator/', 'Use the Contract Generator to draft a clear working agreement.'],
+      ['If someone sent you a contract:', '/legal/contract-summarizer/', 'Use the Contract Summarizer to spot obligations and risky clauses in plain English.'],
+      ['If you are sharing confidential information:', '/legal/nda-generator/', 'Use the NDA Generator to draft a mutual or one-way confidentiality agreement.'],
+      ['If the deal is high-value:', '/disclaimer/', 'Read the disclaimer and have an attorney review the document before signing.'],
+    ],
+    faqs: [
+      { question: 'Are generated legal documents attorney-reviewed?', answer: 'No. They are templates based on general legal principles and should be reviewed by a licensed attorney for important matters.' },
+      { question: 'Can I use these tools in any country?', answer: 'Use caution. Laws vary by state and country, so generated terms may need local legal review.' },
+      { question: 'Which legal tool should freelancers use first?', answer: 'Start with a contract for any paid work, then add an NDA if confidential information will be shared.' },
+      { question: 'Does FreelancerTools store pasted legal text?', answer: 'Tool behavior depends on the specific generator or summarizer, but the site is designed to avoid storing user documents on FreelancerTools servers.' },
+    ],
+    posts: [
+      ['/blog/how-to-write-a-freelance-contract/', 'How to write a freelance contract'],
+      ['/blog/how-to-review-contract-before-signing/', 'How to review a contract before signing'],
+      ['/blog/when-you-need-an-nda/', 'When you need an NDA'],
+      ['/blog/diy-vs-hiring-lawyer-legal-documents/', 'DIY vs hiring a lawyer'],
+    ],
+  },
+  '/saas/': {
+    recommendations: [
+      ['If you are choosing a price:', '/saas/pricing-calculator/', 'Use the SaaS Pricing Calculator to model MRR, ARR, LTV, and CAC assumptions.'],
+      ['If you track recurring revenue:', '/saas/mrr-calculator/', 'Use the MRR Calculator to separate new, expansion, churned, and reactivation revenue.'],
+      ['If you are justifying spend:', '/saas/roi-calculator/', 'Use the ROI Calculator to compare return against investment cost.'],
+      ['If you need a projection:', '/finance/excel-tools/growth-modeler/', 'Use the Growth Modeler for base, pessimistic, and optimistic scenarios.'],
+    ],
+    faqs: [
+      { question: 'Which SaaS metric matters most early on?', answer: 'MRR is usually the cleanest operating metric because it shows recurring revenue movement from new customers, upgrades, downgrades, churn, and reactivation.' },
+      { question: 'Can these tools replace a financial model?', answer: 'No. They help with quick decisions and sanity checks. For fundraising or board reporting, use them alongside a full model.' },
+      { question: 'What inputs should founders know first?', answer: 'Start with price, customer count, churn, gross margin, CAC, and expected expansion revenue.' },
+      { question: 'Are SaaS calculators only for software companies?', answer: 'They are best for subscription businesses, but ROI and pricing tools can also help agencies, service firms, and productized consulting offers.' },
+    ],
+    posts: [
+      ['/blog/mrr-most-important-saas-metric/', 'MRR: the most important SaaS metric'],
+      ['/blog/how-to-price-saas-product/', 'How to price your SaaS product'],
+      ['/blog/how-to-calculate-saas-roi/', 'How to calculate SaaS ROI'],
+      ['/blog/break-even-analysis-small-business/', 'Break-even analysis for small businesses'],
+    ],
+  },
+  '/marketing/': {
+    recommendations: [
+      ['If you are launching ads:', '/marketing/ad-profit-calculator/', 'Use the Ad Profitability Calculator before spending so you know break-even ROAS.'],
+      ['If your copy is weak:', '/marketing/hook-analyzer/', 'Use the Hook Analyzer to improve attention, specificity, and clarity.'],
+      ['If you need revenue scenarios:', '/saas/roi-calculator/', 'Use the ROI Calculator to compare campaign cost against expected return.'],
+      ['If you are building reports:', '/finance/excel-tools/chart-builder/', 'Use the Chart Builder to turn campaign data into a clean visual.'],
+    ],
+    faqs: [
+      { question: 'What is the first marketing number to calculate?', answer: 'Start with break-even ROAS or break-even CPA so you know the maximum you can spend before a campaign loses money.' },
+      { question: 'Does ROAS equal profit?', answer: 'No. ROAS measures revenue divided by ad spend. Profit must also account for cost of goods, refunds, processing fees, and overhead.' },
+      { question: 'Can the hook analyzer guarantee conversions?', answer: 'No. It helps improve message quality, but conversions also depend on offer, audience, creative, landing page, and traffic quality.' },
+      { question: 'How should small teams use these tools?', answer: 'Use them before launch to set guardrails, then update the inputs with real campaign data after the first few days.' },
+    ],
+    posts: [
+      ['/blog/measuring-ad-profitability-roas/', 'Measuring ad profitability and ROAS'],
+      ['/blog/how-to-write-hooks-that-capture-attention/', 'How to write hooks that capture attention'],
+      ['/blog/how-to-build-cash-flow-forecast/', 'How to build a cash flow forecast'],
+      ['/blog/break-even-analysis-small-business/', 'Break-even analysis'],
+    ],
+  },
+  '/freelancer/': {
+    recommendations: [
+      ['If you are setting your rate:', '/freelancer/rate-calculator/', 'Start with the Rate Calculator so your hourly price covers taxes, downtime, and profit.'],
+      ['If you need to bill a client:', '/freelancer/invoice-generator/', 'Use the Invoice Generator to create a professional invoice quickly.'],
+      ['If you are pitching work:', '/freelancer/proposal-generator/', 'Use the Proposal Generator to turn scope, timeline, and pricing into a client-ready proposal.'],
+      ['If a payment is late:', '/freelancer/late-fee-calculator/', 'Use the Late Fee Calculator to estimate charges based on your agreement.'],
+    ],
+    faqs: [
+      { question: 'Which freelancer tool should I use first?', answer: 'Use the Rate Calculator before quoting work. It tells you the minimum sustainable hourly rate after taxes, non-billable time, and expenses.' },
+      { question: 'Can I use these tools without signing up?', answer: 'Yes. FreelancerTools is designed for quick browser-based use without accounts or subscriptions.' },
+      { question: 'Do proposal and invoice tools replace professional templates?', answer: 'They create practical drafts and working documents. For complex legal or tax situations, get professional review.' },
+      { question: 'How do these tools help new freelancers?', answer: 'They make the money side clearer: pricing, proposals, invoices, late fees, and project estimates all become easier to reason about.' },
+    ],
+    posts: [
+      ['/blog/how-to-set-freelance-hourly-rate/', 'How to set your freelance hourly rate'],
+      ['/blog/how-to-write-freelance-invoice/', 'How to write a freelance invoice'],
+      ['/blog/how-to-write-winning-proposal/', 'How to write a winning proposal'],
+      ['/blog/managing-freelance-finances/', 'Managing freelance finances'],
+    ],
+  },
+};
+
+const data = hubData[path];
+---
+
+{data && (
+  <div class="container hub-extras">
+    <section class="hub-recommendations">
+      <h2>Which tool should you start with?</h2>
+      <div class="recommendation-list">
+        {data.recommendations.map(([label, href, text]) => (
+          <div class="rec-item">
+            <strong>{label}</strong>
+            <a href={href}> {text.split(' to ')[0]}</a>
+            {text.includes(' to ') ? ` to ${text.split(' to ').slice(1).join(' to ')}` : ''}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <Faq items={data.faqs} />
+
+    <section class="hub-blog">
+      <h2>Guides and resources</h2>
+      <ul class="blog-list">
+        {data.posts.map(([href, title]) => (
+          <li><span class="blog-title"><a href={href}>{title}</a></span></li>
+        ))}
+      </ul>
+    </section>
+  </div>
+)}

@@ -1,0 +1,187 @@
+---
+import Tool from '../../layouts/ToolWithCharts.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Mortgage Calculator",
+  "description": "Calculate monthly mortgage payments with taxes, insurance, and PMI. See amortization schedule and payment breakdown chart.",
+  "url": "https://freelancertools.io/finance/mortgage-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Mortgage Calculator — Taxes, Insurance & PMI"
+  description="Calculate your monthly mortgage payment including property tax, home insurance, and PMI. View full amortization schedule and payment breakdown pie chart."
+  canonicalUrl="https://freelancertools.io/finance/mortgage-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Mortgage Calculator' }]}
+  relatedTools={[
+    { name: 'Compound Interest Calculator', href: '/finance/compound-interest/', category: 'Finance' },
+    { name: 'Loan Comparison Calculator', href: '/finance/loan-comparison/', category: 'Finance' },
+    { name: 'Inflation Calculator', href: '/finance/inflation-calculator/', category: 'Finance' },
+    { name: 'Net Worth Calculator', href: '/finance/net-worth-calculator/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Mortgage Calculator</h1>
+      <p class="subhead">Get the full picture of your monthly housing costs. Includes principal, interest, taxes, insurance, and PMI.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Mortgage Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Home price ($)" tip="The purchase price of the home." /></label>
+            <input type="number" id="price" value="400000" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Down payment ($)" tip="The amount you pay upfront. Larger down payments mean smaller monthly payments." /></label>
+            <input type="number" id="down" value="80000" />
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Interest rate (%)" tip="The annual interest rate on your mortgage." /></label>
+            <input type="number" id="rate" value="6.5" step="0.1" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Loan term" tip="The length of the mortgage. 30-year terms have lower payments but more total interest." /></label>
+            <select id="term">
+              <option value="15">15 years</option>
+              <option value="20">20 years</option>
+              <option value="30" selected>30 years</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Property tax ($/year)" tip="Annual property tax amount. Usually 0.5-2% of the home value." /></label>
+            <input type="number" id="tax" value="3000" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Home insurance ($/year)" tip="Annual homeowners insurance premium." /></label>
+            <input type="number" id="insurance" value="1200" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label" style="display:flex;align-items:center;gap:8px;"><KpiTooltip label="Include PMI" tip="Private Mortgage Insurance. Required when down payment is less than 20% of home price." /> <input type="checkbox" id="pmi" checked /></label>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter your details to calculate.</div>
+        </div>
+
+        <div style="margin-top:24px;">
+          <canvas id="pieChart" style="max-height:260px;"></canvas>
+        </div>
+
+        <div id="amortTable" style="margin-top:24px;overflow-x:auto;"></div>
+        <button id="showAllAmort" class="btn btn-secondary" style="margin-top:12px;width:100%;">Show full amortization schedule</button>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How to use this mortgage calculator</h2>
+      <p>Enter the home price, your down payment, the interest rate, and the loan term. Add your estimated annual property tax and home insurance. If your down payment is under 20%, PMI is included automatically. The calculator shows your total monthly payment broken down into principal and interest, property tax, home insurance, and PMI.</p>
+      <p>The amortization schedule shows how each payment is split between principal and interest over time. In the early years, most of your payment goes to interest. Over time, more goes to principal — this is called building equity.</p>
+      <h2>What affects your mortgage payment?</h2>
+      <p>Your interest rate is determined by your credit score, loan term, and market conditions. A 30-year fixed-rate mortgage has lower monthly payments but more total interest than a 15-year term. Your down payment affects whether you need PMI — putting 20% down eliminates this cost. Property tax and insurance vary by location and should be researched for your area.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+let pieChartInstance = null;
+let showAll = false;
+
+function calculate() {
+  const price = parseFloat(document.getElementById('price').value) || 0;
+  const down = parseFloat(document.getElementById('down').value) || 0;
+  const loanAmt = price - down;
+  const r = (parseFloat(document.getElementById('rate').value) || 0) / 100 / 12;
+  const n = parseInt(document.getElementById('term').value) * 12;
+  const tax = (parseFloat(document.getElementById('tax').value) || 0) / 12;
+  const ins = (parseFloat(document.getElementById('insurance').value) || 0) / 12;
+  const hasPmi = document.getElementById('pmi').checked && (down / price) < 0.2;
+  const pmi = hasPmi ? (loanAmt * 0.005) / 12 : 0;
+
+  if (loanAmt <= 0 || r <= 0) {
+    document.getElementById('resultArea').innerHTML = `<div class="result-empty">Please enter valid values.</div>`;
+    return;
+  }
+
+  const pi = loanAmt * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  const total = pi + tax + ins + pmi;
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">$${total.toFixed(2)}</div>
+        <div class="result-label">Total monthly payment</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${pi.toFixed(2)}</div>
+        <div class="result-label">Principal & Interest</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${(pi * n).toFixed(2)}</div>
+        <div class="result-label">Total cost (30yr)</div>
+      </div>
+    </div>
+  `;
+
+  if (pieChartInstance) pieChartInstance.destroy();
+  pieChartInstance = new Chart(document.getElementById('pieChart'), {
+    type: 'pie',
+    data: {
+      labels: ['Principal & Interest', 'Property Tax', 'Home Insurance', 'PMI'],
+      datasets: [{
+        data: [pi, tax, ins, pmi],
+        backgroundColor: ['#2563eb', '#059669', '#d97706', '#dc2626'],
+      }]
+    },
+    options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+  });
+
+  renderAmort(loanAmt, r, n, pi, tax, ins, pmi);
+}
+
+function renderAmort(loanAmt, r, n, pi, tax, ins, pmi) {
+  let balance = loanAmt;
+  const maxRows = showAll ? n : Math.min(12, n);
+  let html = '<table style="width:100%;border-collapse:collapse;font-size:13px;"><thead><tr style="border-bottom:2px solid var(--border);"><th style="text-align:left;padding:6px 8px;">Month</th><th style="text-align:right;padding:6px 8px;">Payment</th><th style="text-align:right;padding:6px 8px;">Principal</th><th style="text-align:right;padding:6px 8px;">Interest</th><th style="text-align:right;padding:6px 8px;">Balance</th></tr></thead><tbody>';
+  for (let i = 1; i <= maxRows; i++) {
+    const interest = balance * r;
+    const principal = pi - interest;
+    balance -= principal;
+    html += `<tr style="border-bottom:1px solid var(--border-light);"><td style="padding:6px 8px;">${i}</td><td style="padding:6px 8px;text-align:right;">$${(pi + tax + ins + pmi).toFixed(2)}</td><td style="padding:6px 8px;text-align:right;">$${principal.toFixed(2)}</td><td style="padding:6px 8px;text-align:right;">$${interest.toFixed(2)}</td><td style="padding:6px 8px;text-align:right;">$${Math.max(0, balance).toFixed(2)}</td></tr>`;
+  }
+  if (!showAll && n > 12) html += `<tr><td colspan="5" style="padding:12px 8px;text-align:center;color:var(--text-muted);">Showing first 12 months. Click "Show full schedule" below.</td></tr>`;
+  html += '</tbody></table>';
+  document.getElementById('amortTable').innerHTML = html;
+}
+
+document.getElementById('showAllAmort').addEventListener('click', function() {
+  showAll = !showAll;
+  this.textContent = showAll ? 'Show first 12 months' : 'Show full amortization schedule';
+  calculate();
+});
+
+['price','down','rate','term','tax','insurance','pmi'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', calculate);
+});
+calculate();
+</script>

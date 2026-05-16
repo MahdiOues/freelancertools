@@ -1,0 +1,162 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Date Calculator",
+  "description": "Calculate days between dates or add/subtract days from a date. Shows working days and calendar months.",
+  "url": "https://freelancertools.io/math/date-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Date Calculator — Days Between Dates"
+  description="Calculate the exact number of days between two dates, or add/subtract days from any date. Shows working days and calendar months."
+  canonicalUrl="https://freelancertools.io/math/date-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Date Calculator' }]}
+  relatedTools={[
+    { name: 'Age Calculator', href: '/math/age-calculator/', category: 'Math' },
+    { name: 'Time Zone Converter', href: '/math/time-zone-converter/', category: 'Math' },
+    { name: 'Unit Converter', href: '/math/unit-converter/', category: 'Math' },
+    { name: 'Grade Calculator', href: '/math/grade-calculator/', category: 'Math' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Date Calculator</h1>
+      <p class="subhead">Find out how many days between dates, or add/subtract days from any date. Quick and accurate.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Date Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label">Mode</label>
+          <select id="mode">
+            <option value="diff">Days between dates</option>
+            <option value="add">Add/subtract days from a date</option>
+          </select>
+        </div>
+        <div class="field-grid" id="diffFields">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Start date" tip="The beginning date." /></label>
+            <input type="date" id="startDate" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="End date" tip="The ending date." /></label>
+            <input type="date" id="endDate" />
+          </div>
+        </div>
+        <div class="field-grid" id="addFields" style="display:none;">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Date" tip="The base date." /></label>
+            <input type="date" id="baseDate" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Days to add/subtract" tip="Positive to add days, negative to subtract." /></label>
+            <input type="number" id="daysAdd" value="30" />
+          </div>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Select dates to calculate.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>Date calculation made easy</h2>
+      <p>This date calculator offers two useful modes. "Days between dates" tells you exactly how many days — including weekends — separate any two dates. It also shows weeks, months, and working days (Monday through Friday). "Add/subtract days" lets you find a future or past date by adding or subtracting a specific number of days.</p>
+      <p>Date calculations are essential for project planning, contract deadlines, billing cycles, travel planning, and counting down to events. The calculator accounts for leap years and varying month lengths automatically.</p>
+      <h2>Working days vs calendar days</h2>
+      <p>When calculating business deadlines, remember that "working days" typically excludes weekends (Saturday and Sunday) and sometimes holidays. This calculator shows both total days and working days so you can plan accordingly. For legal contracts, always clarify whether deadlines are in calendar days or business days.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+document.getElementById('startDate').valueAsDate = new Date();
+const end = new Date(); end.setDate(end.getDate() + 30);
+document.getElementById('endDate').valueAsDate = end;
+document.getElementById('baseDate').valueAsDate = new Date();
+
+function countWorkingDays(d1, d2) {
+  let count = 0;
+  const start = new Date(Math.min(d1, d2));
+  const end = new Date(Math.max(d1, d2));
+  while (start < end) {
+    const day = start.getDay();
+    if (day !== 0 && day !== 6) count++;
+    start.setDate(start.getDate() + 1);
+  }
+  return count;
+}
+
+function calculate() {
+  const mode = document.getElementById('mode').value;
+  if (mode === 'diff') {
+    const s = new Date(document.getElementById('startDate').value);
+    const e = new Date(document.getElementById('endDate').value);
+    if (isNaN(s.getTime()) || isNaN(e.getTime())) return;
+    const diff = Math.abs(e - s);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const weeks = Math.floor(days / 7);
+    const months = Math.round(days / 30.44);
+    const workingDays = countWorkingDays(s, e);
+    document.getElementById('resultArea').innerHTML = `
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="result-number">${days}</div>
+          <div class="result-label">Total days</div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number">${weeks}w ${days % 7}d</div>
+          <div class="result-label">Weeks & days</div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number">~${months}</div>
+          <div class="result-label">Calendar months</div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number">${workingDays}</div>
+          <div class="result-label">Working days</div>
+        </div>
+      </div>
+    `;
+  } else {
+    const base = new Date(document.getElementById('baseDate').value);
+    const add = parseInt(document.getElementById('daysAdd').value) || 0;
+    if (isNaN(base.getTime())) return;
+    const result = new Date(base);
+    result.setDate(result.getDate() + add);
+    const direction = add >= 0 ? 'after' : 'before';
+    document.getElementById('resultArea').innerHTML = `
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="result-number">${result.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</div>
+          <div class="result-label">${Math.abs(add)} days ${direction} ${base.toLocaleDateString()}</div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+document.getElementById('mode').addEventListener('change', function() {
+  const isDiff = this.value === 'diff';
+  document.getElementById('diffFields').style.display = isDiff ? '' : 'none';
+  document.getElementById('addFields').style.display = isDiff ? 'none' : '';
+  calculate();
+});
+['startDate','endDate','baseDate','daysAdd','mode'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

@@ -1,0 +1,231 @@
+---
+import Tool from '../../layouts/ToolWithCharts.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Credit Score Simulator",
+  "description": "Simulate how changes to your credit behavior affect your credit score. Adjust utilization, missed payments, credit age, and more.",
+  "url": "https://freelancertools.io/finance/credit-score-simulator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Credit Score Simulator"
+  description="See how changes to your credit utilization, payments, and accounts affect your credit score. Instant feedback with personalized tips."
+  canonicalUrl="https://freelancertools.io/finance/credit-score-simulator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Credit Score Simulator' }]}
+  relatedTools={[
+    { name: 'Loan Comparison Calculator', href: '/finance/loan-comparison/', category: 'Finance' },
+    { name: 'Tax Deduction Finder', href: '/finance/tax-deduction-finder/', category: 'Finance' },
+    { name: 'SaaS Pricing Calculator', href: '/saas/pricing-calculator/', category: 'SaaS' },
+    { name: 'Ad Profitability Calculator', href: '/marketing/ad-profit-calculator/', category: 'Marketing' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Credit Score Simulator</h1>
+      <p class="subhead">Adjust the sliders below to see how changes in your credit behavior could affect your score. This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Credit Score Simulator</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Base credit score" tip="Your starting credit score before adjustments. Used as the baseline to simulate how changes to your habits affect your score." /></label>
+        <div class="range-row">
+          <input type="range" id="baseScore" min="300" max="850" value="650" />
+          <span class="range-value" id="baseScoreVal">650</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Credit utilization" tip="How much of your total available credit you're currently using. Calculated as total balances divided by total credit limits. Keep this below 30% to avoid score penalties." /></label>
+        <div class="range-row">
+          <input type="range" id="utilization" min="0" max="100" value="30" />
+          <span class="range-value" id="utilizationVal">30%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Missed payments (last 2 years)" tip="Your track record of paying bills on time. Even one missed payment can significantly lower your score and stays on your report for 7 years." /></label>
+        <div class="range-row">
+          <input type="range" id="missed" min="0" max="10" value="0" />
+          <span class="range-value" id="missedVal">0</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Average credit age (years)" tip="The average age of all your open credit accounts. Longer history signals lower risk to lenders." /></label>
+        <div class="range-row">
+          <input type="range" id="creditAge" min="0" max="30" value="5" />
+          <span class="range-value" id="creditAgeVal">5 yr</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Open accounts" tip="The number of credit accounts you have open. Having too few can limit your credit mix; having many can be a risk if opened recently." /></label>
+        <div class="range-row">
+          <input type="range" id="accounts" min="1" max="20" value="5" />
+          <span class="range-value" id="accountsVal">5</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Hard inquiries (last 2 years)" tip="The number of hard inquiries from recent credit applications. Each one can slightly lower your score for up to 12 months." /></label>
+        <div class="range-row">
+          <input type="range" id="inquiries" min="0" max="10" value="0" />
+          <span class="range-value" id="inquiriesVal">0</span>
+        </div>
+      </div>
+
+      <div id="resultArea" class="result-area">
+        <div class="result-empty">Adjust the sliders above to see your simulated score.</div>
+      </div>
+
+      <div id="scenarioBtns" style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+        <button class="btn btn-secondary scenario-btn" data-scenario="excellent">Excellent credit</button>
+        <button class="btn btn-secondary scenario-btn" data-scenario="fair">Fair credit</button>
+        <button class="btn btn-secondary scenario-btn" data-scenario="poor">Poor credit</button>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How your credit score is calculated</h2>
+      <p>Your credit score is a number that lenders use to evaluate your creditworthiness. While the exact formula varies by scoring model, five factors generally determine your score: payment history, credit utilization, length of credit history, credit mix, and new credit inquiries.</p>
+      <p>This simulator lets you adjust each factor independently to see how changes in your financial behavior could move your score up or down. Use it to plan your credit improvement strategy before applying for a loan or credit card.</p>
+      <h2>What is a good credit score?</h2>
+      <p>Credit score ranges vary by scoring model, but a good rule of thumb: 300-579 is poor, 580-669 is fair, 670-739 is good, 740-799 is very good, and 800-850 is excellent. Most lenders consider 670+ to be prime credit.</p>
+      <h2>Tips to improve your credit score</h2>
+      <p>Keep your credit utilization below 30% (under 10% is ideal). Make all payments on time. Avoid opening multiple new accounts in a short period. Let your oldest accounts stay open to build credit history.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calcDelta(util, missed, age, accounts, inquiries, base) {
+  let d = 0;
+  if (util <= 10) d += 40;
+  else if (util <= 30) d += 15;
+  else if (util <= 50) d -= 20;
+  else if (util <= 75) d -= 60;
+  else d -= 120;
+  d -= missed * Math.min(90, 50 + base * 0.06);
+  if (age < 1) d -= 30;
+  else if (age < 3) d -= 15;
+  else if (age > 7) d += 20;
+  else if (age > 5) d += 10;
+  if (accounts <= 1) d -= 20;
+  else if (accounts <= 3) d -= 5;
+  else if (accounts >= 5) d += 10;
+  d -= inquiries * 7;
+  return d;
+}
+
+function getBand(score) {
+  if (score >= 800) return { label: 'Excellent', cls: 'good' };
+  if (score >= 740) return { label: 'Very Good', cls: 'good' };
+  if (score >= 670) return { label: 'Good', cls: 'good' };
+  if (score >= 580) return { label: 'Fair', cls: 'warn' };
+  return { label: 'Poor', cls: 'bad' };
+}
+
+function getTips(util, missed, age, accounts, inquiries) {
+  const tips = [];
+  if (util > 30) tips.push('Your credit utilization is high. Try to pay down balances to keep utilization under 30%.');
+  if (missed > 0) tips.push('Missing payments has a severe impact. Set up autopay to avoid late payments.');
+  if (age < 3) tips.push('Your credit history is short. Avoid closing your oldest accounts.');
+  if (accounts <= 2) tips.push('Having only 1-2 accounts limits your credit mix. Consider a secured card.');
+  if (inquiries > 3) tips.push('Multiple hard inquiries can lower your score. Space out credit applications.');
+  if (tips.length === 0) tips.push('You have healthy credit habits. Keep doing what you are doing.');
+  return tips.slice(0, 3);
+}
+
+function update() {
+  const base = parseInt(document.getElementById('baseScore').value);
+  const util = parseInt(document.getElementById('utilization').value);
+  const missed = parseInt(document.getElementById('missed').value);
+  const age = parseInt(document.getElementById('creditAge').value);
+  const accounts = parseInt(document.getElementById('accounts').value);
+  const inquiries = parseInt(document.getElementById('inquiries').value);
+
+  const delta = calcDelta(util, missed, age, accounts, inquiries, base);
+  const simulated = Math.min(850, Math.max(300, base + delta));
+  const band = getBand(simulated);
+  const tips = getTips(util, missed, age, accounts, inquiries);
+
+  const pct = ((simulated - 300) / (850 - 300)) * 100;
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">${Math.round(simulated)}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Simulated Score<button class="kpi-info-btn" aria-label="What is Simulated Score?" data-tip="A simulated FICO-style score based on your inputs. Not a real credit inquiry — use this to model how changes to your habits could affect your score range." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">A simulated FICO-style score based on your inputs. Not a real credit inquiry — use this to model how changes to your habits could affect your score range.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class=""><span class="status-badge ${band.cls}">${band.label}</span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Score Band<button class="kpi-info-btn" aria-label="What is Score Band?" data-tip="Your score category based on the simulated number. 300–579 Poor, 580–669 Fair, 670–739 Good, 740–799 Very Good, 800–850 Excellent." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your score category based on the simulated number. 300–579 Poor, 580–669 Fair, 670–739 Good, 740–799 Very Good, 800–850 Excellent.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="${delta < 0 ? 'color: var(--danger)' : 'color: var(--success)'}">${delta > 0 ? '+' : ''}${Math.round(delta)}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Change vs Base<button class="kpi-info-btn" aria-label="What is Change vs Base?" data-tip="The difference between your simulated score and your base score. Positive means your changes improved your score; negative means they hurt it." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">The difference between your simulated score and your base score. Positive means your changes improved your score; negative means they hurt it.</span></span></div>
+      </div>
+    </div>
+    <div style="margin-top: 16px; height: 12px; background: var(--border); border-radius: 6px; overflow: hidden;">
+      <div style="height: 100%; width: ${pct}%; background: ${band.cls === 'good' ? 'var(--success)' : band.cls === 'warn' ? 'var(--warning)' : 'var(--danger)'}; border-radius: 6px; transition: width 0.2s;"></div>
+    </div>
+    <div style="margin-top: 20px;">
+      <h3 style="font-size: 14px; margin-bottom: 8px;">Tips to improve</h3>
+      <ul style="font-size: 14px; color: var(--ink-2); padding-left: 18px;">
+        ${tips.map(t => `<li style="margin-bottom: 4px;">${t}</li>`).join('')}
+      </ul>
+    </div>
+  `;
+}
+
+function setScenario(type) {
+  const scenarios = {
+    excellent: { base: 780, util: 8, missed: 0, age: 12, accounts: 8, inquiries: 0 },
+    fair: { base: 620, util: 45, missed: 2, age: 4, accounts: 3, inquiries: 2 },
+    poor: { base: 520, util: 80, missed: 5, age: 2, accounts: 2, inquiries: 4 },
+  };
+  const s = scenarios[type];
+  document.getElementById('baseScore').value = s.base;
+  document.getElementById('utilization').value = s.util;
+  document.getElementById('missed').value = s.missed;
+  document.getElementById('creditAge').value = s.age;
+  document.getElementById('accounts').value = s.accounts;
+  document.getElementById('inquiries').value = s.inquiries;
+  document.getElementById('baseScoreVal').textContent = s.base;
+  document.getElementById('utilizationVal').textContent = s.util + '%';
+  document.getElementById('missedVal').textContent = s.missed;
+  document.getElementById('creditAgeVal').textContent = s.age + ' yr';
+  document.getElementById('accountsVal').textContent = s.accounts;
+  document.getElementById('inquiriesVal').textContent = s.inquiries;
+  update();
+}
+
+document.querySelectorAll('input[type="range"]').forEach(el => {
+  el.addEventListener('input', function() {
+    const label = this.id;
+    const val = this.value;
+    const display = document.getElementById(label + 'Val');
+    if (label === 'utilization') display.textContent = val + '%';
+    else if (label === 'creditAge') display.textContent = val + ' yr';
+    else display.textContent = val;
+    update();
+  });
+});
+
+update();
+document.getElementById('scenarioBtns').addEventListener('click', function(e) {
+  const btn = e.target.closest('.scenario-btn');
+  if (btn) setScenario(btn.dataset.scenario);
+});
+</script>

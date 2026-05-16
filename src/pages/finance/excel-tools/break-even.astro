@@ -1,0 +1,347 @@
+---
+import Tool from '../../../layouts/ToolWithExcel.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Break-Even Analysis Calculator",
+  "description": "Calculate your break-even point in units and revenue. See the exact crossover of total revenue and total costs on a chart.",
+  "url": "https://freelancertools.io/finance/excel-tools/break-even/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What if my selling price is lower than my variable cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The tool will show an error — a business cannot break even if it costs more to produce each unit than the selling price. You need to either raise prices or reduce variable costs." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I handle multiple products with different margins?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Use a weighted average selling price and weighted average variable cost based on your expected sales mix. This gives a blended break-even point for the whole business." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I include taxes in my break-even analysis?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Enter your after-tax selling price and after-tax variable cost to get a post-tax break-even point. Or use pre-tax figures and treat the break-even as a pre-tax target." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the contribution margin ratio?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The contribution margin ratio is (Selling price - Variable cost) / Selling price, expressed as a percentage. It tells you what percentage of each dollar of revenue is available to cover fixed costs and generate profit. The tool shows this in the summary cards below the chart." }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is the break-even calculation for service businesses?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The calculation is exact for the inputs you provide. The main challenge for service businesses is accurately estimating capacity utilisation — how many billable units (hours, projects) you can actually deliver per month." }
+    }
+  ]
+};
+---
+
+<Tool
+  title="Break-Even Analysis — Chart & Formula"
+  description="Calculate your break-even point in units and revenue. See the exact crossover of total revenue and total costs on a chart. Free break-even analysis tool for businesses and freelancers."
+  canonicalUrl="https://freelancertools.io/finance/excel-tools/break-even/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Excel-Free Tools', href: '/finance/excel-tools/' }, { label: 'Break-Even Analysis' }]}
+  relatedTools={[
+    { name: 'Chart Builder', href: '/finance/excel-tools/chart-builder/', category: 'Finance' },
+    { name: 'Cash Flow Waterfall', href: '/finance/excel-tools/cash-flow-waterfall/', category: 'Finance' },
+    { name: 'Growth Modeler', href: '/finance/excel-tools/growth-modeler/', category: 'Finance' },
+    { name: 'Financial Ratios', href: '/finance/excel-tools/financial-ratios/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Free Break-Even Analysis Calculator — Units, Revenue & Chart</h1>
+      <p class="subhead">Classic break-even chart — where does total revenue cross total costs? Essential for pricing decisions and business plans.</p>
+    </div>
+  </fragment>
+  <div class="tool-intro" style="max-width:720px;margin:0 auto 28px;">
+    <p>Enter your fixed costs, variable cost per unit, and selling price and instantly see the break-even point — the exact number of units and revenue at which your business stops losing money. The tool generates a break-even chart showing the revenue line, total cost line, and fixed cost baseline, with the crossover point clearly marked. Used by business owners, startup founders, and finance students. Export as PDF or Excel.</p>
+  </div>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Break-Even Analysis Chart</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label">Fixed Costs per Month ($)</label>
+          <input type="number" id="fixedCosts" value="50000" min="0" step="1000" />
+        </div>
+        <div class="field">
+          <label class="field-label">Variable Cost per Unit ($)</label>
+          <input type="number" id="variableCost" value="15" min="0" step="0.5" />
+        </div>
+        <div class="field">
+          <label class="field-label">Selling Price per Unit ($)</label>
+          <input type="number" id="sellingPrice" value="40" min="0" step="0.5" />
+        </div>
+        <div class="field">
+          <label class="field-label">Max Units to Model</label>
+          <input type="range" id="maxUnits" min="100" max="10000" value="5000" step="100" />
+          <span class="range-value" id="maxUnitsVal">5,000</span>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-full" id="analyzeBtn">Run Break-Even Analysis</button>
+
+      <div id="chartWrap" style="margin-top:24px;display:none;">
+        <canvas id="chartCanvas" style="max-height:400px;"></canvas>
+      </div>
+
+      <div id="summaryRow" style="display:none;margin-top:24px;">
+        <div class="metric-grid" id="summaryGrid"></div>
+      </div>
+
+      <div id="tableWrap" style="margin-top:24px;overflow-x:auto;display:none;">
+        <table id="beTable" style="width:100%;border-collapse:collapse;font-size:12px;"></table>
+      </div>
+
+      <div id="exportRow" style="display:none;margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-secondary" onclick="exportTableXLSX('beTable','break_even_data.xlsx')">Export as Excel</button>
+        <button class="btn btn-primary" onclick="exportPDF('Break-Even Analysis','beTable','chartCanvas')">Export as PDF</button>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>What is break-even analysis?</h2>
+      <p>Break-even analysis determines the point at which your total revenue equals your total costs — the moment your business stops losing money and starts turning a profit. The formula is: Break-Even Units = Fixed Costs / (Selling Price - Variable Cost per Unit). The denominator — Selling Price minus Variable Cost — is called the contribution margin per unit, and it represents how much each sale contributes to covering your fixed costs. This is one of the first calculations any business owner should make.</p>
+
+      <h2>Fixed costs vs variable costs — what is the difference?</h2>
+      <p>Fixed costs are expenses that stay the same regardless of how many units you sell: rent, salaried employee payroll, insurance, software subscriptions. Variable costs scale directly with production or service delivery: raw materials, shipping, commission payments, contractor fees. Correctly classifying your costs between fixed and variable is essential for an accurate break-even calculation. A common mistake is treating a semi-variable cost — like a utility bill that has a base charge plus a usage charge — as entirely fixed.</p>
+
+      <h2>How to read a break-even chart</h2>
+      <p>The chart plots three lines. The blue revenue line starts at zero and rises at a slope equal to your selling price. The red total cost line starts at your fixed cost level and rises at a slope equal to your variable cost per unit. The grey dashed line marks your fixed cost baseline. The point where the revenue line crosses the total cost line is your break-even. Everything to the right of that crossover is your profit zone. The vertical dashed line marks the break-even unit threshold.</p>
+
+      <h2>Break-even analysis for service businesses and freelancers</h2>
+      <p>If you sell services rather than products, your "unit" is typically a billable hour or a project. Your fixed costs are your monthly operating expenses — software subscriptions, coworking space, insurance. Your variable cost per unit might be subcontractor fees or per-project tools. The break-even calculation tells you the minimum number of billable hours or projects you need to book each month before you start making a profit. This is a critical number for any freelancer setting rates or planning capacity.</p>
+
+      <h2>Margin of safety</h2>
+      <p>The margin of safety is the difference between your projected or actual sales volume and your break-even volume. It is expressed in units or as a percentage. A 20% margin of safety means you could lose 20% of your sales before you start losing money. A margin of safety below 10% is a warning sign — a small drop in demand could push you into unprofitability.</p>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <h3>What if my selling price is lower than my variable cost?</h3>
+        <p>The tool will show an error — a business cannot break even if it costs more to produce each unit than the selling price. You need to either raise prices or reduce variable costs.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do I handle multiple products with different margins?</h3>
+        <p>Use a weighted average selling price and weighted average variable cost based on your expected sales mix. This gives a blended break-even point for the whole business.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I include taxes in my break-even analysis?</h3>
+        <p>Enter your after-tax selling price and after-tax variable cost to get a post-tax break-even point. Or use pre-tax figures and treat the break-even as a pre-tax target.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is the contribution margin ratio?</h3>
+        <p>The contribution margin ratio is (Selling price - Variable cost) / Selling price, expressed as a percentage. It tells you what percentage of each dollar of revenue is available to cover fixed costs and generate profit. The tool shows this in the summary cards below the chart.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How accurate is the break-even calculation for service businesses?</h3>
+        <p>The calculation is exact for the inputs you provide. The main challenge for service businesses is accurately estimating capacity utilisation — how many billable units (hours, projects) you can actually deliver per month.</p>
+      </div>
+
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="/finance/excel-tools/amortization-table/">Amortization Table Generator</a></li>
+        <li><a href="/finance/excel-tools/financial-ratios/">Financial Ratio Calculator</a></li>
+        <li><a href="/freelancer/rate-calculator/">Freelancer Rate Calculator</a></li>
+        <li><a href="/finance/">Back to Finance Tools</a></li>
+      </ul>
+    </div>
+  </fragment>
+</Tool>
+
+<script is:inline src="/scripts/excel-tools-core.js"></script>
+<script>
+(function () {
+  const analyzeBtn = document.getElementById('analyzeBtn');
+  const chartWrap = document.getElementById('chartWrap');
+  const summaryRow = document.getElementById('summaryRow');
+  const summaryGrid = document.getElementById('summaryGrid');
+  const tableWrap = document.getElementById('tableWrap');
+  const beTable = document.getElementById('beTable');
+  const exportRow = document.getElementById('exportRow');
+  const maxUnitsSlider = document.getElementById('maxUnits');
+  const maxUnitsVal = document.getElementById('maxUnitsVal');
+
+  maxUnitsSlider.addEventListener('input', () => {
+    maxUnitsVal.textContent = parseInt(maxUnitsSlider.value).toLocaleString();
+  });
+
+  function breakEvenAnalysis(fixedCosts, variableCost, sellingPrice, maxUnits) {
+    if (sellingPrice <= variableCost) {
+      return { error: 'Selling price must be greater than variable cost to ever break even.' };
+    }
+
+    const bepUnits = fixedCosts / (sellingPrice - variableCost);
+    const bepRevenue = bepUnits * sellingPrice;
+
+    const step = Math.ceil(maxUnits / 20);
+    const points = [];
+    for (let u = 0; u <= maxUnits; u += step) {
+      points.push({
+        units: u,
+        totalRevenue: u * sellingPrice,
+        totalCosts: fixedCosts + u * variableCost,
+        profit: u * sellingPrice - (fixedCosts + u * variableCost)
+      });
+    }
+    if (points[points.length - 1].units < maxUnits) {
+      points.push({
+        units: maxUnits,
+        totalRevenue: maxUnits * sellingPrice,
+        totalCosts: fixedCosts + maxUnits * variableCost,
+        profit: maxUnits * sellingPrice - (fixedCosts + maxUnits * variableCost)
+      });
+    }
+
+    return { bepUnits: Math.ceil(bepUnits), bepRevenue, points };
+  }
+
+  function analyze() {
+    const fixedCosts = parseFloat(document.getElementById('fixedCosts').value) || 0;
+    const variableCost = parseFloat(document.getElementById('variableCost').value) || 0;
+    const sellingPrice = parseFloat(document.getElementById('sellingPrice').value) || 0;
+    const maxUnits = parseInt(document.getElementById('maxUnits').value) || 1000;
+
+    const result = breakEvenAnalysis(fixedCosts, variableCost, sellingPrice, maxUnits);
+
+    if (result.error) {
+      alert(result.error);
+      return;
+    }
+
+    chartWrap.style.display = 'block';
+    summaryRow.style.display = 'block';
+    tableWrap.style.display = 'block';
+    exportRow.style.display = 'flex';
+
+    const { bepUnits, bepRevenue, points } = result;
+    const contributionMargin = sellingPrice - variableCost;
+    const marginOfSafety = maxUnits - bepUnits;
+
+    summaryGrid.innerHTML = `
+      <div class="metric-card"><div class="result-number">${fmtCurrency(bepRevenue)}</div><div class="result-label">Break-Even Revenue</div></div>
+      <div class="metric-card"><div class="result-number">${bepUnits.toLocaleString()}</div><div class="result-label">Break-Even Units</div></div>
+      <div class="metric-card"><div class="result-number">${fmtCurrency(contributionMargin)}</div><div class="result-label">Contribution Margin / Unit</div></div>
+      <div class="metric-card"><div class="result-number">${marginOfSafety.toLocaleString()} units</div><div class="result-label">Margin of Safety</div></div>
+    `;
+
+    const unitValues = points.map(p => p.units);
+    const revenueValues = points.map(p => p.totalRevenue);
+    const costsValues = points.map(p => p.totalCosts);
+
+    const ctx = document.getElementById('chartCanvas').getContext('2d');
+    if (window._chartInstance) window._chartInstance.destroy();
+
+    window._chartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: unitValues,
+        datasets: [
+          {
+            label: 'Total Revenue',
+            data: revenueValues,
+            borderColor: '#2563eb',
+            backgroundColor: 'rgba(37,99,235,0.05)',
+            borderWidth: 2,
+            tension: 0,
+            fill: false,
+            pointRadius: 0
+          },
+          {
+            label: 'Total Costs',
+            data: costsValues,
+            borderColor: '#dc2626',
+            backgroundColor: 'rgba(220,38,38,0.05)',
+            borderWidth: 2,
+            tension: 0,
+            fill: false,
+            pointRadius: 0
+          },
+          {
+            label: 'Fixed Costs',
+            data: unitValues.map(() => fixedCosts),
+            borderColor: '#888',
+            borderWidth: 1,
+            borderDash: [5, 5],
+            tension: 0,
+            fill: false,
+            pointRadius: 0
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' },
+          annotation: undefined
+        },
+        scales: {
+          x: { grid: { color: '#f0f0ec' }, title: { display: true, text: 'Units Sold' } },
+          y: { grid: { color: '#f0f0ec' }, title: { display: true, text: 'Dollars ($)' }, beginAtZero: true }
+        }
+      },
+      plugins: [{
+        id: 'bepAnnotation',
+        afterDraw(chart) {
+          const xScale = chart.scales.x;
+          const yScale = chart.scales.y;
+          const x = xScale.getPixelForValue(bepUnits);
+          const y = yScale.getPixelForValue(bepRevenue);
+
+          const ctx = chart.ctx;
+          ctx.save();
+          ctx.setLineDash([6, 4]);
+          ctx.strokeStyle = '#333';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(x, yScale.top);
+          ctx.lineTo(x, yScale.bottom);
+          ctx.stroke();
+          ctx.restore();
+
+          ctx.save();
+          ctx.fillStyle = '#1a1a1a';
+          ctx.font = 'bold 12px Inter, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(`Break-Even: ${bepUnits.toLocaleString()} units / ${fmtCurrency(bepRevenue)}`, x, yScale.top - 8);
+          ctx.restore();
+        }
+      }]
+    });
+
+    const headers = ['Units', 'Total Revenue', 'Total Costs', 'Profit'];
+    let html = '<thead><tr>' + headers.map(h => '<th style="text-align:right;padding:6px 8px;border-bottom:2px solid #1a1a1a;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;">' + h + '</th>').join('') + '</tr></thead><tbody>';
+    points.forEach(p => {
+      html += '<tr>' + headers.map(h => {
+        let val;
+        if (h === 'Units') val = p.units.toLocaleString();
+        else if (h === 'Total Revenue') val = fmtCurrency(p.totalRevenue);
+        else if (h === 'Total Costs') val = fmtCurrency(p.totalCosts);
+        else val = fmtCurrency(p.profit);
+        return '<td style="text-align:right;padding:6px 8px;border-bottom:1px solid #e8e8e4;">' + val + '</td>';
+      }).join('') + '</tr>';
+    });
+    html += '</tbody>';
+    beTable.innerHTML = html;
+  }
+
+  analyzeBtn.addEventListener('click', analyze);
+  analyze();
+})();
+</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What if my selling price is lower than my variable cost?","acceptedAnswer":{"@type":"Answer","text":"The tool will show an error \u2014 a business cannot break even if it costs more to produce each unit than the selling price. You need to either raise prices or reduce variable costs."}},{"@type":"Question","name":"How do I handle multiple products with different margins?","acceptedAnswer":{"@type":"Answer","text":"Use a weighted average selling price and weighted average variable cost based on your expected sales mix. This gives a blended break-even point for the whole business."}},{"@type":"Question","name":"Can I include taxes in my break-even analysis?","acceptedAnswer":{"@type":"Answer","text":"Enter your after-tax selling price and after-tax variable cost to get a post-tax break-even point. Or use pre-tax figures and treat the break-even as a pre-tax target."}},{"@type":"Question","name":"What is the contribution margin ratio?","acceptedAnswer":{"@type":"Answer","text":"The contribution margin ratio is (Selling price - Variable cost) / Selling price, expressed as a percentage. It tells you what percentage of each dollar of revenue is available to cover fixed costs and generate profit. The tool shows this in the summary cards below the chart."}},{"@type":"Question","name":"How accurate is the break-even calculation for service businesses?","acceptedAnswer":{"@type":"Answer","text":"The calculation is exact for the inputs you provide. The main challenge for service businesses is accurately estimating capacity utilisation \u2014 how many billable units (hours, projects) you can actually deliver per month."}}]}</script>

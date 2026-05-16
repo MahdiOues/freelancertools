@@ -1,0 +1,11 @@
+---
+interface Props {
+  accentColor?: string;
+  catColor?: string;
+}
+const { accentColor, catColor } = Astro.props;
+---
+
+<div class="tool-card" style={`--cat-color: ${catColor || accentColor || 'var(--brand-accent)'};`}>
+  <slot />
+</div>

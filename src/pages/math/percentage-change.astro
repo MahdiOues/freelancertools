@@ -1,0 +1,97 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Percentage Change Calculator",
+  "description": "Calculate the percentage increase or decrease between two numbers. Shows absolute change and explains in plain English.",
+  "url": "https://freelancertools.io/math/percentage-change/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Percentage Change Calculator — Increase & Decrease"
+  description="Calculate percentage increase or decrease between any two numbers. See the absolute change and a plain English explanation of the result."
+  canonicalUrl="https://freelancertools.io/math/percentage-change/"
+  schema={schema}
+  breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Percentage Change Calculator' }]}
+  relatedTools={[
+    { name: 'Percentage Calculator', href: '/math/percentage-calculator/', category: 'Math' },
+    { name: 'Discount Calculator', href: '/math/discount-calculator/', category: 'Math' },
+    { name: 'Tip Calculator', href: '/math/tip-calculator/', category: 'Math' },
+    { name: 'Inflation Calculator', href: '/finance/inflation-calculator/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Percentage Change Calculator</h1>
+      <p class="subhead">Find the percentage increase or decrease between any two numbers. Clear explanation included.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Percentage Change Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Original value" tip="The starting value before the change." /></label>
+            <input type="number" id="original" value="50" step="any" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="New value" tip="The value after the change." /></label>
+            <input type="number" id="newVal" value="75" step="any" />
+          </div>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter two numbers to calculate the percentage change.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How to calculate percentage change</h2>
+      <p>Percentage change measures how much a value has increased or decreased relative to its original value. The formula is: ((New Value − Original Value) ÷ |Original Value|) × 100. A positive result means an increase; a negative result means a decrease.</p>
+      <p>This is different from percentage difference, which compares two values without designating one as the "original." Percentage change is directional — it tells you the rate of growth or decline.</p>
+      <h2>When to use percentage change</h2>
+      <p>Percentage change is used to measure investment returns, price changes, population growth, revenue growth, inflation rates, and any situation where you need to express a change relative to a starting point. Unlike absolute change ($10 increase), percentage change tells you how significant the change was relative to the starting value.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calculate() {
+  const orig = parseFloat(document.getElementById('original').value) || 0;
+  const newV = parseFloat(document.getElementById('newVal').value) || 0;
+  if (orig === 0) {
+    document.getElementById('resultArea').innerHTML = `<div class="result-empty">Original value cannot be zero for percentage change.</div>`;
+    return;
+  }
+  const change = ((newV - orig) / Math.abs(orig)) * 100;
+  const absChange = newV - orig;
+  const direction = change >= 0 ? 'increased' : 'decreased';
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number" style="color:${change >= 0 ? 'var(--success)' : 'var(--danger)'};">${change >= 0 ? '+' : ''}${change.toFixed(2)}%</div>
+        <div class="result-label">Percentage change</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="color:${change >= 0 ? 'var(--success)' : 'var(--danger)'};">${absChange >= 0 ? '+' : ''}${absChange.toFixed(2)}</div>
+        <div class="result-label">Absolute change</div>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:15px;color:var(--text-secondary);">${orig} ${direction} by ${Math.abs(change).toFixed(2)}% to ${newV}.</p>
+  `;
+}
+['original','newVal'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

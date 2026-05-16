@@ -1,0 +1,124 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Tip Calculator",
+  "description": "Calculate tip amounts and split bills. Quick buttons for standard tip percentages.",
+  "url": "https://freelancertools.io/math/tip-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Tip Calculator — Split Bills Easily"
+  description="Calculate the right tip for any bill. Split between multiple people, choose your percentage, and get the exact amount per person."
+  canonicalUrl="https://freelancertools.io/math/tip-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Tip Calculator' }]}
+  relatedTools={[
+    { name: 'Percentage Calculator', href: '/math/percentage-calculator/', category: 'Math' },
+    { name: 'Discount Calculator', href: '/math/discount-calculator/', category: 'Math' },
+    { name: 'Date Calculator', href: '/math/date-calculator/', category: 'Math' },
+    { name: 'Unit Converter', href: '/math/unit-converter/', category: 'Math' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Tip Calculator</h1>
+      <p class="subhead">Quickly calculate the tip and split the bill. No more awkward math at the table.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Tip Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Bill amount ($)" tip="The total bill amount before tip." /></label>
+          <input type="number" id="bill" value="75.50" step="0.5" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Tip percentage" tip="Percentage of the bill to leave as a tip." /></label>
+          <div class="range-row">
+            <input type="range" id="tipPct" min="0" max="100" value="18" />
+            <span class="range-value" id="tipPctVal">18%</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
+          <button class="btn btn-secondary quick-tip" style="flex:1;padding:10px;" data-pct="15">15%</button>
+          <button class="btn btn-secondary quick-tip" style="flex:1;padding:10px;" data-pct="18">18%</button>
+          <button class="btn btn-secondary quick-tip" style="flex:1;padding:10px;" data-pct="20">20%</button>
+          <button class="btn btn-secondary quick-tip" style="flex:1;padding:10px;" data-pct="22">22%</button>
+          <button class="btn btn-secondary quick-tip" style="flex:1;padding:10px;" data-pct="25">25%</button>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Number of people" tip="Split the bill evenly between this many people." /></label>
+          <input type="number" id="people" value="2" min="1" />
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter bill amount to calculate tip.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How much should you tip?</h2>
+      <p>Standard tipping in the US is 15-20% for restaurant service. Many people now tip 18-22% for good service. For large parties (6+), some restaurants automatically add 18% gratuity — always check your bill. This calculator helps you figure out the right amount whether you're dining solo or splitting with friends.</p>
+      <h2>Tipping customs around the world</h2>
+      <p>Tipping norms vary by country. In the US, 15-20% is standard for restaurants, bars, and personal services. In Europe, service is often included, but rounding up 5-10% is appreciated. In Japan, tipping can be considered rude. When traveling, research local customs to avoid awkward situations.</p>
+      <p>This calculator is for reference. Tip according to your discretion and satisfaction with the service.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calculate() {
+  const bill = parseFloat(document.getElementById('bill').value) || 0;
+  const pct = parseInt(document.getElementById('tipPct').value) || 18;
+  const people = parseInt(document.getElementById('people').value) || 1;
+  const tip = bill * (pct / 100);
+  const total = bill + tip;
+  const perPerson = total / people;
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">$${tip.toFixed(2)}</div>
+        <div class="result-label">Tip amount (${pct}%)</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${total.toFixed(2)}</div>
+        <div class="result-label">Total bill</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${perPerson.toFixed(2)}</div>
+        <div class="result-label">Per person (${people})</div>
+      </div>
+    </div>
+  `;
+}
+
+document.getElementById('bill').addEventListener('input', calculate);
+document.getElementById('tipPct').addEventListener('input', function() {
+  document.getElementById('tipPctVal').textContent = this.value + '%';
+  calculate();
+});
+document.getElementById('people').addEventListener('input', calculate);
+document.querySelectorAll('.quick-tip').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const pct = parseInt(this.dataset.pct);
+    document.getElementById('tipPct').value = pct;
+    document.getElementById('tipPctVal').textContent = pct + '%';
+    calculate();
+  });
+});
+calculate();
+</script>

@@ -1,0 +1,144 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Retirement Calculator",
+  "description": "Calculate how much you need to save for retirement. Uses the 4% rule. See if you're on track with gap analysis.",
+  "url": "https://freelancertools.io/finance/retirement-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Retirement Calculator — How Much You Need"
+  description="Calculate your retirement savings goal. See projected nest egg, monthly retirement income, and whether you're on track."
+  canonicalUrl="https://freelancertools.io/finance/retirement-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Retirement Calculator' }]}
+  relatedTools={[
+    { name: 'Compound Interest Calculator', href: '/finance/compound-interest/', category: 'Finance' },
+    { name: 'Investment Return Calculator', href: '/finance/investment-return/', category: 'Finance' },
+    { name: 'Social Security Estimator', href: '/finance/social-security-estimator/', category: 'Finance' },
+    { name: 'Budget Planner', href: '/finance/budget-planner/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Retirement Calculator</h1>
+      <p class="subhead">Are you on track for retirement? Enter your details to see your projected nest egg and monthly income.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Retirement Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Current age" tip="Your current age." /></label>
+            <input type="number" id="currentAge" value="30" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Retirement age" tip="The age you plan to retire." /></label>
+            <input type="number" id="retireAge" value="65" />
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Current savings ($)" tip="Total retirement savings so far." /></label>
+            <input type="number" id="savings" value="50000" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Monthly contribution ($)" tip="Amount you save each month." /></label>
+            <input type="number" id="contribution" value="1000" />
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Expected return (%)" tip="Average annual return before retirement." /></label>
+            <input type="number" id="returnRate" value="7" step="0.1" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Expected inflation (%)" tip="Average annual inflation rate." /></label>
+            <input type="number" id="inflation" value="3" step="0.1" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Desired monthly income ($)" tip="Your target monthly retirement income in today's dollars." /></label>
+          <input type="number" id="desiredIncome" value="4000" />
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter your details to see retirement projections.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How much do you need to retire?</h2>
+      <p>A common rule of thumb is the <strong>4% rule</strong>: in retirement, you can withdraw 4% of your nest egg each year (adjusting for inflation) with a high probability of not running out of money for 30 years. This means you need 25 times your desired annual retirement income in savings.</p>
+      <p>For example, if you want $4,000 per month ($48,000 per year) in retirement, you need $48,000 × 25 = $1,200,000 saved. This calculator shows your projected nest egg and whether you'll hit that target based on your current savings rate.</p>
+      <h2>Factors that affect your retirement</h2>
+      <p>Your retirement timeline is affected by your savings rate, investment returns, inflation, and how long you expect to live. Starting early gives you the massive advantage of compound interest. Even small increases in your monthly contribution can dramatically improve your retirement outcome over decades.</p>
+      <p>This is a projection. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calculate() {
+  const currentAge = parseInt(document.getElementById('currentAge').value) || 30;
+  const retireAge = parseInt(document.getElementById('retireAge').value) || 65;
+  const savings = parseFloat(document.getElementById('savings').value) || 0;
+  const contrib = parseFloat(document.getElementById('contribution').value) || 0;
+  const r = (parseFloat(document.getElementById('returnRate').value) || 0) / 100;
+  const infl = (parseFloat(document.getElementById('inflation').value) || 0) / 100;
+  const desiredIncome = parseFloat(document.getElementById('desiredIncome').value) || 0;
+
+  const yearsToRetire = retireAge - currentAge;
+  if (yearsToRetire <= 0) {
+    document.getElementById('resultArea').innerHTML = `<div class="result-empty">Retirement age must be greater than current age.</div>`;
+    return;
+  }
+
+  const monthlyRate = r / 12;
+  const totalMonths = yearsToRetire * 12;
+  const fv = savings * Math.pow(1 + monthlyRate, totalMonths) + (contrib * (Math.pow(1 + monthlyRate, totalMonths) - 1) / (monthlyRate > 0 ? monthlyRate : 1));
+  const realFV = fv / Math.pow(1 + infl, yearsToRetire);
+  const monthlyIncome4pct = (realFV * 0.04) / 12;
+  const targetNestEgg = desiredIncome * 12 * 25;
+  const onTrack = realFV >= targetNestEgg;
+  const gap = Math.max(0, targetNestEgg - realFV);
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">$${realFV.toLocaleString(undefined, {maximumFractionDigits:0})}</div>
+        <div class="result-label">Projected nest egg (today's $)</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${monthlyIncome4pct.toFixed(2)}</div>
+        <div class="result-label">Monthly income (4% rule)</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${targetNestEgg.toLocaleString(undefined, {maximumFractionDigits:0})}</div>
+        <div class="result-label">Target nest egg needed</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number"><span class="status-badge ${onTrack ? 'good' : 'bad'}">${onTrack ? 'On track' : 'Gap exists'}</span></div>
+        <div class="result-label">${onTrack ? 'You are on track!' : `Gap: $${gap.toLocaleString(undefined, {maximumFractionDigits:0})}`}</div>
+      </div>
+    </div>
+  `;
+}
+
+['currentAge','retireAge','savings','contribution','returnRate','inflation','desiredIncome'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

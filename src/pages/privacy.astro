@@ -1,0 +1,37 @@
+---
+import Page from '../layouts/Page.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "PrivacyPolicy",
+  "name": "Privacy Policy",
+  "url": "https://freelancertools.io/privacy/"
+};
+---
+
+<Page
+  title="Privacy Policy"
+  description="Privacy Policy for FreelancerTools, including calculator data, cookies, analytics, advertising, third-party services, and contact information."
+  canonicalUrl="https://freelancertools.io/privacy/"
+  schema={schema}
+>
+  <article class="policy-page">
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last updated: May 16, 2026</p>
+
+    <h2>Data we collect</h2>
+    <p>We use Google Analytics 4 to collect anonymous usage data including pages visited, time on site, and general geographic region. We do not collect personally identifiable information unless you submit a contact form.</p>
+
+    <h2>Calculator data</h2>
+    <p>All calculations on FreelancerTools run in your browser. Financial figures, health data, and personal information you enter into calculators are never transmitted to our servers.</p>
+
+    <h2>Cookies</h2>
+    <p>Google Analytics sets cookies to distinguish users. Google AdSense may set cookies to serve relevant advertisements. You can opt out of Google Analytics at <a href="https://tools.google.com/dlpage/gaoptout" rel="nofollow noopener" target="_blank">tools.google.com/dlpage/gaoptout</a>.</p>
+
+    <h2>Third-party services</h2>
+    <p>We use Google Analytics for analytics, Google AdSense for advertising, and Formspree for contact forms. Each service has its own privacy policy.</p>
+
+    <h2>Contact</h2>
+    <p>To request data deletion or ask privacy questions, use our <a href="/contact/">contact page</a>.</p>
+  </article>
+</Page>

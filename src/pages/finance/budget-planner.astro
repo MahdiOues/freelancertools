@@ -1,0 +1,146 @@
+---
+import Tool from '../../layouts/ToolWithCharts.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Budget Planner — 50/30/20 Rule",
+  "description": "Plan your monthly budget using the 50/30/20 rule. See your current allocation vs recommended targets with visual charts.",
+  "url": "https://freelancertools.io/finance/budget-planner/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Budget Planner — 50/30/20 Rule"
+  description="Create a monthly budget using the 50/30/20 rule. 50% needs, 30% wants, 20% savings. See how your spending compares with a visual chart."
+  canonicalUrl="https://freelancertools.io/finance/budget-planner/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Budget Planner' }]}
+  relatedTools={[
+    { name: 'Net Worth Calculator', href: '/finance/net-worth-calculator/', category: 'Finance' },
+    { name: 'Debt Payoff Calculator', href: '/finance/debt-payoff/', category: 'Finance' },
+    { name: 'Retirement Calculator', href: '/finance/retirement-calculator/', category: 'Finance' },
+    { name: 'Paycheck Calculator', href: '/finance/paycheck-calculator/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Budget Planner</h1>
+      <p class="subhead">Build a monthly budget using the 50/30/20 rule. See where your money is going and how to optimize.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Budget Planner</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Monthly take-home income ($)" tip="Your net monthly income after taxes." /></label>
+          <input type="number" id="income" value="5000" />
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Needs ($)" tip="Essential expenses: rent/mortgage, utilities, groceries, insurance, minimum debt payments." /></label>
+            <input type="number" id="needs" value="2800" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Wants ($)" tip="Non-essential: dining out, entertainment, travel, hobbies, subscriptions." /></label>
+            <input type="number" id="wants" value="1200" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Savings & debt payoff ($)" tip="Money saved, invested, or used to pay down debt above minimums." /></label>
+          <input type="number" id="savings" value="1000" />
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter your income and spending to see your budget analysis.</div>
+        </div>
+
+        <div style="margin-top:24px;">
+          <canvas id="budgetChart" style="max-height:280px;"></canvas>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>The 50/30/20 budget rule</h2>
+      <p>Popularized by Senator Elizabeth Warren in her book "All Your Worth," the 50/30/20 rule is a simple budgeting framework: 50% of your after-tax income goes to needs (housing, food, utilities, insurance), 30% to wants (entertainment, dining, travel), and 20% to savings and debt repayment.</p>
+      <p>This rule is a guideline, not a strict law. If you live in a high-cost city, your needs might be 60% — in that case, adjust wants down to 20%. The key is being intentional about every dollar.</p>
+      <h2>How to use this budget planner</h2>
+      <p>Enter your monthly take-home income and your spending in each category. The calculator shows your current allocation versus the 50/30/20 targets, along with surplus or deficit in each category. The visual chart makes it easy to see at a glance whether your spending is balanced.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+let chartInstance = null;
+
+function calculate() {
+  const income = parseFloat(document.getElementById('income').value) || 0;
+  const needs = parseFloat(document.getElementById('needs').value) || 0;
+  const wants = parseFloat(document.getElementById('wants').value) || 0;
+  const savings = parseFloat(document.getElementById('savings').value) || 0;
+  const total = needs + wants + savings;
+
+  const needsTarget = income * 0.5;
+  const wantsTarget = income * 0.3;
+  const savingsTarget = income * 0.2;
+
+  const needsDiff = needs - needsTarget;
+  const wantsDiff = wants - wantsTarget;
+  const savingsDiff = savings - savingsTarget;
+
+  const balance = income - total;
+
+  function diffHtml(diff) {
+    if (Math.abs(diff) < 1) return '<span style="color:var(--success);">✓ On target</span>';
+    return diff > 0
+      ? `<span style="color:var(--danger);">+$${diff.toFixed(0)} over</span>`
+      : `<span style="color:var(--success);">-$${Math.abs(diff).toFixed(0)} under</span>`;
+  }
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number" style="font-size:1.2rem;">${(needs/income*100).toFixed(0)}%</div>
+        <div class="result-label">Needs (target 50%) ${diffHtml(needsDiff)}</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="font-size:1.2rem;">${(wants/income*100).toFixed(0)}%</div>
+        <div class="result-label">Wants (target 30%) ${diffHtml(wantsDiff)}</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="font-size:1.2rem;">${(savings/income*100).toFixed(0)}%</div>
+        <div class="result-label">Savings (target 20%) ${diffHtml(savingsDiff)}</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="color:${balance >= 0 ? 'var(--success)' : 'var(--danger)'};">${balance >= 0 ? '+' : ''}$${balance.toFixed(2)}</div>
+        <div class="result-label">Monthly surplus/deficit</div>
+      </div>
+    </div>
+  `;
+
+  if (chartInstance) chartInstance.destroy();
+  chartInstance = new Chart(document.getElementById('budgetChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Needs', 'Wants', 'Savings'],
+      datasets: [
+        { label: 'Current', data: [needs, wants, savings], backgroundColor: ['#2563eb', '#d97706', '#059669'] },
+        { label: 'Target', data: [needsTarget, wantsTarget, savingsTarget], backgroundColor: ['rgba(37,99,235,0.3)', 'rgba(217,119,6,0.3)', 'rgba(5,150,105,0.3)'] }
+      ]
+    },
+    options: { responsive: true, plugins: { legend: { position: 'top' } }, scales: { y: { ticks: { callback: v => '$' + v } } } }
+  });
+}
+
+['income','needs','wants','savings'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

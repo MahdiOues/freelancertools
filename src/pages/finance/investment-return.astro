@@ -1,0 +1,154 @@
+---
+import Tool from '../../layouts/ToolWithCharts.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Investment Return Calculator",
+  "description": "Calculate how your investments grow over time with monthly contributions. See nominal and inflation-adjusted values with chart.",
+  "url": "https://freelancertools.io/finance/investment-return/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Investment Return Calculator — Growth"
+  description="Project how your investments will grow over time. See nominal vs inflation-adjusted returns with monthly contributions and interactive chart."
+  canonicalUrl="https://freelancertools.io/finance/investment-return/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Investment Return Calculator' }]}
+  relatedTools={[
+    { name: 'Compound Interest Calculator', href: '/finance/compound-interest/', category: 'Finance' },
+    { name: 'Retirement Calculator', href: '/finance/retirement-calculator/', category: 'Finance' },
+    { name: 'Inflation Calculator', href: '/finance/inflation-calculator/', category: 'Finance' },
+    { name: 'Net Worth Calculator', href: '/finance/net-worth-calculator/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Investment Return Calculator</h1>
+      <p class="subhead">See how your investments grow with regular contributions. Adjust for inflation to see the real purchasing power.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Investment Return Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Initial investment ($)" tip="The amount you're starting with." /></label>
+            <input type="number" id="initial" value="10000" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Monthly contribution ($)" tip="Amount you add each month." /></label>
+            <input type="number" id="monthly" value="500" />
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Annual return (%)" tip="Expected average annual return before inflation." /></label>
+            <input type="number" id="returnRate" value="8" step="0.1" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Years" tip="Investment time horizon." /></label>
+            <input type="number" id="years" value="20" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Expected inflation (%)" tip="Average annual inflation rate to adjust for purchasing power." /></label>
+          <input type="number" id="inflation" value="3" step="0.1" />
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter your details to project investment growth.</div>
+        </div>
+
+        <div style="margin-top:24px;">
+          <canvas id="chart" style="max-height:280px;"></canvas>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How investment returns work</h2>
+      <p>Investment returns come from two sources: capital appreciation (the value of your assets going up) and income (dividends, interest). When you reinvest that income, you earn compound returns — returns on your returns. Over long periods, compounding is the most powerful force in investing.</p>
+      <p>The average annual return of the S&P 500 is historically about 10% before inflation (7% after inflation). Bond returns are lower, typically 3-5%. Your actual returns will vary based on your asset allocation, fees, and market conditions.</p>
+      <h2>Nominal vs real returns</h2>
+      <p>Nominal returns are the raw percentage increase. Real returns are adjusted for inflation and reflect actual purchasing power growth. This calculator shows both so you can see how inflation eats into your returns over time. A 7% nominal return with 3% inflation means a real return of only about 4%.</p>
+      <p>This is a projection. Actual returns vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+let chartInstance = null;
+
+function calculate() {
+  const P = parseFloat(document.getElementById('initial').value) || 0;
+  const PMT = parseFloat(document.getElementById('monthly').value) || 0;
+  const r = (parseFloat(document.getElementById('returnRate').value) || 0) / 100;
+  const infl = (parseFloat(document.getElementById('inflation').value) || 0) / 100;
+  const t = parseInt(document.getElementById('years').value) || 1;
+  const n = 12;
+  const rn = r / n;
+  const nt = n * t;
+
+  const nominalFV = P * Math.pow(1 + rn, nt) + (PMT * (Math.pow(1 + rn, nt) - 1) / (rn > 0 ? rn : 1));
+  const totalContrib = P + (PMT * t * 12);
+  const totalReturns = nominalFV - totalContrib;
+  const realFV = nominalFV / Math.pow(1 + infl, t);
+  const realReturns = realFV - totalContrib;
+
+  const yearlyData = [];
+  for (let y = 1; y <= t; y++) {
+    const ynt = n * y;
+    const yNom = P * Math.pow(1 + rn, ynt) + (PMT * (Math.pow(1 + rn, ynt) - 1) / (rn > 0 ? rn : 1));
+    const yReal = yNom / Math.pow(1 + infl, y);
+    yearlyData.push({ year: y, nominal: yNom, real: yReal, contributions: P + (PMT * y * 12) });
+  }
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">$${nominalFV.toFixed(2)}</div>
+        <div class="result-label">Nominal value</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${realFV.toFixed(2)}</div>
+        <div class="result-label">Inflation-adjusted value</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="color:var(--success);">$${totalReturns.toFixed(2)}</div>
+        <div class="result-label">Total return (nominal)</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${totalContrib.toFixed(2)}</div>
+        <div class="result-label">Total contributions</div>
+      </div>
+    </div>
+  `;
+
+  if (chartInstance) chartInstance.destroy();
+  chartInstance = new Chart(document.getElementById('chart'), {
+    type: 'line',
+    data: {
+      labels: yearlyData.map(d => `Y${d.year}`),
+      datasets: [
+        { label: 'Nominal', data: yearlyData.map(d => d.nominal), borderColor: '#2563eb', fill: false, tension: 0.3 },
+        { label: 'Inflation-adjusted', data: yearlyData.map(d => d.real), borderColor: '#059669', fill: false, tension: 0.3, borderDash: [5,5] },
+        { label: 'Contributions', data: yearlyData.map(d => d.contributions), borderColor: '#8888a8', fill: false, tension: 0.3, borderDash: [2,2] },
+      ]
+    },
+    options: { responsive: true, plugins: { legend: { position: 'top' } }, scales: { y: { ticks: { callback: v => '$' + v.toLocaleString() } } } }
+  });
+}
+
+['initial','monthly','returnRate','years','inflation'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

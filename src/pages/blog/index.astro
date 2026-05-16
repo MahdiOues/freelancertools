@@ -1,0 +1,46 @@
+---
+import Page from '../../layouts/Page.astro';
+import AdZone from '../../components/AdZone.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Freelancer Tools Blog",
+  "description": "Practical advice on freelancing, contracts, finance, and growing your independent business.",
+};
+---
+
+<Page
+  title="Blog — Freelancer Tips & Tools"
+  description="Practical advice on freelancing, contracts, finance, and growing your independent business."
+  canonicalUrl="https://freelancertools.io/blog/"
+  schema={schema}
+>
+  <div class="container">
+    <div class="page-hero">
+      <h1>Blog</h1>
+      <p class="subhead">Practical advice for freelancers and founders.</p>
+    </div>
+
+    <AdZone size="leaderboard" />
+
+    <section>
+      <ul class="blog-list">
+        {posts.map(post => (
+          <li>
+            <span class="blog-date">{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+            <span class="blog-title"><a href={`/blog/${post.id}/`}>{post.data.title}</a></span>
+            <span class="blog-cat">{post.data.category}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <AdZone size="footer" />
+  </div>
+</Page>

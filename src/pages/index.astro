@@ -1,17 +1,150 @@
 ---
+import Page from '../layouts/Page.astro';
+import AdZone from '../components/AdZone.astro';
+import { getCollection } from 'astro:content';
 
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+).slice(0, 3);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "FreelancerTools.io",
+  "description": "Free tools for freelancers, founders, and small business owners — calculators, generators, and AI-powered helpers.",
+  "url": "https://freelancertools.io/",
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "FreelancerTools",
+  "url": "https://freelancertools.io",
+  "description": "Free calculators and tools for freelancers, founders, and finance professionals.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://freelancertools.io/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const categories = [
+  { href: '/finance/', label: 'Finance', accent: 'var(--cat-finance)', bg: 'var(--cat-finance-bg)', desc: 'Credit scores, loans, investing', count: '15 free tools' },
+  { href: '/math/', label: 'Math / Calculators', accent: 'var(--cat-math)', bg: 'var(--cat-math-bg)', desc: 'Percentages, conversions, GPA, time zones', count: '12 free tools' },
+  { href: '/health/', label: 'Health / Fitness', accent: 'var(--cat-health)', bg: 'var(--cat-health-bg)', desc: 'BMI, TDEE, sleep, pregnancy', count: '6 free tools' },
+  { href: '/legal/', label: 'Legal', accent: 'var(--cat-legal)', bg: 'var(--cat-legal-bg)', desc: 'Contracts, NDAs, document summarizer', count: '3 free tools' },
+  { href: '/freelancer/', label: 'Freelancer', accent: 'var(--cat-freelancer)', bg: 'var(--cat-freelancer-bg)', desc: 'Rate calculator, invoices, proposals', count: '6 free tools' },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Page
+  title="Free Tools for Freelancers & Small Business Owners"
+  description="Free calculators, contract generators, and AI-powered tools for freelancers, founders, and small business owners. Finance, Legal, SaaS, Marketing, and Freelancer tools."
+  canonicalUrl="https://freelancertools.io/"
+  schema={[schema, websiteSchema]}
+>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">Built for the self-employed</div>
+      <h1>The tools you need to<br/><span class="hero-highlight">run your freelance business</span></h1>
+      <p class="hero-sub">Free calculators, generators, and analyzers for finance, legal, marketing, and more. No spreadsheets, no lawyers, no guesswork.</p>
+      <div class="hero-cats">
+        <a href="/finance" class="hero-cat-pill" style="--cat: var(--cat-finance)">Finance</a>
+        <a href="/math" class="hero-cat-pill" style="--cat: var(--cat-math)">Math</a>
+        <a href="/health" class="hero-cat-pill" style="--cat: var(--cat-health)">Health</a>
+        <a href="/legal" class="hero-cat-pill" style="--cat: var(--cat-legal)">Legal</a>
+        <a href="/freelancer" class="hero-cat-pill" style="--cat: var(--cat-freelancer)">Freelancer</a>
+      </div>
+    </div>
+      <div class="hero-stat-row">
+      <div class="hero-stat"><span class="hero-stat-num">50+</span><span class="hero-stat-label">Free tools</span></div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat"><span class="hero-stat-num">5</span><span class="hero-stat-label">Categories</span></div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat"><span class="hero-stat-num">100%</span><span class="hero-stat-label">Free forever</span></div>
+    </div>
+  </section>
+
+  <div class="container">
+    <AdZone size="leaderboard" />
+
+    <section>
+      <h2>Tools by category</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+        {categories.map(cat => (
+          <a href={cat.href} class="home-cat-card" style={`--cat-accent:${cat.accent};`}>
+            <h3>{cat.label}</h3>
+            <p>{cat.desc}</p>
+            <div class="tool-count">{cat.count}</div>
+            <div class="arrow">→</div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>Most used tools</h2>
+      <ul style="list-style: none;">
+        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
+          <a href="/finance/credit-score-simulator/">Credit Score Simulator</a>
+          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">Finance</span>
+        </li>
+        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
+          <a href="/legal/contract-generator/">Contract Generator</a>
+          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">Legal</span>
+        </li>
+        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
+          <a href="/freelancer/rate-calculator/">Freelancer Rate Calculator</a>
+          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">Freelancer</span>
+        </li>
+        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
+          <a href="/saas/pricing-calculator/">SaaS Pricing Calculator</a>
+          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">SaaS</span>
+        </li>
+        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
+          <a href="/legal/nda-generator/">NDA Generator</a>
+          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">Legal</span>
+        </li>
+        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
+          <a href="/saas/mrr-calculator/">MRR Calculator</a>
+          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">SaaS</span>
+        </li>
+        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
+          <a href="/marketing/ad-profit-calculator/">Ad Profitability Calculator</a>
+          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">Marketing</span>
+        </li>
+        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
+          <a href="/freelancer/invoice-generator/">Invoice Generator</a>
+          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">Freelancer</span>
+        </li>
+      </ul>
+    </section>
+
+    <AdZone size="square" />
+
+    <section>
+      <h2>How it works</h2>
+      <p>Pick a tool from one of five categories — Finance, Legal, SaaS/B2B, Marketing, or Freelancer. Each tool is designed to give you an answer in under a minute.</p>
+      <p>Calculators update instantly as you adjust inputs. Document generators use AI to draft contracts, invoices, and proposals. Everything runs in your browser.</p>
+      <p>No sign-up. No charges. No data stored on our servers. If you find a tool useful, bookmark it or share it with someone who needs it.</p>
+    </section>
+
+    <section>
+      <h2>From the blog</h2>
+      <ul class="blog-list">
+        {posts.map(post => (
+          <li>
+            <span class="blog-date">{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+            <span class="blog-title"><a href={`/blog/${post.id}/`}>{post.data.title}</a></span>
+            <span class="blog-cat">{post.data.category}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <AdZone size="footer" />
+  </div>
+</Page>

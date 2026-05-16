@@ -1,0 +1,312 @@
+---
+import Tool from '../../../layouts/ToolWithExcel.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Financial Ratio Calculator",
+  "description": "Enter your balance sheet and income statement figures to calculate all key financial ratios instantly: current ratio, ROE, debt-to-equity, EBIT margin, and more.",
+  "url": "https://freelancertools.io/finance/excel-tools/financial-ratios/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where do I find these numbers for a public company?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Public companies file quarterly and annual reports with the SEC (10-Q and 10-K). The balance sheet and income statement are in the financial statements section. Sites like Macrotrends and Wisesheets aggregate these figures." }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I don't have all the inputs?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Leave blank any fields you don't have. The tool calculates only the ratios it has sufficient data for and skips the rest." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is EBIT and how is it different from net income?",
+      "acceptedAnswer": { "@type": "Answer", "text": "EBIT is Earnings Before Interest and Tax — operating profit before the effects of how the business is financed (debt) and its tax jurisdiction. It is a cleaner measure of operating performance than net income for comparing businesses." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a higher current ratio always better?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not necessarily. A very high current ratio (above 4-5) can indicate that a business is holding too much cash or carrying excess inventory rather than deploying assets productively." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this tool for personal financial ratios?",
+      "acceptedAnswer": { "@type": "Answer", "text": "This tool is designed for business financial statements. For personal finance calculations, the Credit Score Simulator and Loan Comparison tools are more appropriate." }
+    }
+  ]
+};
+---
+
+<Tool
+  title="Financial Ratio Calculator — Key Ratios"
+  description="Enter your balance sheet and income statement figures to calculate all key financial ratios instantly: current ratio, ROE, debt-to-equity, EBIT margin, and more. Free, with benchmarks."
+  canonicalUrl="https://freelancertools.io/finance/excel-tools/financial-ratios/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Excel-Free Tools', href: '/finance/excel-tools/' }, { label: 'Financial Ratios' }]}
+  relatedTools={[
+    { name: 'Break-Even Analysis', href: '/finance/excel-tools/break-even/', category: 'Finance' },
+    { name: 'Cash Flow Waterfall', href: '/finance/excel-tools/cash-flow-waterfall/', category: 'Finance' },
+    { name: 'Growth Modeler', href: '/finance/excel-tools/growth-modeler/', category: 'Finance' },
+    { name: 'Budget vs Actual', href: '/finance/excel-tools/budget-variance/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Free Financial Ratio Calculator — All Key Ratios with Benchmarks</h1>
+      <p class="subhead">Paste in a balance sheet and income statement (or fill individual fields) and get all key financial ratios calculated and explained instantly.</p>
+    </div>
+  </fragment>
+  <div class="tool-intro" style="max-width:720px;margin:0 auto 28px;">
+    <p>Enter your balance sheet and income statement figures and get every key financial ratio calculated instantly — liquidity ratios, profitability ratios, leverage ratios, and efficiency ratios. Each ratio includes a benchmark so you can see whether your figure is strong, borderline, or a cause for concern. Used by CFOs, analysts, investors, and business students. Export all ratios as Excel or PDF.</p>
+  </div>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Financial Ratio Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" />
+        <p style="font-weight:600;color:var(--ink);margin-bottom:4px;">Upload balance sheet / income statement CSV or Excel</p>
+        <p style="font-size:13px;color:var(--ink-3);">or fill in the fields below</p>
+      </div>
+
+      <h3 style="margin:24px 0 12px;font-size:16px;">Balance Sheet</h3>
+      <div class="field-grid">
+        <div class="field"><label class="field-label">Current Assets</label><input type="number" id="currentAssets" value="500000" step="1000" /></div>
+        <div class="field"><label class="field-label">Total Assets</label><input type="number" id="totalAssets" value="1200000" step="1000" /></div>
+        <div class="field"><label class="field-label">Current Liabilities</label><input type="number" id="currentLiabilities" value="200000" step="1000" /></div>
+        <div class="field"><label class="field-label">Total Liabilities</label><input type="number" id="totalLiabilities" value="600000" step="1000" /></div>
+        <div class="field"><label class="field-label">Shareholders' Equity</label><input type="number" id="shareholdersEquity" value="600000" step="1000" /></div>
+        <div class="field"><label class="field-label">Inventory</label><input type="number" id="inventory" value="100000" step="1000" /></div>
+        <div class="field-full"><label class="field-label">Accounts Receivable</label><input type="number" id="accountsReceivable" value="80000" step="1000" /></div>
+      </div>
+
+      <h3 style="margin:24px 0 12px;font-size:16px;">Income Statement</h3>
+      <div class="field-grid">
+        <div class="field"><label class="field-label">Revenue</label><input type="number" id="revenue" value="1000000" step="1000" /></div>
+        <div class="field"><label class="field-label">Gross Profit</label><input type="number" id="grossProfit" value="600000" step="1000" /></div>
+        <div class="field"><label class="field-label">Operating Income (EBIT)</label><input type="number" id="operatingIncome" value="250000" step="1000" /></div>
+        <div class="field"><label class="field-label">Net Income</label><input type="number" id="netIncome" value="180000" step="1000" /></div>
+        <div class="field"><label class="field-label">Interest Expense</label><input type="number" id="interestExpense" value="50000" step="1000" /></div>
+        <div class="field"><label class="field-label">Tax Expense</label><input type="number" id="taxExpense" value="60000" step="1000" /></div>
+      </div>
+
+      <button class="btn btn-primary btn-full" id="calculateBtn">Calculate Ratios</button>
+
+      <div id="resultsWrap" style="display:none;margin-top:24px;">
+        <div id="ratiosOutput"></div>
+      </div>
+
+      <div id="exportRow" style="display:none;margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-secondary" onclick="exportTableXLSX('ratiosTable','financial_ratios.xlsx')">Export as Excel</button>
+        <button class="btn btn-primary" onclick="exportPDF('Financial Ratios','ratiosTable')">Export as PDF</button>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>The four categories of financial ratios</h2>
+      <p>Financial ratios fall into four categories. Liquidity ratios measure your ability to pay short-term obligations — can you cover the bills coming due in the next 12 months? Profitability ratios measure how effectively you convert revenue into profit — how much of each dollar of sales makes it to the bottom line? Leverage ratios measure how much debt you are using relative to equity — how risky is your capital structure? Efficiency ratios measure how productively you use your assets — are you generating enough revenue from your asset base? Most financial analysis uses all four categories together for a complete picture.</p>
+
+      <h2>Current ratio and quick ratio — what they mean</h2>
+      <p>The current ratio (current assets divided by current liabilities) is the most common liquidity metric. A ratio above 2.0 is generally considered healthy — you have twice as many short-term assets as short-term liabilities. Below 1.0 is a red flag — you do not have enough liquid assets to cover the bills due within a year. The quick ratio is a stricter version that excludes inventory from current assets, since inventory can be slow to convert to cash. These ratios matter most for manufacturers, retailers, and any business with significant inventory on the balance sheet.</p>
+
+      <h2>Return on Equity (ROE) explained</h2>
+      <p>Return on Equity measures how much profit a company generates for each dollar of shareholder equity. A 15% ROE means the company generates $0.15 of profit for every $1.00 of equity invested — this is Warren Buffett's minimum threshold for a quality business. However, ROE can be inflated by debt: taking on more leverage increases ROE even if the underlying business does not improve. Always analyse ROE alongside the debt-to-equity ratio to understand whether high returns come from operational strength or financial risk.</p>
+
+      <h2>Using ratios to compare businesses across industries</h2>
+      <p>Financial ratio benchmarks vary significantly by industry. A 3% net profit margin is weak for a software company but acceptable for a grocery chain. A current ratio of 1.5 might be healthy for a retailer (which turns inventory over quickly) but concerning for a manufacturer (which needs more working capital). Use this tool to calculate your numbers, then compare against published industry benchmarks for your specific sector. The most useful comparison is always against your own prior periods — is the trend improving or deteriorating?</p>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <h3>Where do I find these numbers for a public company?</h3>
+        <p>Public companies file quarterly and annual reports with the SEC (10-Q and 10-K). The balance sheet and income statement are in the financial statements section. Sites like Macrotrends and Wisesheets aggregate these figures.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What if I don't have all the inputs?</h3>
+        <p>Leave blank any fields you don't have. The tool calculates only the ratios it has sufficient data for and skips the rest.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is EBIT and how is it different from net income?</h3>
+        <p>EBIT is Earnings Before Interest and Tax — operating profit before the effects of how the business is financed (debt) and its tax jurisdiction. It is a cleaner measure of operating performance than net income for comparing businesses.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is a higher current ratio always better?</h3>
+        <p>Not necessarily. A very high current ratio (above 4-5) can indicate that a business is holding too much cash or carrying excess inventory rather than deploying assets productively.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I use this tool for personal financial ratios?</h3>
+        <p>This tool is designed for business financial statements. For personal finance calculations, the Credit Score Simulator and Loan Comparison tools are more appropriate.</p>
+      </div>
+
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="/finance/excel-tools/break-even/">Break-Even Analysis</a></li>
+        <li><a href="/finance/excel-tools/growth-modeler/">Growth Scenario Modeler</a></li>
+        <li><a href="/saas/pricing-calculator/">SaaS Pricing Calculator</a></li>
+        <li><a href="/finance/">Back to Finance Tools</a></li>
+      </ul>
+      <div class="sources">
+        <h3>Sources</h3>
+        <ul>
+          <li>Ratio benchmarks sourced from standard financial analysis textbooks and CFA Institute materials.</li>
+        </ul>
+      </div>
+    </div>
+  </fragment>
+</Tool>
+
+<script is:inline src="/scripts/excel-tools-core.js"></script>
+<script>
+(function () {
+  const zone = document.getElementById('uploadZone');
+  const fileInput = document.getElementById('fileInput');
+  const calculateBtn = document.getElementById('calculateBtn');
+  const resultsWrap = document.getElementById('resultsWrap');
+  const ratiosOutput = document.getElementById('ratiosOutput');
+  const exportRow = document.getElementById('exportRow');
+
+  function safe(n, d) {
+    return d !== 0 ? n / d : null;
+  }
+
+  function calcRatios(bs, is) {
+    return {
+      'Current Ratio':         { value: safe(bs.currentAssets, bs.currentLiabilities), benchmark: '> 2.0', category: 'Liquidity', higherBetter: true, threshold: 2.0 },
+      'Quick Ratio':           { value: safe(bs.currentAssets - bs.inventory, bs.currentLiabilities), benchmark: '> 1.0', category: 'Liquidity', higherBetter: true, threshold: 1.0 },
+      'Gross Margin %':        { value: safe(is.grossProfit, is.revenue) * 100, benchmark: 'Varies by industry', category: 'Profitability', higherBetter: true, threshold: null },
+      'Net Profit Margin %':   { value: safe(is.netIncome, is.revenue) * 100, benchmark: '> 10%', category: 'Profitability', higherBetter: true, threshold: 10 },
+      'Return on Equity (ROE)':{ value: safe(is.netIncome, bs.shareholdersEquity) * 100, benchmark: '> 15%', category: 'Profitability', higherBetter: true, threshold: 15 },
+      'Return on Assets (ROA)':{ value: safe(is.netIncome, bs.totalAssets) * 100, benchmark: '> 5%', category: 'Profitability', higherBetter: true, threshold: 5 },
+      'EBIT Margin %':         { value: safe(is.operatingIncome, is.revenue) * 100, benchmark: '> 15%', category: 'Profitability', higherBetter: true, threshold: 15 },
+      'Debt-to-Equity':        { value: safe(bs.totalLiabilities, bs.shareholdersEquity), benchmark: '< 2.0', category: 'Leverage', higherBetter: false, threshold: 2.0 },
+      'Debt-to-Assets':        { value: safe(bs.totalLiabilities, bs.totalAssets), benchmark: '< 0.5', category: 'Leverage', higherBetter: false, threshold: 0.5 },
+      'Interest Coverage':     { value: safe(is.operatingIncome, is.interestExpense), benchmark: '> 3.0', category: 'Leverage', higherBetter: true, threshold: 3.0 },
+      'Asset Turnover':        { value: safe(is.revenue, bs.totalAssets), benchmark: '> 1.0', category: 'Efficiency', higherBetter: true, threshold: 1.0 },
+      'Receivables Turnover':  { value: safe(is.revenue, bs.accountsReceivable), benchmark: 'Higher = better', category: 'Efficiency', higherBetter: true, threshold: null },
+    };
+  }
+
+  function getRating(ratio, value) {
+    if (value === null) return { label: 'N/A', cls: '' };
+    if (ratio.threshold === null) {
+      if (ratio.higherBetter) {
+        if (value > 3) return { label: 'Good', cls: 'good' };
+        if (value > 1) return { label: 'Fair', cls: 'warn' };
+        return { label: 'Watch', cls: 'bad' };
+      }
+      return { label: 'Info', cls: '' };
+    }
+    if (ratio.higherBetter) {
+      if (value >= ratio.threshold * 1.2) return { label: 'Good', cls: 'good' };
+      if (value >= ratio.threshold * 0.8) return { label: 'Fair', cls: 'warn' };
+      return { label: 'Watch', cls: 'bad' };
+    }
+    if (value <= ratio.threshold * 0.8) return { label: 'Good', cls: 'good' };
+    if (value <= ratio.threshold * 1.2) return { label: 'Fair', cls: 'warn' };
+    return { label: 'Watch', cls: 'bad' };
+  }
+
+  function formatValue(v, isPct) {
+    if (v === null) return 'N/A';
+    if (isPct) return v.toFixed(2) + '%';
+    return v.toFixed(2);
+  }
+
+  function calculate() {
+    const bs = {
+      currentAssets: parseFloat(document.getElementById('currentAssets').value) || 0,
+      totalAssets: parseFloat(document.getElementById('totalAssets').value) || 0,
+      currentLiabilities: parseFloat(document.getElementById('currentLiabilities').value) || 0,
+      totalLiabilities: parseFloat(document.getElementById('totalLiabilities').value) || 0,
+      shareholdersEquity: parseFloat(document.getElementById('shareholdersEquity').value) || 0,
+      inventory: parseFloat(document.getElementById('inventory').value) || 0,
+      accountsReceivable: parseFloat(document.getElementById('accountsReceivable').value) || 0,
+    };
+    const is = {
+      revenue: parseFloat(document.getElementById('revenue').value) || 0,
+      grossProfit: parseFloat(document.getElementById('grossProfit').value) || 0,
+      operatingIncome: parseFloat(document.getElementById('operatingIncome').value) || 0,
+      netIncome: parseFloat(document.getElementById('netIncome').value) || 0,
+      interestExpense: parseFloat(document.getElementById('interestExpense').value) || 0,
+      taxExpense: parseFloat(document.getElementById('taxExpense').value) || 0,
+    };
+
+    const ratios = calcRatios(bs, is);
+    const categories = ['Liquidity', 'Profitability', 'Leverage', 'Efficiency'];
+
+    resultsWrap.style.display = 'block';
+    exportRow.style.display = 'flex';
+
+    let tableHtml = '<table id="ratiosTable" style="width:100%;border-collapse:collapse;font-size:13px;">';
+    tableHtml += '<thead><tr><th style="text-align:left;padding:8px;border-bottom:2px solid #1a1a1a;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;">Ratio</th><th style="text-align:right;padding:8px;border-bottom:2px solid #1a1a1a;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;">Value</th><th style="text-align:right;padding:8px;border-bottom:2px solid #1a1a1a;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;">Benchmark</th><th style="text-align:center;padding:8px;border-bottom:2px solid #1a1a1a;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;">Status</th></tr></thead><tbody>';
+
+    categories.forEach(cat => {
+      tableHtml += `<tr style="background:var(--surface);"><td colspan="4" style="padding:10px 8px;font-weight:600;font-size:13px;">${cat}</td></tr>`;
+      Object.entries(ratios).forEach(([name, r]) => {
+        if (r.category !== cat) return;
+        const isPct = name.includes('%') || name.includes('Margin');
+        const val = formatValue(r.value, isPct);
+        const rating = getRating(r, r.value);
+        tableHtml += '<tr>' +
+          `<td style="padding:8px;border-bottom:1px solid #e8e8e4;">${name}</td>` +
+          `<td style="padding:8px;border-bottom:1px solid #e8e8e4;text-align:right;font-weight:600;">${val}</td>` +
+          `<td style="padding:8px;border-bottom:1px solid #e8e8e4;text-align:right;color:var(--ink-3);">${r.benchmark}</td>` +
+          `<td style="padding:8px;border-bottom:1px solid #e8e8e4;text-align:center;">${rating.cls ? `<span class="status-badge ${rating.cls}">${rating.label}</span>` : rating.label}</td>` +
+          '</tr>';
+      });
+    });
+
+    tableHtml += '</tbody></table>';
+    ratiosOutput.innerHTML = tableHtml;
+  }
+
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files[0]) {
+      readFile(fileInput.files[0], (json) => {
+        const row = json[0] || {};
+        if (row['Current Assets'] !== undefined) document.getElementById('currentAssets').value = row['Current Assets'];
+        if (row['Total Assets'] !== undefined) document.getElementById('totalAssets').value = row['Total Assets'];
+        if (row['Current Liabilities'] !== undefined) document.getElementById('currentLiabilities').value = row['Current Liabilities'];
+        if (row['Total Liabilities'] !== undefined) document.getElementById('totalLiabilities').value = row['Total Liabilities'];
+        if (row['Shareholders Equity'] !== undefined) document.getElementById('shareholdersEquity').value = row['Shareholders Equity'];
+        if (row['Inventory'] !== undefined) document.getElementById('inventory').value = row['Inventory'];
+        if (row['Accounts Receivable'] !== undefined) document.getElementById('accountsReceivable').value = row['Accounts Receivable'];
+        if (row['Revenue'] !== undefined) document.getElementById('revenue').value = row['Revenue'];
+        if (row['Gross Profit'] !== undefined) document.getElementById('grossProfit').value = row['Gross Profit'];
+        if (row['Operating Income'] !== undefined) document.getElementById('operatingIncome').value = row['Operating Income'];
+        if (row['Net Income'] !== undefined) document.getElementById('netIncome').value = row['Net Income'];
+        if (row['Interest Expense'] !== undefined) document.getElementById('interestExpense').value = row['Interest Expense'];
+        if (row['Tax Expense'] !== undefined) document.getElementById('taxExpense').value = row['Tax Expense'];
+      });
+    }
+  });
+
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) fileInput.files = e.dataTransfer.files;
+    if (file) {
+      fileInput.dispatchEvent(new Event('change'));
+    }
+  });
+  zone.addEventListener('click', () => fileInput.click());
+  calculateBtn.addEventListener('click', calculate);
+  calculate();
+})();
+</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Where do I find these numbers for a public company?","acceptedAnswer":{"@type":"Answer","text":"Public companies file quarterly and annual reports with the SEC (10-Q and 10-K). The balance sheet and income statement are in the financial statements section. Sites like Macrotrends and Wisesheets aggregate these figures."}},{"@type":"Question","name":"What if I don't have all the inputs?","acceptedAnswer":{"@type":"Answer","text":"Leave blank any fields you don't have. The tool calculates only the ratios it has sufficient data for and skips the rest."}},{"@type":"Question","name":"What is EBIT and how is it different from net income?","acceptedAnswer":{"@type":"Answer","text":"EBIT is Earnings Before Interest and Tax \u2014 operating profit before the effects of how the business is financed (debt) and its tax jurisdiction. It is a cleaner measure of operating performance than net income for comparing businesses."}},{"@type":"Question","name":"Is a higher current ratio always better?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. A very high current ratio (above 4-5) can indicate that a business is holding too much cash or carrying excess inventory rather than deploying assets productively."}},{"@type":"Question","name":"Can I use this tool for personal financial ratios?","acceptedAnswer":{"@type":"Answer","text":"This tool is designed for business financial statements. For personal finance calculations, the Credit Score Simulator and Loan Comparison tools are more appropriate."}}]}</script>

@@ -1,0 +1,131 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Ad Profitability Calculator",
+  "description": "Calculate your true ad profit by factoring in COGS, refund rates, and processing fees.",
+  "url": "https://freelancertools.io/marketing/ad-profit-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Ad Profitability Calculator"
+  description="Calculate your true ad profit by factoring in COGS, refund rates, and processing fees. Find your break-even ROAS before you launch."
+  canonicalUrl="https://freelancertools.io/marketing/ad-profit-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Marketing', href: '/marketing/' }, { label: 'Ad Profitability Calculator' }]}
+  relatedTools={[
+    { name: 'Hook Analyzer', href: '/marketing/hook-analyzer/', category: 'Marketing' },
+    { name: 'ROI Calculator', href: '/saas/roi-calculator/', category: 'SaaS' },
+    { name: 'SaaS Pricing Calculator', href: '/saas/pricing-calculator/', category: 'SaaS' },
+    { name: 'Freelancer Rate Calculator', href: '/freelancer/rate-calculator/', category: 'Freelancer' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Ad Profitability Calculator</h1>
+      <p class="subhead">Know your true ad profit before you spend a dollar. Calculates net profit, true ROAS, and break-even ROAS.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Ad Profitability Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Ad spend ($)" tip="The total amount you paid to run ads in the period you're analyzing — across all platforms combined." /></label>
+          <input type="number" id="adSpend" value="5000" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Revenue ($)" tip="The total gross revenue generated from those ads before any deductions." /></label>
+          <input type="number" id="revenue" value="20000" />
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="COGS ($)" tip="Cost of Goods Sold — what it costs you to deliver the product or service for this revenue. Includes manufacturing, fulfillment, or delivery costs. Does not include ad spend." /></label>
+          <input type="number" id="cogs" value="8000" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Refund rate (%)" tip="The percentage of orders that get refunded. A 5% refund rate means 5 out of every 100 sales get returned." /></label>
+          <input type="number" id="refundRate" value="5" step="0.1" />
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Payment processing fee (%)" tip="The percentage your payment processor (e.g. Stripe, PayPal) takes from each transaction. Stripe's standard rate is 2.9% + 30¢." /></label>
+        <input type="number" id="procFee" value="2.9" step="0.1" />
+      </div>
+      <button id="calcBtn" class="btn btn-primary btn-full">Calculate</button>
+
+      <div id="resultArea" class="result-area">
+        <div class="result-empty">Enter your campaign data and click Calculate.</div>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>True ad profitability</h2>
+      <p>Most ad calculators only look at revenue vs. spend. This one factors in your cost of goods sold, refund rate, and payment processing fees to give you the real picture.</p>
+      <p>Your break-even ROAS is the minimum ROAS you need to not lose money. If your true ROAS is above your break-even ROAS, you are profitable. If not, you are losing money on every sale even if revenue looks good.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calculate() {
+  const adSpend = parseFloat(document.getElementById('adSpend').value) || 0;
+  const revenue = parseFloat(document.getElementById('revenue').value) || 0;
+  const cogs = parseFloat(document.getElementById('cogs').value) || 0;
+  const refundRate = parseFloat(document.getElementById('refundRate').value) || 0;
+  const procFee = parseFloat(document.getElementById('procFee').value) || 0;
+
+  const refundCost = revenue * (refundRate / 100);
+  const procCost = revenue * (procFee / 100);
+  const grossProfit = revenue - cogs - refundCost - procCost;
+  const netProfit = grossProfit - adSpend;
+  const trueRoas = adSpend > 0 ? revenue / adSpend : 0;
+  const breakEvenRoas = adSpend > 0 ? (adSpend + cogs + refundCost + procCost) / adSpend : 0;
+
+  let verdict, verdictClass;
+  if (netProfit > 0) { verdict = 'Profitable'; verdictClass = 'good'; }
+  else if (netProfit === 0) { verdict = 'Break-even'; verdictClass = 'warn'; }
+  else { verdict = 'Losing money'; verdictClass = 'bad'; }
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">$${grossProfit.toLocaleString()}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Gross Profit<button class="kpi-info-btn" aria-label="What is Gross Profit?" data-tip="Revenue minus COGS, refunds, and payment processing fees — before subtracting your ad spend." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Revenue minus COGS, refunds, and payment processing fees — before subtracting your ad spend.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="${netProfit >= 0 ? 'color: var(--success)' : 'color: var(--danger)'}">${netProfit >= 0 ? '+' : ''}$${netProfit.toLocaleString()}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Net Profit<button class="kpi-info-btn" aria-label="What is Net Profit?" data-tip="Gross profit minus your ad spend. The real money you made (or lost) after all costs including advertising." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Gross profit minus your ad spend. The real money you made (or lost) after all costs including advertising.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${trueRoas.toFixed(2)}x</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">True ROAS<button class="kpi-info-btn" aria-label="What is True ROAS?" data-tip="Revenue divided by ad spend. Shows how much revenue each ad dollar generated, without accounting for other costs." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Revenue divided by ad spend. Shows how much revenue each ad dollar generated, without accounting for other costs.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${breakEvenRoas.toFixed(2)}x</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Break-even ROAS<button class="kpi-info-btn" aria-label="What is Break-even ROAS?" data-tip="The minimum ROAS you need to cover both your ad spend and COGS without losing money. Your True ROAS must exceed this to be profitable." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">The minimum ROAS you need to cover both your ad spend and COGS without losing money. Your True ROAS must exceed this to be profitable.</span></span></div>
+      </div>
+    </div>
+    <div style="margin-top: 16px; text-align: center;">
+      <span class="status-badge ${verdictClass}" style="font-size: 14px; padding: 4px 16px;">${verdict}</span>
+    </div>
+  `;
+}
+
+calculate();
+document.getElementById('calcBtn').addEventListener('click', calculate);
+</script>

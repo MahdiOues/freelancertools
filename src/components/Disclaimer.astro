@@ -1,0 +1,18 @@
+---
+interface Props {
+  type: 'finance' | 'health' | 'legal' | 'tax';
+}
+const { type } = Astro.props;
+
+const messages = {
+  finance: 'This calculator provides estimates for planning purposes only. Results are not financial advice. Consult a financial professional for decisions involving significant money.',
+  health: 'This tool is a screening aid, not a medical assessment. Results do not constitute medical advice. Consult a healthcare provider for health decisions.',
+  legal: 'Documents generated here are templates based on general legal principles. They are not reviewed by an attorney. Have important documents reviewed by a licensed lawyer.',
+  tax: 'Tax calculations use current published rates and brackets. Individual tax situations vary. Verify results with IRS.gov or consult a tax professional.',
+};
+---
+
+<div class="disclaimer-box" role="note" aria-label="Important disclaimer">
+  <strong>Note:</strong> {messages[type]}
+  <a href="/disclaimer/" class="disclaimer-link">Full disclaimer</a>
+</div>

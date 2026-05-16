@@ -1,0 +1,55 @@
+---
+import Page from '../../layouts/Page.astro';
+import AdZone from '../../components/AdZone.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Construction Calculators",
+  "description": "Free construction calculators — concrete volume, bags, and cost estimator.",
+};
+const accent = 'var(--cat-construction)';
+const accentBg = 'var(--cat-construction-bg)';
+---
+
+<Page
+  title="Free Construction Calculators — Concrete Volume & Cost Estimator"
+  description="Free construction calculators. Calculate how much concrete you need for slabs, walls, columns, and stairs. Get cubic yards, bags, and cost estimates."
+  canonicalUrl="https://freelancertools.io/construction/"
+  schema={schema}
+>
+  <div class="cat-color-bar" style="--cat-color: var(--cat-construction);"></div>
+  <div class="container">
+    <Breadcrumb items={[{ label: 'Construction' }]} />
+    <div class="cat-hero" style={`--cat-color:${accent};--cat-bg:${accentBg};`}>
+      <span class="cat-hero-badge" style={`color:${accent};background:${accentBg};border:1px solid rgba(101,163,13,0.15);`}>Construction</span>
+      <h1>Construction calculators</h1>
+      <p>Get accurate material estimates for your next project. No more guessing how much concrete to order.</p>
+    </div>
+
+    <AdZone size="leaderboard" />
+
+    <section>
+      <div style="display: grid; gap: 20px;">
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/construction/concrete-calculator/">Concrete Calculator</a></h3>
+          <p>Calculate how much concrete you need for slabs, walls, columns, and stairs. Get cubic yards, 60lb/80lb bag counts, and cost estimates.</p>
+          <a href="/construction/concrete-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+      </div>
+    </section>
+
+    <AdZone size="square" />
+
+    <section>
+      <h2>Related categories</h2>
+      <ul>
+        <li><a href="/math/">Math calculators & converters</a></li>
+        <li><a href="/finance/">Finance tools for freelancers</a></li>
+      </ul>
+    </section>
+
+    <AdZone size="footer" />
+  </div>
+</Page>

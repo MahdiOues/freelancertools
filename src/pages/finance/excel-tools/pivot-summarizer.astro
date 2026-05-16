@@ -1,0 +1,282 @@
+---
+import Tool from '../../../layouts/ToolWithExcel.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Online Pivot Table Tool",
+  "description": "Upload or paste any data table and create pivot-style summaries: group by any column, aggregate by sum, average, count, min, or max.",
+  "url": "https://freelancertools.io/finance/excel-tools/pivot-summarizer/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is this different from Excel's pivot table?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Excel's pivot table is more powerful — it supports multiple value fields, calculated fields, and drill-down. This tool covers the most common use case: one group-by column, one value column, one aggregation. For simple summaries it is faster and requires no software." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I group by multiple columns at once?",
+      "acceptedAnswer": { "@type": "Answer", "text": "You can select a primary group and one secondary group (sub-group). The results show the combined key as a single label. Full multi-level grouping is a planned feature." }
+    },
+    {
+      "@type": "Question",
+      "name": "My numeric column is being treated as text — what do I do?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Check that your values contain only digits, decimal points, and optionally a currency symbol or comma. The parser strips $ and commas before parsing. If a value contains letters or other characters it will be treated as text and excluded from numeric aggregations." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I summarise date columns?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Date columns are currently treated as text. To summarise by month or quarter, add a Month or Quarter column to your data before uploading." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a row limit?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The tool handles up to 50,000 rows in a modern browser. Performance may degrade beyond that on older hardware." }
+    }
+  ]
+};
+---
+
+<Tool
+  title="Pivot Table Tool — Summarise Data"
+  description="Upload or paste any data table and create pivot-style summaries: group by any column, aggregate by sum, average, count, min, or max. No Excel, no formulas. Free and instant."
+  canonicalUrl="https://freelancertools.io/finance/excel-tools/pivot-summarizer/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Excel-Free Tools', href: '/finance/excel-tools/' }, { label: 'Pivot Summarizer' }]}
+  relatedTools={[
+    { name: 'Chart Builder', href: '/finance/excel-tools/chart-builder/', category: 'Finance' },
+    { name: 'Budget vs Actual', href: '/finance/excel-tools/budget-variance/', category: 'Finance' },
+    { name: 'Cash Flow Waterfall', href: '/finance/excel-tools/cash-flow-waterfall/', category: 'Finance' },
+    { name: 'Growth Modeler', href: '/finance/excel-tools/growth-modeler/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Free Online Pivot Table Tool — Summarise Any Data Without Excel</h1>
+      <p class="subhead">Upload any data table and create pivot-style summaries: group by any column, aggregate by sum, average, count, min, or max on any numeric column.</p>
+    </div>
+  </fragment>
+  <div class="tool-intro" style="max-width:720px;margin:0 auto 28px;">
+    <p>Upload a CSV or paste any tabular data and instantly create pivot-style summaries: group rows by any column, then aggregate a numeric column by sum, average, count, minimum, or maximum. Add a second grouping column to create a cross-tab view. No Excel knowledge required — results appear instantly and can be exported as Excel or PDF.</p>
+  </div>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Pivot Table Summarizer</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" />
+        <p style="font-weight:600;color:var(--ink);margin-bottom:4px;">Upload CSV or Excel file</p>
+        <p style="font-size:13px;color:var(--ink-3);">or paste data below</p>
+      </div>
+      <div style="margin:12px 0;">
+        <textarea id="pasteArea" rows="5" placeholder="Category, Amount, Region&#10;Sales, 15000, North&#10;Sales, 22000, South&#10;Marketing, 8000, North&#10;Marketing, 9500, South" style="font-family:monospace;font-size:13px;"></textarea>
+      </div>
+      <div id="loadBadge" style="display:none;font-size:13px;color:var(--success);font-weight:600;margin-bottom:12px;"></div>
+
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label">Group By</label>
+          <select id="groupCol"></select>
+        </div>
+        <div class="field">
+          <label class="field-label">Aggregate Column</label>
+          <select id="aggCol"></select>
+        </div>
+        <div class="field">
+          <label class="field-label">Function</label>
+          <select id="aggFn">
+            <option value="Sum">Sum</option>
+            <option value="Average">Average</option>
+            <option value="Count">Count</option>
+            <option value="Min">Min</option>
+            <option value="Max">Max</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label">Sub-Group (optional)</label>
+          <select id="subGroupCol"><option value="">None</option></select>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-full" id="summarizeBtn">Summarize</button>
+
+      <div id="tableWrap" style="margin-top:24px;overflow-x:auto;display:none;">
+        <table id="pivotTable" style="width:100%;border-collapse:collapse;font-size:13px;"></table>
+      </div>
+
+      <div id="exportRow" style="display:none;margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-secondary" onclick="exportTableXLSX('pivotTable','pivot_summary.xlsx')">Export as Excel</button>
+        <button class="btn btn-primary" onclick="exportPDF('Pivot Summary','pivotTable')">Export as PDF</button>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>What does a pivot table do and why do people use them?</h2>
+      <p>A pivot table groups all rows that share a common value in a chosen column, then aggregates a numeric column for each group. Instead of scanning 500 rows of sales data to see how much each region sold, you pivot on "Region" and sum the "Revenue" column — and you get a clean table showing total revenue per region. It is the most-used Excel feature for a reason: it turns raw data into actionable summaries in seconds.</p>
+
+      <h2>How to use the pivot summariser</h2>
+      <p>Paste your data or upload a CSV or Excel file. The tool reads the headers from your first row and populates the Group By and Aggregate Column dropdowns automatically. Select which column you want to group by (for example, "Category" or "Region"), which column you want to aggregate (for example, "Sales" or "Amount"), and which function to apply — Sum, Average, Count, Min, or Max. Optionally select a Sub-Group column to create a cross-tab that shows values broken down by two dimensions.</p>
+
+      <h2>Sum vs Average vs Count — which to use</h2>
+      <p>Use Sum when you need totals — total revenue by region, total costs by department. Use Average when you need typical values — average order value by category, average salary by role. Use Count when you need frequency — how many transactions per customer, how many employees per department. Use Min and Max when you need range analysis — lowest and highest temperature by month, smallest and largest deal size by sales rep.</p>
+
+      <h2>Exporting pivot results to Excel</h2>
+      <p>Click Export as Excel to download the pivot summary as a properly formatted .xlsx file. The group labels are preserved exactly as shown on screen, with a bold header row and a grand total row at the bottom. Numeric values are formatted to two decimal places. You can use this file for further analysis, include it in a report, or send it to a colleague who works in Excel.</p>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <h3>How is this different from Excel's pivot table?</h3>
+        <p>Excel's pivot table is more powerful — it supports multiple value fields, calculated fields, and drill-down. This tool covers the most common use case: one group-by column, one value column, one aggregation. For simple summaries it is faster and requires no software.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I group by multiple columns at once?</h3>
+        <p>You can select a primary group and one secondary group (sub-group). The results show the combined key as a single label. Full multi-level grouping is a planned feature.</p>
+      </div>
+      <div class="faq-item">
+        <h3>My numeric column is being treated as text — what do I do?</h3>
+        <p>Check that your values contain only digits, decimal points, and optionally a currency symbol or comma. The parser strips $ and commas before parsing. If a value contains letters or other characters it will be treated as text and excluded from numeric aggregations.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I summarise date columns?</h3>
+        <p>Date columns are currently treated as text. To summarise by month or quarter, add a Month or Quarter column to your data before uploading.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is there a row limit?</h3>
+        <p>The tool handles up to 50,000 rows in a modern browser. Performance may degrade beyond that on older hardware.</p>
+      </div>
+
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="/finance/excel-tools/chart-builder/">Chart Builder</a></li>
+        <li><a href="/finance/excel-tools/budget-variance/">Budget vs Actual Variance Analyser</a></li>
+        <li><a href="/finance/excel-tools/growth-modeler/">Growth Scenario Modeler</a></li>
+        <li><a href="/finance/">Back to Finance Tools</a></li>
+      </ul>
+    </div>
+  </fragment>
+</Tool>
+
+<script is:inline src="/scripts/excel-tools-core.js"></script>
+<script>
+(function () {
+  let data = [];
+
+  const zone = document.getElementById('uploadZone');
+  const fileInput = document.getElementById('fileInput');
+  const pasteArea = document.getElementById('pasteArea');
+  const loadBadge = document.getElementById('loadBadge');
+  const groupCol = document.getElementById('groupCol');
+  const aggCol = document.getElementById('aggCol');
+  const aggFn = document.getElementById('aggFn');
+  const subGroupCol = document.getElementById('subGroupCol');
+  const summarizeBtn = document.getElementById('summarizeBtn');
+  const tableWrap = document.getElementById('tableWrap');
+  const pivotTable = document.getElementById('pivotTable');
+  const exportRow = document.getElementById('exportRow');
+
+  function handleFile(file) {
+    readFile(file, (json) => {
+      data = json;
+      populateCols();
+    });
+  }
+
+  function handlePaste() {
+    const text = pasteArea.value.trim();
+    if (!text) return;
+    data = parseText(text);
+    populateCols();
+  }
+
+  function populateCols() {
+    if (!data.length) return;
+    const headers = Object.keys(data[0]);
+    groupCol.innerHTML = headers.map(h => `<option value="${h}">${h}</option>`).join('');
+    aggCol.innerHTML = headers.map(h => `<option value="${h}">${h}</option>`).join('');
+    subGroupCol.innerHTML = '<option value="">None</option>' + headers.map(h => `<option value="${h}">${h}</option>`).join('');
+    if (headers.length > 1) aggCol.selectedIndex = 1;
+    loadBadge.style.display = 'block';
+    loadBadge.textContent = '\u2713 ' + data.length + ' rows loaded';
+  }
+
+  function pivotSummarize() {
+    if (!data.length) return;
+
+    const gCol = groupCol.value;
+    const aCol = aggCol.value;
+    const fn = aggFn.value;
+    const subCol = subGroupCol.value || null;
+
+    const groups = {};
+    data.forEach(row => {
+      const key = subCol ? `${row[gCol]} | ${row[subCol]}` : row[gCol];
+      if (!groups[key]) groups[key] = [];
+      const val = parseFloat(row[aCol]);
+      if (!isNaN(val)) groups[key].push(val);
+    });
+
+    let results = Object.entries(groups).map(([key, vals]) => {
+      let result;
+      switch (fn) {
+        case 'Sum':     result = vals.reduce((a, b) => a + b, 0); break;
+        case 'Average': result = vals.reduce((a, b) => a + b, 0) / vals.length; break;
+        case 'Count':   result = vals.length; break;
+        case 'Min':     result = Math.min(...vals); break;
+        case 'Max':     result = Math.max(...vals); break;
+      }
+      const parts = key.split(' | ');
+      const row = { [gCol]: parts[0] };
+      if (subCol) row[subCol] = parts[1] || '';
+      row[`${fn} of ${aCol}`] = fn === 'Count' ? result : fmtCurrency(result);
+      row['_sortVal'] = result;
+      return row;
+    });
+
+    results.sort((a, b) => b._sortVal - a._sortVal);
+
+    const grandTotal = results.reduce((s, r) => s + r._sortVal, 0);
+
+    tableWrap.style.display = 'block';
+    const headers = Object.keys(results[0]).filter(h => h !== '_sortVal');
+    let html = '<thead><tr>' + headers.map(h => '<th style="text-align:left;padding:8px;border-bottom:2px solid #1a1a1a;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;">' + h + '</th>').join('') + '</tr></thead><tbody>';
+    results.forEach(r => {
+      html += '<tr>' + headers.map(h => '<td style="padding:8px;border-bottom:1px solid #e8e8e4;">' + r[h] + '</td>').join('') + '</tr>';
+    });
+    html += '<tr style="border-top:2px solid #1a1a1a;font-weight:700;">' + headers.map(h => {
+      if (h === gCol) return '<td style="padding:8px;">Grand Total</td>';
+      if (h.includes(fn)) return '<td style="padding:8px;">' + (fn === 'Count' ? grandTotal : fmtCurrency(grandTotal)) + '</td>';
+      return '<td style="padding:8px;"></td>';
+    }).join('') + '</tr>';
+    html += '</tbody>';
+    pivotTable.innerHTML = html;
+    exportRow.style.display = 'flex';
+  }
+
+  fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) handleFile(file);
+  });
+  zone.addEventListener('click', () => fileInput.click());
+  pasteArea.addEventListener('input', handlePaste);
+  summarizeBtn.addEventListener('click', pivotSummarize);
+})();
+</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is this different from Excel's pivot table?","acceptedAnswer":{"@type":"Answer","text":"Excel's pivot table is more powerful \u2014 it supports multiple value fields, calculated fields, and drill-down. This tool covers the most common use case: one group-by column, one value column, one aggregation. For simple summaries it is faster and requires no software."}},{"@type":"Question","name":"Can I group by multiple columns at once?","acceptedAnswer":{"@type":"Answer","text":"You can select a primary group and one secondary group (sub-group). The results show the combined key as a single label. Full multi-level grouping is a planned feature."}},{"@type":"Question","name":"My numeric column is being treated as text \u2014 what do I do?","acceptedAnswer":{"@type":"Answer","text":"Check that your values contain only digits, decimal points, and optionally a currency symbol or comma. The parser strips $ and commas before parsing. If a value contains letters or other characters it will be treated as text and excluded from numeric aggregations."}},{"@type":"Question","name":"Can I summarise date columns?","acceptedAnswer":{"@type":"Answer","text":"Date columns are currently treated as text. To summarise by month or quarter, add a Month or Quarter column to your data before uploading."}},{"@type":"Question","name":"Is there a row limit?","acceptedAnswer":{"@type":"Answer","text":"The tool handles up to 50,000 rows in a modern browser. Performance may degrade beyond that on older hardware."}}]}</script>

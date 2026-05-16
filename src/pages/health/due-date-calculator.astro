@@ -1,0 +1,123 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Pregnancy Due Date Calculator",
+  "description": "Calculate your estimated due date, current week of pregnancy, and trimester. Supports LMP, conception, and IVF transfer dates.",
+  "url": "https://freelancertools.io/health/due-date-calculator/",
+  "applicationCategory": "HealthApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Pregnancy Due Date Calculator"
+  description="Calculate your estimated due date, current pregnancy week, and trimester. Supports LMP, conception date, and IVF transfer date methods."
+  canonicalUrl="https://freelancertools.io/health/due-date-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Health', href: '/health/' }, { label: 'Due Date Calculator' }]}
+  relatedTools={[
+    { name: 'BMI Calculator', href: '/health/bmi-calculator/', category: 'Health' },
+    { name: 'Water Intake Calculator', href: '/health/water-intake/', category: 'Health' },
+    { name: 'Sleep Calculator', href: '/health/sleep-calculator/', category: 'Health' },
+    { name: 'Age Calculator', href: '/math/age-calculator/', category: 'Math' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Pregnancy Due Date Calculator</h1>
+      <p class="subhead">Estimate your due date, current week of pregnancy, and trimester. Choose the calculation method that fits your situation.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Due Date Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label">Calculation method</label>
+          <select id="method">
+            <option value="lmp">Last menstrual period (LMP)</option>
+            <option value="conception">Conception date</option>
+            <option value="ivf">IVF transfer date</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label" id="dateLabel">First day of last period</label>
+          <input type="date" id="referenceDate" />
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter a date to calculate due date.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How due dates are calculated</h2>
+      <p>The most common method uses the first day of your last menstrual period (LMP). Add 280 days (40 weeks) to estimate the due date. This assumes a 28-day cycle with ovulation on day 14. If you know your conception date, the due date is approximately 266 days (38 weeks) from that date.</p>
+      <p>Only about 5% of babies are born exactly on their due date. A full-term pregnancy ranges from 37 to 42 weeks. This calculator provides an estimate — your healthcare provider will give you the most accurate assessment.</p>
+      <h2>Pregnancy trimesters</h2>
+      <p>Pregnancy is divided into three trimesters: First trimester (weeks 1-13), second trimester (weeks 14-27), and third trimester (weeks 28-40). Each trimester brings different developmental milestones for the baby and different experiences for the mother.</p>
+      <p>For informational purposes only. Consult your healthcare provider.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+document.getElementById('referenceDate').valueAsDate = new Date();
+
+document.getElementById('method').addEventListener('change', function() {
+  const labels = { lmp: 'First day of last period', conception: 'Conception date', ivf: 'IVF transfer date' };
+  document.getElementById('dateLabel').textContent = labels[this.value];
+  calculate();
+});
+
+function calculate() {
+  const method = document.getElementById('method').value;
+  const ref = new Date(document.getElementById('referenceDate').value);
+  if (isNaN(ref.getTime())) return;
+  let dueDate;
+  if (method === 'lmp') dueDate = new Date(ref); dueDate.setDate(dueDate.getDate() + 280);
+  if (method === 'conception') { dueDate = new Date(ref); dueDate.setDate(dueDate.getDate() + 266); }
+  if (method === 'ivf') { dueDate = new Date(ref); dueDate.setDate(dueDate.getDate() + 266); }
+
+  const today = new Date();
+  const msPregnant = today - ref;
+  const totalDaysPregnant = Math.floor(msPregnant / (1000*60*60*24));
+  let weeksPregnant;
+  if (method === 'lmp') weeksPregnant = Math.max(0, Math.floor(totalDaysPregnant / 7));
+  else weeksPregnant = Math.max(0, Math.floor((totalDaysPregnant + 14) / 7));
+  const daysRemaining = Math.max(0, Math.floor((dueDate - today) / (1000*60*60*24)));
+  let trimester = weeksPregnant <= 13 ? 'First trimester' : weeksPregnant <= 27 ? 'Second trimester' : 'Third trimester';
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">${dueDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+        <div class="result-label">Estimated due date</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${weeksPregnant} weeks</div>
+        <div class="result-label">Current pregnancy week</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${trimester}</div>
+        <div class="result-label">Trimester</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${daysRemaining} days</div>
+        <div class="result-label">Days until due date</div>
+      </div>
+    </div>
+  `;
+}
+['method','referenceDate'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

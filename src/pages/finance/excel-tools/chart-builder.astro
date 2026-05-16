@@ -1,0 +1,296 @@
+---
+import Tool from '../../../layouts/ToolWithExcel.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Online Chart Generator",
+  "description": "Generate bar, line, pie, and scatter charts from any CSV or spreadsheet data in seconds.",
+  "url": "https://freelancertools.io/finance/excel-tools/chart-builder/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I upload an Excel file directly?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Click the upload button and select any .xlsx or .csv file. The tool reads the first sheet automatically and populates the column selectors from your header row." }
+    },
+    {
+      "@type": "Question",
+      "name": "How many rows of data can I chart?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The tool handles up to 5,000 rows comfortably in a browser. For very large datasets, consider summarising the data first using the Pivot Table Summariser before charting." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I change the chart colours?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The tool uses a consistent professional colour palette by default. Custom colour picking is not supported in this free version — the default palette is designed to be legible in both screen and PDF export." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my data get stored anywhere?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. All processing happens in your browser. Your data is never uploaded to any server and is cleared when you close the tab." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I generate multiple charts from the same data?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Change the chart type, axis selections, or title and click Generate again. Each generation replaces the previous chart. To compare two charts, export the first as PDF before generating the second." }
+    }
+  ]
+};
+---
+
+<Tool
+  title="Chart Generator — Bar, Line & Pie"
+  description="Turn any CSV or spreadsheet data into bar, line, pie, or scatter charts instantly. No Excel, no software. Free chart generator used by analysts, founders, and finance teams."
+  canonicalUrl="https://freelancertools.io/finance/excel-tools/chart-builder/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Excel-Free Tools', href: '/finance/excel-tools/' }, { label: 'Chart Builder' }]}
+  relatedTools={[
+    { name: 'Pivot Summarizer', href: '/finance/excel-tools/pivot-summarizer/', category: 'Finance' },
+    { name: 'Budget vs Actual', href: '/finance/excel-tools/budget-variance/', category: 'Finance' },
+    { name: 'Loan Comparison Calculator', href: '/finance/loan-comparison/', category: 'Finance' },
+    { name: 'Break-Even Analysis', href: '/finance/excel-tools/break-even/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Free Online Chart Generator — Bar, Line, Pie & Scatter Charts</h1>
+      <p class="subhead">Upload or paste any tabular data and instantly generate bar, line, pie, or scatter charts — no Excel needed.</p>
+    </div>
+  </fragment>
+  <div class="tool-intro" style="max-width:720px;margin:0 auto 28px;">
+    <p>Paste any data from Excel, Google Sheets, or a CSV file and get a professional chart in seconds — no software, no sign-up, no cost. This free chart generator supports bar charts, line charts, pie charts, doughnut charts, and scatter plots. You can export every chart as a PDF or download the underlying data as an Excel file. Used by financial analysts, small business owners, and anyone who needs a quick visualisation without opening a spreadsheet.</p>
+  </div>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Chart Builder</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" />
+        <p style="font-weight:600;color:var(--ink);margin-bottom:4px;">Upload CSV or Excel file</p>
+        <p style="font-size:13px;color:var(--ink-3);">or paste tabular data below</p>
+      </div>
+      <div style="margin:12px 0;">
+        <textarea id="pasteArea" rows="5" placeholder="Category, Value&#10;Sales, 45000&#10;Marketing, 12000&#10;R&amp;D, 8000" style="font-family:monospace;font-size:13px;"></textarea>
+      </div>
+      <div id="loadBadge" style="display:none;font-size:13px;color:var(--success);font-weight:600;margin-bottom:12px;"></div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label">Chart Type</label>
+          <select id="chartType">
+            <option value="Bar">Bar</option>
+            <option value="Line">Line</option>
+            <option value="Pie">Pie</option>
+            <option value="Doughnut">Doughnut</option>
+            <option value="Scatter">Scatter</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label">X-Axis Column</label>
+          <select id="xCol"></select>
+        </div>
+        <div class="field">
+          <label class="field-label">Y-Axis Column</label>
+          <select id="yCol"></select>
+        </div>
+        <div class="field">
+          <label class="field-label">Chart Title</label>
+          <input type="text" id="chartTitle" placeholder="My Chart" />
+        </div>
+      </div>
+      <button class="btn btn-primary btn-full" id="generateBtn">Generate Chart</button>
+      <div style="margin-top:24px;">
+        <canvas id="chartCanvas" style="max-height:400px;"></canvas>
+      </div>
+      <div id="tableWrap" style="margin-top:24px;overflow-x:auto;display:none;">
+        <table id="dataTable" style="width:100%;border-collapse:collapse;font-size:13px;"></table>
+      </div>
+      <div id="exportRow" style="display:none;margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-secondary" onclick="exportTableXLSX('dataTable','chart_data.xlsx')">Export as Excel</button>
+        <button class="btn btn-primary" onclick="exportPDF(document.getElementById('chartTitle').value||'Chart','dataTable','chartCanvas')">Export as PDF</button>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How to create a chart from Excel or CSV data</h2>
+      <p>Paste your data directly from Excel or Google Sheets — tab-separated values copy across automatically. Alternatively, upload a .csv or .xlsx file using the upload button. Once your data loads, select which column to use on the X axis (typically dates, categories, or labels) and which column to plot on the Y axis (typically numbers). Choose your chart type and click Generate.</p>
+      <p>The tool automatically detects numeric columns and filters them into the value selector, so you never accidentally try to chart a text field. Column headers from your first row become the axis labels and legend entries.</p>
+
+      <h2>Which chart type should you use?</h2>
+      <p>Bar charts work best for comparing values across discrete categories — revenue by region, headcount by department, spend by vendor. Line charts are better for showing change over time: monthly revenue, weekly signups, quarterly growth. Pie and doughnut charts show proportional breakdowns — budget allocation, market share, expense categories — but only work well when you have fewer than seven segments.</p>
+      <p>Scatter charts are the right choice when you are looking for correlation between two numeric variables: price vs. sales volume, ad spend vs. conversions, headcount vs. output. If you are unsure which type to use, start with a bar chart — it is the most readable format for almost all financial comparisons.</p>
+
+      <h2>Exporting your chart as a PDF or Excel file</h2>
+      <p>Every chart you generate can be exported in two ways. The "Export as PDF" button embeds the chart image in a clean PDF with your data table beneath it — ready to attach to a report or investor deck. The "Export Data as Excel" button downloads the underlying dataset as a properly formatted .xlsx file with a header row and correct column types.</p>
+      <p>Both exports are generated entirely in your browser. Your data is never sent to a server — everything runs locally in JavaScript.</p>
+
+      <h2>Using this tool instead of Excel charts</h2>
+      <p>Creating a chart in Excel requires knowing which menu to use, formatting axes manually, adjusting legend positions, and dealing with version differences between Excel for Mac and Windows. This tool gives you a clean, correctly formatted chart in three steps: paste data, pick type, click generate. For quick analysis, presentations, or client reports, it is significantly faster than building the same chart in Excel.</p>
+      <p>Financial professionals use this tool most often for ad-hoc analysis — pulling a quick visual to answer a question in a meeting rather than opening a spreadsheet and reformatting an existing chart.</p>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <h3>Can I upload an Excel file directly?</h3>
+        <p>Yes. Click the upload button and select any .xlsx or .csv file. The tool reads the first sheet automatically and populates the column selectors from your header row.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How many rows of data can I chart?</h3>
+        <p>The tool handles up to 5,000 rows comfortably in a browser. For very large datasets, consider summarising the data first using the Pivot Table Summariser before charting.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I change the chart colours?</h3>
+        <p>The tool uses a consistent professional colour palette by default. Custom colour picking is not supported in this free version — the default palette is designed to be legible in both screen and PDF export.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does my data get stored anywhere?</h3>
+        <p>No. All processing happens in your browser. Your data is never uploaded to any server and is cleared when you close the tab.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I generate multiple charts from the same data?</h3>
+        <p>Yes. Change the chart type, axis selections, or title and click Generate again. Each generation replaces the previous chart. To compare two charts, export the first as PDF before generating the second.</p>
+      </div>
+
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="/finance/excel-tools/budget-variance/">Budget vs Actual Variance Analyser</a></li>
+        <li><a href="/finance/excel-tools/cash-flow-waterfall/">Cash Flow Waterfall Chart</a></li>
+        <li><a href="/finance/excel-tools/growth-modeler/">Growth Scenario Modeler</a></li>
+        <li><a href="/finance/">Back to Finance Tools</a></li>
+      </ul>
+    </div>
+  </fragment>
+</Tool>
+
+<script is:inline src="/scripts/excel-tools-core.js"></script>
+<script>
+(function () {
+  let data = [];
+  const colors = ['#2563eb','#dc2626','#059669','#d97706','#7c3aed','#0891b2','#be185d','#65a30d','#ea580c','#6366f1'];
+
+  const zone = document.getElementById('uploadZone');
+  const fileInput = document.getElementById('fileInput');
+  const pasteArea = document.getElementById('pasteArea');
+  const loadBadge = document.getElementById('loadBadge');
+  const chartType = document.getElementById('chartType');
+  const xCol = document.getElementById('xCol');
+  const yCol = document.getElementById('yCol');
+  const chartTitle = document.getElementById('chartTitle');
+  const generateBtn = document.getElementById('generateBtn');
+  const tableWrap = document.getElementById('tableWrap');
+  const dataTable = document.getElementById('dataTable');
+  const exportRow = document.getElementById('exportRow');
+
+  function handleFile(file) {
+    readFile(file, (json) => {
+      data = json;
+      populateCols();
+    });
+  }
+
+  function handlePaste() {
+    const text = pasteArea.value.trim();
+    if (!text) return;
+    data = parseText(text);
+    populateCols();
+  }
+
+  function populateCols() {
+    if (!data.length) return;
+    const headers = Object.keys(data[0]);
+    xCol.innerHTML = headers.map(h => `<option value="${h}">${h}</option>`).join('');
+    yCol.innerHTML = headers.map(h => `<option value="${h}">${h}</option>`).join('');
+    if (headers.length > 1) yCol.selectedIndex = 1;
+    loadBadge.style.display = 'block';
+    loadBadge.textContent = '\u2713 ' + data.length + ' rows loaded';
+    exportRow.style.display = 'flex';
+  }
+
+  function buildChart() {
+    const type = chartType.value;
+    const x = xCol.value;
+    const y = yCol.value;
+    const title = chartTitle.value || 'Chart';
+
+    if (!data.length || !x || !y) return;
+
+    const labels = data.map(r => r[x]);
+    const values = data.map(r => parseFloat(r[y]) || 0);
+
+    const ctx = document.getElementById('chartCanvas').getContext('2d');
+    if (window._chartInstance) window._chartInstance.destroy();
+
+    const isScatter = type === 'Scatter';
+    window._chartInstance = new Chart(ctx, {
+      type: isScatter ? 'scatter' : type.toLowerCase(),
+      data: isScatter ? {
+        datasets: [{
+          label: y,
+          data: data.map(r => ({ x: parseFloat(r[x]) || 0, y: parseFloat(r[y]) || 0 })),
+          backgroundColor: '#2563eb',
+          borderColor: '#2563eb'
+        }]
+      } : {
+        labels,
+        datasets: [{
+          label: y,
+          data: values,
+          backgroundColor: type === 'Line' ? 'rgba(37,99,235,0.1)' : colors.slice(0, values.length),
+          borderColor: type === 'Line' ? '#2563eb' : colors.slice(0, values.length),
+          borderWidth: 2,
+          tension: 0.3,
+          fill: type === 'Line'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: { display: true, text: title, font: { size: 16, weight: 'bold' } },
+          legend: { position: 'bottom' }
+        },
+        scales: type === 'Pie' || type === 'Doughnut' ? {} : {
+          x: { grid: { color: '#f0f0ec' } },
+          y: { grid: { color: '#f0f0ec' }, beginAtZero: true }
+        }
+      }
+    });
+
+    renderTable();
+  }
+
+  function renderTable() {
+    tableWrap.style.display = 'block';
+    const headers = Object.keys(data[0]);
+    let html = '<thead><tr>' + headers.map(h => '<th style="text-align:left;padding:8px;border-bottom:2px solid #1a1a1a;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;">' + h + '</th>').join('') + '</tr></thead><tbody>';
+    data.forEach(row => {
+      html += '<tr>' + headers.map(h => '<td style="padding:8px;border-bottom:1px solid #e8e8e4;">' + (row[h] ?? '') + '</td>').join('') + '</tr>';
+    });
+    html += '</tbody>';
+    dataTable.innerHTML = html;
+  }
+
+  fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) handleFile(file);
+  });
+  zone.addEventListener('click', () => fileInput.click());
+  pasteArea.addEventListener('input', handlePaste);
+  generateBtn.addEventListener('click', buildChart);
+})();
+</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I upload an Excel file directly?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click the upload button and select any .xlsx or .csv file. The tool reads the first sheet automatically and populates the column selectors from your header row."}},{"@type":"Question","name":"How many rows of data can I chart?","acceptedAnswer":{"@type":"Answer","text":"The tool handles up to 5,000 rows comfortably in a browser. For very large datasets, consider summarising the data first using the Pivot Table Summariser before charting."}},{"@type":"Question","name":"Can I change the chart colours?","acceptedAnswer":{"@type":"Answer","text":"The tool uses a consistent professional colour palette by default. Custom colour picking is not supported in this free version — the default palette is designed to be legible in both screen and PDF export."}},{"@type":"Question","name":"Does my data get stored anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens in your browser. Your data is never uploaded to any server and is cleared when you close the tab."}},{"@type":"Question","name":"Can I generate multiple charts from the same data?","acceptedAnswer":{"@type":"Answer","text":"Yes. Change the chart type, axis selections, or title and click Generate again. Each generation replaces the previous chart. To compare two charts, export the first as PDF before generating the second."}}]}</script>

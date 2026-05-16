@@ -1,0 +1,129 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free MRR Calculator",
+  "description": "Track your monthly recurring revenue. Break down new, expansion, churned, and reactivation MRR.",
+  "url": "https://freelancertools.io/saas/mrr-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free MRR Calculator"
+  description="Track your monthly recurring revenue. Break down new MRR, expansion, churned, and reactivation to understand your growth."
+  canonicalUrl="https://freelancertools.io/saas/mrr-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'SaaS', href: '/saas/' }, { label: 'MRR Calculator' }]}
+  relatedTools={[
+    { name: 'SaaS Pricing Calculator', href: '/saas/pricing-calculator/', category: 'SaaS' },
+    { name: 'ROI Calculator', href: '/saas/roi-calculator/', category: 'SaaS' },
+    { name: 'Ad Profitability Calculator', href: '/marketing/ad-profit-calculator/', category: 'Marketing' },
+    { name: 'Freelancer Rate Calculator', href: '/freelancer/rate-calculator/', category: 'Freelancer' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>MRR Calculator</h1>
+      <p class="subhead">Understand your monthly recurring revenue. Break down the sources of growth and churn.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>MRR Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Previous month MRR ($)" tip="Your total Monthly Recurring Revenue at the start of the period, before any changes this month." /></label>
+          <input type="number" id="prevMrr" value="10000" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="New MRR ($)" tip="Revenue added from brand-new customers who subscribed this month for the first time." /></label>
+          <input type="number" id="newMrr" value="2000" />
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Expansion MRR ($)" tip="Additional revenue from existing customers who upgraded to a higher plan this month." /></label>
+          <input type="number" id="expMrr" value="500" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Churned MRR ($)" tip="Revenue lost from customers who cancelled or downgraded this month. Enter as a positive number." /></label>
+          <input type="number" id="churnedMrr" value="800" />
+        </div>
+      </div>
+      <div class="field">
+          <label class="field-label"><KpiTooltip label="Reactivation MRR ($)" tip="Revenue from previously churned customers who came back and re-subscribed this month." /></label>
+        <input type="number" id="reactMrr" value="200" />
+      </div>
+      <button id="calcBtn" class="btn btn-primary btn-full">Calculate</button>
+
+      <div id="resultArea" class="result-area">
+        <div class="result-empty">Enter your MRR components and click Calculate.</div>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>Breaking down MRR</h2>
+      <p>MRR (Monthly Recurring Revenue) is the predictable revenue your SaaS business generates each month. Tracking the components — new, expansion, churned, and reactivation — helps you understand where your growth is coming from and where you are losing revenue.</p>
+      <p>Net new MRR (new + expansion + reactivation - churned) is the key growth metric. A healthy SaaS business grows net new MRR by at least 10-20% month over month in the early stages.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calculate() {
+  const prev = parseFloat(document.getElementById('prevMrr').value) || 0;
+  const newMrr = parseFloat(document.getElementById('newMrr').value) || 0;
+  const exp = parseFloat(document.getElementById('expMrr').value) || 0;
+  const churned = parseFloat(document.getElementById('churnedMrr').value) || 0;
+  const react = parseFloat(document.getElementById('reactMrr').value) || 0;
+
+  const netNew = newMrr + exp + react - churned;
+  const current = prev + netNew;
+  const growthPct = prev > 0 ? (netNew / prev) * 100 : 0;
+  const totalGrowth = newMrr + exp + react;
+  const growthBar = totalGrowth + churned > 0 ? (totalGrowth / (totalGrowth + churned)) * 100 : 50;
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">$${current.toLocaleString()}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Current Total MRR<button class="kpi-info-btn" aria-label="What is Current Total MRR?" data-tip="Your current total Monthly Recurring Revenue — the sum of all active subscriptions this month." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your current total Monthly Recurring Revenue — the sum of all active subscriptions this month.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="${netNew >= 0 ? 'color: var(--success)' : 'color: var(--danger)'}">${netNew >= 0 ? '+' : ''}$${netNew.toLocaleString()}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Net New MRR<button class="kpi-info-btn" aria-label="What is Net New MRR?" data-tip="The net change in MRR this month: new + expansion + reactivation minus churn. Positive means you&#39;re growing; negative means churn is winning." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">The net change in MRR this month: new + expansion + reactivation minus churn. Positive means you&#39;re growing; negative means churn is winning.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="${growthPct >= 0 ? 'color: var(--success)' : 'color: var(--danger)'}">${growthPct >= 0 ? '+' : ''}${growthPct.toFixed(1)}%</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">MRR Growth<button class="kpi-info-btn" aria-label="What is MRR Growth?" data-tip="Percentage change in MRR versus last month. Healthy early-stage SaaS typically targets 10–20% monthly growth." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Percentage change in MRR versus last month. Healthy early-stage SaaS typically targets 10–20% monthly growth.</span></span></div>
+      </div>
+    </div>
+    <div style="margin-top: 20px;">
+      <p class="label" style="margin-bottom: 8px;">Growth vs Churn</p>
+      <div style="height: 24px; display: flex; border-radius: 6px; overflow: hidden;">
+        <div style="width: ${Math.min(growthBar, 100)}%; background: var(--success); transition: width 0.2s;"></div>
+        <div style="width: ${Math.min(100 - growthBar, 100)}%; background: var(--danger); transition: width 0.2s;"></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-3); margin-top: 4px;">
+        <span>Growth: $${totalGrowth.toLocaleString()}</span>
+        <span>Churned: $${churned.toLocaleString()}</span>
+      </div>
+    </div>
+  `;
+}
+
+calculate();
+document.getElementById('calcBtn').addEventListener('click', calculate);
+</script>

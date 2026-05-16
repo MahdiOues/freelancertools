@@ -1,0 +1,18 @@
+---
+interface Props {
+  label: string;
+  tip: string;
+}
+const { label, tip } = Astro.props;
+---
+<span class="kpi-tooltip-wrapper">
+  {label}
+  <button
+    class="kpi-info-btn"
+    aria-label={`What is ${label}?`}
+    data-tip={tip}
+    tabindex="0"
+    type="button"
+  >i</button>
+  <span class="kpi-tooltip" role="tooltip">{tip}</span>
+</span>

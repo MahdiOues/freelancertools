@@ -1,0 +1,50 @@
+---
+import Page from './Page.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  date: Date;
+  category: string;
+  readTime: number;
+  relatedTool?: string;
+  relatedToolName?: string;
+}
+const props = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": props.title,
+  "description": props.description,
+  "datePublished": props.date.toISOString(),
+  "author": {
+    "@type": "Organization",
+    "name": "FreelancerTools.io"
+  }
+};
+---
+
+<Page title={props.title} description={props.description} canonicalUrl={props.canonicalUrl} schema={schema}>
+  <div class="blog-article">
+    <article>
+      <div class="blog-meta">
+        <time datetime={props.date.toISOString()}>
+          {props.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        <span class="blog-cat-pill">{props.category}</span>
+        <span class="blog-read-time">{props.readTime} min read</span>
+      </div>
+      <h1>{props.title}</h1>
+      <div class="prose">
+        <slot />
+      </div>
+      {props.relatedTool && props.relatedToolName && (
+        <div class="try-tool-box">
+          <strong>Try it:</strong> Use the <a href={props.relatedTool}>{props.relatedToolName}</a> to generate your document in minutes.
+        </div>
+      )}
+    </article>
+  </div>
+</Page>

@@ -1,0 +1,40 @@
+---
+import Page from '../layouts/Page.astro';
+
+const formspreeId = import.meta.env.PUBLIC_FORMSPREE_ID;
+const formAction = formspreeId ? `https://formspree.io/f/${formspreeId}` : 'https://formspree.io/f/YOUR_FORM_ID';
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact FreelancerTools",
+  "url": "https://freelancertools.io/contact/"
+};
+---
+
+<Page
+  title="Contact FreelancerTools"
+  description="Get in touch with the FreelancerTools team. Report errors, suggest new tools, or ask questions."
+  canonicalUrl="https://freelancertools.io/contact/"
+  schema={schema}
+>
+  <article class="trust-page">
+    <h1>Contact us</h1>
+    <p>Use the form below to report a calculation error, suggest a new tool, or ask a question. We read every message.</p>
+
+    <form class="contact-form" method="POST" action={formAction}>
+      <div class="field">
+        <label class="field-label" for="name">Name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required />
+      </div>
+      <div class="field">
+        <label class="field-label" for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required />
+      </div>
+      <div class="field">
+        <label class="field-label" for="message">Message</label>
+        <textarea id="message" name="message" rows="7" required></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">Send message</button>
+    </form>
+  </article>
+</Page>

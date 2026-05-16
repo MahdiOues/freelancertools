@@ -1,0 +1,153 @@
+---
+import Tool from '../../layouts/ToolWithCharts.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Loan Comparison Calculator",
+  "description": "Compare loan options side by side. Calculate monthly payments, total interest, and DTI ratio.",
+  "url": "https://freelancertools.io/finance/loan-comparison/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Loan Comparison Calculator"
+  description="Compare loan options side by side. Calculate monthly payments, total interest, and DTI ratio to find the loan that fits your budget."
+  canonicalUrl="https://freelancertools.io/finance/loan-comparison/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Loan Comparison' }]}
+  relatedTools={[
+    { name: 'Credit Score Simulator', href: '/finance/credit-score-simulator/', category: 'Finance' },
+    { name: 'Tax Deduction Finder', href: '/finance/tax-deduction-finder/', category: 'Finance' },
+    { name: 'SaaS Pricing Calculator', href: '/saas/pricing-calculator/', category: 'SaaS' },
+    { name: 'Freelancer Rate Calculator', href: '/freelancer/rate-calculator/', category: 'Freelancer' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Loan Comparison Calculator</h1>
+      <p class="subhead">Compare loans by monthly payment, total interest, and DTI ratio. Enter your details below to see which option works for you.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Loan Comparison Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Annual income ($)" tip="Your total gross annual income before taxes. Used to calculate your debt-to-income ratio." /></label>
+          <input type="number" id="income" value="60000" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Monthly debts ($)" tip="Your total minimum monthly debt payments including credit cards, car loans, student loans, and other obligations." /></label>
+          <input type="number" id="debts" value="500" />
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Loan amount ($)" tip="The principal — the total amount you're borrowing before interest." /></label>
+          <input type="number" id="loanAmount" value="25000" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Interest rate (%)" tip="The annual percentage rate (APR) charged on the loan balance. Even small differences compound significantly over a long term." /></label>
+          <input type="number" id="interestRate" value="6.5" step="0.1" />
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Loan term" tip="How long you have to repay the loan. Longer terms mean smaller monthly payments but much more total interest paid." /></label>
+          <select id="loanTerm">
+            <option value="12">12 months</option>
+            <option value="24">24 months</option>
+            <option value="36" selected>36 months</option>
+            <option value="48">48 months</option>
+            <option value="60">60 months</option>
+            <option value="72">72 months</option>
+            <option value="84">84 months</option>
+            <option value="120">120 months</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label">Country</label>
+          <select id="country">
+            <option value="US">United States</option>
+            <option value="UK">United Kingdom</option>
+            <option value="CA">Canada</option>
+            <option value="AU">Australia</option>
+            <option value="DE">Germany</option>
+            <option value="FR">France</option>
+          </select>
+        </div>
+      </div>
+      <button id="calcBtn" class="btn btn-primary btn-full">Calculate</button>
+
+      <div id="resultArea" class="result-area">
+        <div class="result-empty">Enter your details and click Calculate to see results.</div>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How to compare loans effectively</h2>
+      <p>When comparing loans, look beyond the monthly payment. A lower monthly payment might mean a longer term and more total interest. This calculator shows you the full picture: monthly payment, total interest paid, and your debt-to-income ratio.</p>
+      <p>Your DTI ratio is one of the most important factors lenders consider. A DTI below 36% is generally considered good, 36-49% needs attention, and above 50% makes it hard to get approved.</p>
+      <h2>What affects your loan cost?</h2>
+      <p>Your interest rate is determined by your credit score, loan term, and market conditions. A shorter term means higher monthly payments but less total interest. Use this calculator to find the balance that works for your budget.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calculate() {
+  const income = parseFloat(document.getElementById('income').value) || 0;
+  const debts = parseFloat(document.getElementById('debts').value) || 0;
+  const P = parseFloat(document.getElementById('loanAmount').value) || 0;
+  const annualRate = parseFloat(document.getElementById('interestRate').value) || 0;
+  const n = parseInt(document.getElementById('loanTerm').value) || 36;
+
+  const r = (annualRate / 100) / 12;
+  const monthlyPayment = P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  const totalPayment = monthlyPayment * n;
+  const totalInterest = totalPayment - P;
+
+  const monthlyIncome = income / 12;
+  const dti = ((debts + monthlyPayment) / monthlyIncome) * 100;
+
+  let dtiVerdict, dtiClass;
+  if (dti <= 36) { dtiVerdict = 'Good'; dtiClass = 'good'; }
+  else if (dti <= 49) { dtiVerdict = 'Needs attention'; dtiClass = 'warn'; }
+  else { dtiVerdict = 'High — may affect approval'; dtiClass = 'bad'; }
+
+  document.getElementById('resultArea').innerHTML = `
+    <table style="width: 100%; border-collapse: collapse; font-size: 15px;">
+      <tr style="border-bottom: 1px solid var(--border);">
+        <td style="padding: 10px 0; color: var(--ink-2);"><span class="kpi-tooltip-wrapper">Monthly payment<button class="kpi-info-btn" aria-label="What is Monthly payment?" data-tip="The fixed amount due each month for this loan. Calculated using principal, interest rate, and term." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">The fixed amount due each month for this loan. Calculated using principal, interest rate, and term.</span></span></td>
+        <td style="padding: 10px 0; text-align: right; font-weight: 600;">$${monthlyPayment.toFixed(2)}</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border);">
+        <td style="padding: 10px 0; color: var(--ink-2);"><span class="kpi-tooltip-wrapper">Total interest paid<button class="kpi-info-btn" aria-label="What is Total interest paid?" data-tip="The total extra amount you pay above the loan principal over the full term. The real cost of borrowing." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">The total extra amount you pay above the loan principal over the full term. The real cost of borrowing.</span></span></td>
+        <td style="padding: 10px 0; text-align: right; font-weight: 600;">$${totalInterest.toFixed(2)}</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border);">
+        <td style="padding: 10px 0; color: var(--ink-2);"><span class="kpi-tooltip-wrapper">Total payment<button class="kpi-info-btn" aria-label="What is Total payment?" data-tip="Principal plus total interest — what the loan actually costs you in full." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Principal plus total interest — what the loan actually costs you in full.</span></span></td>
+        <td style="padding: 10px 0; text-align: right; font-weight: 600;">$${totalPayment.toFixed(2)}</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px 0; color: var(--ink-2);"><span class="kpi-tooltip-wrapper">DTI ratio<button class="kpi-info-btn" aria-label="What is DTI ratio?" data-tip="Your debt-to-income ratio — monthly debt payments divided by monthly income. Under 36% is good; over 50% makes approval difficult." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your debt-to-income ratio — monthly debt payments divided by monthly income. Under 36% is good; over 50% makes approval difficult.</span></span></td>
+        <td style="padding: 10px 0; text-align: right; font-weight: 600;">${dti.toFixed(1)}% <span class="status-badge ${dtiClass}" style="margin-left: 8px;">${dtiVerdict}</span></td>
+      </tr>
+    </table>
+  `;
+}
+
+calculate();
+document.getElementById('calcBtn').addEventListener('click', calculate);
+</script>

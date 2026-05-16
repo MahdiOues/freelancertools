@@ -1,0 +1,119 @@
+---
+import Tool from '../../layouts/Tool.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Percentage Calculator",
+  "description": "Calculate percentages three ways: what is X% of Y, X is what % of Y, and percentage change between two numbers.",
+  "url": "https://freelancertools.io/math/percentage-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Percentage Calculator — 3 Modes"
+  description="Calculate percentages instantly. What is X% of Y? X is what % of Y? Percentage change? Free online percentage calculator with formula and explanation."
+  canonicalUrl="https://freelancertools.io/math/percentage-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Percentage Calculator' }]}
+  relatedTools={[
+    { name: 'Tip Calculator', href: '/math/tip-calculator/', category: 'Math' },
+    { name: 'Discount Calculator', href: '/math/discount-calculator/', category: 'Math' },
+    { name: 'Percentage Change Calculator', href: '/math/percentage-change/', category: 'Math' },
+    { name: 'Grade Calculator', href: '/math/grade-calculator/', category: 'Math' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Percentage Calculator</h1>
+      <p class="subhead">Quick answers to everyday percentage questions. Choose a mode, enter your numbers, and get the result instantly.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Percentage Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label">Calculation mode</label>
+          <select id="mode">
+            <option value="whatIsXofY">What is X% of Y?</option>
+            <option value="xIsWhatPctOfY">X is what % of Y?</option>
+            <option value="pctChange">Percentage change from X to Y</option>
+          </select>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label" id="label1">Value X</label>
+            <input type="number" id="val1" value="20" />
+          </div>
+          <div class="field">
+            <label class="field-label" id="label2">Value Y</label>
+            <input type="number" id="val2" value="80" />
+          </div>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter values above to see the result.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How to use the percentage calculator</h2>
+      <p>Choose one of three modes: <strong>What is X% of Y</strong> calculates a portion of a total (e.g., what is 20% of 80?). <strong>X is what % of Y</strong> finds what percentage one number represents of another (e.g., 20 is what percent of 80?). <strong>Percentage change from X to Y</strong> calculates the increase or decrease as a percentage (e.g., from 40 to 60 is a 50% increase).</p>
+      <p>The result shows both the numeric answer and the formula used, so you can see exactly how it was calculated.</p>
+      <h2>When to use each mode</h2>
+      <p>Use <strong>What is X% of Y</strong> when calculating discounts, tips, commissions, or tax amounts. Use <strong>X is what % of Y</strong> when you want to know your test score, completion percentage, or market share. Use <strong>Percentage change</strong> to track growth rates, price changes, or population changes over time.</p>
+      <p>A percentage is simply a fraction of 100. The word comes from the Latin "per centum," meaning "by the hundred." Understanding percentages helps you make better financial decisions every day.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calculate() {
+  const mode = document.getElementById('mode').value;
+  const v1 = parseFloat(document.getElementById('val1').value) || 0;
+  const v2 = parseFloat(document.getElementById('val2').value) || 0;
+  let result, formula, explanation;
+  switch (mode) {
+    case 'whatIsXofY':
+      result = (v1 / 100) * v2;
+      formula = `${v1}% of ${v2} = (${v1} / 100) × ${v2} = ${result.toFixed(4)}`;
+      explanation = `${v1}% of ${v2} is ${+result.toFixed(2)}.`;
+      break;
+    case 'xIsWhatPctOfY':
+      result = (v1 / v2) * 100;
+      formula = `${v1} is what % of ${v2} = (${v1} / ${v2}) × 100 = ${result.toFixed(4)}%`;
+      explanation = `${v1} is ${result.toFixed(2)}% of ${v2}.`;
+      break;
+    case 'pctChange':
+      result = v2 !== 0 ? ((v2 - v1) / Math.abs(v1)) * 100 : 0;
+      formula = `Change from ${v1} to ${v2} = ((${v2} - ${v1}) / |${v1}|) × 100 = ${result.toFixed(4)}%`;
+      const direction = result >= 0 ? 'increased' : 'decreased';
+      explanation = `${v1} ${direction} by ${Math.abs(result).toFixed(2)}% to ${v2}.`;
+      break;
+  }
+  if (isNaN(result) || !isFinite(result)) {
+    document.getElementById('resultArea').innerHTML = `<div class="result-empty">Please enter valid numbers.</div>`;
+    return;
+  }
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">${+result.toFixed(4)}</div>
+        <div class="result-label">Result</div>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:14px;color:var(--text-secondary);">${explanation}</p>
+    <p style="margin-top:8px;font-size:13px;color:var(--text-muted);font-family:monospace;">${formula}</p>
+  `;
+}
+['mode','val1','val2'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

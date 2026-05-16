@@ -1,0 +1,13 @@
+---
+import ToolWithCharts from './ToolWithCharts.astro';
+const props = Astro.props;
+---
+
+<ToolWithCharts {...props}>
+  <script slot="head" src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js" defer></script>
+  <script slot="head" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script slot="head" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js" defer></script>
+  <slot name="hero" slot="hero" />
+  <slot name="tool" slot="tool" />
+  <slot name="seo" slot="seo" />
+</ToolWithCharts>

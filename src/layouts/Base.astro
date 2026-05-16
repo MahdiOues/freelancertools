@@ -1,0 +1,141 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  ogImage?: string;
+}
+const { title, description, canonicalUrl, schema, ogImage = '/og-default.png' } = Astro.props;
+const gaId = import.meta.env.PUBLIC_GA_ID;
+const adsenseId = import.meta.env.PUBLIC_ADSENSE_ID;
+const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
+const normalizedTitle = title.length > 40 ? title.slice(0, 37).trimEnd() + '...' : title;
+const fullTitle = `${normalizedTitle} | FreelancerTools`;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:title" content={normalizedTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content={`https://freelancertools.io${ogImage}`} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={normalizedTitle} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={`https://freelancertools.io${ogImage}`} />
+  <meta name="twitter:title" content={normalizedTitle} />
+  <meta name="twitter:description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  {schemaItems.map(item => (
+    <script type="application/ld+json" set:html={JSON.stringify(item)} />
+  ))}
+  <slot name="head" />
+  {gaId && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+      <script define:vars={{ gaId }}>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', gaId);
+      </script>
+    </>
+  )}
+  {adsenseId && (
+    <script
+      async
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
+      crossorigin="anonymous"
+    ></script>
+  )}
+</head>
+<body>
+  <slot />
+  <script>
+(function () {
+  let activeBtn = null;
+
+  function showTip(btn) {
+    if (activeBtn && activeBtn !== btn) hideTip(activeBtn);
+    const tip = btn.nextElementSibling;
+    if (!tip) return;
+    tip.classList.add('is-visible');
+    const rect = tip.getBoundingClientRect();
+    if (rect.top < 0) {
+      tip.classList.add('tooltip-below');
+    } else {
+      tip.classList.remove('tooltip-below');
+    }
+    activeBtn = btn;
+  }
+
+  function hideTip(btn) {
+    if (!btn) return;
+    const tip = btn.nextElementSibling;
+    if (tip) tip.classList.remove('is-visible');
+    if (activeBtn === btn) activeBtn = null;
+  }
+
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.kpi-info-btn');
+    if (btn) {
+      e.stopPropagation();
+      if (activeBtn === btn) {
+        hideTip(btn);
+      } else {
+        showTip(btn);
+      }
+      return;
+    }
+    if (activeBtn) hideTip(activeBtn);
+  });
+
+  document.addEventListener('mouseenter', function (e) {
+    if (e.target.classList && e.target.classList.contains('kpi-info-btn')) {
+      showTip(e.target);
+    }
+  }, true);
+
+  document.addEventListener('mouseleave', function (e) {
+    if (e.target.classList && e.target.classList.contains('kpi-info-btn')) {
+      setTimeout(function () {
+        const tip = e.target.nextElementSibling;
+        if (tip && tip.matches(':hover')) return;
+        hideTip(e.target);
+      }, 100);
+    }
+    if (e.target.classList && e.target.classList.contains('kpi-tooltip')) {
+      hideTip(activeBtn);
+    }
+  }, true);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && activeBtn) hideTip(activeBtn);
+  });
+
+  document.addEventListener('focusin', function (e) {
+    if (e.target.classList && e.target.classList.contains('kpi-info-btn')) {
+      showTip(e.target);
+    }
+  });
+
+  document.addEventListener('focusout', function (e) {
+    if (e.target.classList && e.target.classList.contains('kpi-info-btn')) {
+      hideTip(e.target);
+    }
+  });
+})();
+</script>
+</body>
+</html>

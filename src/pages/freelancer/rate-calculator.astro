@@ -1,0 +1,132 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Freelancer Rate Calculator",
+  "description": "Calculate your minimum hourly rate based on desired income, expenses, taxes, and billable hours.",
+  "url": "https://freelancertools.io/freelancer/rate-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Freelancer Rate Calculator"
+  description="Calculate your minimum hourly rate based on your desired income, expenses, taxes, and billable hours."
+  canonicalUrl="https://freelancertools.io/freelancer/rate-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Freelancer', href: '/freelancer/' }, { label: 'Rate Calculator' }]}
+  relatedTools={[
+    { name: 'Invoice Generator', href: '/freelancer/invoice-generator/', category: 'Freelancer' },
+    { name: 'Proposal Generator', href: '/freelancer/proposal-generator/', category: 'Freelancer' },
+    { name: 'SaaS Pricing Calculator', href: '/saas/pricing-calculator/', category: 'SaaS' },
+    { name: 'ROI Calculator', href: '/saas/roi-calculator/', category: 'SaaS' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Freelancer Rate Calculator</h1>
+      <p class="subhead">Get your minimum hourly rate in 30 seconds. Enter your numbers and see exactly what to charge.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Freelancer Rate Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Desired take-home ($/year)" tip="The net annual income you want to actually receive after taxes and business expenses." /></label>
+          <input type="number" id="takeHome" value="80000" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Billable hours / week" tip="The number of hours per week you can realistically bill to clients — not your total working hours. Leave room for admin, marketing, and downtime." /></label>
+          <input type="number" id="billableHours" value="25" step="0.5" />
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Weeks / year" tip="How many weeks per year you plan to work. 48 is common — leaves 4 weeks for vacation, sick days, and holidays." /></label>
+          <input type="number" id="weeksPerYear" value="48" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Monthly expenses ($)" tip="Your total monthly business costs — software, equipment, office, insurance, etc. Does not include personal living expenses." /></label>
+          <input type="number" id="expenses" value="2000" />
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Tax rate (%)" tip="Your estimated effective tax rate. If unsure, use 25–30% as a starting estimate and adjust based on your country." /></label>
+          <input type="number" id="taxRate" value="30" step="0.5" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Profit buffer (%)" tip="An extra percentage added on top of your costs to cover slow months, scope creep, and unpaid invoices. 15–20% is recommended." /></label>
+          <input type="number" id="buffer" value="10" step="0.5" />
+        </div>
+      </div>
+      <button id="calcBtn" class="btn btn-primary btn-full">Calculate</button>
+
+      <div id="resultArea" class="result-area">
+        <div class="result-empty">Enter your numbers and click Calculate to see your rates.</div>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How to set your freelance rate</h2>
+      <p>Setting your rate as a freelancer is one of the hardest decisions you will make. Charge too little and you burn out. Charge too much and you scare away clients. This calculator takes the guesswork out by working backwards from your financial goals.</p>
+      <p>Remember: you cannot bill 40 hours every week. Admin, marketing, and professional development take time. Most freelancers bill 20-30 hours per week on average. This calculator accounts for that.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calculate() {
+  const takeHome = parseFloat(document.getElementById('takeHome').value) || 0;
+  const billableHours = parseFloat(document.getElementById('billableHours').value) || 1;
+  const weeks = parseFloat(document.getElementById('weeksPerYear').value) || 1;
+  const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+  const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+  const buffer = parseFloat(document.getElementById('buffer').value) || 0;
+
+  const grossNeeded = takeHome / (1 - taxRate / 100);
+  const totalRevenue = grossNeeded + (expenses * 12) + (grossNeeded * buffer / 100);
+  const totalHours = billableHours * weeks;
+  const minRate = totalHours > 0 ? totalRevenue / totalHours : 0;
+  const recRate = minRate * 1.2;
+  const dayRate = recRate * 8;
+  const weekRate = recRate * 40;
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
+      <div class="metric-card">
+        <div class="result-number" style="font-size: 22px;">$${minRate.toFixed(0)}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Minimum Hourly<button class="kpi-info-btn" aria-label="What is Minimum Hourly?" data-tip="The lowest hourly rate at which you cover all costs and hit your take-home target. Charging below this means you're underpaying yourself." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">The lowest hourly rate at which you cover all costs and hit your take-home target. Charging below this means you're underpaying yourself.</span></span></div>
+      </div>
+      <div class="metric-card" style="border-color: var(--accent-alt); border-width: 2px;">
+        <div class="result-number" style="font-size: 22px; color: var(--accent-alt);">$${recRate.toFixed(0)}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Recommended Hourly<button class="kpi-info-btn" aria-label="What is Recommended Hourly?" data-tip="Your minimum rate plus a 20% buffer for slow months, scope creep, and unexpected costs. This is what you should actually quote." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your minimum rate plus a 20% buffer for slow months, scope creep, and unexpected costs. This is what you should actually quote.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="font-size: 22px;">$${dayRate.toFixed(0)}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Day Rate (8h)<button class="kpi-info-btn" aria-label="What is Day Rate (8h)?" data-tip="Your recommended hourly rate × 8. Useful when quoting day-rate projects or workshops." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your recommended hourly rate × 8. Useful when quoting day-rate projects or workshops.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="font-size: 22px;">$${weekRate.toFixed(0)}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Week Rate (40h)<button class="kpi-info-btn" aria-label="What is Week Rate (40h)?" data-tip="Your recommended hourly rate × your billable hours per week. Use this for weekly retainer proposals." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your recommended hourly rate × your billable hours per week. Use this for weekly retainer proposals.</span></span></div>
+      </div>
+    </div>
+    <p style="margin-top: 16px; font-size: 13px; color: var(--ink-3);">Based on ${totalHours} billable hours per year. Non-billable time (admin, marketing, learning) is not factored into the rate calculation — adjust your target billable hours accordingly.</p>
+  `;
+}
+
+calculate();
+document.getElementById('calcBtn').addEventListener('click', calculate);
+</script>

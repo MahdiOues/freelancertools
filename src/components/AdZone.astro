@@ -1,0 +1,19 @@
+---
+interface Props {
+  size?: 'leaderboard' | 'square' | 'footer' | 'skyscraper';
+  slot?: string;
+}
+const { size = 'leaderboard' } = Astro.props;
+const dimensions = {
+  leaderboard: { width: '728px', height: '90px', label: '728×90' },
+  square:      { width: '336px', height: '280px', label: '336×280' },
+  footer:      { width: '728px', height: '90px', label: '728×90' },
+  skyscraper:  { width: '160px', height: '600px', label: '160×600' },
+};
+const d = dimensions[size];
+const cls = size === 'skyscraper' ? 'ad-zone-skyscraper' : 'ad-zone';
+---
+
+<div class={cls} style={`width:${d.width};height:${d.height}`} aria-hidden="true">
+  <span>Advertisement</span>
+</div>

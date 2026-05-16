@@ -1,0 +1,137 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Net Worth Calculator",
+  "description": "Calculate your net worth by adding assets and liabilities. See your total net worth and assets-to-debt ratio.",
+  "url": "https://freelancertools.io/finance/net-worth-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Net Worth Calculator — Financial Health"
+  description="Calculate your net worth instantly. Add your assets and liabilities to see your total net worth and financial health ratio."
+  canonicalUrl="https://freelancertools.io/finance/net-worth-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Net Worth Calculator' }]}
+  relatedTools={[
+    { name: 'Budget Planner', href: '/finance/budget-planner/', category: 'Finance' },
+    { name: 'Retirement Calculator', href: '/finance/retirement-calculator/', category: 'Finance' },
+    { name: 'Debt Payoff Calculator', href: '/finance/debt-payoff/', category: 'Finance' },
+    { name: 'Investment Return Calculator', href: '/finance/investment-return/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Net Worth Calculator</h1>
+      <p class="subhead">Add up everything you own and everything you owe to see your true net worth.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Net Worth Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div>
+            <h3 style="font-size:14px;margin-bottom:12px;color:var(--success);">Assets</h3>
+            <div id="assets">
+              <div class="nw-row" style="margin-bottom:8px;"><input type="text" class="nw-name" value="Cash & savings" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+              <div style="margin-bottom:8px;"><input type="number" class="nw-value" value="25000" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+              <div class="nw-row" style="margin-bottom:8px;"><input type="text" class="nw-name" value="Investments" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+              <div style="margin-bottom:8px;"><input type="number" class="nw-value" value="75000" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+              <div class="nw-row" style="margin-bottom:8px;"><input type="text" class="nw-name" value="Home equity" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+              <div style="margin-bottom:8px;"><input type="number" class="nw-value" value="100000" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+              <div class="nw-row" style="margin-bottom:8px;"><input type="text" class="nw-name" value="Other" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+              <div style="margin-bottom:8px;"><input type="number" class="nw-value" value="15000" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+            </div>
+            <button id="addAsset" class="btn btn-secondary" style="width:100%;padding:8px;font-size:12px;">+ Add asset</button>
+          </div>
+          <div>
+            <h3 style="font-size:14px;margin-bottom:12px;color:var(--danger);">Liabilities</h3>
+            <div id="liabilities">
+              <div class="nw-row" style="margin-bottom:8px;"><input type="text" class="nw-name" value="Mortgage" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+              <div style="margin-bottom:8px;"><input type="number" class="nw-value" value="250000" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+              <div class="nw-row" style="margin-bottom:8px;"><input type="text" class="nw-name" value="Car loan" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+              <div style="margin-bottom:8px;"><input type="number" class="nw-value" value="15000" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+              <div class="nw-row" style="margin-bottom:8px;"><input type="text" class="nw-name" value="Student loans" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+              <div style="margin-bottom:8px;"><input type="number" class="nw-value" value="25000" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" /></div>
+            </div>
+            <button id="addLiability" class="btn btn-secondary" style="width:100%;padding:8px;font-size:12px;">+ Add liability</button>
+          </div>
+        </div>
+
+        <div id="resultArea" class="result-area" style="margin-top:20px;">
+          <div class="result-empty">Add assets and liabilities to calculate net worth.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>What is net worth?</h2>
+      <p>Your net worth is the difference between what you own (assets) and what you owe (liabilities). It is the single best measure of your financial health. A positive net worth means you have more assets than debts. A negative net worth means you owe more than you own.</p>
+      <p>Tracking your net worth over time is more important than the number itself. If your net worth is growing each month or year, you're building financial security. If it's shrinking, you need to increase assets or reduce debt.</p>
+      <h2>How to improve your net worth</h2>
+      <p>Two levers: increase assets and decrease liabilities. Increase assets by saving more, investing, and growing your income. Decrease liabilities by paying down high-interest debt. The assets-to-debt ratio shows how leveraged you are. A ratio above 1 means you have more assets than debt, which is healthy.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function sumValues(containerId) {
+  let total = 0;
+  document.querySelectorAll(`#${containerId} .nw-value`).forEach(el => {
+    total += parseFloat(el.value) || 0;
+  });
+  return total;
+}
+
+function calculate() {
+  const totalAssets = sumValues('assets');
+  const totalLiabilities = sumValues('liabilities');
+  const netWorth = totalAssets - totalLiabilities;
+  const ratio = totalLiabilities > 0 ? (totalAssets / totalLiabilities).toFixed(2) : '∞';
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number" style="color:var(--success);">$${totalAssets.toLocaleString()}</div>
+        <div class="result-label">Total assets</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="color:var(--danger);">$${totalLiabilities.toLocaleString()}</div>
+        <div class="result-label">Total liabilities</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="color:${netWorth >= 0 ? 'var(--success)' : 'var(--danger)'};">$${netWorth.toLocaleString()}</div>
+        <div class="result-label">Net worth</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${ratio}</div>
+        <div class="result-label">Assets-to-debt ratio</div>
+      </div>
+    </div>
+  `;
+}
+
+function addRow(containerId, name, value) {
+  const div = document.createElement('div');
+  div.style.cssText = 'margin-bottom:8px;';
+  div.innerHTML = `<input type="text" class="nw-name" value="${name}" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;margin-bottom:4px;" /><input type="number" class="nw-value" value="${value}" style="width:100%;padding:9px 12px;border:1.5px solid var(--border-light);border-radius:var(--radius-md);font-size:13px;" />`;
+  document.getElementById(containerId).appendChild(div);
+  div.querySelectorAll('input').forEach(el => el.addEventListener('input', calculate));
+  calculate();
+}
+
+document.getElementById('addAsset').addEventListener('click', () => addRow('assets', 'New asset', 0));
+document.getElementById('addLiability').addEventListener('click', () => addRow('liabilities', 'New debt', 0));
+document.querySelectorAll('.nw-value, .nw-name').forEach(el => el.addEventListener('input', calculate));
+calculate();
+</script>

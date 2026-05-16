@@ -1,0 +1,39 @@
+---
+// Props: none — self-contained, communicates via JS custom event
+---
+<div class="tpl-picker" role="group" aria-label="Document template style">
+  <div class="tpl-picker-label">Template style</div>
+  <div class="tpl-picker-row">
+    {[
+      { id: 'classic', name: 'Classic', sub: 'Formal · centered title' },
+      { id: 'modern',  name: 'Modern',  sub: 'Dark header · accented clauses' },
+      { id: 'minimal', name: 'Minimal', sub: 'Warm paper · numbered sections' },
+    ].map(t => (
+      <button
+        class="tpl-card"
+        data-tpl={t.id}
+        aria-pressed={t.id === 'classic' ? 'true' : 'false'}
+        type="button"
+      >
+        <div class={`tpl-thumb tpl-thumb--${t.id}`} aria-hidden="true">
+          <div class="tpl-thumb-inner"></div>
+        </div>
+        <div class="tpl-card-name">{t.name}</div>
+        <div class="tpl-card-sub">{t.sub}</div>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  const cards = document.querySelectorAll('.tpl-card');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      cards.forEach(c => c.setAttribute('aria-pressed', 'false'));
+      card.setAttribute('aria-pressed', 'true');
+      document.dispatchEvent(new CustomEvent('tpl:change', {
+        detail: { template: card.dataset.tpl }
+      }));
+    });
+  });
+</script>

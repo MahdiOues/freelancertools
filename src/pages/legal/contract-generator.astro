@@ -1,0 +1,658 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+import DocTemplatePicker from '../../components/DocTemplatePicker.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free AI Contract Generator",
+  "description": "Generate a freelance contract, invoice, NDA, or proposal in seconds using AI.",
+  "url": "https://freelancertools.io/legal/contract-generator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free AI Contract Generator"
+  description="Generate a freelance contract, invoice, NDA, or proposal in seconds using AI. Select your document type, fill in the details, and get a clean, professional document."
+  canonicalUrl="https://freelancertools.io/legal/contract-generator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Legal', href: '/legal/' }, { label: 'Contract Generator' }]}
+  relatedTools={[
+    { name: 'Contract Summarizer', href: '/legal/contract-summarizer/', category: 'Legal' },
+    { name: 'NDA Generator', href: '/legal/nda-generator/', category: 'Legal' },
+    { name: 'Invoice Generator', href: '/freelancer/invoice-generator/', category: 'Freelancer' },
+    { name: 'Proposal Generator', href: '/freelancer/proposal-generator/', category: 'Freelancer' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Contract Generator</h1>
+      <p class="subhead">Generate professional legal documents in under a minute. AI-powered, plain text output — copy, print, or save.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Contract Generator</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label">Language</label>
+          <select id="language">
+            <option value="English">English</option>
+            <option value="Spanish">Spanish</option>
+            <option value="French">French</option>
+            <option value="German">German</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label">Document type</label>
+          <div id="docType">
+            <label style="display: block; margin-bottom: 6px; font-size: 14px;"><input type="radio" name="docType" value="Freelance Contract" checked /> Freelance Contract</label>
+            <label style="display: block; margin-bottom: 6px; font-size: 14px;"><input type="radio" name="docType" value="Invoice" /> Invoice</label>
+            <label style="display: block; margin-bottom: 6px; font-size: 14px;"><input type="radio" name="docType" value="NDA" /> NDA</label>
+            <label style="display: block; font-size: 14px;"><input type="radio" name="docType" value="Proposal" /> Proposal</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="contractFields">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Your name / company" tip="The legal name that will appear as the service provider on the contract. Use your registered business name if you have one." /></label>
+            <input type="text" id="yourName" placeholder="e.g. Jane Doe" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Client name / company" tip="The full legal name of the client or business you're contracting with. This is who the contract is legally binding on." /></label>
+            <input type="text" id="clientName" placeholder="e.g. Acme Corp" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Project description</label>
+          <textarea id="projectDesc" placeholder="Describe the work to be done..."></textarea>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Project value ($)" tip="The total project fee or rate. Make sure this matches what you've verbally agreed so there's no ambiguity." /></label>
+            <input type="number" id="projectValue" value="5000" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Timeline" tip="Key milestones and the final deadline. Include what happens if the client delays feedback — this protects your schedule." /></label>
+            <input type="text" id="timeline" placeholder="e.g. 4 weeks" />
+          </div>
+        </div>
+      </div>
+
+      <div id="invoiceFields" style="display: none;">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label">Your name</label>
+            <input type="text" id="invYourName" placeholder="Your name" />
+          </div>
+          <div class="field">
+            <label class="field-label">Client name</label>
+            <input type="text" id="invClientName" placeholder="Client name" />
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label">Invoice number</label>
+            <input type="text" id="invNumber" placeholder="e.g. INV-001" />
+          </div>
+          <div class="field">
+            <label class="field-label">Amount ($)</label>
+            <input type="number" id="invAmount" value="2500" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Description</label>
+          <textarea id="invDesc" placeholder="Description of services..."></textarea>
+        </div>
+      </div>
+
+      <div id="ndaFields" style="display: none;">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Disclosing party" tip="The person or company sharing the confidential information — usually you or your client depending on the situation." /></label>
+            <input type="text" id="ndaParty1" placeholder="e.g. Acme Corp" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Receiving party" tip="The person or company receiving and agreeing to keep confidential the disclosed information." /></label>
+            <input type="text" id="ndaParty2" placeholder="e.g. Jane Doe" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Purpose of disclosure</label>
+          <textarea id="ndaPurpose" placeholder="Describe why confidential info is being shared..."></textarea>
+        </div>
+      </div>
+
+      <div id="proposalFields" style="display: none;">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label">Your name</label>
+            <input type="text" id="propYourName" placeholder="Your name" />
+          </div>
+          <div class="field">
+            <label class="field-label">Client name</label>
+            <input type="text" id="propClientName" placeholder="Client name" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Project overview" tip="Your understanding of what the client needs and why. Demonstrating you understand their problem is more persuasive than listing your services." /></label>
+          <textarea id="propOverview" placeholder="Brief overview of the project..."></textarea>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Deliverables" tip="What you will specifically produce or complete. Concrete deliverables reduce perceived risk for the client." /></label>
+            <textarea id="propDeliverables" placeholder="List key deliverables..." rows="3"></textarea>
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Timeline" tip="Your estimated schedule from kickoff to final delivery. Include key milestones to show you've thought through the work." /></label>
+            <input type="text" id="propTimeline" placeholder="e.g. 6 weeks" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Investment ($)" tip="Your price range for the project. Using a range (e.g. $2,000–$2,500) instead of a fixed price gives flexibility and anchors the conversation." /></label>
+          <input type="number" id="propInvestment" value="10000" />
+        </div>
+      </div>
+
+      <DocTemplatePicker />
+
+      <button id="generateBtn" class="btn btn-primary btn-full">Generate Document</button>
+
+      <div id="errorMsg" style="display: none; margin-top: 12px; font-size: 14px; color: var(--danger);"></div>
+
+      <div class="doc-output-wrap" id="doc-output-wrap" style="display:none">
+        <div id="doc-output"></div>
+        <div class="btn-row">
+          <button class="btn btn-secondary" id="copyBtn" type="button">Copy text</button>
+          <button class="btn btn-secondary" id="btn-pdf" type="button">Export as PDF</button>
+        </div>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>When to use a contract generator</h2>
+      <p>A written contract protects both you and your client. It sets clear expectations about scope, payment, deadlines, and what happens if something goes wrong. This generator creates documents in plain English that are professional and ready to use.</p>
+      <p>While these documents are legally sound templates, they are not a substitute for professional legal advice. For high-stakes contracts, have a lawyer review your documents.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+import { renderDocument } from '/src/scripts/doc-renderer.js';
+
+let selectedTemplate = 'classic';
+let lastDocData = null;
+
+document.addEventListener('tpl:change', e => {
+  selectedTemplate = e.detail.template;
+  if (lastDocData) {
+    document.getElementById('doc-output').innerHTML =
+      renderDocument(lastDocData, selectedTemplate);
+  }
+});
+
+function toggleFields() {
+  const type = document.querySelector('input[name="docType"]:checked').value;
+  document.getElementById('contractFields').style.display = type === 'Freelance Contract' ? 'block' : 'none';
+  document.getElementById('invoiceFields').style.display = type === 'Invoice' ? 'block' : 'none';
+  document.getElementById('ndaFields').style.display = type === 'NDA' ? 'block' : 'none';
+  document.getElementById('proposalFields').style.display = type === 'Proposal' ? 'block' : 'none';
+  document.getElementById('doc-output-wrap').style.display = 'none';
+  document.getElementById('errorMsg').style.display = 'none';
+}
+
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+const fill = (template, data) => template.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] || `[${key}]`);
+
+// --- Freelance Contract Templates ---
+const contractOpening = [
+  `This agreement is entered into between {{yourName}} ("Service Provider") and {{clientName}} ("Client") for the project known as {{projectTitle}}.`,
+  `This contract sets out the terms under which {{yourName}} will deliver services to {{clientName}} for {{projectTitle}}.`,
+  `{{yourName}} and {{clientName}} agree to the following terms for the completion of {{projectTitle}}.`,
+  `The following terms govern the professional relationship between {{yourName}} (Service Provider) and {{clientName}} (Client) for {{projectTitle}}.`,
+  `This document constitutes a binding agreement between {{yourName}} and {{clientName}} covering all work related to {{projectTitle}}.`,
+  `In consideration of the mutual promises contained herein, {{yourName}} agrees to provide services to {{clientName}} for {{projectTitle}}.`,
+  `This service agreement is made between {{yourName}}, an independent contractor, and {{clientName}}, regarding the project {{projectTitle}}.`,
+  `{{yourName}} ('Freelancer') and {{clientName}} ('Client') enter this agreement to define the scope, payment, and expectations for {{projectTitle}}.`,
+  `The parties — {{yourName}} as Service Provider and {{clientName}} as Client — agree to the following terms for {{projectTitle}}.`,
+  `This agreement governs the professional engagement between {{yourName}} and {{clientName}} for all deliverables under {{projectTitle}}.`,
+];
+
+const contractScope = [
+  `Scope of Work: The Service Provider agrees to complete the following: {{overview}}. Deliverables include: {{deliverables}}. Work outside this scope will be quoted separately.`,
+  `Project Scope: {{overview}}. The following deliverables will be provided: {{deliverables}}. Any additional requests beyond this scope are subject to a separate agreement.`,
+  `The Service Provider will deliver: {{deliverables}}. The project is described as follows: {{overview}}. Scope changes require written approval from both parties.`,
+  `Services Included: {{overview}}. Specific deliverables: {{deliverables}}. Anything not listed here is outside the scope of this contract.`,
+  `The Client is engaging the Service Provider to complete: {{overview}}. Final deliverables: {{deliverables}}. No additional work will be performed without a written change order.`,
+  `Work Description: {{overview}}. Upon completion, the Client will receive: {{deliverables}}. Revisions beyond what is stated are billable at the Service Provider's standard rate.`,
+  `Deliverables: {{deliverables}}. Project summary: {{overview}}. The Service Provider will not begin work outside this scope without written authorization.`,
+  `This contract covers the following work: {{overview}}. Deliverables to be produced: {{deliverables}}. Scope expansions will be documented in a written addendum.`,
+  `The Service Provider's responsibilities are limited to: {{overview}}. What the Client will receive: {{deliverables}}. Verbal requests do not modify this scope.`,
+  `Project Definition: {{overview}}. Agreed deliverables: {{deliverables}}. Changes to scope must be submitted in writing and may affect timeline and price.`,
+];
+
+const contractPayment = [
+  `Payment: The total fee is \${{paymentAmount}}. Payment terms: {{paymentTerms}}. Invoices unpaid after 14 days are subject to a 1.5% monthly late fee.`,
+  `Fees: The Client agrees to pay \${{paymentAmount}} under the following terms: {{paymentTerms}}. Late payments accrue interest at 1.5% per month.`,
+  `Compensation: \${{paymentAmount}} total, payable as follows: {{paymentTerms}}. Failure to pay within the agreed terms entitles the Service Provider to pause all work.`,
+  `The Client will pay \${{paymentAmount}} according to these terms: {{paymentTerms}}. Overdue balances are subject to a late fee of 1.5% per month on the outstanding amount.`,
+  `Total Project Fee: \${{paymentAmount}}. Payment schedule: {{paymentTerms}}. The Service Provider reserves the right to withhold final deliverables until full payment is received.`,
+  `The agreed project rate is \${{paymentAmount}}, payable per the following schedule: {{paymentTerms}}. Late payments of more than 14 days will incur a 1.5% monthly charge.`,
+  `Invoice Amount: \${{paymentAmount}}. Terms: {{paymentTerms}}. All fees are non-refundable once work has commenced unless otherwise agreed in writing.`,
+  `Service Fee: \${{paymentAmount}}. The Client agrees to the following payment structure: {{paymentTerms}}. Accounts overdue by 30+ days may be referred to collections.`,
+  `The Client will remit \${{paymentAmount}} as follows: {{paymentTerms}}. Any disputed invoice must be raised in writing within 7 days of receipt.`,
+  `Agreed Compensation: \${{paymentAmount}}, structured as: {{paymentTerms}}. Payments not received within the agreed period allow the Service Provider to suspend work without liability.`,
+];
+
+const contractRevisions = [
+  `Revisions: This contract includes {{revisions}} round(s) of revisions. Additional revisions beyond this are billed at the Service Provider's hourly rate.`,
+  `The Client is entitled to {{revisions}} round(s) of changes at no additional cost. Further revisions will be scoped and quoted separately.`,
+  `Included Revisions: {{revisions}}. Each revision round consists of a single consolidated set of feedback, not multiple separate requests.`,
+  `Up to {{revisions}} revision round(s) are included in the project fee. Each round must be submitted in a single written document.`,
+  `Revision Policy: {{revisions}} round(s) of revisions are included. Requests that change the original scope are treated as new work, not revisions.`,
+  `The project fee covers {{revisions}} consolidated revision round(s). Revisions requested after final delivery are billed separately.`,
+  `Client may request up to {{revisions}} round(s) of changes within the agreed project timeline. Post-delivery edits are outside this agreement.`,
+  `Included in this contract: {{revisions}} round(s) of revisions. Each round must be submitted in full before the next is begun.`,
+  `Revisions Included: {{revisions}} round(s). The Service Provider is not obligated to implement feedback that contradicts the original brief.`,
+  `This agreement includes {{revisions}} revision round(s) at no additional charge. Rounds must be taken sequentially, not simultaneously.`,
+];
+
+const contractIP = [
+  `Intellectual Property: Upon receipt of full payment, all rights to the final deliverables transfer to the Client. The Service Provider retains the right to display the work in their portfolio.`,
+  `Ownership: Full intellectual property rights pass to the Client only after complete payment is received. Until then, all work remains the property of the Service Provider.`,
+  `Upon final payment, the Client receives full ownership of all deliverables. The Service Provider may reference this project publicly as past work.`,
+  `IP Transfer: Rights to the completed work transfer to the Client upon payment in full. Partial payment does not transfer any ownership rights.`,
+  `The Client owns the final deliverables once the full invoice is settled. Work-in-progress files remain the Service Provider's property throughout the project.`,
+  `Copyright of final deliverables is assigned to the Client after full payment. The Service Provider may use the work in a portfolio or case study.`,
+  `All original work created under this contract becomes the Client's property upon full settlement of the invoice.`,
+  `Ownership Rights: Upon receiving full payment, the Client gains exclusive rights to the final deliverables. The Service Provider retains rights to preliminary work and drafts.`,
+  `Upon completion of payment, all deliverable rights transfer to the Client. The Service Provider retains a license to showcase the work for promotional purposes.`,
+  `IP is transferred to the Client at the moment full payment clears. No rights are granted during the project period or before final payment.`,
+];
+
+const contractKillFee = [
+  `Kill Fee: If the project is cancelled after work has begun, the Client owes a kill fee of 25% of the remaining balance plus payment for all work completed to date.`,
+  `Should the Client terminate this agreement without cause after project kickoff, a kill fee equal to 25% of the total contract value is due.`,
+  `Cancellation Fee: A kill fee of 25% of the total project value applies if the Client cancels after work has commenced.`,
+  `If the Client ends this agreement after the start date, the Service Provider is entitled to 25% of the remaining contract value as a kill fee.`,
+  `Kill Fee: 25% of the outstanding balance is due if the Client terminates this contract after work has begun.`,
+  `In the event of early termination by the Client, a kill fee of 25% of the undelivered portion of the project applies.`,
+  `The Client agrees to pay a kill fee of 25% of the remaining project value if this agreement is terminated without cause.`,
+  `Cancellation after kickoff incurs a kill fee of 25% of the total fee, unless both parties agree otherwise in writing.`,
+  `A kill fee of 25% of the total contract amount is payable if the Client cancels this project after the Service Provider has begun work.`,
+  `Upon cancellation by the Client after work has started, a kill fee of 25% of the remaining balance is immediately due and payable.`,
+];
+
+const contractConfidentiality = [
+  `Confidentiality: The Service Provider agrees to keep all client business information, strategies, and data private both during and after the project. No client information will be shared without written permission.`,
+  `Neither party will disclose proprietary information obtained during this engagement to any third party without prior consent.`,
+  `All non-public information shared between the parties shall be treated as confidential and may not be disclosed to others.`,
+  `The Service Provider agrees to maintain the confidentiality of the Client's business information, processes, and materials shared during the project.`,
+  `Confidential Information includes all business, financial, and technical information disclosed during this engagement. Both parties agree to protect such information.`,
+  `The receiving party agrees to hold all confidential information in strict confidence and to use it solely for fulfilling this agreement.`,
+  `Confidentiality obligations extend beyond the term of this agreement. All confidential materials must be returned upon request or upon termination.`,
+  `Both parties agree not to disclose any proprietary information, trade secrets, or business strategies learned during this engagement.`,
+  `The Service Provider will not use or disclose the Client's confidential information for any purpose outside the scope of this contract.`,
+  `Confidentiality: All information marked as confidential or reasonably understood to be confidential will be protected by both parties for the duration of this agreement and 3 years after.`,
+];
+
+const contractTermination = [
+  `Termination: Either party may end this agreement with 7 days written notice. Work completed to that point will be invoiced and is payable within 14 days.`,
+  `Either party may terminate this contract with written notice. The Client owes payment for all work completed up to the termination date.`,
+  `This agreement may be cancelled by either party at any time. A kill fee of 25% of the remaining balance applies if the Client terminates without cause.`,
+  `Cancellation: If the Client cancels after work has begun, the Service Provider is owed compensation for all hours worked. A minimum kill fee of 25% applies.`,
+  `Either party may exit this contract with 7 days notice. The Service Provider will invoice for completed work; the Client agrees to pay within 14 days.`,
+  `Should either party wish to end this agreement early, written notice is required. All completed work must be paid for at the agreed rate.`,
+  `Termination by the Client after project kickoff incurs a kill fee equal to 25% of the total contract value, plus payment for all work delivered.`,
+  `This contract can be terminated by either party with written notice. Payment is due for all work completed prior to the termination date.`,
+  `Early Termination: The Client may cancel with written notice but owes the full amount for work delivered plus a 25% kill fee on undelivered work.`,
+  `Either party may terminate with 7 days written notice. The Service Provider reserves the right to retain the deposit as a kill fee if the project is cancelled after kickoff.`,
+];
+
+// --- Invoice Templates ---
+const invoicePaymentNotes = [
+  `Payment is due by {{dueDate}}. Accounts overdue by more than 14 days will be charged a {{lateFee}}% monthly late fee.`,
+  `Please remit payment by {{dueDate}}. A late fee of {{lateFee}}% per month applies to overdue balances.`,
+  `Invoice due: {{dueDate}}. Payments received after this date are subject to a {{lateFee}}% monthly interest charge.`,
+  `Full payment expected by {{dueDate}}. Overdue invoices accrue interest at {{lateFee}}% per month.`,
+  `Due date: {{dueDate}}. Late payments will incur a {{lateFee}}% monthly fee on the outstanding balance.`,
+  `This invoice is payable by {{dueDate}}. A {{lateFee}}% monthly late fee applies after that date.`,
+  `Kindly arrange payment before {{dueDate}}. Overdue amounts will be charged at {{lateFee}}% per month.`,
+  `Payment terms: due by {{dueDate}}. Interest of {{lateFee}}% per month will be applied to any overdue balance.`,
+  `Please ensure payment is received by {{dueDate}} to avoid a {{lateFee}}% monthly late charge.`,
+  `Net due {{dueDate}}. Any balance unpaid after this date will accrue a {{lateFee}}% monthly fee.`,
+];
+
+const invoiceThankYou = [
+  `Thank you for your business. — {{yourName}}`,
+  `It's been a pleasure working with you. — {{yourName}}`,
+  `Looking forward to working together again. — {{yourName}}`,
+  `Thank you for the opportunity. — {{yourName}}`,
+  `Appreciate your trust in my work. — {{yourName}}`,
+  `Thanks for a great project. — {{yourName}}`,
+  `Grateful for your continued partnership. — {{yourName}}`,
+  `It was a pleasure delivering this work for you. — {{yourName}}`,
+  `Thank you — I hope to work together again soon. — {{yourName}}`,
+  `With appreciation, {{yourName}}`,
+];
+
+// --- NDA Templates ---
+const ndaIntroduction = [
+  `This Non-Disclosure Agreement is entered into by {{party1}} ('Disclosing Party') and {{party2}} ('Receiving Party').`,
+  `{{party1}} and {{party2}} agree to the following confidentiality terms.`,
+  `This Agreement is made between {{party1}}, who will share certain confidential information, and {{party2}}, who agrees to protect it.`,
+  `In connection with a potential business relationship, {{party1}} and {{party2}} enter this NDA.`,
+  `This NDA governs the disclosure of confidential information from {{party1}} to {{party2}}.`,
+  `{{party2}} agrees to keep confidential any information shared by {{party1}} under the terms below.`,
+  `The purpose of this agreement is to protect proprietary information shared between {{party1}} and {{party2}}.`,
+  `To facilitate discussions of mutual interest, {{party1}} and {{party2}} enter this confidentiality agreement.`,
+  `This document establishes confidentiality obligations between {{party1}} ('Discloser') and {{party2}} ('Recipient').`,
+  `{{party1}} and {{party2}} wish to explore a working relationship and agree to protect each other's confidential information as follows.`,
+];
+
+const ndaDefinition = [
+  `Confidential Information includes all business, financial, technical, and operational data shared regarding {{purpose}}.`,
+  `For purposes of {{purpose}}, Confidential Information means any non-public information, documentation, or materials disclosed.`,
+  `Confidential Information covers any data, strategies, processes, or intellectual property discussed in connection with {{purpose}}.`,
+  `All information disclosed in relation to {{purpose}} that is marked as confidential or reasonably understood to be confidential is protected under this agreement.`,
+  `Confidential Information includes, but is not limited to, business plans, financial data, technical specifications, and customer lists relevant to {{purpose}}.`,
+  `Any information related to {{purpose}} that gives the disclosing party a competitive advantage is considered Confidential Information.`,
+  `Protected information includes all proprietary materials, trade secrets, and business knowledge shared regarding {{purpose}}.`,
+  `Confidential Information comprises all written, oral, or electronic information disclosed concerning {{purpose}}.`,
+  `The term Confidential Information covers any sensitive business data exchanged during discussions about {{purpose}}.`,
+  `Confidential Information is any non-public information pertaining to {{purpose}} that the disclosing party designates as confidential at the time of disclosure.`,
+];
+
+const ndaObligations = [
+  `The Receiving Party agrees to hold all Confidential Information in strict confidence and to use it solely for evaluating the business relationship.`,
+  `The Receiving Party shall not disclose, copy, or distribute any Confidential Information without prior written consent from the Disclosing Party.`,
+  `Confidential Information must be stored securely and accessed only by individuals who need to know it for the authorized purpose.`,
+  `The Receiving Party agrees to protect Confidential Information with the same degree of care used to protect its own sensitive information.`,
+  `Neither party may use Confidential Information for any purpose other than the intended business relationship without explicit permission.`,
+  `The Receiving Party shall limit access to Confidential Information to employees or representatives bound by equivalent confidentiality obligations.`,
+  `Confidential Information may not be reverse-engineered, decompiled, or analyzed for competitive purposes.`,
+  `The Receiving Party will notify the Disclosing Party immediately upon discovering any unauthorized use or disclosure of Confidential Information.`,
+  `All Confidential Information must be returned or destroyed upon request or upon termination of discussions.`,
+  `The Receiving Party agrees not to remove confidentiality markings or otherwise alter Confidential Information without authorization.`,
+];
+
+const ndaExclusions = [
+  `Confidential Information does not include information that is publicly known, already in the Receiving Party's possession, or independently developed.`,
+  `The following are excluded: (a) public information, (b) information received from a third party without restriction, (c) independently developed information.`,
+  `Information that becomes publicly available through no fault of the Receiving Party is not considered Confidential Information.`,
+  `Exclusions apply to information the Receiving Party can demonstrate was known prior to disclosure or developed independently.`,
+  `Confidential Information excludes data that is or becomes generally available to the public without breach of this agreement.`,
+  `Information obtained from a third party without confidentiality obligations is not covered by this agreement.`,
+  `The Receiving Party may disclose Confidential Information if required by law, with prompt notice to the Disclosing Party.`,
+  `Information independently developed by the Receiving Party without reference to Confidential Information is excluded from this agreement.`,
+  `Statistical or aggregated data that cannot be linked to specific Confidential Information is not subject to this agreement.`,
+  `Exclusions: (1) publicly available information, (2) pre-existing knowledge, (3) third-party information, (4) independent development.`,
+];
+
+const ndaDuration = [
+  `This agreement remains in effect for {{duration}} years from the date of signing. Confidentiality obligations survive termination of discussions.`,
+  `The confidentiality obligations under this agreement shall last for a period of {{duration}} years.`,
+  `This NDA is binding for {{duration}} years from the effective date. Confidential Information must be protected throughout this period.`,
+  `The term of this agreement is {{duration}} years. After this period, confidentiality obligations cease except for trade secrets.`,
+  `Both parties agree to maintain confidentiality for {{duration}} years from the effective date of this agreement.`,
+  `Confidentiality obligations survive for {{duration}} years after the disclosure of Confidential Information.`,
+  `This agreement is effective for {{duration}} years. Upon expiration, each party must return or destroy all Confidential Information.`,
+  `The obligations of this NDA extend {{duration}} years from the last disclosure of Confidential Information.`,
+  `This NDA continues for {{duration}} years. The Receiving Party's obligations apply during and after any business discussions.`,
+  `The term of confidentiality is {{duration}} years. Trade secret protections continue as long as the information remains a trade secret.`,
+];
+
+const ndaJurisdiction = [
+  `This agreement shall be governed by and construed in accordance with the laws of the State of Delaware.`,
+  `Any disputes arising under this NDA shall be resolved in the courts of the State of New York.`,
+  `This agreement is governed by the laws of the State of California. The parties consent to jurisdiction in San Francisco.`,
+  `The laws of the State of Texas shall govern this agreement. Venue shall be in Travis County.`,
+  `This NDA is governed by English law. The parties submit to the exclusive jurisdiction of the English courts.`,
+  `The courts of the Province of Ontario shall have exclusive jurisdiction over any disputes related to this agreement.`,
+  `This agreement shall be governed by the laws of the State of Washington. Disputes shall be heard in King County.`,
+  `The laws of the State of Illinois govern this NDA. The parties consent to jurisdiction in Cook County.`,
+  `This NDA is governed by the federal laws of Australia. The parties submit to the jurisdiction of the courts of New South Wales.`,
+  `The laws of the State of Florida shall apply. Any disputes shall be resolved in Miami-Dade County courts.`,
+];
+
+// --- Proposal Templates ---
+const proposalOpening = [
+  `Dear {{clientName}}, thank you for considering {{yourName}} for {{projectTitle}}. This proposal outlines how I plan to deliver exactly what you need.`,
+  `Hi {{clientName}}, I've put together this proposal for {{projectTitle}} based on our conversation and my understanding of your goals.`,
+  `{{clientName}}, I'm excited about the opportunity to work on {{projectTitle}}. Here's how I'd approach it.`,
+  `This proposal is prepared by {{yourName}} for {{clientName}} regarding {{projectTitle}}. It outlines scope, timeline, and investment.`,
+  `Dear {{clientName}}, I've reviewed your brief for {{projectTitle}} and I'm confident I can deliver what you're looking for. Here's my plan.`,
+  `{{clientName}}, below is my proposal for {{projectTitle}}. I've designed this to address your core goals directly.`,
+  `Thank you for the opportunity, {{clientName}}. This document covers everything you need to make a decision about {{projectTitle}}.`,
+  `{{yourName}} is pleased to submit this proposal for {{projectTitle}} to {{clientName}}.`,
+  `{{clientName}}, I appreciate you sharing the details of {{projectTitle}}. Here's how I'd bring it to life.`,
+  `This is a proposal from {{yourName}} to {{clientName}} for {{projectTitle}}, covering scope, approach, timeline, and fee.`,
+];
+
+const proposalUnderstanding = [
+  `I understand that {{clientName}} needs {{overview}}. My goal is to deliver a solution that meets these requirements effectively.`,
+  `Based on our discussion, {{overview}} is the core need. I've structured my approach around solving this.`,
+  `{{clientName}} has outlined the following: {{overview}}. I believe my experience aligns well with these needs.`,
+  `My understanding of the project is: {{overview}}. I've designed the approach below to directly address this.`,
+  `From our conversations, I know {{clientName}} is looking for {{overview}}. Here's how I'll deliver.`,
+  `The key objectives I've identified are: {{overview}}. My approach focuses on achieving each one.`,
+  `{{clientName}} needs {{overview}}. I've taken this as the foundation for the proposal below.`,
+  `After reviewing the requirements, I understand the scope as: {{overview}}. The plan reflects this.`,
+  `I recognize that {{clientName}} is seeking {{overview}}. My methodology is built specifically around this goal.`,
+  `The project centers on {{overview}}. My approach targets this directly with proven methods.`,
+];
+
+const proposalApproach = [
+  `My approach combines proven methodologies with creative problem-solving. I begin with research and discovery, move into execution, and iterate based on feedback.`,
+  `I follow a structured 4-phase approach: Discovery, Strategy, Execution, and Delivery. Each phase includes clear milestones and checkpoints.`,
+  `My methodology is built around three pillars: understanding your audience, designing for impact, and delivering on time.`,
+  `I take a collaborative approach, working closely with you at every stage to ensure alignment and quality.`,
+  `My process is: (1) Research and Analysis, (2) Strategy Development, (3) Creative Execution, (4) Quality Assurance, (5) Delivery.`,
+  `I approach every project with a focus on outcomes. Each phase is designed to move toward measurable results.`,
+  `My workflow is agile and transparent. You'll see progress at every stage and have opportunities to provide input.`,
+  `I combine deep expertise with a fresh perspective. The result is work that's both strategic and creative.`,
+  `My methodology: Listen → Plan → Create → Refine → Deliver. Each step builds on the last for maximum quality.`,
+  `I take a results-driven approach. Every decision is measured against your core objectives and expected outcomes.`,
+];
+
+const proposalDeliverables = [
+  `The following deliverables will be provided: {{deliverables}}. Each deliverable includes up to 2 rounds of revisions.`,
+  `Deliverables: {{deliverables}}. All final files will be delivered in source and export formats.`,
+  `You will receive the following upon completion: {{deliverables}}. Source files are included.`,
+  `{{deliverables}} — these are the specific outputs I will produce and deliver to you.`,
+  `My commitment is to deliver: {{deliverables}}. Each item will meet the quality standards we agree upon.`,
+  `Deliverables included: {{deliverables}}. Additional items can be scoped separately.`,
+  `The project includes these deliverables: {{deliverables}}. All files will be organized and documented.`,
+  `Here's what you'll receive: {{deliverables}}. Each will be delivered according to the timeline below.`,
+  `Final deliverables consist of: {{deliverables}}. I own the work until final payment; you own it after.`,
+  `What's included: {{deliverables}}. Each deliverable is designed to meet your specific requirements.`,
+];
+
+const proposalTimeline = [
+  `The project timeline is estimated at {{timeline}} from kickoff to final delivery. Key milestones will be shared in a detailed schedule.`,
+  `Timeline: {{timeline}}. I will provide a week-by-week breakdown at project start.`,
+  `Estimated completion within {{timeline}}. The schedule depends on timely feedback and approvals.`,
+  `I anticipate completing this project in {{timeline}}. A detailed milestone calendar will be shared upon kickoff.`,
+  `From start to finish: {{timeline}}. This includes all phases from discovery through final delivery.`,
+  `The timeline for this project is {{timeline}}. I'll keep you updated on progress throughout.`,
+  `Project duration: {{timeline}}. This includes time for research, creation, revisions, and final delivery.`,
+  `Scheduled delivery within {{timeline}}. Delays in feedback may extend this timeline proportionally.`,
+  `The estimated timeline is {{timeline}}. I recommend weekly check-ins to stay on track.`,
+  `Completion target: {{timeline}}. I will prioritize milestones that impact other parts of the project.`,
+];
+
+const proposalInvestment = [
+  `Investment: \${{investment}}. This covers all work described in the scope, deliverables, and up to 2 revision rounds.`,
+  `The total investment for this project is \${{investment}}. Payment is due 50% upfront and 50% on delivery.`,
+  `Project fee: \${{investment}}. This includes strategy, execution, and delivery as outlined above.`,
+  `Investment: \${{investment}}. Work outside this scope will be quoted at my standard hourly rate.`,
+  `The cost of this project is \${{investment}}. This represents my best estimate based on the requirements provided.`,
+  `Fee: \${{investment}}. This is a fixed price covering all deliverables and revisions described in this proposal.`,
+  `Total investment: \${{investment}}. I require 50% to begin and the balance upon completion.`,
+  `The project investment is \${{investment}}. This includes all work through final delivery and revisions.`,
+  `Price: \${{investment}}. A 50% deposit secures your spot; the remaining 50% is due on delivery.`,
+  `My fee for this project is \${{investment}}. This is a fixed price, not an estimate.`,
+];
+
+const proposalClosing = [
+  `I'm excited about the possibility of working with {{clientName}} on this project. Please let me know if you have any questions. — {{yourName}}`,
+  `Thank you for considering my proposal. I'm available to discuss any aspect in more detail. — {{yourName}}`,
+  `I look forward to the opportunity to contribute to {{clientName}}'s success. Please reach out with any questions.`,
+  `This proposal is valid for 14 days. I'd be happy to hop on a call to discuss it further. — {{yourName}}`,
+  `Thank you for your time and consideration. I'm confident I can deliver exceptional results for {{clientName}}.`,
+  `I would love to work with {{clientName}} on this project. Let me know when you'd like to get started. — {{yourName}}`,
+  `Please feel free to reach out if you'd like to discuss this proposal or make adjustments. — {{yourName}}`,
+  `I'm ready to start as soon as you are. Thank you for the opportunity. — {{yourName}}`,
+  `I hope this proposal reflects my enthusiasm for this project. Looking forward to your feedback. — {{yourName}}`,
+  `Thank you, {{clientName}}. I look forward to building something great together. — {{yourName}}`,
+];
+
+// --- Generator Functions ---
+
+function generateContract(data) {
+  return [
+    { heading: 'Introduction', body: fill(pick(contractOpening), data) },
+    { heading: 'Scope of Work', body: fill(pick(contractScope), data) },
+    { heading: 'Payment', body: fill(pick(contractPayment), data) },
+    { heading: 'Revisions', body: fill(pick(contractRevisions), data) },
+    { heading: 'Intellectual Property', body: fill(pick(contractIP), data) },
+    { heading: 'Kill Fee', body: fill(pick(contractKillFee), data) },
+    { heading: 'Confidentiality', body: fill(pick(contractConfidentiality), data) },
+    { heading: 'Termination', body: fill(pick(contractTermination), data) },
+  ];
+}
+
+function generateInvoice(data) {
+  const dueDate = new Date();
+  dueDate.setDate(dueDate.getDate() + 30);
+  const dateStr = dueDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const paymentNote = fill(pick(invoicePaymentNotes), { ...data, dueDate: dateStr, lateFee: '1.5' });
+  const footer = fill(pick(invoiceThankYou), data);
+  return [
+    { heading: 'Description', body: data.invDesc },
+    { heading: 'Amount Due', body: `$${data.invAmount}` },
+    { heading: 'Payment Terms', body: paymentNote },
+    { heading: '', body: footer },
+  ];
+}
+
+function generateNDA(data) {
+  return [
+    { heading: 'Introduction', body: fill(pick(ndaIntroduction), data) },
+    { heading: 'Definition of Confidential Information', body: fill(pick(ndaDefinition), data) },
+    { heading: 'Obligations of the Receiving Party', body: pick(ndaObligations) },
+    { heading: 'Exclusions', body: pick(ndaExclusions) },
+    { heading: 'Duration', body: fill(pick(ndaDuration), data) },
+    { heading: 'Governing Law', body: pick(ndaJurisdiction) },
+  ];
+}
+
+function generateProposal(data) {
+  return [
+    { heading: 'Opening', body: fill(pick(proposalOpening), data) },
+    { heading: 'Understanding of Needs', body: fill(pick(proposalUnderstanding), data) },
+    { heading: 'Approach', body: pick(proposalApproach) },
+    { heading: 'Deliverables', body: fill(pick(proposalDeliverables), data) },
+    { heading: 'Timeline', body: fill(pick(proposalTimeline), data) },
+    { heading: 'Investment', body: fill(pick(proposalInvestment), data) },
+    { heading: 'Closing', body: fill(pick(proposalClosing), data) },
+  ];
+}
+
+function displayDocument(sections, meta) {
+  lastDocData = { ...meta, sections };
+  const wrap = document.getElementById('doc-output-wrap');
+  document.getElementById('doc-output').innerHTML =
+    renderDocument(lastDocData, selectedTemplate);
+  wrap.style.display = 'block';
+  wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function generate() {
+  const errorMsg = document.getElementById('errorMsg');
+  const wrap = document.getElementById('doc-output-wrap');
+  errorMsg.style.display = 'none';
+  wrap.style.display = 'none';
+
+  const type = document.querySelector('input[name="docType"]:checked').value;
+
+  try {
+    let sections, meta;
+    const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    if (type === 'Freelance Contract') {
+      const data = {
+        yourName: document.getElementById('yourName').value || '[Your Name]',
+        clientName: document.getElementById('clientName').value || '[Client Name]',
+        projectTitle: document.getElementById('projectDesc').value || '[Project Description]',
+        overview: document.getElementById('projectDesc').value || '[Project Description]',
+        deliverables: document.getElementById('projectDesc').value || '[Project Description]',
+        paymentAmount: document.getElementById('projectValue').value || '0',
+        paymentTerms: '50% upfront, 50% on delivery',
+        revisions: '2',
+        timeline: document.getElementById('timeline').value || '[Timeline]',
+      };
+      sections = generateContract(data);
+      meta = { title: 'Freelance Service Agreement', from: data.yourName, to: data.clientName, date: today, docType: 'contract' };
+    } else if (type === 'Invoice') {
+      const invYourName = document.getElementById('invYourName').value || '[Your Name]';
+      const invClientName = document.getElementById('invClientName').value || '[Client Name]';
+      const data = {
+        yourName: invYourName,
+        clientName: invClientName,
+        invNumber: document.getElementById('invNumber').value || 'INV-001',
+        invAmount: document.getElementById('invAmount').value || '0',
+        invDesc: document.getElementById('invDesc').value || '[Description]',
+      };
+      sections = generateInvoice(data);
+      meta = { title: 'Invoice', from: data.yourName, to: data.clientName, date: today, num: data.invNumber, docType: 'invoice' };
+    } else if (type === 'NDA') {
+      const party1 = document.getElementById('ndaParty1').value || '[Party 1]';
+      const party2 = document.getElementById('ndaParty2').value || '[Party 2]';
+      const data = { party1, party2, purpose: document.getElementById('ndaPurpose').value || '[Purpose]', duration: '2' };
+      sections = generateNDA(data);
+      meta = { title: 'Non-Disclosure Agreement', from: data.party1, to: data.party2, date: today, docType: 'nda' };
+    } else if (type === 'Proposal') {
+      const propYourName = document.getElementById('propYourName').value || '[Your Name]';
+      const propClientName = document.getElementById('propClientName').value || '[Client Name]';
+      const data = {
+        yourName: propYourName,
+        clientName: propClientName,
+        projectTitle: document.getElementById('propOverview').value || '[Project Overview]',
+        overview: document.getElementById('propOverview').value || '[Project Overview]',
+        deliverables: document.getElementById('propDeliverables').value || '[Deliverables]',
+        timeline: document.getElementById('propTimeline').value || '[Timeline]',
+        investment: document.getElementById('propInvestment').value || '0',
+      };
+      sections = generateProposal(data);
+      meta = { title: 'Project Proposal', from: data.yourName, to: data.clientName, date: today, docType: 'proposal' };
+    }
+    displayDocument(sections, meta);
+  } catch (err) {
+    errorMsg.textContent = 'Something went wrong — please try again.';
+    errorMsg.style.display = 'block';
+  }
+}
+
+function copyDoc() {
+  const el = document.getElementById('doc-output');
+  navigator.clipboard.writeText(el.textContent || el.innerText);
+}
+
+toggleFields();
+document.getElementById('generateBtn').addEventListener('click', generate);
+document.getElementById('copyBtn').addEventListener('click', copyDoc);
+document.getElementById('btn-pdf').addEventListener('click', () => window.print());
+document.querySelectorAll('input[name="docType"]').forEach(el => el.addEventListener('change', toggleFields));
+</script>

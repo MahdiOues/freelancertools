@@ -1,0 +1,317 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free AI Hook Analyzer",
+  "description": "Get AI-powered feedback on your marketing hooks across attention, clarity, curiosity gap, and specificity.",
+  "url": "https://freelancertools.io/marketing/hook-analyzer/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free AI Hook Analyzer"
+  description="Get AI-powered feedback on your marketing hooks. Analyzes attention, clarity, curiosity gap, and specificity with rewrite suggestions."
+  canonicalUrl="https://freelancertools.io/marketing/hook-analyzer/"
+  schema={schema}
+  breadcrumb={[{ label: 'Marketing', href: '/marketing/' }, { label: 'Hook Analyzer' }]}
+  relatedTools={[
+    { name: 'Ad Profitability Calculator', href: '/marketing/ad-profit-calculator/', category: 'Marketing' },
+    { name: 'ROI Calculator', href: '/saas/roi-calculator/', category: 'SaaS' },
+    { name: 'Contract Generator', href: '/legal/contract-generator/', category: 'Legal' },
+    { name: 'Proposal Generator', href: '/freelancer/proposal-generator/', category: 'Freelancer' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Hook Analyzer</h1>
+      <p class="subhead">Paste your hook and get scored across four dimensions. Get actionable rewrite suggestions to improve your marketing.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Hook Analyzer</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Your hook" tip="The opening line of your video — the first sentence or phrase viewers hear or read in the first 1–3 seconds. This is what determines whether they keep watching." /></label>
+        <textarea id="hookText" rows="4" placeholder="Paste your hook, headline, or opening line..."></textarea>
+      </div>
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Platform" tip="The platform where you'll post the video. Each platform has different audience behavior and attention patterns, which affects what makes a hook effective." /></label>
+        <select id="platform">
+          <option value="TikTok">TikTok</option>
+          <option value="Instagram Reels">Instagram Reels</option>
+          <option value="YouTube Shorts">YouTube Shorts</option>
+        </select>
+      </div>
+      <button id="analyzeBtn" class="btn btn-primary btn-full">Analyze Hook</button>
+
+      <div id="errorMsg" style="display: none; margin-top: 12px; font-size: 14px; color: var(--danger);"></div>
+
+      <div id="resultArea" class="result-area" style="display: none;">
+        <div id="analysisOutput"></div>
+        <div style="margin-top: 12px;">
+          <button class="btn btn-export-pdf" onclick="window.print()">Export as PDF</button>
+        </div>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>What makes a great hook</h2>
+      <p>The first 3 seconds determine whether someone watches your content or scrolls past. A great hook grabs attention, creates curiosity, and promises value. This analyzer scores your hook across four dimensions and gives you specific suggestions to improve it.</p>
+      <p>Different platforms favor different hook styles. TikTok rewards fast-paced, pattern-interrupt hooks. YouTube Shorts benefits from clear value propositions. Instagram Reels sits somewhere in between.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+function scoreHook(hook, platform) {
+  const words = hook.trim().split(/\s+/);
+  const len = words.length;
+  const hasNumber = /\d/.test(hook);
+  const hasQuestion = hook.includes('?');
+  const hasYou = /\byou\b/i.test(hook);
+  const hasPowerWord = /secret|never|always|stop|warning|mistake|truth|finally|exactly|proven/i.test(hook);
+  const hasPlatformWord = platform === 'TikTok'
+    ? /pov|this is your sign|tell me why|wait for it/i.test(hook)
+    : platform === 'YouTube Shorts'
+    ? /watch till end|part \d|you won't believe/i.test(hook)
+    : /real talk|no one tells you|hot take/i.test(hook);
+
+  const attention = Math.min(10, 4
+    + (hasPowerWord ? 2 : 0)
+    + (len <= 12 ? 2 : len <= 20 ? 1 : 0)
+    + (hasPlatformWord ? 2 : 0));
+
+  const clarity = Math.min(10, 5
+    + (len <= 15 ? 2 : len > 30 ? -2 : 0)
+    + (hasNumber ? 1 : 0)
+    + (hook.split(',').length > 1 ? -1 : 1));
+
+  const curiosity = Math.min(10, 4
+    + (hasQuestion ? 2 : 0)
+    + (hasPowerWord ? 2 : 0)
+    + (hook.toLowerCase().includes('why') || hook.toLowerCase().includes('how') ? 2 : 0));
+
+  const specificity = Math.min(10, 4
+    + (hasNumber ? 3 : 0)
+    + (len >= 8 && len <= 18 ? 2 : 0)
+    + (hasYou ? 1 : 0));
+
+  return { attention, clarity, curiosity, specificity };
+}
+
+const feedbackBanks = {
+  attention: [
+    [
+      "This hook doesn't signal anything urgent or unusual. A viewer has no reason to stop scrolling.",
+      "Nothing here competes with the next video in the feed. Add a pattern interrupt.",
+      "The hook is too neutral. It reads like a title, not a reason to watch.",
+      "There's no tension here. Hooks work when they create a micro-problem the viewer needs resolved.",
+      "A viewer would scroll past this. It needs a stronger opening word or specific promise."
+    ],
+    [
+      "This hook has some pull but could be sharper. A stronger power word or number would help.",
+      "Decent attention grab, but it could be more direct. Front-load the most interesting part.",
+      "This works but feels familiar. An unexpected word or angle would make it stand out more.",
+      "Good start — now make it tighter. Cut any words that don't add urgency or curiosity.",
+      "The hook has potential. Try opening with a more provocative statement."
+    ],
+    [
+      "Strong attention grabber. This stops the scroll effectively.",
+      "Great hook opening. The word choice creates immediate interest.",
+      "Excellent pattern interrupt. This would make anyone pause and watch.",
+      "High-impact opening. The urgency and specificity work well together.",
+      "Powerful hook. It competes with anything in the feed."
+    ]
+  ],
+  clarity: [
+    [
+      "It's unclear what the content is about. The viewer needs immediate context.",
+      "This is too vague. Be more specific about what the video covers.",
+      "The hook doesn't communicate its subject clearly. Add a concrete reference.",
+      "A viewer would be confused about what comes next. Clarify the topic.",
+      "Too abstract. Ground the hook in a specific subject or experience."
+    ],
+    [
+      "Fairly clear, but could be more direct. Remove ambiguous words.",
+      "The topic is somewhat clear. Tighten the wording for instant understanding.",
+      "Moderate clarity. A more specific noun would help immediately.",
+      "Clear enough, but a few words could be misinterpreted. Simplify.",
+      "Mostly clear. One small tweak would make it instantly understandable."
+    ],
+    [
+      "Crystal clear. The viewer knows exactly what the content is about.",
+      "Excellent clarity. No confusion about the topic or value.",
+      "Immediately understandable. The hook communicates its subject perfectly.",
+      "Very clear and direct. The viewer wastes no time understanding.",
+      "Perfect clarity. No ambiguity whatsoever."
+    ]
+  ],
+  curiosity: [
+    [
+      "No curiosity gap. The hook doesn't make anyone wonder what's next.",
+      "This hook reveals too much or too little. Create a gap between what the viewer knows and wants to know.",
+      "There's no mystery here. A good hook withholds just enough information.",
+      "Nothing makes the viewer lean in. Add a surprising element or unfinished thought.",
+      "The hook doesn't promise anything surprising. Curiosity comes from unexpected hints."
+    ],
+    [
+      "Mild curiosity. A stronger hint at something surprising would help.",
+      "Some curiosity but not urgent. Make the stakes clearer.",
+      "Decent gap. It makes you wonder, but the payoff could feel bigger.",
+      "Moderate intrigue. Try ending with an implication rather than a statement.",
+      "Good curiosity. Push it further by hinting at the most surprising part."
+    ],
+    [
+      "Strong curiosity gap. The viewer must watch to find out what happens.",
+      "Excellent intrigue. This hook makes people lean in immediately.",
+      "Powerful curiosity. The brain needs closure and this hook withholds it perfectly.",
+      "High curiosity. The viewer is invested in the first 3 seconds.",
+      "Masterful gap. The hook creates questions the video must answer."
+    ]
+  ],
+  specificity: [
+    [
+      "Too generic. Specific numbers, examples, or details would make this credible.",
+      "No concrete details. Add a statistic, timeframe, or specific outcome.",
+      "Vague claims don't convince anyone. Specificity builds trust and interest.",
+      "This could describe any video on this topic. Get more specific.",
+      "Abstract language makes the hook forgettable. Use precise nouns and numbers."
+    ],
+    [
+      "Some specificity but more would strengthen credibility. Add a number.",
+      "Moderate detail. A more specific example would make it more compelling.",
+      "Good specifics, but could go deeper. Narrow the focus further.",
+      "Decent detail. One more concrete element would push this over the top.",
+      "Fairly specific. The hook would benefit from an exact number or timeframe."
+    ],
+    [
+      "Highly specific. The details make this hook credible and compelling.",
+      "Great use of specifics. Numbers and concrete details build trust.",
+      "Very detailed without being cluttered. Excellent specificity.",
+      "Specific and clear. The viewer knows exactly what to expect.",
+      "Perfect level of detail. Specific enough to be credible, broad enough to intrigue."
+    ]
+  ]
+};
+
+const rewriteTemplates = [
+  "{{powerWord}}: {{hook}} (in {{timeframe}})",
+  "Why {{topic}} keeps failing — and what to do instead",
+  "The {{adjective}} truth about {{topic}} nobody talks about",
+  "I tried {{hook}} for {{timeframe}}. Here's exactly what happened.",
+  "Stop {{negativeAction}}. Do this instead.",
+  "{{number}} {{topic}} mistakes you're probably making right now",
+  "What {{audience}} don't tell you about {{topic}}",
+  "You're doing {{topic}} wrong. Here's the fix.",
+  "The {{topic}} strategy that changed everything for me",
+  "Nobody warned me about {{topic}}. Now I'm warning you."
+];
+
+function inferTokens(hook) {
+  const words = hook.trim().split(/\s+/);
+  return {
+    powerWord: pick(['Secret', 'Never', 'Always', 'Stop', 'Warning', 'Mistake', 'Truth', 'Finally', 'Exactly', 'Proven']),
+    topic: words.slice(0, 3).join(' ') || 'this topic',
+    adjective: pick(['hard', 'uncomfortable', 'surprising', 'real', 'shocking', 'simple', 'powerful', 'expensive', 'hidden', 'obvious']),
+    timeframe: pick(['today', 'this week', '30 days', 'right now', '2024', 'this year', 'one week', 'tonight', 'next month', 'the next 90 days']),
+    negativeAction: pick(['wasting time', 'overthinking', 'doing it wrong', 'guessing', 'faking it', 'burning out', 'ignoring the signs', 'chasing trends']),
+    number: String(Math.floor(Math.random() * 10) + 3),
+    audience: pick(['most people', 'beginners', 'experts', 'entrepreneurs', 'creators', 'freelancers', 'founders', 'marketers']),
+  };
+}
+
+function fill(template, data) {
+  return template.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] ?? '');
+}
+
+function analyze() {
+  const hook = document.getElementById('hookText').value.trim();
+  const platform = document.getElementById('platform').value;
+  const errorMsg = document.getElementById('errorMsg');
+  const resultArea = document.getElementById('resultArea');
+  const analysisOutput = document.getElementById('analysisOutput');
+
+  if (!hook) {
+    errorMsg.textContent = 'Please enter a hook to analyze.';
+    errorMsg.style.display = 'block';
+    return;
+  }
+
+  errorMsg.style.display = 'none';
+  resultArea.style.display = 'none';
+
+  const scores = scoreHook(hook, platform);
+  const tokens = inferTokens(hook);
+
+  function getFeedback(dimension, score) {
+    let tier;
+    if (score <= 4) tier = 0;
+    else if (score <= 7) tier = 1;
+    else tier = 2;
+    return pick(feedbackBanks[dimension][tier]);
+  }
+
+  const rewrites = [];
+  const used = new Set();
+  while (rewrites.length < 3) {
+    const tpl = pick(rewriteTemplates);
+    if (used.has(tpl)) continue;
+    used.add(tpl);
+    rewrites.push(fill(tpl, tokens));
+  }
+
+  const html = `
+    <div style="font-size: 15px;">
+      <h3 style="margin-bottom: 12px;">Hook Analysis</h3>
+      <div class="metric-grid" style="margin-bottom: 20px;">
+        <div class="metric-card">
+          <div class="result-number">${scores.attention}/10</div>
+          <div class="result-label">Attention</div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number">${scores.clarity}/10</div>
+          <div class="result-label">Clarity</div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number">${scores.curiosity}/10</div>
+          <div class="result-label">Curiosity Gap</div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number">${scores.specificity}/10</div>
+          <div class="result-label">Specificity</div>
+        </div>
+      </div>
+      <div style="margin-top: 16px;">
+        <p><strong>Attention:</strong> ${getFeedback('attention', scores.attention)}</p>
+        <p><strong>Clarity:</strong> ${getFeedback('clarity', scores.clarity)}</p>
+        <p><strong>Curiosity Gap:</strong> ${getFeedback('curiosity', scores.curiosity)}</p>
+        <p><strong>Specificity:</strong> ${getFeedback('specificity', scores.specificity)}</p>
+      </div>
+      <div style="margin-top: 20px;">
+        <h3 style="margin-bottom: 8px;">Rewrite Suggestions</h3>
+        <ol style="padding-left: 18px;">
+          ${rewrites.map(r => `<li style="margin-bottom: 6px;">${r}</li>`).join('')}
+        </ol>
+      </div>
+    </div>
+  `;
+
+  analysisOutput.innerHTML = html;
+  resultArea.style.display = 'block';
+}
+document.getElementById('analyzeBtn').addEventListener('click', analyze);
+</script>

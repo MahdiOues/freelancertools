@@ -1,0 +1,135 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Invoice Late Fee Calculator",
+  "description": "Calculate late payment fees on overdue invoices. Supports simple and compound interest with monthly or daily rates.",
+  "url": "https://freelancertools.io/freelancer/late-fee-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Late Fee Calculator — Late Payment Interest"
+  description="Calculate late payment fees for overdue invoices. See how much your client owes with simple or compound late fees. Freelancer-friendly."
+  canonicalUrl="https://freelancertools.io/freelancer/late-fee-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Freelancer', href: '/freelancer/' }, { label: 'Late Fee Calculator' }]}
+  relatedTools={[
+    { name: 'Invoice Generator', href: '/freelancer/invoice-generator/', category: 'Freelancer' },
+    { name: 'Project Estimator', href: '/freelancer/project-estimator/', category: 'Freelancer' },
+    { name: 'Freelancer Rate Calculator', href: '/freelancer/rate-calculator/', category: 'Freelancer' },
+    { name: 'Salary to Hourly Calculator', href: '/freelancer/salary-to-hourly/', category: 'Freelancer' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Invoice Late Fee Calculator</h1>
+      <p class="subhead">Calculate the late fee on an overdue invoice. Simple or compound interest, daily or monthly rates.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Late Fee Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Invoice amount ($)" tip="The original invoice amount." /></label>
+            <input type="number" id="amount" value="2500" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Due date" tip="The date the invoice was due." /></label>
+            <input type="date" id="dueDate" />
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Payment date" tip="The actual or expected payment date." /></label>
+            <input type="date" id="payDate" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Late fee rate (%)" tip="The late fee percentage per period (monthly or daily)." /></label>
+            <input type="number" id="rate" value="1.5" step="0.1" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Calculation method</label>
+          <select id="method">
+            <option value="simple">Simple interest</option>
+            <option value="compound">Compound interest</option>
+          </select>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter invoice details to calculate late fees.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>Why charge late fees?</h2>
+      <p>Late payments are one of the biggest frustrations for freelancers. A clear late fee policy in your contract encourages clients to pay on time and compensates you when they don't. The standard rate is 1.5% per month (18% APR), which is both common and legally defensible in most jurisdictions.</p>
+      <h2>Simple vs compound late fees</h2>
+      <p><strong>Simple interest</strong> charges a fixed percentage of the original invoice amount for each period overdue. <strong>Compound interest</strong> charges interest on the total amount including previously accrued late fees. Most freelancers use simple interest because it's easier to calculate and explain. Check your local laws — some jurisdictions limit compound interest on consumer transactions.</p>
+      <p>Always include a late fee clause in your contract. Without it, you may not have the legal right to charge interest on overdue payments. This calculator helps you determine the exact amount your client owes.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+document.getElementById('dueDate').valueAsDate = new Date('2026-04-01');
+const pd = new Date(); pd.setDate(pd.getDate() + 15);
+document.getElementById('payDate').valueAsDate = pd;
+
+function calculate() {
+  const amount = parseFloat(document.getElementById('amount').value) || 0;
+  const due = new Date(document.getElementById('dueDate').value);
+  const pay = new Date(document.getElementById('payDate').value);
+  const rate = (parseFloat(document.getElementById('rate').value) || 0) / 100;
+  const method = document.getElementById('method').value;
+
+  if (isNaN(due.getTime()) || isNaN(pay.getTime())) {
+    document.getElementById('resultArea').innerHTML = `<div class="result-empty">Please enter valid dates.</div>`;
+    return;
+  }
+
+  const daysOverdue = Math.max(0, Math.floor((pay - due) / (1000 * 60 * 60 * 24)));
+  const monthsOverdue = daysOverdue / 30;
+
+  let fee = 0;
+  if (method === 'simple') {
+    fee = amount * rate * monthsOverdue;
+  } else {
+    fee = amount * (Math.pow(1 + rate, monthsOverdue) - 1);
+  }
+
+  const total = amount + fee;
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">${daysOverdue}</div>
+        <div class="result-label">Days overdue</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="color:var(--danger);">$${fee.toFixed(2)}</div>
+        <div class="result-label">Late fee (${method})</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${total.toFixed(2)}</div>
+        <div class="result-label">Total amount due</div>
+      </div>
+    </div>
+  `;
+}
+['amount','dueDate','payDate','rate','method'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

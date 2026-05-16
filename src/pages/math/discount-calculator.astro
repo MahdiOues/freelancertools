@@ -1,0 +1,133 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Discount Calculator",
+  "description": "Calculate the sale price after a discount. Works with percentage off or fixed amount off. Reverse mode included.",
+  "url": "https://freelancertools.io/math/discount-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Discount Calculator — Percent Off"
+  description="Calculate the final price after any discount. Percentage off or fixed amount off. Find out how much you save instantly."
+  canonicalUrl="https://freelancertools.io/math/discount-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Discount Calculator' }]}
+  relatedTools={[
+    { name: 'Percentage Calculator', href: '/math/percentage-calculator/', category: 'Math' },
+    { name: 'Tip Calculator', href: '/math/tip-calculator/', category: 'Math' },
+    { name: 'Percentage Change Calculator', href: '/math/percentage-change/', category: 'Math' },
+    { name: 'VAT Calculator', href: '/finance/vat-calculator/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Discount Calculator</h1>
+      <p class="subhead">Calculate how much you save during a sale. Works with percentage discounts and fixed amount discounts.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Discount Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label">Discount type</label>
+          <select id="discountType">
+            <option value="pct">Percentage off (%)</option>
+            <option value="fixed">Fixed amount off ($)</option>
+            <option value="reverse">What % off gives me $X off?</option>
+          </select>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Original price ($)" tip="The full price before any discount." /></label>
+            <input type="number" id="price" value="100" />
+          </div>
+          <div class="field" id="discountField">
+            <label class="field-label" id="discountLabel">Discount (%)</label>
+            <input type="number" id="discount" value="20" />
+          </div>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter the price and discount to calculate savings.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How to calculate a discount</h2>
+      <p>To calculate the price after a percentage discount: multiply the original price by the discount percentage (as a decimal), then subtract that from the original price. For example, $100 at 20% off = $100 × 0.20 = $20 discount, so the sale price is $80.</p>
+      <p>A fixed amount discount is even simpler: just subtract the discount from the original price. Use the reverse mode to find what percentage discount a given dollar amount represents.</p>
+      <h2>Smart shopping tips</h2>
+      <p>Always calculate the final price, not just the discount amount. A 50% off sale on a $200 item saves you $100, but you still spend $100 — ask yourself if you would buy it at that price. Stackable discounts (e.g., 20% off + additional 10% off) are applied sequentially, not added together.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calculate() {
+  const type = document.getElementById('discountType').value;
+  const price = parseFloat(document.getElementById('price').value) || 0;
+  const disc = parseFloat(document.getElementById('discount').value) || 0;
+  let saved, final;
+  if (type === 'pct') {
+    saved = price * (disc / 100);
+    final = price - saved;
+  } else if (type === 'fixed') {
+    saved = Math.min(disc, price);
+    final = price - saved;
+  } else {
+    saved = disc;
+    final = price - saved;
+    const pctOff = price > 0 ? (disc / price) * 100 : 0;
+    document.getElementById('resultArea').innerHTML = `
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="result-number">${pctOff.toFixed(2)}%</div>
+          <div class="result-label">Discount percentage</div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number">$${saved.toFixed(2)}</div>
+          <div class="result-label">Amount off</div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number">$${Math.max(0, final).toFixed(2)}</div>
+          <div class="result-label">Final price</div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">$${saved.toFixed(2)}</div>
+        <div class="result-label">You save</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="color:var(--success);">$${Math.max(0, final).toFixed(2)}</div>
+        <div class="result-label">Final price</div>
+      </div>
+    </div>
+  `;
+}
+
+document.getElementById('discountType').addEventListener('change', function() {
+  const isReverse = this.value === 'reverse';
+  document.getElementById('discountLabel').textContent = isReverse ? 'Amount off ($)' : this.value === 'pct' ? 'Discount (%)' : 'Amount off ($)';
+  calculate();
+});
+['price','discount','discountType'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

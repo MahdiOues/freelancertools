@@ -1,0 +1,113 @@
+---
+const path = Astro.url.pathname.replace(/\/$/, '');
+const copy = {
+  '/finance/compound-interest': {
+    title: 'Compound Interest Calculator',
+    sections: [
+      ['The formula behind compound interest', 'Compound interest uses the formula A = P(1 + r/n)^(nt), where P is your starting principal, r is the annual rate, n is the number of compounding periods per year, and t is time in years. Monthly contributions are added as a growing annuity, so every deposit has its own smaller compounding window. A $10,000 starting balance at 7% for 10 years grows to about $19,672 before contributions; adding $500 per month can push the ending balance above $105,000 because each deposit earns its own return.'],
+      ['Rule of 72', 'The Rule of 72 is a quick mental shortcut: divide 72 by the annual return to estimate how many years it takes money to double. At 6%, money doubles in about 12 years. At 8%, it doubles in about 9 years. This is only an estimate, but it helps you understand why starting earlier matters more than trying to find a perfect investment. Use the <a href="/finance/retirement-calculator/">retirement calculator</a> to see the same effect across a full working life.'],
+      ['Compounding frequency and real returns', 'Daily, monthly, quarterly, and annual compounding produce slightly different results. The higher the frequency, the more often interest is added to the balance. The difference is usually smaller than the effect of contribution size, time horizon, or rate of return. Historically, the S&P 500 has averaged around 10% nominal return before inflation and roughly 7% real return after inflation, but any future year can be much higher or lower. Compare nominal growth with purchasing power using the <a href="/finance/inflation-calculator/">inflation calculator</a>.'],
+      ['When to consult a professional', 'Talk to a financial planner when the result affects retirement timing, college savings, tax strategy, or investment allocation. This calculator shows the math of compounding, but it does not decide which account type, asset mix, or tax treatment is right for you.'],
+    ],
+  },
+  '/finance/mortgage-calculator': {
+    title: 'Mortgage Calculator',
+    sections: [
+      ['PITI breakdown', 'A real mortgage payment is more than principal and interest. Most homeowners also pay property taxes, homeowners insurance, and sometimes PMI, creating the full PITI payment. Principal reduces your loan balance. Interest pays the lender. Taxes and insurance are often escrowed monthly. PMI protects the lender when your down payment is usually below 20%. Your credit score can change the rate you receive, so it is worth checking the <a href="/finance/credit-score-simulator/">credit score simulator</a> before applying.'],
+      ['The formula behind the payment', 'The standard fixed-rate mortgage formula is M = P[r(1+r)^n] / [(1+r)^n - 1], where P is the loan amount, r is the monthly interest rate, and n is the number of payments. If you borrow $200,000 at 6.5% for 30 years, r is 0.065/12 and n is 360. The principal-and-interest payment is about $1,264 before taxes, insurance, or PMI.'],
+      ['15-year vs 30-year tradeoff', 'A 15-year mortgage usually has a higher monthly payment but much lower total interest. A 30-year mortgage lowers the monthly payment and gives more cash-flow flexibility, but the loan accrues interest for twice as long. The better option depends on job stability, emergency savings, retirement contributions, and how long you expect to stay in the home. Use the <a href="/finance/loan-comparison/">loan comparison calculator</a> to compare two loan structures side by side.'],
+      ['Stress testing the loan', 'Before signing, test what happens if insurance rises, property taxes increase, or your income drops. A rate that is affordable at closing can become uncomfortable if other housing costs climb. Consult a mortgage advisor or housing counselor when debt-to-income ratio, PMI removal, points, ARM terms, or closing costs are unclear.'],
+    ],
+  },
+  '/finance/paycheck-calculator': {
+    title: 'Paycheck Calculator',
+    sections: [
+      ['How paycheck withholding works', 'Your paycheck starts with gross pay, then subtracts federal income tax, FICA, state tax where applicable, and voluntary deductions. Federal income tax depends on your W-4, filing status, taxable income, and pay frequency. FICA is more direct: Social Security is 6.2% up to the annual wage base and Medicare is 1.45% on wages, with an additional Medicare tax for high earners.'],
+      ['Pre-tax and post-tax deductions', 'A 401(k), HSA, FSA, and some health insurance premiums can reduce taxable wages before income tax is calculated. Roth contributions, garnishments, and some insurance deductions may come out after tax. That is why two people with the same salary can have different take-home pay. Once you know net income, build a spending plan with the <a href="/finance/budget-planner/">budget planner</a>.'],
+      ['Why refunds happen', 'A tax refund usually means too much was withheld during the year. Some people like the forced savings effect, but a large refund also means you gave the government an interest-free loan. If your life changes through marriage, dependents, a second job, or freelance income, review your W-4 and state withholding forms.'],
+      ['When to consult a professional', 'Talk to a CPA or payroll specialist if you have equity compensation, multi-state wages, self-employment income, large bonuses, or back taxes. This calculator is useful for planning, but official payroll systems and tax returns determine final amounts.'],
+    ],
+  },
+  '/finance/tax-deduction-finder': {
+    title: 'Tax Deduction Finder',
+    sections: [
+      ['How deductions reduce tax', 'A deduction lowers taxable income, not tax dollar for dollar. If you deduct $1,000 and your marginal rate is 22%, the federal tax reduction is about $220 before state effects. Credits are different because they reduce tax directly. This tool helps identify possible deductions, but the amount you can claim depends on documentation, business purpose, and current IRS rules.'],
+      ['Common freelancer deductions', 'Freelancers often miss ordinary and necessary expenses such as software, payment processing fees, home office costs, mileage, internet, education, professional services, and business insurance. The key is separating personal use from business use and keeping receipts or clear records. Pair this with the <a href="/freelancer/rate-calculator/">freelancer rate calculator</a> so your pricing accounts for taxes and overhead.'],
+      ['Mistakes to avoid', 'Do not deduct personal expenses just because they helped you work indirectly. Do not claim a home office if the space is not used regularly and exclusively for business. Do not wait until tax season to reconstruct records from memory. Good bookkeeping during the year is safer and usually finds more legitimate deductions.'],
+      ['When to consult a professional', 'Consult a tax professional if you have employees, inventory, large equipment purchases, vehicle deductions, multi-state income, or uncertain business classification. Tax rules change, and penalties can outweigh the savings from an aggressive deduction.'],
+    ],
+  },
+  '/finance/credit-score-simulator': {
+    title: 'Credit Score Simulator',
+    sections: [
+      ['The five FICO factors', 'FICO scores are commonly described by five weighted factors: payment history about 35%, amounts owed and utilization about 30%, length of credit history about 15%, credit mix about 10%, and new credit about 10%. Payment history and utilization dominate because lenders want to know whether you pay on time and how much revolving credit you are using.'],
+      ['Score ranges lenders watch', 'A score below 580 is usually considered poor, 580-669 fair, 670-739 good, 740-799 very good, and 800+ exceptional. The exact cutoff varies by lender and loan type. A higher score can lower rates on a <a href="/finance/mortgage-calculator/">mortgage</a> or <a href="/finance/loan-comparison/">personal loan</a>, sometimes saving tens of thousands of dollars over the loan term.'],
+      ['Negative item timelines', 'Late payments can remain on a credit report for up to seven years. Collections and charge-offs also commonly remain for seven years from the original delinquency. Hard inquiries usually affect scores for a shorter period and remain visible for about two years. Utilization improvements can show faster because balances are updated when issuers report to bureaus.'],
+      ['Fast legal ways to improve', 'The fastest legitimate moves are paying revolving balances before statement close, bringing past-due accounts current, correcting report errors, and avoiding unnecessary new applications. There is no legal shortcut for accurate late-payment history. Be skeptical of anyone promising instant deletion of valid negative information.'],
+    ],
+  },
+  '/finance/loan-comparison': {
+    title: 'Loan Comparison Calculator',
+    sections: [
+      ['APR, fees, and total cost', 'The cheapest loan is not always the one with the lowest monthly payment. A longer term can reduce the payment but increase total interest. Origination fees, points, and closing costs can make a lower stated rate more expensive. Compare total repayment, not just the payment amount.'],
+      ['The payment formula', 'Installment loans use the same amortization logic as mortgages: payment depends on principal, monthly rate, and number of payments. Extra fees should be included in the real cost even if they are paid upfront. If you are comparing home loans, also run the numbers in the <a href="/finance/mortgage-calculator/">mortgage calculator</a>.'],
+      ['Common mistakes', 'Borrowers often compare only payment size, ignore prepayment penalties, overlook variable-rate resets, or forget that refinancing restarts the term. Another mistake is comparing loans with different assumptions, such as one quote with taxes and insurance included and another without them.'],
+      ['When to consult a professional', 'Ask a loan officer, credit counselor, or financial advisor when a loan includes balloon payments, variable rates, collateral, business guarantees, or complex fees. The calculator can make tradeoffs visible, but it cannot judge contract risk.'],
+    ],
+  },
+  '/freelancer/invoice-generator': {
+    title: 'Invoice Generator',
+    sections: [
+      ['What a strong invoice includes', 'A professional invoice should include your business name, client name, invoice number, issue date, due date, line items, payment methods, subtotal, taxes if applicable, total due, and payment terms. Clear invoices reduce back-and-forth and make late follow-up easier.'],
+      ['Payment terms and late fees', 'Net 7, Net 15, and Net 30 terms define when payment is due. Late fees should match your contract and local rules. If a client misses the due date, estimate charges with the <a href="/freelancer/late-fee-calculator/">late fee calculator</a> and keep your communication factual.'],
+      ['Common mistakes', 'Freelancers often forget invoice numbers, use vague line items, omit payment instructions, or send invoices late. Another mistake is billing before scope is agreed in writing. For larger projects, pair invoices with a clear <a href="/legal/contract-generator/">client contract</a>.'],
+      ['When to consult a professional', 'Talk to an accountant when sales tax, VAT, international clients, retainers, or recurring billing become material. Invoices are business records, so accuracy matters for taxes and client disputes.'],
+    ],
+  },
+  '/freelancer/rate-calculator': {
+    title: 'Freelancer Rate Calculator',
+    sections: [
+      ['Why salary math is misleading', 'A $50 hourly freelance rate is not the same as a $50 employee wage. Freelancers pay self-employment taxes, buy their own benefits, cover unpaid admin time, fund vacations, handle sales time, and absorb gaps between projects. Your rate must cover billable and non-billable hours.'],
+      ['The formula behind your rate', 'A sustainable rate starts with desired annual income plus taxes, benefits, software, insurance, equipment, and savings. Divide that total by realistic billable hours, not total working hours. If you work 40 hours per week but bill only 22, the remaining time still has to be funded by your rate. Compare employee pay with the <a href="/freelancer/salary-to-hourly/">salary to hourly calculator</a>.'],
+      ['Common mistakes', 'New freelancers underprice by using old salary math, ignoring taxes, forgetting unpaid time, or copying competitors without knowing their costs. Another mistake is charging one rate for every type of work instead of pricing strategy, urgency, expertise, and value separately.'],
+      ['When to consult a professional', 'Consult an accountant when revenue grows, quarterly taxes become confusing, or you hire subcontractors. A business coach or experienced freelancer can also help reposition offers so your rate reflects value rather than hours alone.'],
+    ],
+  },
+  '/legal/contract-generator': {
+    title: 'Contract Generator',
+    sections: [
+      ['What a freelance contract should cover', 'A useful contract identifies the parties, scope of work, deliverables, timeline, payment schedule, revision limits, ownership, confidentiality, termination, late fees, and dispute handling. The goal is not to sound legalistic; it is to make expectations clear before money changes hands.'],
+      ['Scope and payment clarity', 'Most disputes come from vague scope. Define what is included, what is excluded, when feedback is due, and what counts as a change request. Pair the contract with a clear estimate from the <a href="/freelancer/project-estimator/">project estimator</a> and invoice against milestones using the <a href="/freelancer/invoice-generator/">invoice generator</a>.'],
+      ['Common mistakes', 'Freelancers often start work before signature, skip revision limits, forget ownership language, or use a template that does not match the project type. Clients often assume unlimited changes unless the agreement says otherwise. Good contracts prevent ambiguity rather than punish people after the fact.'],
+      ['When to consult a lawyer', 'Have an attorney review contracts involving large fees, regulated industries, intellectual property transfer, employment classification, international clients, non-competes, indemnity, or unusual liability. Generated documents are starting points, not jurisdiction-specific legal advice.'],
+    ],
+  },
+  '/finance/budget-planner': {
+    title: 'Budget Planner',
+    sections: [
+      ['How the 50/30/20 rule works', 'The 50/30/20 rule divides after-tax income into needs, wants, and savings or debt payoff. Needs include housing, utilities, groceries, insurance, and minimum debt payments. Wants include dining out, subscriptions, entertainment, and upgrades. Savings includes emergency funds, retirement contributions, extra debt payments, and investments.'],
+      ['Why after-tax income matters', 'Budgeting from gross pay makes the plan look easier than it is. Use take-home pay from the <a href="/finance/paycheck-calculator/">paycheck calculator</a> as the starting point. If you freelance, account for taxes before assigning money to spending categories.'],
+      ['Common mistakes', 'People often underestimate irregular expenses such as annual insurance, gifts, repairs, software renewals, and medical costs. Another mistake is making a budget with no buffer; one unexpected bill then breaks the whole plan. A good budget includes room for reality.'],
+      ['When to consult a professional', 'Talk to a credit counselor or financial planner if debt payments are crowding out essentials, you are using credit cards for basic expenses, or you need a plan for retirement, taxes, and emergency savings at the same time.'],
+    ],
+  },
+};
+
+const entry = copy[path];
+---
+
+{entry && (
+  <div class="seo-body money-page-expansion">
+    <h2>More guidance for the {entry.title}</h2>
+    {entry.sections.map(([heading, html]) => (
+      <>
+        <h3>{heading}</h3>
+        <p set:html={html} />
+      </>
+    ))}
+    <h3>Practical example</h3>
+    <p>The safest way to use the {entry.title} is to run one realistic case, then change one assumption at a time. Start with your current numbers, save or write down the result, then test a conservative scenario and an optimistic scenario. This makes the tool more useful than a single answer because you can see which input actually drives the outcome. For money, tax, legal, or health-adjacent decisions, the range is often more important than the exact midpoint.</p>
+    <h3>Decision checklist</h3>
+    <p>Before relying on any calculator result, check whether the inputs match your real situation, whether rates or rules have changed this year, whether the result excludes fees or local rules, and whether a professional review would be cheaper than a mistake. Use the result as a planning estimate, then verify critical numbers against official documents, lender quotes, payroll records, contracts, or professional advice.</p>
+  </div>
+)}

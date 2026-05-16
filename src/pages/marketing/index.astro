@@ -1,0 +1,63 @@
+---
+import Page from '../../layouts/Page.astro';
+import AdZone from '../../components/AdZone.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Marketing Tools for Small Businesses",
+  "description": "Free marketing calculators for small businesses — ad profitability calculator and hook analyzer.",
+};
+const accent = 'var(--cat-marketing)';
+const accentBg = 'var(--cat-marketing-bg)';
+---
+
+<Page
+  title="Free Marketing Tools for Small Businesses — Ad Calculator & Hook Analyzer"
+  description="Free marketing tools for small businesses. Calculate ad profitability and analyze your marketing hooks with AI."
+  canonicalUrl="https://freelancertools.io/marketing/"
+  schema={schema}
+>
+  <div class="cat-color-bar" style="--cat-color: var(--cat-marketing);"></div>
+  <div class="container">
+    <Breadcrumb items={[{ label: 'Marketing' }]} />
+    <div class="cat-hero" style={`--cat-color:${accent};--cat-bg:${accentBg};`}>
+      <span class="cat-hero-badge" style={`color:${accent};background:${accentBg};border:1px solid rgba(220,38,38,0.15);`}>Marketing</span>
+      <h1>Marketing tools for founders and small teams</h1>
+      <p>Make data-driven marketing decisions. Calculate true ad profitability and get AI-powered feedback on your hooks and headlines.</p>
+    </div>
+
+    <AdZone size="leaderboard" />
+
+    <section>
+      <div style="display: grid; gap: 20px;">
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/marketing/ad-profit-calculator/">Ad Profitability Calculator</a></h3>
+          <p>Calculate your true ad profit by factoring in COGS, refund rates, and processing fees. Find your break-even ROAS before you launch a campaign.</p>
+          <a href="/marketing/ad-profit-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <AdZone size="square" />
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/marketing/hook-analyzer/">Hook Analyzer</a></h3>
+          <p>Paste your hook and get AI-powered feedback across four dimensions: attention, clarity, curiosity gap, and specificity. Get rewrite suggestions.</p>
+          <a href="/marketing/hook-analyzer/" class="hub-tool-link">Use this tool →</a>
+        </div>
+      </div>
+    </section>
+
+    <AdZone size="square" />
+
+    <section>
+      <h2>Related categories</h2>
+      <ul>
+        <li><a href="/finance/">Finance tools for freelancers</a></li>
+        <li><a href="/legal/">Legal tools for freelancers</a></li>
+        <li><a href="/saas/">SaaS / B2B calculators</a></li>
+        <li><a href="/freelancer/">Freelancer business tools</a></li>
+      </ul>
+    </section>
+
+    <AdZone size="footer" />
+  </div>
+</Page>

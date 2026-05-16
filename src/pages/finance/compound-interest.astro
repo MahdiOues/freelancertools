@@ -1,0 +1,163 @@
+---
+import Tool from '../../layouts/ToolWithCharts.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Compound Interest Calculator",
+  "description": "Calculate compound interest with monthly contributions. See year-by-year growth table and interactive chart.",
+  "url": "https://freelancertools.io/finance/compound-interest/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Compound Interest Calculator — With Contributions"
+  description="Calculate how your investments grow with compound interest. Add monthly contributions and see year-by-year growth with an interactive chart."
+  canonicalUrl="https://freelancertools.io/finance/compound-interest/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Compound Interest Calculator' }]}
+  relatedTools={[
+    { name: 'Investment Return Calculator', href: '/finance/investment-return/', category: 'Finance' },
+    { name: 'Retirement Calculator', href: '/finance/retirement-calculator/', category: 'Finance' },
+    { name: 'Mortgage Calculator', href: '/finance/mortgage-calculator/', category: 'Finance' },
+    { name: 'Inflation Calculator', href: '/finance/inflation-calculator/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Compound Interest Calculator</h1>
+      <p class="subhead">See how your money grows over time with compound interest. Add regular contributions and compare scenarios.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Compound Interest Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Principal ($)" tip="The initial amount you're investing or saving." /></label>
+            <input type="number" id="principal" value="10000" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Annual rate (%)" tip="The expected annual interest rate or return." /></label>
+            <input type="number" id="rate" value="7" step="0.1" />
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Compound frequency" tip="How often interest is calculated and added to the principal." /></label>
+            <select id="compound">
+              <option value="365">Daily</option>
+              <option value="12" selected>Monthly</option>
+              <option value="4">Quarterly</option>
+              <option value="1">Yearly</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Years" tip="How long the money will be invested." /></label>
+            <input type="number" id="years" value="10" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Monthly contribution ($)" tip="Additional amount added each month." /></label>
+          <input type="number" id="monthly" value="500" />
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter your details to see results.</div>
+        </div>
+
+        <div style="margin-top:24px;">
+          <canvas id="chart" style="max-height:300px;"></canvas>
+        </div>
+
+        <div id="tableArea" style="margin-top:24px;overflow-x:auto;"></div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>What is compound interest?</h2>
+      <p>Compound interest is the interest you earn on both your original principal and the interest that accumulates over time. Albert Einstein reportedly called it the "eighth wonder of the world." When you earn interest on your interest, your money grows exponentially rather than linearly.</p>
+      <p>The secret to compound interest is time. The earlier you start investing, the more powerful the compounding effect. A small amount invested in your 20s can grow to more than a much larger amount invested in your 40s.</p>
+      <h2>How to use this calculator</h2>
+      <p>Enter your starting principal, expected annual rate of return, how often interest compounds, the investment timeline in years, and any monthly contributions. The calculator will show your final balance, total contributions, total interest earned, and a year-by-year breakdown.</p>
+      <p>Try adjusting the monthly contribution to see how even small additional amounts make a big difference over time. This is especially powerful for retirement planning.</p>
+      <p>This is an estimate. Actual returns vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+let chartInstance = null;
+
+function calculate() {
+  const P = parseFloat(document.getElementById('principal').value) || 0;
+  const r = (parseFloat(document.getElementById('rate').value) || 0) / 100;
+  const n = parseInt(document.getElementById('compound').value) || 12;
+  const t = parseInt(document.getElementById('years').value) || 1;
+  const PMT = parseFloat(document.getElementById('monthly').value) || 0;
+
+  const rn = r / n;
+  const nt = n * t;
+  const fvPrincipal = P * Math.pow(1 + rn, nt);
+  const fvContributions = PMT * (Math.pow(1 + rn, nt) - 1) / (rn > 0 ? rn : 1);
+  const finalAmount = fvPrincipal + fvContributions;
+  const totalContributions = P + (PMT * t * 12);
+  const totalInterest = finalAmount - totalContributions;
+
+  const yearlyData = [];
+  for (let y = 1; y <= t; y++) {
+    const ynt = n * y;
+    const yFV = P * Math.pow(1 + rn, ynt) + (PMT * (Math.pow(1 + rn, ynt) - 1) / (rn > 0 ? rn : 1));
+    const yContrib = P + (PMT * y * 12);
+    yearlyData.push({ year: y, balance: yFV, contributions: yContrib, interest: yFV - yContrib });
+  }
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">$${finalAmount.toFixed(2)}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Final balance<button class="kpi-info-btn" data-tip="Total value at the end of the investment period including principal, contributions, and all earned interest." tabindex="0" type="button">i</button></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${totalContributions.toFixed(2)}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Total contributions<button class="kpi-info-btn" data-tip="The total amount you contributed — principal plus all monthly contributions." tabindex="0" type="button">i</button></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="color:var(--success);">$${totalInterest.toFixed(2)}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Total interest earned<button class="kpi-info-btn" data-tip="The total amount earned from compounding — money you earned without lifting a finger." tabindex="0" type="button">i</button></span></div>
+      </div>
+    </div>
+  `;
+
+  if (chartInstance) chartInstance.destroy();
+  chartInstance = new Chart(document.getElementById('chart'), {
+    type: 'line',
+    data: {
+      labels: yearlyData.map(d => `Year ${d.year}`),
+      datasets: [
+        { label: 'Balance', data: yearlyData.map(d => d.balance), borderColor: '#2563eb', backgroundColor: 'rgba(37,99,235,0.1)', fill: true, tension: 0.3 },
+        { label: 'Contributions', data: yearlyData.map(d => d.contributions), borderColor: '#8888a8', borderDash: [5,5], tension: 0.3 },
+      ]
+    },
+    options: { responsive: true, plugins: { legend: { position: 'top' } }, scales: { y: { ticks: { callback: v => '$' + v.toLocaleString() } } } }
+  });
+
+  let html = '<table style="width:100%;border-collapse:collapse;font-size:14px;"><thead><tr style="border-bottom:2px solid var(--border);"><th style="text-align:left;padding:8px 12px;">Year</th><th style="text-align:right;padding:8px 12px;">Balance</th><th style="text-align:right;padding:8px 12px;">Contributions</th><th style="text-align:right;padding:8px 12px;">Interest</th></tr></thead><tbody>';
+  yearlyData.forEach(d => {
+    html += `<tr style="border-bottom:1px solid var(--border-light);"><td style="padding:8px 12px;">${d.year}</td><td style="padding:8px 12px;text-align:right;">$${d.balance.toFixed(2)}</td><td style="padding:8px 12px;text-align:right;">$${d.contributions.toFixed(2)}</td><td style="padding:8px 12px;text-align:right;">$${d.interest.toFixed(2)}</td></tr>`;
+  });
+  html += '</tbody></table>';
+  document.getElementById('tableArea').innerHTML = html;
+}
+
+['principal','rate','compound','years','monthly'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

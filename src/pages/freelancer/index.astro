@@ -1,0 +1,68 @@
+---
+import Page from '../../layouts/Page.astro';
+import AdZone from '../../components/AdZone.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Freelancer Business Tools",
+  "description": "Free business tools for freelancers — rate calculator, invoice generator, and proposal generator.",
+};
+const accent = 'var(--cat-freelancer)';
+const accentBg = 'var(--cat-freelancer-bg)';
+---
+
+<Page
+  title="Free Freelancer Business Tools — Rate Calculator, Invoice & Proposal Generator"
+  description="Free tools for freelancers. Calculate your hourly rate, generate invoices, and create professional proposals with AI."
+  canonicalUrl="https://freelancertools.io/freelancer/"
+  schema={schema}
+>
+  <div class="cat-color-bar" style="--cat-color: var(--cat-freelancer);"></div>
+  <div class="container">
+    <Breadcrumb items={[{ label: 'Freelancer' }]} />
+    <div class="cat-hero" style={`--cat-color:${accent};--cat-bg:${accentBg};`}>
+      <span class="cat-hero-badge" style={`color:${accent};background:${accentBg};border:1px solid rgba(217,119,6,0.15);`}>Freelancer</span>
+      <h1>Freelancer tools for independent professionals</h1>
+      <p>Run your freelance business like a pro. Set your rates, send professional invoices, and win more clients with better proposals.</p>
+    </div>
+
+    <AdZone size="leaderboard" />
+
+    <section>
+      <div style="display: grid; gap: 20px;">
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/freelancer/rate-calculator/">Freelancer Rate Calculator</a></h3>
+          <p>Calculate your minimum hourly rate based on your desired income, expenses, taxes, and billable hours. Get hourly, daily, and weekly rates.</p>
+          <a href="/freelancer/rate-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/freelancer/invoice-generator/">Invoice Generator</a></h3>
+          <p>Generate a professional invoice with all standard fields, payment terms, and late fee notices. Ready to print or send as PDF.</p>
+          <a href="/freelancer/invoice-generator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <AdZone size="square" />
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/freelancer/proposal-generator/">Proposal Generator</a></h3>
+          <p>Create a professional project proposal in minutes. Covers overview, deliverables, timeline, and investment. Stand out from other freelancers.</p>
+          <a href="/freelancer/proposal-generator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+      </div>
+    </section>
+
+    <AdZone size="square" />
+
+    <section>
+      <h2>Related categories</h2>
+      <ul>
+        <li><a href="/finance/">Finance tools for freelancers</a></li>
+        <li><a href="/legal/">Legal tools for freelancers</a></li>
+        <li><a href="/saas/">SaaS / B2B calculators</a></li>
+        <li><a href="/marketing/">Marketing tools</a></li>
+      </ul>
+    </section>
+
+    <AdZone size="footer" />
+  </div>
+</Page>

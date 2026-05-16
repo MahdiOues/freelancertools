@@ -1,0 +1,268 @@
+---
+import Tool from '../../../layouts/ToolWithExcel.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Waterfall Chart Generator",
+  "description": "Generate professional waterfall charts showing how each income and expense item builds or reduces your cash position. No Excel needed.",
+  "url": "https://freelancertools.io/finance/excel-tools/cash-flow-waterfall/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I mark a row as a total vs a delta?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The first and last rows are automatically treated as totals (shown as full-height bars). For intermediate totals like Gross Profit in a P&L, enter it as a separate row — the tool calculates it from the running total automatically." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I enter a Gross Profit row that auto-calculates?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Enter the row with its label and leave the amount blank or enter 0 — the tool will show the running total at that point as the bar height." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a waterfall chart and a stacked bar chart?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A stacked bar chart shows absolute values stacked on top of each other. A waterfall chart shows how values change from a starting point, with bars floating at the level where the previous bar ended. Waterfall charts are better for showing the components of change." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I export the chart to use in PowerPoint?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Export as PDF and then insert the PDF page as an image in PowerPoint, or use the browser's right-click to save the chart image directly." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a limit on the number of bars?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Readability degrades beyond 12-15 bars. For large P&L statements, group smaller line items into categories before charting." }
+    }
+  ]
+};
+---
+
+<Tool
+  title="Waterfall Chart — Cash Flow & P&L"
+  description="Generate professional waterfall charts showing how each income and expense item builds or reduces your cash position. No Excel needed. Export as PDF or Excel instantly."
+  canonicalUrl="https://freelancertools.io/finance/excel-tools/cash-flow-waterfall/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Excel-Free Tools', href: '/finance/excel-tools/' }, { label: 'Cash Flow Waterfall' }]}
+  relatedTools={[
+    { name: 'Chart Builder', href: '/finance/excel-tools/chart-builder/', category: 'Finance' },
+    { name: 'Budget vs Actual', href: '/finance/excel-tools/budget-variance/', category: 'Finance' },
+    { name: 'Break-Even Analysis', href: '/finance/excel-tools/break-even/', category: 'Finance' },
+    { name: 'Financial Ratios', href: '/finance/excel-tools/financial-ratios/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Free Waterfall Chart Generator — Cash Flow and P&L Visualisation</h1>
+      <p class="subhead">The classic Excel waterfall chart — show how each income/expense item contributes to a running total. Essential for P&L summaries.</p>
+    </div>
+  </fragment>
+  <div class="tool-intro" style="max-width:720px;margin:0 auto 28px;">
+    <p>A waterfall chart shows how individual items — revenues, costs, and adjustments — contribute to a starting total and arrive at a final figure. Paste your data with a label and amount for each item and the tool generates a professionally formatted waterfall chart instantly. Green bars show increases, red bars show decreases, and dark bars mark totals. Export as PDF for presentations or Excel for further editing.</p>
+  </div>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Cash Flow Waterfall Chart</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" />
+        <p style="font-weight:600;color:var(--ink);margin-bottom:4px;">Upload CSV or Excel file</p>
+        <p style="font-size:13px;color:var(--ink-3);">or paste waterfall data below</p>
+      </div>
+      <div style="margin:12px 0;">
+        <textarea id="pasteArea" rows="7" placeholder="Label, Amount&#10;Starting Cash, 100000&#10;Revenue, 85000&#10;Cost of Goods, -42000&#10;Salaries, -28000&#10;Marketing, -8000&#10;Net Income, 55000" style="font-family:monospace;font-size:13px;"></textarea>
+      </div>
+      <div id="loadBadge" style="display:none;font-size:13px;color:var(--success);font-weight:600;margin-bottom:12px;"></div>
+      <button class="btn btn-primary btn-full" id="generateBtn">Build Waterfall Chart</button>
+
+      <div style="margin-top:24px;">
+        <canvas id="chartCanvas" style="max-height:400px;"></canvas>
+      </div>
+
+      <div id="tableWrap" style="margin-top:24px;overflow-x:auto;display:none;">
+        <table id="waterfallTable" style="width:100%;border-collapse:collapse;font-size:13px;"></table>
+      </div>
+
+      <div id="exportRow" style="display:none;margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-secondary" onclick="exportTableXLSX('waterfallTable','cash_flow_waterfall.xlsx')">Export as Excel</button>
+        <button class="btn btn-primary" onclick="exportPDF('Cash Flow Waterfall','waterfallTable','chartCanvas')">Export as PDF</button>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>What is a waterfall chart and when should you use it?</h2>
+      <p>A waterfall chart is a data visualisation that shows how a starting value is incrementally affected by a series of positive and negative contributions to reach a final value. Each bar starts at the level where the previous bar ended, creating a "floating" effect that reveals the step-by-step progression. Finance teams use waterfall charts for P&L summaries, cash flow statements, budget bridges, and any analysis where you need to explain the gap between two figures — for example, beginning cash vs. ending cash, or budgeted profit vs. actual profit.</p>
+
+      <h2>How to format your data for a waterfall chart</h2>
+      <p>Your data needs two columns: Label and Amount. Positive amounts are shown as green bars (increases), negative amounts as red bars (decreases). The first row is treated as the starting total and is shown as a full-height dark bar. The last row is the ending total, also shown as a full-height bar. Everything in between is a delta. For a typical cash flow waterfall, you might have: Beginning Cash (first row, total), then Revenue, COGS, Salaries, Marketing, Rent, and then Ending Cash (last row, total).</p>
+
+      <h2>Waterfall charts in Excel vs this tool</h2>
+      <p>Creating a waterfall chart in Excel traditionally required a stacked bar chart with a hidden bottom series — a workaround that takes 15-20 minutes to set up and format correctly. Excel 2016 and later includes a native waterfall chart type, but it still requires careful data arrangement and manual formatting to look professional. This tool produces the same output in under a minute: paste your data, click Build, and the chart is ready.</p>
+
+      <h2>Using waterfall charts in investor and board presentations</h2>
+      <p>Waterfall charts are one of the most effective ways to communicate financial change to stakeholders. A revenue bridge — showing how volume, price, mix, and FX each contributed to the change from prior year revenue — is a classic board presentation slide. Export as PDF and insert the page into your PowerPoint or Google Slides deck. The clean formatting means zero additional design work.</p>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <h3>How do I mark a row as a total vs a delta?</h3>
+        <p>The first and last rows are automatically treated as totals (shown as full-height bars). For intermediate totals like Gross Profit in a P&L, enter it as a separate row — the tool calculates it from the running total automatically.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I enter a Gross Profit row that auto-calculates?</h3>
+        <p>Enter the row with its label and leave the amount blank or enter 0 — the tool will show the running total at that point as the bar height.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is the difference between a waterfall chart and a stacked bar chart?</h3>
+        <p>A stacked bar chart shows absolute values stacked on top of each other. A waterfall chart shows how values change from a starting point, with bars floating at the level where the previous bar ended. Waterfall charts are better for showing the components of change.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I export the chart to use in PowerPoint?</h3>
+        <p>Export as PDF and then insert the PDF page as an image in PowerPoint, or use the browser's right-click to save the chart image directly.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is there a limit on the number of bars?</h3>
+        <p>Readability degrades beyond 12-15 bars. For large P&L statements, group smaller line items into categories before charting.</p>
+      </div>
+
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="/finance/excel-tools/budget-variance/">Budget vs Actual Variance Analyser</a></li>
+        <li><a href="/finance/excel-tools/financial-ratios/">Financial Ratio Calculator</a></li>
+        <li><a href="/finance/excel-tools/chart-builder/">Chart Builder</a></li>
+        <li><a href="/finance/">Back to Finance Tools</a></li>
+      </ul>
+    </div>
+  </fragment>
+</Tool>
+
+<script is:inline src="/scripts/excel-tools-core.js"></script>
+<script>
+(function () {
+  let data = [];
+
+  const zone = document.getElementById('uploadZone');
+  const fileInput = document.getElementById('fileInput');
+  const pasteArea = document.getElementById('pasteArea');
+  const loadBadge = document.getElementById('loadBadge');
+  const generateBtn = document.getElementById('generateBtn');
+  const tableWrap = document.getElementById('tableWrap');
+  const waterfallTable = document.getElementById('waterfallTable');
+  const exportRow = document.getElementById('exportRow');
+
+  function handleFile(file) {
+    readFile(file, (json) => {
+      data = json;
+      loadBadge.style.display = 'block';
+      loadBadge.textContent = '\u2713 ' + data.length + ' rows loaded';
+    });
+  }
+
+  function handlePaste() {
+    const text = pasteArea.value.trim();
+    if (!text) return;
+    data = parseText(text);
+    loadBadge.style.display = 'block';
+    loadBadge.textContent = '\u2713 ' + data.length + ' rows loaded';
+  }
+
+  function buildWaterfall() {
+    if (!data.length) return;
+
+    const labels = [];
+    const starts = [];
+    const values = [];
+    let running = 0;
+
+    data.forEach(row => {
+      const val = parseFloat(row['Amount']) || 0;
+      labels.push(row['Label']);
+      starts.push(running);
+      values.push(val);
+      running += val;
+    });
+
+    const ctx = document.getElementById('chartCanvas').getContext('2d');
+    if (window._chartInstance) window._chartInstance.destroy();
+
+    window._chartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Base (hidden)',
+            data: starts,
+            backgroundColor: 'transparent',
+            borderColor: 'transparent',
+            stack: 'stack'
+          },
+          {
+            label: 'Value',
+            data: values,
+            backgroundColor: values.map(v => v >= 0 ? 'rgba(5,150,105,0.8)' : 'rgba(220,38,38,0.8)'),
+            borderColor: values.map(v => v >= 0 ? '#059669' : '#dc2626'),
+            borderWidth: 1,
+            stack: 'stack'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { stacked: true },
+          y: { stacked: true, grid: { color: '#f0f0ec' } }
+        }
+      }
+    });
+
+    tableWrap.style.display = 'block';
+    const results = data.map((row, i) => ({
+      Label: row['Label'],
+      Amount: fmtCurrency(parseFloat(row['Amount']) || 0),
+      'Running Total': fmtCurrency(starts[i] + values[i])
+    }));
+
+    const headers = ['Label', 'Amount', 'Running Total'];
+    let html = '<thead><tr>' + headers.map(h => '<th style="text-align:left;padding:8px;border-bottom:2px solid #1a1a1a;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;">' + h + '</th>').join('') + '</tr></thead><tbody>';
+    results.forEach(r => {
+      const isNegative = parseFloat(data.find(d => d.Label === r.Label)?.Amount || 0) < 0;
+      html += '<tr>' + headers.map(h => {
+        let style = 'padding:8px;border-bottom:1px solid #e8e8e4;';
+        if (h === 'Amount' && isNegative) style += 'color:var(--danger);';
+        if (h === 'Amount' && !isNegative) style += 'color:var(--success);';
+        return '<td style="' + style + '">' + r[h] + '</td>';
+      }).join('') + '</tr>';
+    });
+    html += '</tbody>';
+    waterfallTable.innerHTML = html;
+    exportRow.style.display = 'flex';
+  }
+
+  fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) handleFile(file);
+  });
+  zone.addEventListener('click', () => fileInput.click());
+  pasteArea.addEventListener('input', handlePaste);
+  generateBtn.addEventListener('click', buildWaterfall);
+})();
+</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I mark a row as a total vs a delta?","acceptedAnswer":{"@type":"Answer","text":"The first and last rows are automatically treated as totals (shown as full-height bars). For intermediate totals like Gross Profit in a P&L, enter it as a separate row \u2014 the tool calculates it from the running total automatically."}},{"@type":"Question","name":"Can I enter a Gross Profit row that auto-calculates?","acceptedAnswer":{"@type":"Answer","text":"Enter the row with its label and leave the amount blank or enter 0 \u2014 the tool will show the running total at that point as the bar height."}},{"@type":"Question","name":"What is the difference between a waterfall chart and a stacked bar chart?","acceptedAnswer":{"@type":"Answer","text":"A stacked bar chart shows absolute values stacked on top of each other. A waterfall chart shows how values change from a starting point, with bars floating at the level where the previous bar ended. Waterfall charts are better for showing the components of change."}},{"@type":"Question","name":"Can I export the chart to use in PowerPoint?","acceptedAnswer":{"@type":"Answer","text":"Export as PDF and then insert the PDF page as an image in PowerPoint, or use the browser\u2019s right-click to save the chart image directly."}},{"@type":"Question","name":"Is there a limit on the number of bars?","acceptedAnswer":{"@type":"Answer","text":"Readability degrades beyond 12-15 bars. For large P&L statements, group smaller line items into categories before charting."}}]}</script>

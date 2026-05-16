@@ -1,0 +1,173 @@
+---
+import Tool from '../../layouts/ToolWithCharts.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Inflation Calculator",
+  "description": "Calculate the inflation-adjusted value of money from 1913 to present. See purchasing power over time with interactive chart.",
+  "url": "https://freelancertools.io/finance/inflation-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Inflation Calculator — Purchasing Power"
+  description="Calculate what money from the past is worth today. See how inflation erodes purchasing power over time with CPI data and interactive chart."
+  canonicalUrl="https://freelancertools.io/finance/inflation-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Inflation Calculator' }]}
+  relatedTools={[
+    { name: 'Compound Interest Calculator', href: '/finance/compound-interest/', category: 'Finance' },
+    { name: 'Investment Return Calculator', href: '/finance/investment-return/', category: 'Finance' },
+    { name: 'Retirement Calculator', href: '/finance/retirement-calculator/', category: 'Finance' },
+    { name: 'Mortgage Calculator', href: '/finance/mortgage-calculator/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Inflation Calculator</h1>
+      <p class="subhead">See how inflation affects the purchasing power of your money over time. Data from the Bureau of Labor Statistics (1913–2024).</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Inflation Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Amount ($)" tip="The original dollar amount." /></label>
+          <input type="number" id="amount" value="1000" />
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Start year" tip="The year the original amount was valued." /></label>
+            <select id="startYear"></select>
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="End year" tip="The year to adjust the value to." /></label>
+            <select id="endYear"></select>
+          </div>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Select years to calculate inflation adjustment.</div>
+        </div>
+
+        <div style="margin-top:24px;">
+          <canvas id="chart" style="max-height:280px;"></canvas>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>What is inflation?</h2>
+      <p>Inflation is the gradual increase in the price of goods and services over time. When inflation rises, each dollar you own buys a smaller percentage of a good or service. The inflation rate is measured by the Consumer Price Index (CPI), published monthly by the Bureau of Labor Statistics.</p>
+      <p>Since 1913, the US dollar has lost approximately 96% of its purchasing power. A dollar in 1913 is worth only about 3 cents today. This is why investing — rather than holding cash — is essential for long-term financial health.</p>
+      <h2>How to use this calculator</h2>
+      <p>Enter an amount and select a start year and end year. The calculator uses historical CPI data from 1913 to 2024 to compute the inflation-adjusted value. It also shows the total inflation percentage and the purchasing power lost. The chart visualizes how the purchasing power of your amount changed over time.</p>
+      <p>Data source: Bureau of Labor Statistics (public domain). This is a historical calculation. Future inflation cannot be predicted.</p>
+      <div class="sources">
+        <h3>Sources</h3>
+        <ul>
+          <li><a href="https://www.bls.gov/cpi/" rel="nofollow noopener" target="_blank">Bureau of Labor Statistics — Consumer Price Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+const cpi = {
+  1913:9.9,1914:10.0,1915:10.1,1916:10.9,1917:12.8,1918:15.1,1919:17.3,1920:20.0,1921:17.9,1922:16.8,
+  1923:17.1,1924:17.1,1925:17.5,1926:17.7,1927:17.4,1928:17.1,1929:17.1,1930:16.7,1931:15.2,1932:13.7,
+  1933:13.0,1934:13.4,1935:13.7,1936:13.9,1937:14.4,1938:14.1,1939:13.9,1940:14.0,1941:14.7,1942:16.3,
+  1943:17.3,1944:17.6,1945:18.0,1946:19.5,1947:22.3,1948:24.1,1949:23.8,1950:24.1,1951:26.0,1952:26.5,
+  1953:26.7,1954:26.9,1955:26.8,1956:27.2,1957:28.1,1958:28.9,1959:29.1,1960:29.6,1961:29.9,1962:30.2,
+  1963:30.6,1964:31.0,1965:31.5,1966:32.4,1967:33.4,1968:34.8,1969:36.7,1970:38.8,1971:40.5,1972:41.8,
+  1973:44.4,1974:49.3,1975:53.8,1976:56.9,1977:60.6,1978:65.2,1979:72.6,1980:82.4,1981:90.9,1982:96.5,
+  1983:99.6,1984:103.9,1985:107.6,1986:109.6,1987:113.6,1988:118.3,1989:124.0,1990:130.7,1991:136.2,1992:140.3,
+  1993:144.5,1994:148.2,1995:152.4,1996:156.9,1997:160.5,1998:163.0,1999:166.6,2000:172.2,2001:177.1,2002:179.9,
+  2003:184.0,2004:188.9,2005:195.3,2006:201.6,2007:207.3,2008:215.3,2009:214.5,2010:218.1,2011:224.9,2012:229.6,
+  2013:233.0,2014:236.7,2015:237.0,2016:240.0,2017:245.1,2018:251.1,2019:255.7,2020:258.8,2021:271.0,2022:292.7,
+  2023:304.7,2024:313.7
+};
+
+let chartInstance = null;
+
+function populateYears() {
+  const years = Object.keys(cpi);
+  const start = document.getElementById('startYear');
+  const end = document.getElementById('endYear');
+  years.forEach(y => {
+    start.innerHTML += `<option value="${y}">${y}</option>`;
+    end.innerHTML += `<option value="${y}">${y}</option>`;
+  });
+  start.value = '1990';
+  end.value = '2024';
+}
+populateYears();
+
+function calculate() {
+  const amount = parseFloat(document.getElementById('amount').value) || 0;
+  const startYear = parseInt(document.getElementById('startYear').value);
+  const endYear = parseInt(document.getElementById('endYear').value);
+  const startCpi = cpi[startYear];
+  const endCpi = cpi[endYear];
+  if (!startCpi || !endCpi || amount <= 0) {
+    document.getElementById('resultArea').innerHTML = `<div class="result-empty">Please select valid years and enter an amount.</div>`;
+    return;
+  }
+  const adjusted = amount * (endCpi / startCpi);
+  const inflationRate = ((endCpi - startCpi) / startCpi) * 100;
+  const lost = adjusted - amount;
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">$${adjusted.toFixed(2)}</div>
+        <div class="result-label">Adjusted value (${endYear})</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${inflationRate.toFixed(1)}%</div>
+        <div class="result-label">Total inflation (${startYear}–${endYear})</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="color:var(--danger);">$${lost.toFixed(2)}</div>
+        <div class="result-label">Purchasing power lost</div>
+      </div>
+    </div>
+  `;
+
+  if (chartInstance) chartInstance.destroy();
+  const years = Object.keys(cpi).filter(y => parseInt(y) >= startYear && parseInt(y) <= endYear);
+  const values = years.map(y => amount * (cpi[y] / startCpi));
+  chartInstance = new Chart(document.getElementById('chart'), {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [{
+        label: 'Purchasing power ($)',
+        data: values,
+        borderColor: '#2563eb',
+        backgroundColor: 'rgba(37,99,235,0.1)',
+        fill: true,
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { ticks: { callback: v => '$' + v.toLocaleString() } } }
+    }
+  });
+}
+
+['amount','startYear','endYear'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

@@ -1,0 +1,145 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Square Footage Calculator",
+  "description": "Calculate area in square feet for rectangles, triangles, circles, L-shapes, and custom polygons. Includes cost estimation.",
+  "url": "https://freelancertools.io/math/square-footage/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Square Footage Calculator — Area Calculator"
+  description="Calculate square footage for any shape: rectangle, triangle, circle, L-shape, or custom polygon. Get area in sq ft and sq m with cost estimate."
+  canonicalUrl="https://freelancertools.io/math/square-footage/"
+  schema={schema}
+  breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Square Footage Calculator' }]}
+  relatedTools={[
+    { name: 'Unit Converter', href: '/math/unit-converter/', category: 'Math' },
+    { name: 'Concrete Calculator', href: '/construction/concrete-calculator/', category: 'Construction' },
+    { name: 'Percentage Calculator', href: '/math/percentage-calculator/', category: 'Math' },
+    { name: 'Discount Calculator', href: '/math/discount-calculator/', category: 'Math' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Square Footage Calculator</h1>
+      <p class="subhead">Calculate the area of any space in square feet or square meters. Works with 5 different shapes.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Square Footage Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label">Shape</label>
+            <select id="shape">
+              <option value="rectangle">Rectangle</option>
+              <option value="triangle">Triangle</option>
+              <option value="circle">Circle</option>
+              <option value="lshape">L-shape</option>
+              <option value="polygon">Polygon</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label">Unit</label>
+            <select id="unit">
+              <option value="ft">Feet</option>
+              <option value="m">Meters</option>
+            </select>
+          </div>
+        </div>
+        <div id="inputs">
+          <div class="field-grid" id="rectInputs">
+            <div class="field"><label class="field-label"><KpiTooltip label="Length" tip="The length of the rectangle." /></label><input type="number" id="rectL" value="10" step="any" /></div>
+            <div class="field"><label class="field-label"><KpiTooltip label="Width" tip="The width of the rectangle." /></label><input type="number" id="rectW" value="12" step="any" /></div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Price per sq ft (optional)" tip="Enter a price per square foot to get a cost estimate." /></label>
+          <input type="number" id="pricePerSqft" value="" step="any" />
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter dimensions to calculate area.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How to calculate square footage</h2>
+      <p>Square footage is calculated differently depending on the shape. For a rectangle: length × width. For a triangle: (base × height) ÷ 2. For a circle: π × radius². For an L-shape: divide into two rectangles and add their areas. For a regular polygon: (perimeter × apothem) ÷ 2.</p>
+      <p>Knowing the square footage of a space is essential for flooring, painting, tiling, HVAC sizing, real estate listings, and material estimation. Always measure in the same unit and convert at the end.</p>
+      <h2>Converting between sq ft and sq m</h2>
+      <p>1 square foot = 0.0929 square meters. 1 square meter = 10.764 square feet. This calculator shows both measurements automatically. When estimating material costs, always double-check whether the price is per square foot or per square meter — mixing them up leads to significant errors.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+const shapeInputs = {
+  rectangle: '<div class="field-grid"><div class="field"><label class="field-label">Length</label><input type="number" id="rectL" value="10" step="any" /></div><div class="field"><label class="field-label">Width</label><input type="number" id="rectW" value="12" step="any" /></div></div>',
+  triangle: '<div class="field-grid"><div class="field"><label class="field-label">Base</label><input type="number" id="triB" value="10" step="any" /></div><div class="field"><label class="field-label">Height</label><input type="number" id="triH" value="12" step="any" /></div></div>',
+  circle: '<div class="field"><label class="field-label">Radius</label><input type="number" id="circR" value="5" step="any" /></div>',
+  lshape: '<div class="field-grid"><div class="field"><label class="field-label">Side A</label><input type="number" id="lsA" value="10" step="any" /></div><div class="field"><label class="field-label">Side B</label><input type="number" id="lsB" value="8" step="any" /></div></div><div class="field-grid"><div class="field"><label class="field-label">Side C</label><input type="number" id="lsC" value="4" step="any" /></div><div class="field"><label class="field-label">Side D</label><input type="number" id="lsD" value="4" step="any" /></div></div>',
+  polygon: '<div class="field-grid"><div class="field"><label class="field-label">Number of sides</label><input type="number" id="polySides" value="6" min="3" /></div><div class="field"><label class="field-label">Side length</label><input type="number" id="polyLen" value="5" step="any" /></div></div>'
+};
+
+document.getElementById('shape').addEventListener('change', function() {
+  document.getElementById('inputs').innerHTML = shapeInputs[this.value];
+  calculate();
+});
+document.getElementById('unit').addEventListener('change', calculate);
+document.getElementById('pricePerSqft').addEventListener('input', calculate);
+
+function calculate() {
+  const shape = document.getElementById('shape').value;
+  const unit = document.getElementById('unit').value;
+  const price = parseFloat(document.getElementById('pricePerSqft').value) || 0;
+  let area = 0;
+  function toSqft(v) { return unit === 'm' ? v * 10.7639 : v; }
+  function read(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+  if (shape === 'rectangle') area = read('rectL') * read('rectW');
+  else if (shape === 'triangle') area = 0.5 * read('triB') * read('triH');
+  else if (shape === 'circle') area = Math.PI * read('circR') * read('circR');
+  else if (shape === 'lshape') {
+    const a = read('lsA'), b = read('lsB'), c = read('lsC'), d = read('lsD');
+    area = a * b - c * d;
+    if (area < 0) { area = 0; }
+  }
+  else if (shape === 'polygon') {
+    const n = read('polySides'), s = read('polyLen');
+    area = (n * s * s) / (4 * Math.tan(Math.PI / n));
+  }
+
+  const areaSqft = toSqft(area);
+  const areaSqm = areaSqft * 0.092903;
+  const cost = price > 0 ? areaSqft * price : 0;
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">${areaSqft.toFixed(2)}</div>
+        <div class="result-label">Square feet</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${areaSqm.toFixed(2)}</div>
+        <div class="result-label">Square meters</div>
+      </div>
+      ${price > 0 ? `<div class="metric-card"><div class="result-number" style="color:var(--success);">$${cost.toFixed(2)}</div><div class="result-label">Estimated cost</div></div>` : ''}
+    </div>
+  `;
+}
+calculate();
+</script>

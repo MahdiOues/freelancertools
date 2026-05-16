@@ -1,0 +1,163 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Salary to Hourly Calculator",
+  "description": "Convert annual salary to hourly rate and vice versa. Includes true hourly rate accounting for unpaid overtime.",
+  "url": "https://freelancertools.io/freelancer/salary-to-hourly/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Salary to Hourly Calculator — Convert"
+  description="Convert your annual salary to hourly rate, or hourly to annual. Includes true hourly rate with overtime, PTO, and reverse mode."
+  canonicalUrl="https://freelancertools.io/freelancer/salary-to-hourly/"
+  schema={schema}
+  breadcrumb={[{ label: 'Freelancer', href: '/freelancer/' }, { label: 'Salary to Hourly Calculator' }]}
+  relatedTools={[
+    { name: 'Freelancer Rate Calculator', href: '/freelancer/rate-calculator/', category: 'Freelancer' },
+    { name: 'Project Estimator', href: '/freelancer/project-estimator/', category: 'Freelancer' },
+    { name: 'Paycheck Calculator', href: '/finance/paycheck-calculator/', category: 'Finance' },
+    { name: 'Budget Planner', href: '/finance/budget-planner/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Salary to Hourly Calculator</h1>
+      <p class="subhead">See what your salary equates to per hour — and what your freelance hourly rate should be. Works both ways.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Salary to Hourly Converter</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label">Conversion direction</label>
+          <select id="direction">
+            <option value="salaryToHourly">Salary → Hourly</option>
+            <option value="hourlyToSalary">Hourly → Salary</option>
+          </select>
+        </div>
+        <div class="field" id="salaryField">
+          <label class="field-label"><KpiTooltip label="Annual salary ($)" tip="Your total annual gross salary before taxes." /></label>
+          <input type="number" id="salary" value="60000" />
+        </div>
+        <div class="field" id="hourlyField" style="display:none;">
+          <label class="field-label"><KpiTooltip label="Hourly rate ($)" tip="Your hourly rate." /></label>
+          <input type="number" id="hourly" value="30" step="0.5" />
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Hours/week" tip="Standard work hours per week." /></label>
+            <input type="number" id="hoursPerWeek" value="40" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Weeks/year" tip="Weeks worked per year (52 minus vacation)." /></label>
+            <input type="number" id="weeksPerYear" value="50" />
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Paid time off (days)" tip="Paid vacation days that are already included in your salary." /></label>
+            <input type="number" id="pto" value="10" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Unpaid overtime (hrs/wk)" tip="Extra hours you work beyond standard that aren't paid extra." /></label>
+            <input type="number" id="overtime" value="0" />
+          </div>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter your details to convert.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>Why convert salary to hourly?</h2>
+      <p>When switching from employee to freelancer, knowing your true hourly rate is essential. Your salary divided by standard hours gives a baseline, but factoring in PTO, holidays, and unpaid overtime reveals your real rate. Freelancers also need to cover their own taxes, benefits, and overhead — typically adding 30-40% to your target hourly rate.</p>
+      <h2>How to use this calculator</h2>
+      <p>Enter your annual salary or hourly rate, then adjust hours per week and weeks per year to match your situation. The calculator shows hourly, daily, weekly, biweekly, and monthly equivalents. The "true hourly rate" accounts for unpaid overtime if you work more than 40 hours.</p>
+      <p>For a complete freelance rate assessment, use the <a href="/freelancer/rate-calculator/">Freelancer Rate Calculator</a> which factors in business expenses, desired profit, and market rates.</p>
+      <p>This is an estimate. Actual rates vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calculate() {
+  const dir = document.getElementById('direction').value;
+  const hoursPerWeek = parseFloat(document.getElementById('hoursPerWeek').value) || 40;
+  const weeksPerYear = parseFloat(document.getElementById('weeksPerYear').value) || 50;
+  const pto = parseFloat(document.getElementById('pto').value) || 0;
+  const overtime = parseFloat(document.getElementById('overtime').value) || 0;
+  const totalHours = hoursPerWeek * weeksPerYear;
+  const trueHours = (hoursPerWeek + overtime) * weeksPerYear;
+
+  let salary, hourly, daily, weekly, biweekly, monthly, trueHourly;
+  if (dir === 'salaryToHourly') {
+    salary = parseFloat(document.getElementById('salary').value) || 0;
+    hourly = salary / totalHours;
+    trueHourly = salary / trueHours;
+  } else {
+    hourly = parseFloat(document.getElementById('hourly').value) || 0;
+    salary = hourly * totalHours;
+    trueHourly = hourly * totalHours / trueHours;
+  }
+  daily = hourly * hoursPerWeek / 5;
+  weekly = hourly * hoursPerWeek;
+  biweekly = weekly * 2;
+  monthly = salary / 12;
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">$${hourly.toFixed(2)}</div>
+        <div class="result-label">Hourly rate</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${daily.toFixed(2)}</div>
+        <div class="result-label">Daily rate (8hr)</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${weekly.toFixed(2)}</div>
+        <div class="result-label">Weekly</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${biweekly.toFixed(2)}</div>
+        <div class="result-label">Biweekly</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${monthly.toFixed(2)}</div>
+        <div class="result-label">Monthly</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${salary.toFixed(2)}</div>
+        <div class="result-label">Annual</div>
+      </div>
+    </div>
+    ${overtime > 0 ? `<p style="margin-top:16px;font-size:14px;color:var(--text-secondary);">True hourly rate (including ${overtime} hrs/wk unpaid overtime): <strong>$${trueHourly.toFixed(2)}/hr</strong></p>` : ''}
+  `;
+}
+
+document.getElementById('direction').addEventListener('change', function() {
+  const isSalary = this.value === 'salaryToHourly';
+  document.getElementById('salaryField').style.display = isSalary ? '' : 'none';
+  document.getElementById('hourlyField').style.display = isSalary ? 'none' : '';
+  calculate();
+});
+['direction','salary','hourly','hoursPerWeek','weeksPerYear','pto','overtime'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', calculate);
+});
+calculate();
+</script>

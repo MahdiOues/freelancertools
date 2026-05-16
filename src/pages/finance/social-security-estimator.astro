@@ -1,0 +1,131 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Social Security Benefits Estimator",
+  "description": "Estimate your Social Security benefits at different claiming ages. See breakeven analysis and lifetime benefit comparison.",
+  "url": "https://freelancertools.io/finance/social-security-estimator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Social Security Estimator — When to Claim"
+  description="Estimate your monthly Social Security benefit at ages 62-70. Compare lifetime benefits and find your optimal claiming age."
+  canonicalUrl="https://freelancertools.io/finance/social-security-estimator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Social Security Estimator' }]}
+  relatedTools={[
+    { name: 'Retirement Calculator', href: '/finance/retirement-calculator/', category: 'Finance' },
+    { name: 'Compound Interest Calculator', href: '/finance/compound-interest/', category: 'Finance' },
+    { name: 'Inflation Calculator', href: '/finance/inflation-calculator/', category: 'Finance' },
+    { name: 'Budget Planner', href: '/finance/budget-planner/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Social Security Benefits Estimator</h1>
+      <p class="subhead">Estimate your Social Security benefit at different ages and find the optimal time to start claiming.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Social Security Estimator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Current age" tip="Your current age." /></label>
+            <input type="number" id="currentAge" value="40" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Current annual earnings ($)" tip="Your current yearly income." /></label>
+            <input type="number" id="earnings" value="75000" />
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Earnings growth (%)" tip="Expected annual salary growth." /></label>
+            <input type="number" id="growth" value="2" step="0.1" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Life expectancy" tip="How long you expect to live for lifetime benefit calculation." /></label>
+            <input type="number" id="lifeExp" value="85" />
+          </div>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter your details to estimate benefits.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>When should you claim Social Security?</h2>
+      <p>You can claim Social Security retirement benefits as early as age 62 (with a permanent reduction) or as late as age 70 (with delayed retirement credits). Your Full Retirement Age (FRA) is between 66 and 67, depending on your birth year. Claiming before FRA permanently reduces your benefit; claiming after FRA increases it by 8% per year up to age 70.</p>
+      <p>The "breakeven age" is the point at which the total lifetime benefits from delaying exceed those from claiming early. If you expect to live past your breakeven age, delaying makes financial sense. If not, claiming earlier may be better.</p>
+      <h2>Factors to consider</h2>
+      <p>Your decision depends on your health, life expectancy, other retirement income, marital status, and tax situation. Spousal benefits and survivor benefits add complexity. Use this calculator as a starting point, and consult a financial advisor for personalized advice.</p>
+      <p>This is an estimate. Actual benefits determined by the SSA.</p>
+    </div>
+  </faction>
+</Tool>
+
+<script>
+function calculate() {
+  const currentAge = parseInt(document.getElementById('currentAge').value) || 40;
+  const earnings = parseFloat(document.getElementById('earnings').value) || 0;
+  const growth = (parseFloat(document.getElementById('growth').value) || 0) / 100;
+  const lifeExp = parseInt(document.getElementById('lifeExp').value) || 85;
+
+  const fra = 67;
+  const bendPoints = [1174, 7078];
+
+  function calcPI(AIME) {
+    let pia = 0;
+    if (AIME <= bendPoints[0]) pia = AIME * 0.9;
+    else if (AIME <= bendPoints[1]) pia = bendPoints[0] * 0.9 + (AIME - bendPoints[0]) * 0.32;
+    else pia = bendPoints[0] * 0.9 + (bendPoints[1] - bendPoints[0]) * 0.32 + (AIME - bendPoints[1]) * 0.15;
+    return pia;
+  }
+
+  const avgEarnings = earnings * Math.pow(1 + growth, Math.max(0, fra - currentAge));
+  const monthlyEarnings = avgEarnings / 12;
+  const AIME = monthlyEarnings * 0.4;
+
+  const pia = calcPI(AIME);
+
+  const benefits = {};
+  for (let age = 62; age <= 70; age++) {
+    if (age < fra) benefits[age] = pia * (1 - (fra - age) * 5 / 9 / 100 * 12);
+    else if (age === fra) benefits[age] = pia;
+    else benefits[age] = pia * (1 + (age - fra) * 0.08);
+  }
+
+  let html = '<h3 style="font-size:14px;margin-bottom:12px;">Estimated monthly benefit by claiming age</h3>';
+  html += '<table style="width:100%;border-collapse:collapse;font-size:14px;"><thead><tr style="border-bottom:2px solid var(--border);"><th style="text-align:left;padding:8px 12px;">Age</th><th style="text-align:right;padding:8px 12px;">Monthly benefit</th><th style="text-align:right;padding:8px 12px;">Annual benefit</th><th style="text-align:right;padding:8px 12px;">Lifetime to age ' + lifeExp + '</th></tr></thead><tbody>';
+  let bestAge = 62, bestLifetime = 0;
+  for (let age = 62; age <= 70; age++) {
+    const monthly = Math.round(benefits[age]);
+    const annual = monthly * 12;
+    const lifetime = annual * (lifeExp - age);
+    if (lifetime > bestLifetime) { bestLifetime = lifetime; bestAge = age; }
+    const isBest = age === document.querySelector('[data-age="' + bestAge + '"]') ? 'font-weight:700;' : '';
+    html += `<tr style="border-bottom:1px solid var(--border-light);"><td style="padding:8px 12px;${isBest}">${age} ${age === fra ? '(FRA)' : ''}</td><td style="padding:8px 12px;text-align:right;">$${monthly.toLocaleString()}</td><td style="padding:8px 12px;text-align:right;">$${annual.toLocaleString()}</td><td style="padding:8px 12px;text-align:right;">$${lifetime.toLocaleString()}</td></tr>`;
+  }
+  html += '</tbody></table>';
+  html += `<p style="margin-top:16px;font-size:14px;color:var(--text-secondary);">Optimal claiming age: <strong>${bestAge}</strong> — estimated lifetime benefit: <strong>$${bestLifetime.toLocaleString()}</strong></p>`;
+
+  document.getElementById('resultArea').innerHTML = html;
+}
+
+['currentAge','earnings','growth','lifeExp'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

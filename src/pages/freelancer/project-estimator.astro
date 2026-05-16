@@ -1,0 +1,153 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Freelance Project Estimator",
+  "description": "Create a professional project estimate. Add tasks, set your rate, and get minimum, recommended, and maximum quotes.",
+  "url": "https://freelancertools.io/freelancer/project-estimator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Freelance Project Estimator — Price"
+  description="Create accurate project estimates for your freelance clients. Add tasks, hourly rates, expenses, and get pricing recommendations."
+  canonicalUrl="https://freelancertools.io/freelancer/project-estimator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Freelancer', href: '/freelancer/' }, { label: 'Project Estimator' }]}
+  relatedTools={[
+    { name: 'Freelancer Rate Calculator', href: '/freelancer/rate-calculator/', category: 'Freelancer' },
+    { name: 'Salary to Hourly Calculator', href: '/freelancer/salary-to-hourly/', category: 'Freelancer' },
+    { name: 'Invoice Late Fee Calculator', href: '/freelancer/late-fee-calculator/', category: 'Freelancer' },
+    { name: 'Invoice Generator', href: '/freelancer/invoice-generator/', category: 'Freelancer' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Freelance Project Estimator</h1>
+      <p class="subhead">Create a professional project estimate in minutes. Add tasks, calculate costs, and present a clear quote to your client.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Project Estimator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Hourly rate ($)" tip="Your standard hourly rate." /></label>
+            <input type="number" id="hourlyRate" value="100" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Desired profit margin (%)" tip="The profit margin you want to add to the cost." /></label>
+            <input type="number" id="margin" value="30" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Expenses ($)" tip="Any project-related expenses (software, stock assets, travel, etc.)." /></label>
+          <input type="number" id="expenses" value="200" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Revision rounds" tip="Number of revision rounds included in the quote." /></label>
+          <input type="number" id="revisions" value="2" />
+        </div>
+
+        <div id="tasks">
+          <div class="task-row" style="display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-bottom:8px;align-items:end;">
+            <div class="field" style="margin:0;"><label class="field-label" style="font-size:10px;">Task</label><input type="text" class="t-name" value="Design concept" /></div>
+            <div class="field" style="margin:0;"><label class="field-label" style="font-size:10px;">Hours</label><input type="number" class="t-hours" value="10" /></div>
+            <button class="btn btn-secondary remove-task" style="padding:8px 12px;margin-bottom:0;font-size:13px;">X</button>
+          </div>
+          <div class="task-row" style="display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-bottom:8px;align-items:end;">
+            <div class="field" style="margin:0;"><label class="field-label" style="font-size:10px;">Task</label><input type="text" class="t-name" value="Development" /></div>
+            <div class="field" style="margin:0;"><label class="field-label" style="font-size:10px;">Hours</label><input type="number" class="t-hours" value="30" /></div>
+            <button class="btn btn-secondary remove-task" style="padding:8px 12px;margin-bottom:0;font-size:13px;">X</button>
+          </div>
+        </div>
+        <button id="addTask" class="btn btn-secondary" style="width:100%;margin-top:4px;">+ Add task</button>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Add tasks to generate a project estimate.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How to price freelance projects</h2>
+      <p>Pricing freelance projects is one of the hardest skills to learn. Underprice and you work for less than minimum wage. Overprice and you lose clients. The key is to calculate your costs accurately and add a fair profit margin.</p>
+      <p>This estimator starts with your hourly rate and the tasks required. It calculates labor costs, adds expenses, applies your profit margin, and generates three quote levels: minimum (covers costs only), recommended (your rate), and maximum (for complex or rush projects).</p>
+      <h2>What to include in an estimate</h2>
+      <p>Break down the project into specific tasks with estimated hours. Include revision rounds (scope creep is the #1 profit killer). Add all external expenses. Apply a profit margin of 20-50% depending on your expertise and market rates. Present the estimate with clear terms and a validity period.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+document.getElementById('addTask').addEventListener('click', function() {
+  const div = document.createElement('div');
+  div.className = 'task-row';
+  div.style.cssText = 'display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-bottom:8px;align-items:end;';
+  div.innerHTML = `<div class="field" style="margin:0;"><label class="field-label" style="font-size:10px;">Task</label><input type="text" class="t-name" value="New task" /></div><div class="field" style="margin:0;"><label class="field-label" style="font-size:10px;">Hours</label><input type="number" class="t-hours" value="5" /></div><button class="btn btn-secondary remove-task" style="padding:8px 12px;margin-bottom:0;font-size:13px;">X</button>`;
+  document.getElementById('tasks').appendChild(div);
+  div.querySelector('.remove-task').addEventListener('click', function() { div.remove(); calculate(); });
+  div.querySelectorAll('input').forEach(el => el.addEventListener('input', calculate));
+  calculate();
+});
+
+document.querySelectorAll('.remove-task').forEach(btn => btn.addEventListener('click', function() { this.parentElement.remove(); calculate(); }));
+
+function calculate() {
+  const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
+  const margin = (parseFloat(document.getElementById('margin').value) || 0) / 100;
+  const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+
+  let totalHours = 0;
+  document.querySelectorAll('.t-hours').forEach(el => {
+    totalHours += parseFloat(el.value) || 0;
+  });
+
+  const laborCost = totalHours * rate;
+  const totalCost = laborCost + expenses;
+  const minQuote = totalCost;
+  const recQuote = totalCost * (1 + margin);
+  const maxQuote = totalCost * (1 + margin * 1.5);
+
+  let html = '<div style="margin-bottom:16px;"><table style="width:100%;border-collapse:collapse;font-size:14px;"><thead><tr style="border-bottom:2px solid var(--border);"><th style="text-align:left;padding:8px 12px;">Task</th><th style="text-align:right;padding:8px 12px;">Hours</th><th style="text-align:right;padding:8px 12px;">Cost</th></tr></thead><tbody>';
+  document.querySelectorAll('.task-row').forEach(row => {
+    const name = row.querySelector('.t-name').value || 'Task';
+    const hrs = parseFloat(row.querySelector('.t-hours').value) || 0;
+    html += `<tr style="border-bottom:1px solid var(--border-light);"><td style="padding:6px 12px;">${name}</td><td style="padding:6px 12px;text-align:right;">${hrs}</td><td style="padding:6px 12px;text-align:right;">$${(hrs * rate).toFixed(2)}</td></tr>`;
+  });
+  html += `</tbody></table></div>`;
+
+  html += `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number" style="color:var(--success);">$${recQuote.toFixed(2)}</div>
+        <div class="result-label">Recommended quote (${Math.round(margin*100)}% margin)</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${minQuote.toFixed(2)}</div>
+        <div class="result-label">Minimum quote</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="color:var(--brand-accent);">$${maxQuote.toFixed(2)}</div>
+        <div class="result-label">Maximum quote</div>
+      </div>
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-muted);">${totalHours} hours at $${rate}/hr + $${expenses.toFixed(2)} expenses</p>
+  `;
+  document.getElementById('resultArea').innerHTML = html;
+}
+
+['hourlyRate','margin','expenses','revisions'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+document.getElementById('tasks').addEventListener('input', calculate);
+calculate();
+</script>

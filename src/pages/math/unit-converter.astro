@@ -1,0 +1,153 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Unit Converter",
+  "description": "Convert between units of length, weight, temperature, volume, speed, area, energy, and pressure. All in one page.",
+  "url": "https://freelancertools.io/math/unit-converter/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Unit Converter — Length, Weight & Temp"
+  description="Convert between 8 categories of units instantly. Length, weight, temperature, volume, speed, area, energy, and pressure conversions."
+  canonicalUrl="https://freelancertools.io/math/unit-converter/"
+  schema={schema}
+  breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Unit Converter' }]}
+  relatedTools={[
+    { name: 'Percentage Calculator', href: '/math/percentage-calculator/', category: 'Math' },
+    { name: 'Time Zone Converter', href: '/math/time-zone-converter/', category: 'Math' },
+    { name: 'Square Footage Calculator', href: '/math/square-footage/', category: 'Math' },
+    { name: 'Scientific Calculator', href: '/math/scientific-calculator/', category: 'Math' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Unit Converter</h1>
+      <p class="subhead">Convert between units in any category. Temperature, length, weight, volume, speed, area, energy, and pressure.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Unit Converter</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;">
+          <button class="btn btn-secondary cat-tab" data-cat="length" style="flex:1;padding:8px;font-size:12px;">Length</button>
+          <button class="btn btn-secondary cat-tab" data-cat="weight" style="flex:1;padding:8px;font-size:12px;">Weight</button>
+          <button class="btn btn-secondary cat-tab" data-cat="temperature" style="flex:1;padding:8px;font-size:12px;">Temp</button>
+          <button class="btn btn-secondary cat-tab" data-cat="volume" style="flex:1;padding:8px;font-size:12px;">Volume</button>
+          <button class="btn btn-secondary cat-tab" data-cat="speed" style="flex:1;padding:8px;font-size:12px;">Speed</button>
+          <button class="btn btn-secondary cat-tab" data-cat="area" style="flex:1;padding:8px;font-size:12px;">Area</button>
+          <button class="btn btn-secondary cat-tab" data-cat="energy" style="flex:1;padding:8px;font-size:12px;">Energy</button>
+          <button class="btn btn-secondary cat-tab" data-cat="pressure" style="flex:1;padding:8px;font-size:12px;">Pressure</button>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label">From</label>
+            <select id="fromUnit"></select>
+          </div>
+          <div class="field">
+            <label class="field-label">To</label>
+            <select id="toUnit"></select>
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Value" tip="The value to convert." /></label>
+            <input type="number" id="value" value="1" step="any" />
+          </div>
+          <div class="field">
+            <label class="field-label">Result</label>
+            <input type="text" id="result" readonly style="font-weight:700;font-size:1.1rem;color:var(--brand-primary);" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>Unit conversion made simple</h2>
+      <p>This converter supports 8 categories with the most common units in each. Length: meters, feet, inches, kilometers, miles. Weight: kilograms, pounds, ounces, tons. Temperature: Celsius, Fahrenheit, Kelvin. Volume: liters, gallons, cups, milliliters. Speed: km/h, mph, knots, m/s. Area: sq meters, sq feet, acres, hectares. Energy: joules, calories, kWh, BTU. Pressure: psi, bar, pascals, atm.</p>
+      <p>Conversions update instantly as you type. Switch between categories using the tabs at the top. The calculator handles decimal precision automatically.</p>
+      <p>Whether you're cooking, traveling, doing schoolwork, or working on a construction project, this unit converter covers your needs in one convenient page.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+const units = {
+  length: { m: 1, km: 1000, cm: 0.01, mm: 0.001, mi: 1609.34, yd: 0.9144, ft: 0.3048, in: 0.0254 },
+  weight: { kg: 1, g: 0.001, mg: 0.000001, lb: 0.453592, oz: 0.0283495, ton: 907.185, st: 6.35029 },
+  temperature: { C: 'celsius', F: 'fahrenheit', K: 'kelvin' },
+  volume: { L: 1, mL: 0.001, gal: 3.78541, qt: 0.946353, pt: 0.473176, cup: 0.236588, floz: 0.0295735, tbsp: 0.0147868, tsp: 0.00492892 },
+  speed: { 'km/h': 0.277778, 'm/s': 1, 'mph': 0.44704, 'knot': 0.514444, 'ft/s': 0.3048 },
+  area: { 'm²': 1, 'km²': 1000000, 'ft²': 0.092903, 'in²': 0.00064516, 'acre': 4046.86, 'ha': 10000, 'mi²': 2589988 },
+  energy: { J: 1, kJ: 1000, cal: 4.184, kcal: 4184, kWh: 3600000, BTU: 1055.06 },
+  pressure: { Pa: 1, kPa: 1000, bar: 100000, psi: 6894.76, atm: 101325, mmHg: 133.322 }
+};
+const unitLabels = {
+  length: ['m','km','cm','mm','mi','yd','ft','in'],
+  weight: ['kg','g','mg','lb','oz','ton','st'],
+  temperature: ['C','F','K'],
+  volume: ['L','mL','gal','qt','pt','cup','floz','tbsp','tsp'],
+  speed: ['km/h','m/s','mph','knot','ft/s'],
+  area: ['m²','km²','ft²','in²','acre','ha','mi²'],
+  energy: ['J','kJ','cal','kcal','kWh','BTU'],
+  pressure: ['Pa','kPa','bar','psi','atm','mmHg']
+};
+let currentCat = 'length';
+
+function populateUnits(cat) {
+  const from = document.getElementById('fromUnit');
+  const to = document.getElementById('toUnit');
+  from.innerHTML = ''; to.innerHTML = '';
+  const labels = unitLabels[cat];
+  labels.forEach((l, i) => {
+    from.innerHTML += `<option value="${l}" ${i===0?'selected':''}>${l}</option>`;
+    to.innerHTML += `<option value="${l}" ${i===1?'selected':''}>${l}</option>`;
+  });
+  convert();
+}
+
+function convert() {
+  const cat = currentCat;
+  const from = document.getElementById('fromUnit').value;
+  const to = document.getElementById('toUnit').value;
+  const val = parseFloat(document.getElementById('value').value) || 0;
+  let result;
+  if (cat === 'temperature') {
+    let celsius;
+    if (from === 'C') celsius = val;
+    else if (from === 'F') celsius = (val - 32) * 5/9;
+    else celsius = val - 273.15;
+    if (to === 'C') result = celsius;
+    else if (to === 'F') result = celsius * 9/5 + 32;
+    else result = celsius + 273.15;
+  } else {
+    const base = val * (units[cat][from] || 1);
+    result = base / (units[cat][to] || 1);
+  }
+  document.getElementById('result').value = isFinite(result) ? result.toPrecision(10) : 'Error';
+}
+
+document.querySelectorAll('.cat-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    currentCat = this.dataset.cat;
+    document.querySelectorAll('.cat-tab').forEach(t => t.style.cssText = 'flex:1;padding:8px;font-size:12px;');
+    this.style.cssText = 'flex:1;padding:8px;font-size:12px;background:var(--brand-primary);color:#fff;border-color:var(--brand-primary);';
+    populateUnits(currentCat);
+  });
+});
+document.querySelector('.cat-tab').click();
+document.getElementById('fromUnit').addEventListener('change', convert);
+document.getElementById('toUnit').addEventListener('change', convert);
+document.getElementById('value').addEventListener('input', convert);
+</script>

@@ -1,0 +1,144 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Concrete Calculator",
+  "description": "Calculate how much concrete you need for slabs, walls, columns, and stairs. Get cubic yards, bags, and cost estimates.",
+  "url": "https://freelancertools.io/construction/concrete-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Concrete Calculator — How Much Concrete Do I Need?"
+  description="Calculate concrete volume for slabs, walls, columns, and stairs. Get cubic yards, 60lb and 80lb bag counts, and cost estimates for your project."
+  canonicalUrl="https://freelancertools.io/construction/concrete-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Construction', href: '/construction/' }, { label: 'Concrete Calculator' }]}
+  relatedTools={[
+    { name: 'Square Footage Calculator', href: '/math/square-footage/', category: 'Math' },
+    { name: 'Unit Converter', href: '/math/unit-converter/', category: 'Math' },
+    { name: 'Mortgage Calculator', href: '/finance/mortgage-calculator/', category: 'Finance' },
+    { name: 'Budget Planner', href: '/finance/budget-planner/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Concrete Calculator</h1>
+      <p class="subhead">Get accurate concrete estimates for your next project. Slabs, walls, columns, and stairs — all in one tool.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Concrete Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label">Project type</label>
+          <select id="projectType">
+            <option value="slab">Slab</option>
+            <option value="wall">Wall</option>
+            <option value="column">Column</option>
+            <option value="stairs">Stairs</option>
+          </select>
+        </div>
+        <div id="inputs">
+          <div class="field-grid" id="slabInputs">
+            <div class="field"><label class="field-label"><KpiTooltip label="Length (ft)" tip="The length of the slab." /></label><input type="number" id="slabL" value="10" step="any" /></div>
+            <div class="field"><label class="field-label"><KpiTooltip label="Width (ft)" tip="The width of the slab." /></label><input type="number" id="slabW" value="10" step="any" /></div>
+            <div class="field"><label class="field-label"><KpiTooltip label="Thickness (in)" tip="How thick the slab will be." /></label><input type="number" id="slabT" value="4" step="any" /></div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Price per cubic yard ($)" tip="The cost per cubic yard of concrete from your supplier." /></label>
+          <input type="number" id="pricePerYard" value="150" />
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter dimensions to calculate concrete needed.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How to calculate concrete</h2>
+      <p>Concrete is measured in cubic yards. To calculate the volume: convert all dimensions to feet, multiply length × width × height for cubic feet, then divide by 27 (1 cubic yard = 27 cubic feet). For slabs, multiply length × width × (thickness in inches / 12) / 27.</p>
+      <p>Always order slightly more concrete than you need — 5-10% extra is standard to account for spillage, uneven subgrades, and waste. It's much cheaper to have a little extra than to run out and have to pay for a second partial load with delivery fees.</p>
+      <h2>How many bags do you need?</h2>
+      <p>A 60lb bag of concrete mix yields about 0.45 cubic feet. An 80lb bag yields about 0.6 cubic feet. This calculator shows how many bags of each size you would need for your project, along with the total cost if you're having it delivered by a ready-mix truck.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+document.getElementById('projectType').addEventListener('change', function() {
+  const type = this.value;
+  const html = {
+    slab: '<div class="field-grid"><div class="field"><label class="field-label">Length (ft)</label><input type="number" id="slabL" value="10" step="any" /></div><div class="field"><label class="field-label">Width (ft)</label><input type="number" id="slabW" value="10" step="any" /></div><div class="field"><label class="field-label">Thickness (in)</label><input type="number" id="slabT" value="4" step="any" /></div></div>',
+    wall: '<div class="field-grid"><div class="field"><label class="field-label">Length (ft)</label><input type="number" id="wallL" value="20" step="any" /></div><div class="field"><label class="field-label">Height (ft)</label><input type="number" id="wallH" value="10" step="any" /></div><div class="field"><label class="field-label">Thickness (in)</label><input type="number" id="wallT" value="8" step="any" /></div></div>',
+    column: '<div class="field-grid"><div class="field"><label class="field-label">Height (ft)</label><input type="number" id="colH" value="10" step="any" /></div><div class="field"><label class="field-label">Diameter (in)</label><input type="number" id="colD" value="12" step="any" /></div></div>',
+    stairs: '<div class="field-grid"><div class="field"><label class="field-label">Width (ft)</label><input type="number" id="stWidth" value="4" step="any" /></div><div class="field"><label class="field-label">Number of steps</label><input type="number" id="stSteps" value="10" /></div><div class="field"><label class="field-label">Rise (in)</label><input type="number" id="stRise" value="7" step="any" /></div><div class="field"><label class="field-label">Run (in)</label><input type="number" id="stRun" value="11" step="any" /></div></div>',
+  }[type];
+  document.getElementById('inputs').innerHTML = html;
+  calculate();
+});
+
+function read(id) { return parseFloat(document.getElementById(id)?.value) || 0; }
+
+function calculate() {
+  const type = document.getElementById('projectType').value;
+  const price = read('pricePerYard');
+  let cf = 0;
+  if (type === 'slab') cf = read('slabL') * read('slabW') * (read('slabT') / 12);
+  else if (type === 'wall') cf = read('wallL') * read('wallH') * (read('wallT') / 12);
+  else if (type === 'column') cf = Math.PI * Math.pow(read('colD') / 2 / 12, 2) * read('colH');
+  else if (type === 'stairs') {
+    const steps = read('stSteps');
+    const rise = read('stRise') / 12;
+    const run = read('stRun') / 12;
+    const width = read('stWidth');
+    cf = steps * width * (rise * run / 2);
+  }
+  const cy = cf / 27;
+  const bags60 = Math.ceil(cf / 0.45);
+  const bags80 = Math.ceil(cf / 0.6);
+  const cost = cy * price;
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">${cy.toFixed(2)}</div>
+        <div class="result-label">Cubic yards needed</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${cf.toFixed(1)}</div>
+        <div class="result-label">Cubic feet</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${bags60}</div>
+        <div class="result-label">60lb bags</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${bags80}</div>
+        <div class="result-label">80lb bags</div>
+      </div>
+      ${price > 0 ? `<div class="metric-card"><div class="result-number" style="color:var(--success);">$${cost.toFixed(2)}</div><div class="result-label">Estimated cost</div></div>` : ''}
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-muted);">Add 5-10% for waste and spillage: order ${(cy * 1.1).toFixed(2)} cubic yards.</p>
+  `;
+}
+['projectType','pricePerYard'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', calculate);
+});
+// delegate for dynamic inputs
+document.getElementById('inputs').addEventListener('input', calculate);
+calculate();
+</script>

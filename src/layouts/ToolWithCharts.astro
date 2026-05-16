@@ -1,0 +1,16 @@
+---
+import Tool from './Tool.astro';
+const props = Astro.props;
+---
+
+<Tool {...props}>
+  <script
+    slot="head"
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"
+    defer
+  ></script>
+  <slot name="head" slot="head" />
+  <slot name="hero" slot="hero" />
+  <slot name="tool" slot="tool" />
+  <slot name="seo" slot="seo" />
+</Tool>

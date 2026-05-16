@@ -1,0 +1,270 @@
+---
+import Tool from '../../../layouts/Tool.astro';
+import { CONVERSION_PAIRS, convertValue } from '../../../data/conversions.js';
+
+export async function getStaticPaths() {
+  return CONVERSION_PAIRS.map(pair => ({
+    params: { conversion: pair.slug },
+    props: { pair }
+  }));
+}
+
+const { pair } = Astro.props;
+
+function fmtFactor(pair) {
+  if (pair.formula === 'c2f') return 'multiply by 9/5, then add 32';
+  if (pair.formula === 'f2c') return 'subtract 32, then multiply by 5/9';
+  return `multiply by ${pair.factor}`;
+}
+
+function fmtReverseFactor(pair) {
+  if (pair.formula === 'c2f') return 'subtract 32, then multiply by 5/9';
+  if (pair.formula === 'f2c') return 'multiply by 9/5, then add 32';
+  return `divide by ${pair.factor}`;
+}
+
+const factorDesc = fmtFactor(pair);
+const reverseFactorDesc = fmtReverseFactor(pair);
+
+const tableRows = pair.examples.map(val => {
+  const result = convertValue(val, pair, 'forward');
+  return { from: val, to: typeof result === 'number' ? +result.toFixed(4) : result };
+});
+
+const relatedConversions = CONVERSION_PAIRS
+  .filter(p => p.slug !== pair.slug && p.category === pair.category)
+  .slice(0, 4)
+  .map(p => ({
+    name: `Convert ${p.fromFull} to ${p.toFull}`,
+    href: `/math/convert/${p.slug}/`,
+    category: 'Math'
+  }));
+
+const relatedTools = [
+  { name: 'Unit Converter (all categories)', href: '/math/unit-converter/', category: 'Math' },
+  ...relatedConversions,
+  ...(relatedConversions.length < 4 ? [
+    { name: 'Percentage Calculator', href: '/math/percentage-calculator/', category: 'Math' },
+    { name: 'Scientific Calculator', href: '/math/scientific-calculator/', category: 'Math' },
+  ].slice(0, 4 - relatedConversions.length) : []),
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": `Free ${pair.fromFull} to ${pair.toFull} Converter`,
+  "description": `Convert ${pair.fromFull} to ${pair.toFull} instantly with our free calculator. Get accurate ${pair.from} to ${pair.to} conversions with formula, table, and examples.`,
+  "url": `https://freelancertools.io/math/convert/${pair.slug}/`,
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+
+function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+const faqs = [
+  {
+    name: `How do I convert ${pair.fromFull} to ${pair.toFull}?`,
+    acceptedAnswer: { text: `To convert ${pair.fromFull} to ${pair.toFull}, ${factorDesc}. For example, ${pair.examples[0]} ${pair.from} × ${pair.factor || (pair.formula === 'c2f' ? '(9/5) + 32' : '(5/9) × (F - 32)')} = ${tableRows[0].to} ${pair.to}.` }
+  },
+  {
+    name: `What is the formula to convert ${pair.fromFull} to ${pair.toFull}?`,
+    acceptedAnswer: pair.formula === 'c2f'
+      ? { text: `The formula to convert Celsius to Fahrenheit is: °F = (°C × 9/5) + 32. For example, 25°C = (25 × 9/5) + 32 = 77°F.` }
+      : pair.formula === 'f2c'
+      ? { text: `The formula to convert Fahrenheit to Celsius is: °C = (°F - 32) × 5/9. For example, 77°F = (77 - 32) × 5/9 = 25°C.` }
+      : { text: `The formula to convert ${pair.fromFull} to ${pair.toFull} is: ${pair.toFull} = ${pair.fromFull} × ${pair.factor}. Simply multiply the number of ${pair.fromFull} by ${pair.factor} to get the equivalent in ${pair.toFull}.` }
+  },
+  {
+    name: `What is the difference between ${pair.fromFull} and ${pair.toFull}?`,
+    acceptedAnswer: pair.category === 'temperature'
+      ? { text: `Celsius and Fahrenheit are two different temperature scales. Water freezes at 0°C (32°F) and boils at 100°C (212°F). Celsius is used in most countries worldwide, while Fahrenheit is primarily used in the United States. One degree Celsius is equivalent to 1.8 degrees Fahrenheit.` }
+      : pair.category === 'weight'
+      ? { text: `${capitalize(pair.fromFull)} and ${pair.toFull} are both units of weight or mass used in different measurement systems. ${capitalize(pair.fromFull)} are part of the metric system (used by most countries), while ${pair.toFull} are part of the imperial system (primarily used in the US and UK).` }
+      : pair.category === 'volume'
+      ? { text: `${capitalize(pair.fromFull)} and ${pair.toFull} are units of volume capacity. They belong to different measurement systems: ${pair.from.indexOf('L') >= 0 || pair.from.indexOf('ml') >= 0 ? 'the metric system (used globally)' : 'the imperial system'}. The conversion factor depends on which specific units you are converting between.` }
+      : pair.category === 'speed'
+      ? { text: `Miles per hour (mph) and kilometers per hour (kph) measure speed. One mile is approximately 1.609 kilometers. Most countries use kph, while the US, UK, and a few others use mph for road speeds.` }
+      : { text: `${capitalize(pair.fromFull)} and ${pair.toFull} are units of ${pair.category === 'length' ? 'distance or length' : 'measurement'}. ${capitalize(pair.fromFull)} are primarily used in ${pair.from === 'cm' || pair.from === 'm' || pair.from === 'km' ? 'the metric system' : 'the imperial system'}.` }
+  },
+  {
+    name: `Common ${pair.from} to ${pair.to} conversions`,
+    acceptedAnswer: { text: `Common conversions include: ${pair.examples.slice(0, 8).map(v => `${v} ${pair.from} = ${convertValue(v, pair, 'forward').toFixed(typeof convertValue(v, pair, 'forward') === 'number' ? 2 : 0)} ${pair.to}`).join(', ')}. Use the calculator above for any value.` }
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.name,
+    "acceptedAnswer": { "@type": "Answer", "text": f.acceptedAnswer.text }
+  }))
+};
+---
+
+<Tool
+  title={`Convert ${pair.from} to ${pair.to} — Free ${capitalize(pair.fromFull)} to ${capitalize(pair.toFull)} Calculator | FreelancerTools`}
+  description={`Convert ${pair.fromFull} to ${pair.toFull} instantly. Free online ${pair.from} to ${pair.to} calculator with formula, conversion table, and examples. Accurate and easy to use.`}
+  canonicalUrl={`https://freelancertools.io/math/convert/${pair.slug}/`}
+  schema={[schema, faqSchema]}
+  breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Unit Converter', href: '/math/unit-converter/' }, { label: `Convert ${pair.from} to ${pair.to}` }]}
+  relatedTools={relatedTools}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Convert {pair.from} to {pair.to} — Free {capitalize(pair.fromFull)} to {capitalize(pair.toFull)} Calculator</h1>
+      <p class="subhead">Convert {pair.fromFull} to {pair.toFull} instantly. Enter any value and get the exact conversion with the formula displayed. Accurate to 4 decimal places.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>{capitalize(pair.fromFull)} to {capitalize(pair.toFull)} Converter</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label">{capitalize(pair.fromFull)} ({pair.from})</label>
+            <input type="hidden" id="convSlug" value={pair.slug} />
+            <input type="hidden" id="convFrom" value={pair.from} />
+            <input type="hidden" id="convTo" value={pair.to} />
+            <input type="hidden" id="convFactor" value={pair.factor || ''} />
+            <input type="hidden" id="convFormula" value={pair.formula || ''} />
+            <input type="hidden" id="convReverseFormula" value={pair.reverseFormula || ''} />
+            <input type="number" id="fromValue" value={pair.examples[0]} step="any" />
+          </div>
+          <div class="field">
+            <label class="field-label">{capitalize(pair.toFull)} ({pair.to})</label>
+            <input type="number" id="toValue" step="any" />
+          </div>
+        </div>
+        <div id="formulaDisplay" class="result-area" style="margin-top:12px;padding:12px;background:var(--bg-light);border-radius:8px;font-size:13px;text-align:center;color:var(--text-muted);">
+          Enter a value to see the conversion formula.
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>The {pair.fromFull} to {pair.toFull} conversion formula</h2>
+      <p>To convert {pair.fromFull} to {pair.toFull}, {factorDesc}. The formula is:</p>
+      <div style="padding:16px;background:var(--bg-light);border-radius:8px;font-family:monospace;font-size:15px;text-align:center;margin:16px 0;">
+        {pair.toFull} = {pair.fromFull} × {pair.formula === 'c2f' ? '(9/5) + 32' : pair.formula === 'f2c' ? '(°F − 32) × 5/9' : pair.factor}
+      </div>
+      <p>For example: <strong>{pair.examples[2]} {pair.from} = {tableRows[2].to} {pair.to}</strong>. This formula works for any value you enter in the calculator above.</p>
+
+      <h2>Common {pair.from} to {pair.to} conversions</h2>
+      <div style="overflow-x:auto;">
+        <table class="conversion-table">
+          <thead>
+            <tr><th>{capitalize(pair.fromFull)} ({pair.from})</th><th>{capitalize(pair.toFull)} ({pair.to})</th></tr>
+          </thead>
+          <tbody>
+            {tableRows.map(row => (
+              <tr><td>{row.from}</td><td>{row.to}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>Use the converter above to calculate any custom value. The result updates instantly as you type.</p>
+
+      <h2>Why both {pair.fromFull} and {pair.toFull} are used</h2>
+      {pair.category === 'temperature' ? (
+        <p>Celsius is the standard temperature scale used in almost every country worldwide, part of the metric (SI) system. Fahrenheit is primarily used in the United States and a few other territories. The Celsius scale sets 0° at the freezing point of water and 100° at boiling, making it intuitive for scientific work. The Fahrenheit scale sets 32° and 212° for the same points, offering finer granularity — 180 divisions between freezing and boiling vs 100 for Celsius. Understanding both is essential for travel, cooking, weather, and scientific communication.</p>
+      ) : pair.category === 'weight' ? (
+        <p>The metric system (kilograms, grams) is the standard for most of the world, used in science, medicine, and everyday commerce. The imperial system (pounds, ounces) remains in use in the United States and, to a lesser extent, the United Kingdom. This dual-system world means that recipes, package labels, gym weights, and shipping measurements may use either system depending on the country. A reliable converter helps bridge the gap when dealing with international measurements.</p>
+      ) : pair.category === 'volume' ? (
+        <p>Volume measurements vary significantly between the metric and imperial systems. Liters and milliliters are used in most countries for beverages, fuel, and cooking. Fluid ounces, gallons, and other imperial units are standard in the US. This creates confusion when following international recipes, comparing product labels, or working with scientific measurements from different sources. An accurate converter eliminates guesswork when converting between systems.</p>
+      ) : pair.category === 'speed' ? (
+        <p>Speed limits and vehicle speedometers differ around the world. Most countries use kilometers per hour (kph), while the United States and United Kingdom use miles per hour (mph). If you're driving abroad, renting a car, or comparing vehicle performance specs from different markets, you need to convert between these units. Understanding the relationship — 1 mph = 1.609 kph — helps you quickly estimate speed equivalents when traveling.</p>
+      ) : (
+        <p>Different countries use different measurement systems for historical reasons. The metric system (meters, kilometers, centimeters) is used in most of the world and is the standard in science and international trade. The imperial system (feet, miles, inches) is primarily used in the United States. This means that professions like engineering, construction, aviation, and international shipping regularly need to convert between the two systems. Knowing both and having a reliable conversion tool is essential for cross-border work.</p>
+      )}
+
+      <h2>How to use this converter</h2>
+      <p>Simply type a value in either field — the converter instantly calculates the equivalent in the other unit. The conversion formula is shown below the inputs so you can see exactly how the result was calculated. Use the conversion table for quick reference of common values.</p>
+
+      <p><strong>Need more conversions?</strong> Try the <a href="/math/unit-converter/">full unit converter</a> which supports {pair.category === 'length' ? 'length, weight, temperature, volume, speed, area, energy, and pressure conversions' : pair.category === 'weight' ? 'length, weight, temperature, volume, speed, area, energy, and pressure conversions' : 'multiple categories of units'} all in one page.</p>
+    </div>
+
+    <section class="faq-section">
+      <h2>Frequently asked questions about {pair.from} to {pair.to} conversion</h2>
+      <div class="faq-list">
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <h3>{faq.name}</h3>
+            <p>{faq.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  </fragment>
+</Tool>
+
+<script>
+const convFactor = parseFloat(document.getElementById('convFactor').value) || null;
+const convFormula = document.getElementById('convFormula').value;
+const convReverseFormula = document.getElementById('convReverseFormula').value;
+const convFromLabel = document.getElementById('convFrom').value;
+const convToLabel = document.getElementById('convTo').value;
+
+function convertForward(val) {
+  if (convFormula === 'c2f') return (val * 9/5) + 32;
+  if (convFormula === 'f2c') return (val - 32) * 5/9;
+  return val * convFactor;
+}
+
+function convertReverse(val) {
+  if (convFormula === 'c2f') return (val - 32) * 5/9;
+  if (convFormula === 'f2c') return (val * 9/5) + 32;
+  return val / convFactor;
+}
+
+document.getElementById('fromValue').addEventListener('input', function() {
+  const val = parseFloat(this.value);
+  if (isNaN(val)) {
+    document.getElementById('toValue').value = '';
+    document.getElementById('formulaDisplay').textContent = 'Enter a value to see the conversion formula.';
+    return;
+  }
+  const result = convertForward(val);
+  const display = typeof result === 'number' ? result.toPrecision(10) : result;
+  document.getElementById('toValue').value = display;
+
+  let formulaStr;
+  if (convFormula === 'c2f') {
+    formulaStr = val + '°C × 9/5 + 32 = ' + display + '°F';
+  } else if (convFormula === 'f2c') {
+    formulaStr = val + '°F → (' + val + ' − 32) × 5/9 = ' + display + '°C';
+  } else {
+    formulaStr = val + ' × ' + convFactor + ' = ' + display;
+  }
+  document.getElementById('formulaDisplay').innerHTML = '<strong>' + val + ' ' + convFromLabel + ' = ' + display + ' ' + convToLabel + '</strong><br><span style="font-family:monospace;font-size:12px;">' + formulaStr + '</span>';
+});
+
+document.getElementById('toValue').addEventListener('input', function() {
+  const val = parseFloat(this.value);
+  if (isNaN(val)) {
+    document.getElementById('fromValue').value = '';
+    document.getElementById('formulaDisplay').textContent = 'Enter a value to see the conversion formula.';
+    return;
+  }
+  const result = convertReverse(val);
+  const display = typeof result === 'number' ? result.toPrecision(10) : result;
+  document.getElementById('fromValue').value = display;
+
+  let formulaStr;
+  if (convFormula === 'c2f') {
+    formulaStr = val + '°F → (' + val + ' − 32) × 5/9 = ' + display + '°C';
+  } else if (convFormula === 'f2c') {
+    formulaStr = val + '°C × 9/5 + 32 = ' + display + '°F';
+  } else {
+    formulaStr = display + ' / ' + convFactor + ' = ' + val;
+  }
+  document.getElementById('formulaDisplay').innerHTML = '<strong>' + display + ' ' + convFromLabel + ' = ' + val + ' ' + convToLabel + '</strong><br><span style="font-family:monospace;font-size:12px;">' + formulaStr + '</span>';
+});
+
+document.getElementById('fromValue').dispatchEvent(new Event('input'));
+</script>

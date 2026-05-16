@@ -1,0 +1,292 @@
+---
+import Tool from '../../../layouts/Tool.astro';
+import { STATES } from '../../../data/states.js';
+
+export async function getStaticPaths() {
+  return STATES.map(state => ({
+    params: { state: state.slug },
+    props: { state }
+  }));
+}
+
+const { state } = Astro.props;
+const year = 2025;
+const taxDesc = state.hasNoIncomeTax
+  ? `${state.name} does not impose a state income tax, so your only deductions are federal income tax and FICA (Social Security and Medicare).`
+  : `${state.name} has a state income tax rate of ${(state.stateTaxRate * 100).toFixed(1)}%. Your paycheck is reduced by federal income tax, FICA, and state income tax.`;
+
+const faqs = [
+  {
+    name: `How is my paycheck calculated in ${state.name}?`,
+    acceptedAnswer: { text: `Your gross pay is reduced by federal income tax (using progressive brackets), Social Security (6.2% up to $168,600), Medicare (1.45% on all wages), and ${state.hasNoIncomeTax ? 'no state income tax' : `state income tax at ${(state.stateTaxRate * 100).toFixed(1)}%`}. The result is your net or take-home pay.` }
+  },
+  {
+    name: `Does ${state.name} have a state income tax?`,
+    acceptedAnswer: { text: state.hasNoIncomeTax ? `No. ${state.notes}` : `Yes. ${state.notes}` }
+  },
+  {
+    name: `What is the ${state.name} state income tax rate for ${year}?`,
+    acceptedAnswer: { text: state.hasNoIncomeTax ? `${state.name} does not have a state income tax.` : `The ${state.name} state income tax rate is ${(state.stateTaxRate * 100).toFixed(1)}% for ${year}. Depending on your income, the effective rate may be lower due to progressive brackets.` }
+  },
+  {
+    name: `How do federal taxes affect my ${state.name} paycheck?`,
+    acceptedAnswer: { text: `Federal income tax uses progressive brackets (10%, 12%, 22%, 24%, 32%, 35%, 37%) applied to your taxable income after the standard deduction ($${state.name === 'New York' || state.name === 'California' ? '14,600' : '14,600'} for single filers in ${year}). Social Security tax is 6.2% on wages up to $168,600. Medicare tax is 1.45% on all wages.` }
+  },
+  {
+    name: `How can I reduce my tax withholding in ${state.name}?`,
+    acceptedAnswer: { text: `Adjust your W-4 form with your employer to claim additional allowances or deductions. Contributing to a 401(k), HSA, or traditional IRA reduces your taxable income. If ${state.hasNoIncomeTax ? 'you have no state income tax, you only need to manage federal withholding.' : `you are over-withholding for ${state.name} state tax, you can adjust your state withholding allowances.`}` }
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.name,
+    "acceptedAnswer": { "@type": "Answer", "text": f.acceptedAnswer.text }
+  }))
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": `Free ${state.name} Paycheck Calculator`,
+  "description": `Calculate your take-home pay in ${state.name} after federal and state taxes for ${year}. Free instant paycheck calculator with current tax brackets.`,
+  "url": `https://freelancertools.io/finance/paycheck-calculator/${state.slug}/`,
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title={`${state.name} Paycheck Calculator`}
+  description={`Calculate your ${year} take-home pay in ${state.name} after federal and state taxes. Free instant paycheck calculator. ${state.notes}`}
+  canonicalUrl={`https://freelancertools.io/finance/paycheck-calculator/${state.slug}/`}
+  schema={[schema, faqSchema]}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Paycheck Calculator', href: '/finance/paycheck-calculator/' }, { label: state.name }]}
+  relatedTools={[
+    { name: 'Paycheck Calculator (all states)', href: '/finance/paycheck-calculator/', category: 'Finance' },
+    { name: 'Salary to Hourly Calculator', href: '/freelancer/salary-to-hourly/', category: 'Freelancer' },
+    { name: 'Budget Planner', href: '/finance/budget-planner/', category: 'Finance' },
+    { name: 'Retirement Calculator', href: '/finance/retirement-calculator/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>{state.name} Paycheck Calculator — Estimate Your {year} Take-Home Pay</h1>
+      <p class="subhead">{state.notes} Enter your salary or hourly wage below to see your net pay per paycheck.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>{state.name} Paycheck Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label">Pay type</label>
+          <select id="payType">
+            <option value="salary">Salary</option>
+            <option value="hourly">Hourly</option>
+          </select>
+        </div>
+        <div id="salaryField">
+          <div class="field">
+            <label class="field-label">Annual salary ($)</label>
+            <input type="number" id="salary" value="75000" />
+          </div>
+        </div>
+        <div id="hourlyField" style="display:none;">
+          <div class="field-grid">
+            <div class="field">
+              <label class="field-label">Hourly rate ($)</label>
+              <input type="number" id="hourlyRate" value="35" step="0.5" />
+            </div>
+            <div class="field">
+              <label class="field-label">Hours/week</label>
+              <input type="number" id="hoursPerWeek" value="40" />
+            </div>
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label">Pay frequency</label>
+            <select id="payFreq">
+              <option value="weekly">Weekly (52/year)</option>
+              <option value="biweekly" selected>Biweekly (26/year)</option>
+              <option value="semimonthly">Semi-monthly (24/year)</option>
+              <option value="monthly">Monthly (12/year)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label">Filing status</label>
+            <select id="filingStatus">
+              <option value="single">Single</option>
+              <option value="married">Married filing jointly</option>
+              <option value="head">Head of household</option>
+            </select>
+          </div>
+        </div>
+        <input type="hidden" id="stateTaxRateData" value={state.stateTaxRate} />
+        <div class="field">
+          <label class="field-label">State</label>
+          <input type="text" id="stateDisplay" value={state.name} readonly style="background:var(--bg-light);font-weight:600;" />
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter your pay details to calculate net pay.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How to calculate your {state.name} take-home pay</h2>
+      <p>Your take-home pay in {state.name} is your gross income minus federal income tax, FICA taxes (Social Security and Medicare), and {state.hasNoIncomeTax ? 'no state income tax' : `${state.name} state income tax`}. This calculator uses the {year} federal tax brackets, standard deduction, and {state.hasNoIncomeTax ? 'excludes state income tax' : `${state.name}'s ${(state.stateTaxRate * 100).toFixed(1)}% tax rate`} to estimate your net pay per paycheck.</p>
+      <p>{taxDesc} For the most accurate estimate, consult your payroll department or a tax professional.</p>
+
+      <h2>{state.name} income tax explained</h2>
+      <p>{state.notes}</p>
+      {state.hasNoIncomeTax ? (
+        <p>Since {state.name} does not collect a state income tax, your only payroll tax deductions are federal income tax and FICA. This means your take-home pay is higher than in states with an income tax. {state.name} is one of nine states (Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, and Wyoming) with no state income tax on wages.</p>
+      ) : (
+        <p>{state.name}'s state income tax rate of {(state.stateTaxRate * 100).toFixed(1)}% applies to your taxable income. Depending on your income level and filing status, you may owe slightly more or less than this rate due to progressive tax brackets and deductions. Some cities and counties in {state.name} may also impose local income taxes.</p>
+      )}
+
+      <h2>Federal taxes that apply in {state.name}</h2>
+      <p>All workers in {state.name} pay the same federal taxes. Federal income tax uses seven progressive brackets (10%, 12%, 22%, 24%, 32%, 35%, and 37%) applied to your income after the standard deduction (${year === 2025 ? '$14,600 for single filers, $29,200 for married couples filing jointly, and $21,900 for heads of household' : 'based on your filing status'}).</p>
+      <p>FICA taxes include Social Security (6.2% on wages up to $168,600 in {year}) and Medicare (1.45% on all wages). If you earn over $200,000 ($250,000 married filing jointly), you also pay an additional 0.9% Medicare surtax. Self-employed individuals pay both the employer and employee portions (15.3% total).</p>
+
+      <h2>Factors that affect your {state.name} paycheck</h2>
+      <p>Several factors beyond income taxes affect your net pay: pre-tax deductions like 401(k) contributions, health insurance premiums, and flexible spending accounts (FSAs) reduce your taxable income. Post-tax deductions like Roth IRA contributions do not affect your current tax bill but reduce your take-home pay.</p>
+      <p>Your W-4 withholding allowances determine how much federal tax is withheld from each paycheck. If you consistently receive large refunds, you may want to adjust your W-4 to increase your per-paycheck take-home pay instead of waiting for a refund.</p>
+
+      <div class="state-facts">
+        <h2>{state.name} income tax — what you need to know</h2>
+        <p>{state.notes}</p>
+        <ul>
+          {state.uniqueFacts.map(fact => <li>{fact}</li>)}
+        </ul>
+        {state.localTaxNote && <p><strong>Local taxes:</strong> {state.localTaxNote}</p>}
+        <p>
+          <strong>Official source:</strong>
+          <a href={state.officialSource} rel="nofollow noopener" target="_blank">
+            {state.officialSourceName}
+          </a>
+        </p>
+        <p><strong>State filing deadline:</strong> {state.filingDeadline}</p>
+        <p><strong>Standard deduction:</strong> {state.stateStandardDeduction}</p>
+      </div>
+
+      <div class="sources">
+        <h3>Sources</h3>
+        <ul>
+          <li><a href="https://www.irs.gov/pub/irs-pdf/p15t.pdf" rel="nofollow noopener" target="_blank">IRS Publication 15-T — Federal Income Tax Withholding Methods</a></li>
+          <li><a href="https://www.ssa.gov/oact/cola/cbb.html" rel="nofollow noopener" target="_blank">Social Security Administration — Contribution and Benefit Base</a></li>
+          <li>State tax rates sourced from each state's department of revenue (2025)</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="faq-section">
+      <h2>Frequently asked questions about {state.name} paycheck calculations</h2>
+      <div class="faq-list">
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <h3>{faq.name}</h3>
+            <p>{faq.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  </fragment>
+</Tool>
+
+<script>
+const stateTaxRate = parseFloat(document.getElementById('stateTaxRateData').value);
+
+const fedBrackets = {
+  single: [[0,11600,10],[11600,47150,12],[47150,100525,22],[100525,191950,24],[191950,243725,32],[243725,609350,35],[609350,Infinity,37]],
+  married: [[0,23200,10],[23200,94300,12],[94300,201050,22],[201050,383900,24],[383900,487450,32],[487450,731200,35],[731200,Infinity,37]],
+  head: [[0,16550,10],[16550,63100,12],[63100,100500,22],[100500,191950,24],[191950,243700,32],[243700,609350,35],[609350,Infinity,37]]
+};
+const stdDeduction = { single: 14600, married: 29200, head: 21900 };
+
+function calcFedTax(income, status) {
+  const ded = stdDeduction[status];
+  const taxable = Math.max(0, income - ded);
+  let tax = 0;
+  const brackets = fedBrackets[status];
+  for (const [min, max, rate] of brackets) {
+    if (taxable > min) {
+      const inBracket = Math.min(taxable, max) - min;
+      tax += inBracket * rate / 100;
+    }
+  }
+  return tax;
+}
+
+function calculate() {
+  const type = document.getElementById('payType').value;
+  const freq = document.getElementById('payFreq').value;
+  const status = document.getElementById('filingStatus').value;
+
+  let annual = 0;
+  if (type === 'salary') {
+    annual = parseFloat(document.getElementById('salary').value) || 0;
+  } else {
+    const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
+    const hours = parseFloat(document.getElementById('hoursPerWeek').value) || 40;
+    annual = rate * hours * 52;
+  }
+
+  const fedTax = calcFedTax(annual, status);
+  const fica = annual * 0.0765;
+  const stateTaxAmount = annual * stateTaxRate;
+  const totalTax = fedTax + fica + stateTaxAmount;
+  const netAnnual = annual - totalTax;
+
+  const freqMap = { weekly: 52, biweekly: 26, semimonthly: 24, monthly: 12 };
+  const perFreq = freqMap[freq];
+
+  const stateLabel = stateTaxRate > 0 ? (stateTaxRate * 100).toFixed(1) + '%' : '0% (no income tax)';
+
+  var resultHtml = '<div class="metric-grid">';
+  resultHtml += '<div class="metric-card">';
+  resultHtml += '<div class="result-number">$' + (netAnnual / perFreq).toFixed(2) + '</div>';
+  resultHtml += '<div class="result-label">Net per ' + freq + '</div>';
+  resultHtml += '</div>';
+  resultHtml += '<div class="metric-card">';
+  resultHtml += '<div class="result-number">$' + (annual / perFreq).toFixed(2) + '</div>';
+  resultHtml += '<div class="result-label">Gross per ' + freq + '</div>';
+  resultHtml += '</div>';
+  resultHtml += '<div class="metric-card">';
+  resultHtml += '<div class="result-number" style="color:var(--danger);">$' + ((fedTax + fica + stateTaxAmount) / perFreq).toFixed(2) + '</div>';
+  resultHtml += '<div class="result-label">Total tax per ' + freq + '</div>';
+  resultHtml += '</div>';
+  resultHtml += '</div>';
+  resultHtml += '<div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border-light);">';
+  resultHtml += '<table style="width:100%;border-collapse:collapse;font-size:14px;">';
+  resultHtml += '<tr><td style="padding:6px 0;">Federal income tax</td><td style="text-align:right;font-weight:600;">$' + fedTax.toFixed(2) + '</td><td style="text-align:right;color:var(--text-muted);">' + (fedTax/annual*100).toFixed(1) + '%</td></tr>';
+  resultHtml += '<tr><td style="padding:6px 0;">FICA (Social Security + Medicare)</td><td style="text-align:right;font-weight:600;">$' + fica.toFixed(2) + '</td><td style="text-align:right;color:var(--text-muted);">7.65%</td></tr>';
+  resultHtml += '<tr><td style="padding:6px 0;">State income tax</td><td style="text-align:right;font-weight:600;">$' + stateTaxAmount.toFixed(2) + '</td><td style="text-align:right;color:var(--text-muted);">' + stateLabel + '</td></tr>';
+  resultHtml += '<tr style="border-top:2px solid var(--border);"><td style="padding:8px 0;font-weight:700;">Net annual income</td><td style="text-align:right;font-weight:700;">$' + netAnnual.toFixed(2) + '</td><td></td></tr>';
+  resultHtml += '</table>';
+  resultHtml += '</div>';
+  document.getElementById('resultArea').innerHTML = resultHtml;
+}
+
+document.getElementById('payType').addEventListener('change', function() {
+  const isSalary = this.value === 'salary';
+  document.getElementById('salaryField').style.display = isSalary ? '' : 'none';
+  document.getElementById('hourlyField').style.display = isSalary ? 'none' : '';
+  calculate();
+});
+['payType','salary','hourlyRate','hoursPerWeek','payFreq','filingStatus'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', calculate);
+});
+calculate();
+</script>

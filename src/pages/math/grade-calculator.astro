@@ -1,0 +1,181 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Grade Calculator",
+  "description": "Calculate what grade you need on the final exam or what your current grade is based on weighted assignments.",
+  "url": "https://freelancertools.io/math/grade-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Grade Calculator — Final Exam & Current Grade"
+  description="Calculate what grade you need on your final exam, or compute your current grade from weighted assignments. Free online grade calculator."
+  canonicalUrl="https://freelancertools.io/math/grade-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Grade Calculator' }]}
+  relatedTools={[
+    { name: 'GPA Calculator', href: '/math/gpa-calculator/', category: 'Math' },
+    { name: 'Percentage Calculator', href: '/math/percentage-calculator/', category: 'Math' },
+    { name: 'Age Calculator', href: '/math/age-calculator/', category: 'Math' },
+    { name: 'Scientific Calculator', href: '/math/scientific-calculator/', category: 'Math' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Grade Calculator</h1>
+      <p class="subhead">Two modes: find out what score you need on the final exam, or calculate your current grade from assignments.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Grade Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label">Mode</label>
+          <select id="mode">
+            <option value="final">What do I need on the final?</option>
+            <option value="current">What is my current grade?</option>
+          </select>
+        </div>
+        <div id="finalMode">
+          <div class="field-grid">
+            <div class="field">
+              <label class="field-label"><KpiTooltip label="Current grade (%)" tip="Your current grade before the final exam." /></label>
+              <input type="number" id="currentGrade" value="85" />
+            </div>
+            <div class="field">
+              <label class="field-label"><KpiTooltip label="Final exam weight (%)" tip="How much the final exam counts toward your final grade." /></label>
+              <input type="number" id="finalWeight" value="20" />
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Desired grade (%)" tip="The grade you want to end up with." /></label>
+            <input type="number" id="desiredGrade" value="90" />
+          </div>
+        </div>
+        <div id="currentMode" style="display:none;">
+          <div id="assignments"></div>
+          <button id="addAssignment" class="btn btn-secondary" style="width:100%;margin-top:8px;">+ Add assignment</button>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter your grades to calculate.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>Using the grade calculator</h2>
+      <p>This calculator has two modes. "What do I need on the final?" tells you the minimum score required on your final exam to achieve a desired overall grade. "What is my current grade?" lets you add all your assignments with their weights to compute your running total.</p>
+      <p>Understanding weighted grades is important. If your final is worth 20% of your grade, it has less impact than assignments worth 40%. This calculator handles weighted grading correctly so you know exactly where you stand.</p>
+      <h2>Tips for final exams</h2>
+      <p>If the calculator says you need a score above 100% to get your desired grade, your goal may be out of reach for this grading period — focus on doing your best. If it says you need below 0%, you have already secured your target grade. Use this information to prioritize your study time effectively across all your classes.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+let assignCount = 0;
+
+document.getElementById('mode').addEventListener('change', function() {
+  const isFinal = this.value === 'final';
+  document.getElementById('finalMode').style.display = isFinal ? '' : 'none';
+  document.getElementById('currentMode').style.display = isFinal ? 'none' : '';
+  if (!isFinal) calculate();
+});
+
+function addAssignmentRow(name, grade, weight) {
+  assignCount++;
+  const div = document.createElement('div');
+  div.style.cssText = 'display:grid;grid-template-columns:1fr 1fr 80px auto;gap:8px;margin-bottom:8px;align-items:end;';
+  div.innerHTML = `
+    <div class="field" style="margin:0;"><label class="field-label" style="font-size:10px;">Name</label><input type="text" class="a-name" value="${name}" /></div>
+    <div class="field" style="margin:0;"><label class="field-label" style="font-size:10px;">Grade (%)</label><input type="number" class="a-grade" value="${grade}" /></div>
+    <div class="field" style="margin:0;"><label class="field-label" style="font-size:10px;">Weight</label><input type="number" class="a-weight" value="${weight}" step="any" /></div>
+    <button class="btn btn-secondary remove-a" style="padding:8px 12px;margin-bottom:0;font-size:13px;">X</button>
+  `;
+  document.getElementById('assignments').appendChild(div);
+  div.querySelector('.remove-a').addEventListener('click', function() { div.remove(); calcCurrent(); });
+  div.querySelectorAll('input').forEach(el => el.addEventListener('input', calcCurrent));
+  calcCurrent();
+}
+
+function calcCurrent() {
+  const rows = document.querySelectorAll('#assignments .course-row');
+  let totalWeighted = 0, totalWeight = 0;
+  document.querySelectorAll('.course-row').forEach(row => {
+    const g = parseFloat(row.querySelector('.a-grade').value) || 0;
+    const w = parseFloat(row.querySelector('.a-weight').value) || 0;
+    totalWeighted += g * w;
+    totalWeight += w;
+  });
+  const grade = totalWeight > 0 ? totalWeighted / totalWeight : 0;
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">${grade.toFixed(2)}%</div>
+        <div class="result-label">Current grade</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${totalWeight}%</div>
+        <div class="result-label">Total weight assigned</div>
+      </div>
+    </div>
+  `;
+}
+
+document.getElementById('addAssignment').addEventListener('click', function() {
+  const row = document.createElement('div');
+  row.className = 'course-row';
+  row.style.cssText = 'display:grid;grid-template-columns:1fr 1fr 80px auto;gap:8px;margin-bottom:8px;align-items:end;';
+  row.innerHTML = `
+    <div class="field" style="margin:0;"><label class="field-label" style="font-size:10px;">Name</label><input type="text" class="a-name" value="" /></div>
+    <div class="field" style="margin:0;"><label class="field-label" style="font-size:10px;">Grade (%)</label><input type="number" class="a-grade" value="90" /></div>
+    <div class="field" style="margin:0;"><label class="field-label" style="font-size:10px;">Weight</label><input type="number" class="a-weight" value="10" step="any" /></div>
+    <button class="btn btn-secondary remove-a" style="padding:8px 12px;margin-bottom:0;font-size:13px;">X</button>
+  `;
+  document.getElementById('assignments').appendChild(row);
+  row.querySelector('.remove-a').addEventListener('click', function() { row.remove(); calcCurrent(); });
+  row.querySelectorAll('input').forEach(el => el.addEventListener('input', calcCurrent));
+});
+
+function calculate() {
+  if (document.getElementById('mode').value === 'final') {
+    const current = parseFloat(document.getElementById('currentGrade').value) || 0;
+    const weight = parseFloat(document.getElementById('finalWeight').value) || 0;
+    const desired = parseFloat(document.getElementById('desiredGrade').value) || 0;
+    const needed = (desired - current * (1 - weight / 100)) / (weight / 100);
+    let verdict = '';
+    if (needed > 100) verdict = 'Very challenging — consider adjusting your goal.';
+    else if (needed <= 0) verdict = 'You have already secured this grade.';
+    else if (needed <= 60) verdict = 'Easily achievable with basic preparation.';
+    else if (needed <= 80) verdict = 'Achievable with consistent study.';
+    else verdict = 'Will require strong performance.';
+    document.getElementById('resultArea').innerHTML = `
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="result-number" style="color:${needed > 100 ? 'var(--danger)' : needed <= 0 ? 'var(--success)' : 'inherit'};">${needed.toFixed(2)}%</div>
+          <div class="result-label">Grade needed on final</div>
+        </div>
+      </div>
+      <p style="margin-top:12px;font-size:14px;color:var(--text-secondary);">${verdict}</p>
+    `;
+  } else {
+    calcCurrent();
+  }
+}
+
+document.querySelectorAll('#finalMode input').forEach(el => el.addEventListener('input', calculate));
+addAssignmentRow('Homework', 90, 20);
+addAssignmentRow('Midterm', 85, 30);
+</script>

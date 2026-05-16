@@ -1,0 +1,136 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free VAT / GST Calculator",
+  "description": "Calculate VAT or GST amounts. Add or remove VAT from any amount. Includes country presets for common rates.",
+  "url": "https://freelancertools.io/finance/vat-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="VAT/GST Calculator — Add or Remove"
+  description="Calculate VAT and GST amounts instantly. Add VAT to a net price or remove VAT from a gross price. Country presets included."
+  canonicalUrl="https://freelancertools.io/finance/vat-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'VAT/GST Calculator' }]}
+  relatedTools={[
+    { name: 'Currency Converter', href: '/finance/currency-converter/', category: 'Finance' },
+    { name: 'Discount Calculator', href: '/math/discount-calculator/', category: 'Math' },
+    { name: 'Paycheck Calculator', href: '/finance/paycheck-calculator/', category: 'Finance' },
+    { name: 'Budget Planner', href: '/finance/budget-planner/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>VAT / GST Calculator</h1>
+      <p class="subhead">Add or remove VAT/GST from any amount. Quick country presets for common tax rates worldwide.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>VAT / GST Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label">Country preset</label>
+          <select id="countryPreset">
+            <option value="20">United Kingdom — 20%</option>
+            <option value="20">EU Standard — 20%</option>
+            <option value="10">Australia GST — 10%</option>
+            <option value="5">Canada GST — 5%</option>
+            <option value="19">Germany — 19%</option>
+            <option value="20">France — 20%</option>
+            <option value="22">Italy — 22%</option>
+            <option value="21">Spain — 21%</option>
+            <option value="25">Sweden — 25%</option>
+            <option value="0">No VAT (custom rate)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label">Direction</label>
+          <select id="direction">
+            <option value="add">Add VAT to net price</option>
+            <option value="remove">Remove VAT from gross price</option>
+          </select>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label" id="amountLabel">Net price ($)</label>
+            <input type="number" id="amount" value="100" step="any" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="VAT rate (%)" tip="The VAT/GST percentage rate." /></label>
+            <input type="number" id="rate" value="20" step="0.1" />
+          </div>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter amount and rate to calculate VAT.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How VAT / GST works</h2>
+      <p>Value Added Tax (VAT) and Goods and Services Tax (GST) are consumption taxes applied to goods and services. Businesses collect the tax on behalf of the government. In most countries, businesses can reclaim the VAT they pay on business expenses, so the tax ultimately falls on the end consumer.</p>
+      <p>Rates vary widely by country: EU countries typically charge 17-27%, the UK charges 20%, Australia charges 10%, and Canada charges 5% GST (plus provincial taxes). Some items like food, children's clothing, and books may be taxed at reduced rates or zero-rated.</p>
+      <h2>Add vs remove VAT</h2>
+      <p>"Add VAT" takes a net (pre-tax) price and calculates the gross (tax-inclusive) price. "Remove VAT" takes a gross price and extracts the VAT amount. Businesses use the remove mode when they need to calculate the net amount for accounting purposes.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+document.getElementById('countryPreset').addEventListener('change', function() {
+  const rate = parseInt(this.value) || 0;
+  document.getElementById('rate').value = rate;
+  calculate();
+});
+document.getElementById('direction').addEventListener('change', function() {
+  document.getElementById('amountLabel').textContent = this.value === 'add' ? 'Net price ($)' : 'Gross price ($)';
+  calculate();
+});
+
+function calculate() {
+  const amount = parseFloat(document.getElementById('amount').value) || 0;
+  const rate = parseFloat(document.getElementById('rate').value) || 0;
+  const add = document.getElementById('direction').value === 'add';
+  let vat, gross, net;
+  if (add) {
+    net = amount;
+    vat = net * (rate / 100);
+    gross = net + vat;
+  } else {
+    gross = amount;
+    net = gross / (1 + rate / 100);
+    vat = gross - net;
+  }
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">$${net.toFixed(2)}</div>
+        <div class="result-label">Net amount</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="color:var(--danger);">$${vat.toFixed(2)}</div>
+        <div class="result-label">VAT / GST (${rate}%)</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${gross.toFixed(2)}</div>
+        <div class="result-label">Gross amount</div>
+      </div>
+    </div>
+  `;
+}
+['amount','rate','countryPreset','direction'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

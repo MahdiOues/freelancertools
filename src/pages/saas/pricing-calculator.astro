@@ -1,0 +1,136 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free SaaS Pricing Calculator",
+  "description": "Model your SaaS pricing strategy. Calculate MRR, ARR, LTV, and LTV:CAC ratio.",
+  "url": "https://freelancertools.io/saas/pricing-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free SaaS Pricing Calculator"
+  description="Model your SaaS pricing strategy. Calculate MRR, ARR, LTV, and LTV:CAC ratio to validate your pricing model."
+  canonicalUrl="https://freelancertools.io/saas/pricing-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'SaaS', href: '/saas/' }, { label: 'Pricing Calculator' }]}
+  relatedTools={[
+    { name: 'MRR Calculator', href: '/saas/mrr-calculator/', category: 'SaaS' },
+    { name: 'ROI Calculator', href: '/saas/roi-calculator/', category: 'SaaS' },
+    { name: 'Ad Profitability Calculator', href: '/marketing/ad-profit-calculator/', category: 'Marketing' },
+    { name: 'Freelancer Rate Calculator', href: '/freelancer/rate-calculator/', category: 'Freelancer' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>SaaS Pricing Calculator</h1>
+      <p class="subhead">Model your SaaS metrics. Understand MRR, ARR, LTV, and whether your unit economics are healthy.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>SaaS Pricing Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Monthly ad spend ($)" tip="How much you spend on paid acquisition per month across all channels." /></label>
+          <input type="number" id="adSpend" value="5000" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Paying customers" tip="Your current total number of active paying subscribers." /></label>
+          <input type="number" id="customers" value="200" />
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Avg subscription price ($)" tip="The average monthly revenue per customer. If you have multiple plans, use a weighted average." /></label>
+          <input type="number" id="price" value="49" />
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Monthly churn rate (%)" tip="The percentage of customers who cancel each month. A 5% churn means 5 out of 100 customers leave every month." /></label>
+          <input type="number" id="churn" value="5" step="0.1" />
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label"><KpiTooltip label="Customer acquisition cost ($)" tip="The total cost to acquire one new paying customer — ad spend, sales, and marketing costs divided by new customers gained." /></label>
+        <input type="number" id="cac" value="150" />
+      </div>
+      <button class="btn btn-primary btn-full" id="calculateBtn">Calculate</button>
+
+      <div id="resultArea" class="result-area">
+        <div class="result-empty">Enter your metrics and click Calculate to see results.</div>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>Understanding SaaS metrics</h2>
+      <p>MRR (Monthly Recurring Revenue) is the lifeblood of any subscription business. ARR is simply MRR multiplied by 12. LTV (Lifetime Value) estimates how much revenue one customer generates before churning.</p>
+      <p>The LTV:CAC ratio is the most important health metric for SaaS businesses. A ratio above 3 means you are spending efficiently on customer acquisition. Between 1 and 3 means you need improvement. Below 1 means you lose money on every customer.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calculate() {
+  const adSpend = parseFloat(document.getElementById('adSpend').value) || 0;
+  const customers = parseFloat(document.getElementById('customers').value) || 0;
+  const price = parseFloat(document.getElementById('price').value) || 0;
+  const churn = parseFloat(document.getElementById('churn').value) || 0;
+  const cac = parseFloat(document.getElementById('cac').value) || 0;
+
+  const mrr = customers * price;
+  const arr = mrr * 12;
+  const ltv = price / (churn / 100);
+  const ltvCac = ltv / cac;
+  const cacPayback = cac / (price * (1 - churn / 100));
+  const burnRatio = adSpend / mrr;
+
+  let ltvClass, ltvLabel;
+  if (ltvCac > 3) { ltvClass = 'good'; ltvLabel = 'Healthy'; }
+  else if (ltvCac >= 1) { ltvClass = 'warn'; ltvLabel = 'Borderline'; }
+  else { ltvClass = 'bad'; ltvLabel = 'Unsustainable'; }
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">$${mrr.toLocaleString()}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Monthly MRR<button class="kpi-info-btn" aria-label="What is Monthly MRR?" data-tip="Monthly Recurring Revenue — the total subscription revenue you collect every month. The core pulse metric for any subscription business." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Monthly Recurring Revenue — the total subscription revenue you collect every month. The core pulse metric for any subscription business.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${arr.toLocaleString()}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Annual ARR<button class="kpi-info-btn" aria-label="What is Annual ARR?" data-tip="Annual Recurring Revenue — MRR × 12. The standard top-line number used to measure SaaS scale and compare companies." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Annual Recurring Revenue — MRR × 12. The standard top-line number used to measure SaaS scale and compare companies.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">$${ltv.toFixed(0)}</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">LTV per customer<button class="kpi-info-btn" aria-label="What is LTV per customer?" data-tip="Customer Lifetime Value — the total revenue one average customer generates before they cancel. Higher LTV means you can afford to spend more to acquire each customer." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Customer Lifetime Value — the total revenue one average customer generates before they cancel. Higher LTV means you can afford to spend more to acquire each customer.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="font-size: 22px;">${ltvCac.toFixed(1)}x <span class="status-badge ${ltvClass}" style="font-size: 11px; vertical-align: middle;">${ltvLabel}</span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">LTV:CAC ratio<button class="kpi-info-btn" aria-label="What is LTV:CAC ratio?" data-tip="How many dollars you earn per dollar spent acquiring a customer. Above 3x is healthy, 1–3x is borderline, below 1x means you're losing money on every customer." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">How many dollars you earn per dollar spent acquiring a customer. Above 3x is healthy, 1–3x is borderline, below 1x means you're losing money on every customer.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${cacPayback.toFixed(1)} mo</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">CAC payback period<button class="kpi-info-btn" aria-label="What is CAC payback period?" data-tip="How many months it takes to recover what you spent to acquire one customer. Under 12 months is strong; over 18 months is a cash flow risk." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">How many months it takes to recover what you spent to acquire one customer. Under 12 months is strong; over 18 months is a cash flow risk.</span></span></div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${burnRatio.toFixed(2)}x</div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Burn vs MRR<button class="kpi-info-btn" aria-label="What is Burn vs MRR?" data-tip="Your monthly expenses divided by your MRR. Below 1x means revenue covers costs; above 1x means you're burning cash faster than you're earning it." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your monthly expenses divided by your MRR. Below 1x means revenue covers costs; above 1x means you're burning cash faster than you're earning it.</span></span></div>
+      </div>
+    </div>
+  `;
+}
+
+document.getElementById('calculateBtn').addEventListener('click', calculate);
+calculate();
+</script>

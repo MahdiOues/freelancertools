@@ -1,0 +1,129 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Calories Burned Calculator",
+  "description": "Estimate calories burned for 40+ activities based on your weight and activity duration. Uses MET values.",
+  "url": "https://freelancertools.io/health/calories-burned/",
+  "applicationCategory": "HealthApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Calories Burned Calculator — Activities"
+  description="Calculate how many calories you burn during exercise and daily activities. Enter your weight and duration for any of 40+ activities."
+  canonicalUrl="https://freelancertools.io/health/calories-burned/"
+  schema={schema}
+  breadcrumb={[{ label: 'Health', href: '/health/' }, { label: 'Calories Burned Calculator' }]}
+  relatedTools={[
+    { name: 'TDEE Calculator', href: '/health/tdee-calculator/', category: 'Health' },
+    { name: 'BMI Calculator', href: '/health/bmi-calculator/', category: 'Health' },
+    { name: 'Water Intake Calculator', href: '/health/water-intake/', category: 'Health' },
+    { name: 'Sleep Calculator', href: '/health/sleep-calculator/', category: 'Health' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Calories Burned Calculator</h1>
+      <p class="subhead">Find out how many calories you burn during different activities based on your weight and time spent.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Calories Burned Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label">Activity</label>
+            <select id="activity"></select>
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Weight (kg)" tip="Your body weight in kilograms." /></label>
+            <input type="number" id="weight" value="70" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Duration (minutes)" tip="How long you spent doing the activity." /></label>
+          <input type="number" id="duration" value="30" />
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Select an activity and enter your details.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>How calories burned are calculated</h2>
+      <p>This calculator uses MET (Metabolic Equivalent of Task) values from the Compendium of Physical Activities. One MET is the energy cost of sitting quietly. An activity with a MET value of 4 means you're burning 4 times as many calories as at rest. The formula is: Calories = MET × weight(kg) × time(hours).</p>
+      <p>For example, running at 6 mph has a MET of 9.8. A 70kg person running for 30 minutes burns: 9.8 × 70 × 0.5 = 343 calories.</p>
+      <h2>Factors that affect calorie burn</h2>
+      <p>Your actual calorie burn depends on your weight, body composition, intensity, fitness level, and efficiency at the activity. Heavier people burn more calories doing the same activity. Muscular people burn more calories at rest. The calculator provides estimates — actual results vary.</p>
+      <p>For informational purposes only.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+const activities = {
+  'Running 6 mph (10 min/mile)': 9.8,'Running 8 mph (7.5 min/mile)': 11.8,'Running 10 mph (6 min/mile)': 14.5,
+  'Walking 2 mph': 2.8,'Walking 3 mph': 3.5,'Walking 4 mph': 5.0,
+  'Cycling 12-14 mph': 8.0,'Cycling 14-16 mph': 10.0,'Cycling leisurely': 4.0,
+  'Swimming laps (moderate)': 8.0,'Swimming leisurely': 6.0,
+  'Weightlifting (moderate)': 5.0,'Weightlifting (intense)': 8.0,
+  'Yoga': 3.0,'Pilates': 3.5,'Stretching': 2.5,
+  'HIIT workout': 10.0,'Circuit training': 8.0,'CrossFit': 10.0,
+  'Jumping rope': 10.0,'Rowing machine': 7.0,'Elliptical': 5.0,
+  'Hiking': 6.0,'Climbing stairs': 8.0,'Gardening': 4.0,
+  'House cleaning': 3.5,'Cooking': 2.5,'Shopping': 2.5,
+  'Dancing (ballroom)': 4.5,'Dancing (energetic)': 7.5,
+  'Basketball': 6.5,'Soccer': 7.0,'Tennis': 7.5,'Golf (walking)': 4.5,
+  'Skiing (downhill)': 6.0,'Snowboarding': 5.5,'Ice skating': 7.0,
+  'Boxing (punching bag)': 7.0,'Martial arts': 10.0,
+  'Standing': 1.5,'Sitting (reading)': 1.3,'Sleeping': 0.95
+};
+
+function populateActivities() {
+  const sel = document.getElementById('activity');
+  Object.entries(activities).forEach(([name, met]) => {
+    sel.innerHTML += `<option value="${met}">${name}</option>`;
+  });
+}
+populateActivities();
+
+function calculate() {
+  const met = parseFloat(document.getElementById('activity').value) || 1;
+  const weight = parseFloat(document.getElementById('weight').value) || 70;
+  const duration = parseFloat(document.getElementById('duration').value) || 0;
+  const hours = duration / 60;
+  const calories = met * weight * hours;
+  const perMinute = hours > 0 ? calories / duration : 0;
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">${Math.round(calories)}</div>
+        <div class="result-label">Total calories burned</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${perMinute.toFixed(1)}</div>
+        <div class="result-label">Calories per minute</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number" style="font-size:1rem;">MET ${met}</div>
+        <div class="result-label">Activity intensity</div>
+      </div>
+    </div>
+  `;
+}
+['activity','weight','duration'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

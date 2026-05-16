@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from 'astro:content';
+import Blog from '../../layouts/Blog.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const wordCount = post.body.split(/\s+/).length;
+const readTime = Math.ceil(wordCount / 200);
+---
+
+<Blog
+  title={post.data.title}
+  description={post.data.description}
+  canonicalUrl={`https://freelancertools.io/blog/${post.id}/`}
+  date={post.data.date}
+  category={post.data.category}
+  readTime={readTime}
+  relatedTool={post.data.relatedTool}
+  relatedToolName={post.data.relatedToolName}
+>
+  <Content />
+</Blog>

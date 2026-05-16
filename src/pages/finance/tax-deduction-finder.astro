@@ -1,0 +1,121 @@
+---
+import Tool from '../../layouts/Tool.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Tax Deduction Finder",
+  "description": "Answer a few questions to discover which tax deductions you qualify for as a freelancer or small business owner.",
+  "url": "https://freelancertools.io/finance/tax-deduction-finder/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Tax Deduction Finder"
+  description="Answer a few quick questions to discover which tax deductions you qualify for as a freelancer or small business owner."
+  canonicalUrl="https://freelancertools.io/finance/tax-deduction-finder/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Tax Deduction Finder' }]}
+  relatedTools={[
+    { name: 'Credit Score Simulator', href: '/finance/credit-score-simulator/', category: 'Finance' },
+    { name: 'Loan Comparison Calculator', href: '/finance/loan-comparison/', category: 'Finance' },
+    { name: 'Freelancer Rate Calculator', href: '/freelancer/rate-calculator/', category: 'Freelancer' },
+    { name: 'Ad Profitability Calculator', href: '/marketing/ad-profit-calculator/', category: 'Marketing' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Tax Deduction Finder</h1>
+      <p class="subhead">Check off what applies to you and see which tax deductions you can claim. No submit button — results update live as you answer.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Tax Deduction Finder</h2>
+      </div>
+      <div class="calculator-card-body">
+      <p class="label" style="margin-bottom: 16px;">Answer honestly — results update live</p>
+      <div id="questions">
+        <div class="field">
+          <label><input type="checkbox" id="q1" /> Do you have a dedicated home office used exclusively for work?</label>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" id="q2" /> Do you pay for internet or phone service used for work?</label>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" id="q3" /> Do you purchase software or tools for your business?</label>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" id="q4" /> Do you have health insurance premiums?</label>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" id="q5" /> Do you travel for business (flights, hotels, meals)?</label>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" id="q6" /> Do you use your personal vehicle for business?</label>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" id="q7" /> Do you pay for continuing education or professional development?</label>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" id="q8" /> Do you contribute to a retirement account (SEP IRA, Solo 401k)?</label>
+        </div>
+      </div>
+
+      <div id="resultArea" class="result-area">
+        <div class="result-empty">Check any boxes that apply to see your potential deductions.</div>
+      </div>
+
+      <p style="margin-top: 20px; font-size: 13px; color: var(--ink-3);">This is not tax advice. Consult a qualified tax professional for your specific situation.</p>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>Common tax deductions for freelancers</h2>
+      <p>Freelancers and independent contractors can deduct many business expenses that employees cannot. The key is that expenses must be "ordinary and necessary" for your trade or business.</p>
+      <p>Keep receipts and records throughout the year. Many freelancers miss deductions simply because they forgot about an expense. This tool helps you identify which deductions to look into.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+const deductions = {
+  q1: { name: 'Home Office Deduction', desc: 'Deduct $5/sq. ft. (up to 300 sq. ft.) or actual expenses for your dedicated home office space.', range: '$1,500 - $5,000+' },
+  q2: { name: 'Internet & Phone', desc: 'Deduct the business portion of your internet and phone bills. Calculate based on percentage of business use.', range: '$500 - $1,500' },
+  q3: { name: 'Software & Tools', desc: 'Deduct the cost of software, apps, and online tools you use for your business. Includes SaaS subscriptions.', range: '$200 - $3,000+' },
+  q4: { name: 'Health Insurance Premiums', desc: 'Deduct self-employed health insurance premiums (medical, dental, vision) for yourself and dependents.', range: '$3,000 - $10,000+' },
+  q5: { name: 'Business Travel', desc: 'Deduct flights, hotels, rental cars, and 50% of business meals for overnight business travel.', range: '$1,000 - $10,000+' },
+  q6: { name: 'Vehicle Expenses', desc: 'Deduct either the standard mileage rate (67¢/mile in 2024) or actual vehicle expenses for business miles.', range: '$1,000 - $8,000+' },
+  q7: { name: 'Education & Training', desc: 'Deduct courses, workshops, conferences, books, and certifications that maintain or improve your skills.', range: '$200 - $3,000+' },
+  q8: { name: 'Retirement Contributions', desc: 'Deduct contributions to a SEP IRA (up to 25% of net earnings) or Solo 401k.', range: '$5,000 - $30,000+' },
+};
+
+function update() {
+  const checked = [];
+  let html = '';
+  for (let i = 1; i <= 8; i++) {
+    const el = document.getElementById('q' + i);
+    if (el && el.checked) {
+      const d = deductions['q' + i];
+      html += `
+        <div style="padding: 14px 0; border-bottom: 1px solid var(--border);">
+          <h3 style="font-size: 15px; margin-bottom: 4px;">${d.name}</h3>
+          <p style="font-size: 14px; margin-bottom: 4px;">${d.desc}</p>
+          <span style="font-size: 12px; color: var(--ink-3);">Typical range: ${d.range}</span>
+        </div>
+      `;
+    }
+  }
+  if (!html) {
+    html = '<div class="result-empty">Check any boxes that apply to see your potential deductions.</div>';
+  }
+  document.getElementById('resultArea').innerHTML = html;
+  }
+document.querySelectorAll('input[type="checkbox"]').forEach(el => el.addEventListener('change', update));
+</script>

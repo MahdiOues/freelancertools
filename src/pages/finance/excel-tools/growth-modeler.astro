@@ -1,0 +1,302 @@
+---
+import Tool from '../../../layouts/ToolWithExcel.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Growth Scenario Modeler",
+  "description": "Model revenue, savings, or investment growth under pessimistic, base, and optimistic scenarios. See a 30-year projection chart and year-by-year table.",
+  "url": "https://freelancertools.io/finance/excel-tools/growth-modeler/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between CAGR and annual growth rate?",
+      "acceptedAnswer": { "@type": "Answer", "text": "They are the same concept. CAGR (compound annual growth rate) is the term used when measuring historical growth. Annual growth rate is the term used when projecting future growth. Both describe the year-over-year percentage increase compounded over time." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I model negative growth (decline)?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Enter a negative percentage (e.g., -5) for the pessimistic or base scenario to model declining revenue or asset values." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the annual contribution field do?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It adds a fixed dollar amount to the value at the end of each year, after applying the growth rate. This models scenarios where you are adding to a base — new ARR sold each year, annual savings contributions, or new investment capital deployed annually." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I use this for a startup revenue model?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Enter your current ARR or revenue as the starting value. Use realistic growth rate assumptions for your stage. Add expected net new revenue per year as the annual contribution. The output is a 3-scenario revenue projection ready for an investor deck." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I export the data table to build a more detailed model?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Excel export includes all three scenario columns year by year. You can use this as the foundation of a more detailed financial model in Excel, adding rows for costs, margins, and other metrics." }
+    }
+  ]
+};
+---
+
+<Tool
+  title="Growth Scenario Modeler — 3 Scenarios"
+  description="Model revenue, savings, or investment growth under pessimistic, base, and optimistic scenarios. See a 30-year projection chart and year-by-year table. Free, no sign-up."
+  canonicalUrl="https://freelancertools.io/finance/excel-tools/growth-modeler/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Excel-Free Tools', href: '/finance/excel-tools/' }, { label: 'Growth Modeler' }]}
+  relatedTools={[
+    { name: 'Break-Even Analysis', href: '/finance/excel-tools/break-even/', category: 'Finance' },
+    { name: 'Amortization Table', href: '/finance/excel-tools/amortization-table/', category: 'Finance' },
+    { name: 'Financial Ratios', href: '/finance/excel-tools/financial-ratios/', category: 'Finance' },
+    { name: 'Chart Builder', href: '/finance/excel-tools/chart-builder/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Free Growth Scenario Modeler — Compound Growth with 3 Scenarios</h1>
+      <p class="subhead">Model revenue, investment, or savings growth under 3 scenarios (pessimistic, base, optimistic) over time. Outputs a multi-line chart and year-by-year table.</p>
+    </div>
+  </fragment>
+  <div class="tool-intro" style="max-width:720px;margin:0 auto 28px;">
+    <p>Enter a starting value and three growth rates — pessimistic, base, and optimistic — and get a 30-year compound growth projection with a multi-line chart and year-by-year table. Add an annual contribution to model savings plans, SaaS ARR growth, or revenue projections where you add to the base each year. Export as Excel or PDF for board decks and investor presentations.</p>
+  </div>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Compound Growth &amp; Scenario Modeler</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label">Starting Value ($)</label>
+          <input type="number" id="startValue" value="100000" min="0" step="1000" />
+        </div>
+        <div class="field">
+          <label class="field-label">Number of Years</label>
+          <input type="range" id="numYears" min="1" max="30" value="10" />
+          <span class="range-value" id="numYearsVal">10</span>
+        </div>
+        <div class="field">
+          <label class="field-label">Pessimistic Growth Rate (%)</label>
+          <input type="number" id="pessimisticRate" value="3" step="0.5" />
+        </div>
+        <div class="field">
+          <label class="field-label">Base Growth Rate (%)</label>
+          <input type="number" id="baseRate" value="8" step="0.5" />
+        </div>
+        <div class="field">
+          <label class="field-label">Optimistic Growth Rate (%)</label>
+          <input type="number" id="optimisticRate" value="15" step="0.5" />
+        </div>
+        <div class="field">
+          <label class="field-label">Annual Contribution ($) — optional</label>
+          <input type="number" id="annualAdd" value="0" min="0" step="1000" />
+        </div>
+      </div>
+      <button class="btn btn-primary btn-full" id="modelBtn">Run Growth Model</button>
+
+      <div style="margin-top:24px;">
+        <canvas id="chartCanvas" style="max-height:400px;"></canvas>
+      </div>
+
+      <div id="tableWrap" style="margin-top:24px;overflow-x:auto;display:none;">
+        <table id="growthTable" style="width:100%;border-collapse:collapse;font-size:12px;"></table>
+      </div>
+
+      <div id="exportRow" style="display:none;margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-secondary" onclick="exportTableXLSX('growthTable','growth_model.xlsx')">Export as Excel</button>
+        <button class="btn btn-primary" onclick="exportPDF('Growth Model','growthTable','chartCanvas')">Export as PDF</button>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>What is compound growth and why does it matter?</h2>
+      <p>Compound growth means each year's growth is calculated on the previous year's total, so the base gets larger every period. A $100,000 business growing at 20% per year is not worth $300,000 after 10 years (the linear result) — it is worth approximately $619,000 because each year's 20% applies to a larger base. This exponential effect is why small differences in growth rates produce dramatically different outcomes over time. CAGR — Compound Annual Growth Rate — is the standard way to describe this compound path in a single number.</p>
+
+      <h2>How to use scenario modelling in financial planning</h2>
+      <p>Scenario modelling is the standard approach for financial projections. Your base case uses your best estimate of future growth. Your pessimistic case uses a lower rate (or negative rate) to model a downturn. Your optimistic case models outperformance. The gap between pessimistic and optimistic is your uncertainty range — the wider it is, the more risk there is in your projections. Presenting three scenarios is standard practice in board decks, investor presentations, and strategic planning documents.</p>
+
+      <h2>Modelling SaaS ARR growth</h2>
+      <p>For a SaaS business, enter your current Annual Recurring Revenue as the starting value. Use growth rate assumptions appropriate for your stage: early-stage companies might use 40% pessimistic, 80% base, and 150% optimistic. Enter your expected net new ARR per year as the annual contribution — this models new sales added each year on top of the existing base. The output shows your ARR under all three scenarios, which is exactly what investors and board members want to see.</p>
+
+      <h2>Using this tool for personal savings and investment projections</h2>
+      <p>Enter your current savings balance as the starting value. Use conservative (4%), moderate (7%), and optimistic (10%) annual return assumptions based on historical market averages. Add your expected annual contribution — how much you plan to add to savings each year. The tool shows your portfolio value at retirement under all three scenarios, giving you a realistic range rather than a single uncertain number.</p>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <h3>What is the difference between CAGR and annual growth rate?</h3>
+        <p>They are the same concept. CAGR (compound annual growth rate) is the term used when measuring historical growth. Annual growth rate is the term used when projecting future growth. Both describe the year-over-year percentage increase compounded over time.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I model negative growth (decline)?</h3>
+        <p>Yes. Enter a negative percentage (e.g., -5) for the pessimistic or base scenario to model declining revenue or asset values.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What does the annual contribution field do?</h3>
+        <p>It adds a fixed dollar amount to the value at the end of each year, after applying the growth rate. This models scenarios where you are adding to a base — new ARR sold each year, annual savings contributions, or new investment capital deployed annually.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do I use this for a startup revenue model?</h3>
+        <p>Enter your current ARR or revenue as the starting value. Use realistic growth rate assumptions for your stage. Add expected net new revenue per year as the annual contribution. The output is a 3-scenario revenue projection ready for an investor deck.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I export the data table to build a more detailed model?</h3>
+        <p>Yes. The Excel export includes all three scenario columns year by year. You can use this as the foundation of a more detailed financial model in Excel, adding rows for costs, margins, and other metrics.</p>
+      </div>
+
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="/finance/excel-tools/financial-ratios/">Financial Ratio Calculator</a></li>
+        <li><a href="/finance/excel-tools/break-even/">Break-Even Analysis</a></li>
+        <li><a href="/saas/pricing-calculator/">SaaS Pricing Calculator</a></li>
+        <li><a href="/saas/roi-calculator/">ROI Calculator</a></li>
+        <li><a href="/finance/">Back to Finance Tools</a></li>
+      </ul>
+    </div>
+  </fragment>
+</Tool>
+
+<script is:inline src="/scripts/excel-tools-core.js"></script>
+<script>
+(function () {
+  const modelBtn = document.getElementById('modelBtn');
+  const tableWrap = document.getElementById('tableWrap');
+  const growthTable = document.getElementById('growthTable');
+  const exportRow = document.getElementById('exportRow');
+  const numYearsSlider = document.getElementById('numYears');
+  const numYearsVal = document.getElementById('numYearsVal');
+
+  numYearsSlider.addEventListener('input', () => {
+    numYearsVal.textContent = numYearsSlider.value;
+  });
+
+  function modelScenarios(start, years, rates, annualAdd) {
+    const scenarios = ['Pessimistic', 'Base', 'Optimistic'];
+    const results = {};
+
+    scenarios.forEach((name, i) => {
+      const rate = rates[i] / 100;
+      let val = start;
+      results[name] = [{ year: 0, value: val }];
+      for (let y = 1; y <= years; y++) {
+        val = val * (1 + rate) + annualAdd;
+        results[name].push({ year: y, value: val });
+      }
+    });
+
+    return results;
+  }
+
+  function model() {
+    const start = parseFloat(document.getElementById('startValue').value) || 0;
+    const years = parseInt(document.getElementById('numYears').value) || 10;
+    const rates = [
+      parseFloat(document.getElementById('pessimisticRate').value) || 0,
+      parseFloat(document.getElementById('baseRate').value) || 0,
+      parseFloat(document.getElementById('optimisticRate').value) || 0
+    ];
+    const annualAdd = parseFloat(document.getElementById('annualAdd').value) || 0;
+
+    if (!start) return;
+
+    const results = modelScenarios(start, years, rates, annualAdd);
+
+    const ctx = document.getElementById('chartCanvas').getContext('2d');
+    if (window._chartInstance) window._chartInstance.destroy();
+
+    const labels = Array.from({ length: years + 1 }, (_, i) => 'Yr ' + i);
+
+    window._chartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Optimistic',
+            data: results['Optimistic'].map(p => p.value),
+            borderColor: '#2563eb',
+            backgroundColor: 'rgba(37,99,235,0.05)',
+            borderWidth: 2,
+            tension: 0.3,
+            fill: '+1',
+            pointRadius: 0
+          },
+          {
+            label: 'Base',
+            data: results['Base'].map(p => p.value),
+            borderColor: '#888',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            borderDash: [4, 4],
+            tension: 0.3,
+            fill: false,
+            pointRadius: 0
+          },
+          {
+            label: 'Pessimistic',
+            data: results['Pessimistic'].map(p => p.value),
+            borderColor: '#dc2626',
+            backgroundColor: 'rgba(220,38,38,0.05)',
+            borderWidth: 2,
+            tension: 0.3,
+            fill: false,
+            pointRadius: 0
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => ctx.dataset.label + ': ' + fmtCurrency(ctx.parsed.y)
+            }
+          }
+        },
+        scales: {
+          x: { grid: { color: '#f0f0ec' } },
+          y: { grid: { color: '#f0f0ec' }, beginAtZero: true, ticks: { callback: (v) => '$' + (v / 1000).toFixed(0) + 'k' } }
+        }
+      }
+    });
+
+    tableWrap.style.display = 'block';
+    exportRow.style.display = 'flex';
+
+    const scenarios = ['Pessimistic', 'Base', 'Optimistic'];
+    let html = '<thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:2px solid #1a1a1a;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;">Year</th>';
+    scenarios.forEach(s => {
+      html += `<th style="text-align:right;padding:6px 8px;border-bottom:2px solid #1a1a1a;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;">${s}</th>`;
+    });
+    html += '<th style="text-align:right;padding:6px 8px;border-bottom:2px solid #1a1a1a;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;">Base CAGR</th></tr></thead><tbody>';
+
+    for (let y = 0; y <= years; y++) {
+      const baseStart = results['Base'][0].value;
+      const baseEnd = results['Base'][y].value;
+      const cagr = y > 0 ? (Math.pow(baseEnd / baseStart, 1 / y) - 1) * 100 : 0;
+      html += '<tr>' +
+        `<td style="padding:6px 8px;border-bottom:1px solid #e8e8e4;">${y}</td>` +
+        scenarios.map(s => `<td style="text-align:right;padding:6px 8px;border-bottom:1px solid #e8e8e4;">${fmtCurrency(results[s][y].value)}</td>`).join('') +
+        `<td style="text-align:right;padding:6px 8px;border-bottom:1px solid #e8e8e4;">${y > 0 ? fmtPct(cagr) : 'N/A'}</td>` +
+        '</tr>';
+    }
+    html += '</tbody>';
+    growthTable.innerHTML = html;
+  }
+
+  modelBtn.addEventListener('click', model);
+  model();
+})();
+</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between CAGR and annual growth rate?","acceptedAnswer":{"@type":"Answer","text":"They are the same concept. CAGR (compound annual growth rate) is the term used when measuring historical growth. Annual growth rate is the term used when projecting future growth. Both describe the year-over-year percentage increase compounded over time."}},{"@type":"Question","name":"Can I model negative growth (decline)?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter a negative percentage (e.g., -5) for the pessimistic or base scenario to model declining revenue or asset values."}},{"@type":"Question","name":"What does the annual contribution field do?","acceptedAnswer":{"@type":"Answer","text":"It adds a fixed dollar amount to the value at the end of each year, after applying the growth rate. This models scenarios where you are adding to a base \u2014 new ARR sold each year, annual savings contributions, or new investment capital deployed annually."}},{"@type":"Question","name":"How do I use this for a startup revenue model?","acceptedAnswer":{"@type":"Answer","text":"Enter your current ARR or revenue as the starting value. Use realistic growth rate assumptions for your stage. Add expected net new revenue per year as the annual contribution. The output is a 3-scenario revenue projection ready for an investor deck."}},{"@type":"Question","name":"Can I export the data table to build a more detailed model?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Excel export includes all three scenario columns year by year. You can use this as the foundation of a more detailed financial model in Excel, adding rows for costs, margins, and other metrics."}}]}</script>

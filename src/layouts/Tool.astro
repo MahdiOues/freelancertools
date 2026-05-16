@@ -1,0 +1,63 @@
+---
+import Page from './Page.astro';
+import AdZone from '../components/AdZone.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RelatedTools from '../components/RelatedTools.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+import MoneyPageExpansion from '../components/MoneyPageExpansion.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  breadcrumb: { label: string; href?: string }[];
+  relatedTools: { name: string; href: string; category: string }[];
+  category?: string;
+  categoryAccent?: string;
+  disclaimerType?: 'finance' | 'health' | 'legal' | 'tax';
+  lastUpdated?: string;
+}
+const props = Astro.props;
+const currentPath = Astro.url.pathname;
+const inferredDisclaimer =
+  props.disclaimerType ??
+  (currentPath.includes('/finance/paycheck-calculator/') || currentPath.includes('/finance/tax-deduction-finder/') ? 'tax' :
+  currentPath.startsWith('/finance/') ? 'finance' :
+  currentPath.startsWith('/health/') ? 'health' :
+  currentPath.startsWith('/legal/') ? 'legal' :
+  undefined);
+const lastUpdated = props.lastUpdated ?? 'January 2026';
+const breadcrumbItems = [{ label: 'Home', href: '/' }, ...props.breadcrumb];
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.label,
+    "item": `https://freelancertools.io${item.href ?? currentPath}`
+  }))
+};
+const schemaItems = [
+  ...(Array.isArray(props.schema) ? props.schema : props.schema ? [props.schema] : []),
+  breadcrumbSchema
+];
+---
+
+<Page title={props.title} description={props.description} canonicalUrl={props.canonicalUrl} schema={schemaItems}>
+  <slot name="head" slot="head" />
+  <div class="container">
+    <Breadcrumb items={props.breadcrumb} />
+    <slot name="hero" />
+    <p class="last-updated">Last updated: {lastUpdated}</p>
+    <AdZone size="leaderboard" />
+    <slot name="tool" />
+    <AdZone size="square" />
+    {inferredDisclaimer && <Disclaimer type={inferredDisclaimer} />}
+    <slot name="seo" />
+    <MoneyPageExpansion />
+    <RelatedTools items={props.relatedTools} />
+    <AdZone size="footer" />
+  </div>
+</Page>

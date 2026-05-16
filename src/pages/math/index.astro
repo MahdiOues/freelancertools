@@ -1,0 +1,112 @@
+---
+import Page from '../../layouts/Page.astro';
+import AdZone from '../../components/AdZone.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Math Calculators & Converters",
+  "description": "Free online math calculators — percentage, GPA, scientific, unit conversions, time zones, and more.",
+};
+const accent = 'var(--cat-math)';
+const accentBg = 'var(--cat-math-bg)';
+---
+
+<Page
+  title="Free Math Calculators — Percentage, GPA, Unit Converter & More"
+  description="Free online math calculators and converters. Percentage calculator, GPA calculator, scientific calculator, unit converter, time zone converter, and more."
+  canonicalUrl="https://freelancertools.io/math/"
+  schema={schema}
+>
+  <div class="cat-color-bar" style="--cat-color: var(--cat-math);"></div>
+  <div class="container">
+    <Breadcrumb items={[{ label: 'Math' }]} />
+    <div class="cat-hero" style={`--cat-color:${accent};--cat-bg:${accentBg};`}>
+      <span class="cat-hero-badge" style={`color:${accent};background:${accentBg};border:1px solid rgba(8,145,178,0.15);`}>Math</span>
+      <h1>Free math calculators and converters</h1>
+      <p>Quick answers to everyday math questions. Percentages, grades, unit conversions, time zones, and more — all in your browser with no sign-up.</p>
+    </div>
+
+    <AdZone size="leaderboard" />
+
+    <section>
+      <div style="display: grid; gap: 20px;">
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/math/percentage-calculator/">Percentage Calculator</a></h3>
+          <p>Three modes: what is X% of Y, X is what % of Y, and percentage change. Shows the formula and explains the result in plain English.</p>
+          <a href="/math/percentage-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/math/scientific-calculator/">Scientific Calculator</a></h3>
+          <p>Full scientific calculator with sin, cos, tan, log, ln, factorial, and calculation history. Keyboard support included.</p>
+          <a href="/math/scientific-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/math/unit-converter/">Unit Converter</a></h3>
+          <p>Convert between length, weight, temperature, volume, speed, area, energy, and pressure units. All conversions in one page.</p>
+          <a href="/math/unit-converter/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/math/time-zone-converter/">Time Zone Converter</a></h3>
+          <p>Convert times across multiple time zones simultaneously. Perfect for scheduling with international clients.</p>
+          <a href="/math/time-zone-converter/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/math/gpa-calculator/">GPA Calculator</a></h3>
+          <p>Calculate your GPA on a 4.0 scale. Add courses with letter grades or percentages and credit hours. Supports weighted grading.</p>
+          <a href="/math/gpa-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <AdZone size="square" />
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/math/grade-calculator/">Grade Calculator</a></h3>
+          <p>Two modes: what grade you need on the final, and what your current grade is based on weighted assignments.</p>
+          <a href="/math/grade-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/math/age-calculator/">Age Calculator</a></h3>
+          <p>Calculate exact age in years, months, and days. Includes next birthday countdown and fun facts about time lived.</p>
+          <a href="/math/age-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/math/tip-calculator/">Tip Calculator</a></h3>
+          <p>Calculate tip amounts and split bills. Quick buttons for standard tip percentages.</p>
+          <a href="/math/tip-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/math/discount-calculator/">Discount Calculator</a></h3>
+          <p>Calculate the sale price after a discount. Works with percentage off or fixed amount off.</p>
+          <a href="/math/discount-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/math/date-calculator/">Date Calculator</a></h3>
+          <p>Calculate days between dates or add/subtract days from a date. Shows working days and calendar months.</p>
+          <a href="/math/date-calculator/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/math/square-footage/">Square Footage Calculator</a></h3>
+          <p>Calculate area for rectangles, triangles, circles, L-shapes, and custom polygons. Includes cost estimation.</p>
+          <a href="/math/square-footage/" class="hub-tool-link">Use this tool →</a>
+        </div>
+        <div class="hub-tool-card" style={`--cat-accent:${accent};`}>
+          <h3><a href="/math/percentage-change/">Percentage Change Calculator</a></h3>
+          <p>Calculate the percentage increase or decrease between two numbers. Shows absolute change and explains in plain English.</p>
+          <a href="/math/percentage-change/" class="hub-tool-link">Use this tool →</a>
+        </div>
+      </div>
+    </section>
+
+    <AdZone size="square" />
+
+    <section>
+      <h2>Related categories</h2>
+      <ul>
+        <li><a href="/finance/">Finance tools for freelancers</a></li>
+        <li><a href="/health/">Health & fitness calculators</a></li>
+        <li><a href="/freelancer/">Freelancer business tools</a></li>
+      </ul>
+    </section>
+
+    <AdZone size="footer" />
+  </div>
+</Page>

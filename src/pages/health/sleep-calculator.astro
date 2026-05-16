@@ -1,0 +1,124 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Sleep Calculator",
+  "description": "Find the ideal bedtime or wake-up time based on 90-minute sleep cycles. Wake up refreshed between cycles.",
+  "url": "https://freelancertools.io/health/sleep-calculator/",
+  "applicationCategory": "HealthApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free Sleep Calculator — Best Bedtime & Wake-Up Time"
+  description="Calculate the ideal bedtime or wake-up time using 90-minute sleep cycles. Wake up between cycles to feel more refreshed."
+  canonicalUrl="https://freelancertools.io/health/sleep-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Health', href: '/health/' }, { label: 'Sleep Calculator' }]}
+  relatedTools={[
+    { name: 'Water Intake Calculator', href: '/health/water-intake/', category: 'Health' },
+    { name: 'BMI Calculator', href: '/health/bmi-calculator/', category: 'Health' },
+    { name: 'TDEE Calculator', href: '/health/tdee-calculator/', category: 'Health' },
+    { name: 'Calories Burned Calculator', href: '/health/calories-burned/', category: 'Health' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Sleep Calculator</h1>
+      <p class="subhead">Find your ideal bedtime or wake-up time based on 90-minute sleep cycles. Wake up feeling refreshed.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Sleep Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label">I want to calculate</label>
+          <select id="mode">
+            <option value="wake">What time should I go to bed?</option>
+            <option value="bed">What time should I wake up?</option>
+          </select>
+        </div>
+        <div class="field" id="wakeField">
+          <label class="field-label"><KpiTooltip label="I need to wake up at" tip="The time you need to be awake." /></label>
+          <input type="time" id="wakeTime" value="07:00" />
+        </div>
+        <div class="field" id="bedField" style="display:none;">
+          <label class="field-label"><KpiTooltip label="I plan to go to bed at" tip="The time you plan to fall asleep (not just get into bed)." /></label>
+          <input type="time" id="bedTime" value="23:00" />
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Select your preference to see ideal sleep times.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>Why sleep cycles matter</h2>
+      <p>Sleep occurs in 90-minute cycles, each consisting of light sleep, deep sleep, and REM sleep. Waking up in the middle of a cycle (especially during deep sleep) causes sleep inertia — that groggy, disoriented feeling. Waking up between cycles leaves you feeling more alert and refreshed.</p>
+      <p>The average adult needs 5-6 full sleep cycles per night (7.5-9 hours). This calculator works backward from your wake-up time to find bedtimes that end a cycle, or forward from your bedtime to find optimal wake times.</p>
+      <h2>Tips for better sleep</h2>
+      <p>Go to bed and wake up at the same time every day — even on weekends. Avoid screens 1 hour before bed (blue light suppresses melatonin). Keep your bedroom cool (65-68°F / 18-20°C). Avoid caffeine after 2 PM and alcohol before bed. Exercise during the day but not within 2 hours of bedtime.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function formatTime(h, m) {
+  const period = h >= 12 ? 'PM' : 'AM';
+  const h12 = h % 12 || 12;
+  return `${h12}:${m.toString().padStart(2, '0')} ${period}`;
+}
+
+function calculate() {
+  const mode = document.getElementById('mode').value;
+  const cycleMins = 90;
+  if (mode === 'wake') {
+    const wakeVal = document.getElementById('wakeTime').value;
+    const [h, m] = wakeVal.split(':').map(Number);
+    const wakeTotal = h * 60 + m;
+    let html = '<h3 style="font-size:14px;margin-bottom:12px;">Go to bed at one of these times for optimal cycles:</h3><table style="width:100%;border-collapse:collapse;font-size:14px;"><thead><tr style="border-bottom:2px solid var(--border);"><th style="text-align:left;padding:8px 12px;">Bedtime</th><th style="text-align:right;padding:8px 12px;">Sleep cycles</th><th style="text-align:right;padding:8px 12px;">Sleep duration</th></tr></thead><tbody>';
+    for (let cycles = 4; cycles <= 6; cycles++) {
+      const bedTotal = wakeTotal - cycles * cycleMins;
+      const bedH = Math.floor(((bedTotal % 1440) + 1440) % 1440 / 60);
+      const bedM = ((bedTotal % 1440) + 1440) % 1440 % 60;
+      const duration = cycles * 1.5;
+      html += `<tr style="border-bottom:1px solid var(--border-light);"><td style="padding:8px 12px;font-weight:600;">${formatTime(bedH, Math.round(bedM))}</td><td style="padding:8px 12px;text-align:right;">${cycles} cycles</td><td style="padding:8px 12px;text-align:right;">${duration} hours</td></tr>`;
+    }
+    html += '</tbody></table>';
+    document.getElementById('resultArea').innerHTML = html;
+  } else {
+    const bedVal = document.getElementById('bedTime').value;
+    const [h, m] = bedVal.split(':').map(Number);
+    const bedTotal = h * 60 + m;
+    let html = '<h3 style="font-size:14px;margin-bottom:12px;">Wake up at one of these times:</h3><table style="width:100%;border-collapse:collapse;font-size:14px;"><thead><tr style="border-bottom:2px solid var(--border);"><th style="text-align:left;padding:8px 12px;">Wake time</th><th style="text-align:right;padding:8px 12px;">Sleep cycles</th><th style="text-align:right;padding:8px 12px;">Sleep duration</th></tr></thead><tbody>';
+    for (let cycles = 4; cycles <= 6; cycles++) {
+      const wakeTotal = bedTotal + cycles * cycleMins;
+      const wakeH = Math.floor((wakeTotal % 1440) / 60);
+      const wakeM = (wakeTotal % 1440) % 60;
+      const duration = cycles * 1.5;
+      html += `<tr style="border-bottom:1px solid var(--border-light);"><td style="padding:8px 12px;font-weight:600;">${formatTime(wakeH, Math.round(wakeM))}</td><td style="padding:8px 12px;text-align:right;">${cycles} cycles</td><td style="padding:8px 12px;text-align:right;">${duration} hours</td></tr>`;
+    }
+    html += '</tbody></table>';
+    document.getElementById('resultArea').innerHTML = html;
+  }
+}
+
+document.getElementById('mode').addEventListener('change', function() {
+  const isWake = this.value === 'wake';
+  document.getElementById('wakeField').style.display = isWake ? '' : 'none';
+  document.getElementById('bedField').style.display = isWake ? 'none' : '';
+  calculate();
+});
+['wakeTime','bedTime','mode'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+calculate();
+</script>

@@ -1,0 +1,251 @@
+---
+import Tool from '../../../layouts/ToolWithExcel.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Amortization Table Generator",
+  "description": "Generate a full month-by-month loan amortization schedule showing principal, interest, and remaining balance. Export as Excel or PDF. Works for mortgages, auto loans, and business loans.",
+  "url": "https://freelancertools.io/finance/excel-tools/amortization-table/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How accurate is the amortization calculation?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The calculation uses the standard amortization formula used by banks and mortgage lenders. Results match what you would get from Excel's PMT function or a bank's official schedule." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I model a loan with a balloon payment?",
+      "acceptedAnswer": { "@type": "Answer", "text": "This tool models fully amortizing loans — loans where the balance reaches zero at the end of the term. Balloon payment structures are not currently supported." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does extra monthly payment mean?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It is an additional amount you pay each month on top of your regular payment. The extra amount is applied entirely to principal, reducing your balance faster and cutting total interest." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this for an adjustable-rate mortgage?",
+      "acceptedAnswer": { "@type": "Answer", "text": "This tool models fixed-rate loans only. For an ARM, use the initial fixed rate to see the schedule for the fixed period." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my first payment have so much interest?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Interest accrues on the full outstanding balance. At the start of the loan, the balance is highest, so the interest charge is largest. As you pay down the principal, the interest portion of each payment gradually decreases." }
+    }
+  ]
+};
+---
+
+<Tool
+  title="Amortization Table & Loan Schedule"
+  description="Generate a full month-by-month loan amortization schedule showing principal, interest, and remaining balance. Export as Excel or PDF. Works for mortgages, auto loans, and business loans."
+  canonicalUrl="https://freelancertools.io/finance/excel-tools/amortization-table/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Excel-Free Tools', href: '/finance/excel-tools/' }, { label: 'Amortization Table' }]}
+  relatedTools={[
+    { name: 'Loan Comparison Calculator', href: '/finance/loan-comparison/', category: 'Finance' },
+    { name: 'Break-Even Analysis', href: '/finance/excel-tools/break-even/', category: 'Finance' },
+    { name: 'Growth Modeler', href: '/finance/excel-tools/growth-modeler/', category: 'Finance' },
+    { name: 'Budget vs Actual', href: '/finance/excel-tools/budget-variance/', category: 'Finance' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Free Amortization Table Generator — Full Loan Repayment Schedule</h1>
+      <p class="subhead">Enter any loan and get a full month-by-month amortization schedule with principal, interest, and balance columns — exportable as Excel.</p>
+    </div>
+  </fragment>
+  <div class="tool-intro" style="max-width:720px;margin:0 auto 28px;">
+    <p>Enter your loan amount, interest rate, and term to generate a complete month-by-month amortization schedule — showing exactly how much of each payment goes to principal, how much goes to interest, and what your remaining balance is after every payment. Works for mortgages, auto loans, personal loans, and business financing. Download the full schedule as an Excel file or PDF.</p>
+  </div>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Amortization Table Generator</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label">Loan Amount ($)</label>
+          <input type="number" id="loanAmount" value="250000" min="0" step="1000" />
+        </div>
+        <div class="field">
+          <label class="field-label">Annual Interest Rate (%)</label>
+          <input type="number" id="annualRate" value="6.5" min="0" step="0.1" />
+        </div>
+        <div class="field">
+          <label class="field-label">Loan Term (years)</label>
+          <input type="number" id="loanTerm" value="30" min="1" max="50" />
+        </div>
+        <div class="field">
+          <label class="field-label">Start Date</label>
+          <input type="month" id="startDate" />
+        </div>
+        <div class="field-full">
+          <label class="field-label">Extra Monthly Payment ($) — optional</label>
+          <input type="number" id="extraPayment" value="0" min="0" step="50" />
+        </div>
+      </div>
+      <button class="btn btn-primary btn-full" id="generateBtn">Generate Amortization Schedule</button>
+
+      <div id="summaryRow" style="display:none;margin-top:24px;">
+        <div class="metric-grid" id="summaryGrid"></div>
+      </div>
+
+      <div style="margin-top:24px;overflow-x:auto;display:none;" id="tableWrap">
+        <table id="amortTable" style="width:100%;border-collapse:collapse;font-size:12px;"></table>
+      </div>
+
+      <div id="exportRow" style="display:none;margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-secondary" onclick="exportTableXLSX('amortTable','amortization_schedule.xlsx')">Export as Excel</button>
+        <button class="btn btn-primary" onclick="exportPDF('Amortization Schedule','amortTable')">Export as PDF</button>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>What is a loan amortization table?</h2>
+      <p>An amortization table breaks every loan payment into its two components: the portion that reduces your principal balance and the portion that pays interest to the lender. In the early months of a loan, the majority of each payment is interest. Over time, as the principal decreases, more of each payment goes toward the balance. This shift is called amortization.</p>
+      <p>Understanding your amortization schedule matters because it shows you exactly how much of your money is actually reducing debt versus going to the lender as profit. A 30-year mortgage at 7% means your first payment is roughly 80% interest — a fact that changes how you evaluate refinancing, early repayment, and extra payments.</p>
+
+      <h2>How extra monthly payments affect your loan</h2>
+      <p>Adding even a small extra payment each month has a dramatic effect on the total interest you pay over the life of a loan. On a $300,000 30-year mortgage at 6.5%, adding $200 per month to your payment cuts approximately 5 years from the loan term and saves over $80,000 in interest. This tool lets you model that scenario directly — enter your extra payment amount and see the new payoff date and total interest savings.</p>
+      <p>The key insight is that extra payments applied to principal are most valuable early in the loan, when the outstanding balance is highest and interest accrues fastest.</p>
+
+      <h2>Mortgage vs auto loan vs business loan amortization</h2>
+      <p>All three loan types use the same amortization math, but the terms differ significantly. Mortgages run 15-30 years with relatively low rates (currently 6-8% in the US). Auto loans run 36-84 months at 5-12%. Business term loans typically run 3-10 years at 6-15%. Enter the specific parameters for your loan type and the table adjusts automatically — there is no separate mode for each loan type.</p>
+
+      <h2>How to export your amortization schedule to Excel</h2>
+      <p>Click Export as Excel after generating your table. The download includes every month in the schedule as a row with five columns: payment number, date, payment amount, principal paid, interest paid, and remaining balance. The final row shows totals. You can use this file for further analysis, share it with a lender, or import it into accounting software.</p>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <h3>How accurate is the amortization calculation?</h3>
+        <p>The calculation uses the standard amortization formula used by banks and mortgage lenders. Results match what you would get from Excel's PMT function or a bank's official schedule.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I model a loan with a balloon payment?</h3>
+        <p>This tool models fully amortizing loans — loans where the balance reaches zero at the end of the term. Balloon payment structures are not currently supported.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What does extra monthly payment mean?</h3>
+        <p>It is an additional amount you pay each month on top of your regular payment. The extra amount is applied entirely to principal, reducing your balance faster and cutting total interest.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I use this for an adjustable-rate mortgage?</h3>
+        <p>This tool models fixed-rate loans only. For an ARM, use the initial fixed rate to see the schedule for the fixed period.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Why does my first payment have so much interest?</h3>
+        <p>Interest accrues on the full outstanding balance. At the start of the loan, the balance is highest, so the interest charge is largest. As you pay down the principal, the interest portion of each payment gradually decreases.</p>
+      </div>
+
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="/finance/credit-score-simulator/">Credit Score Simulator</a></li>
+        <li><a href="/finance/loan-comparison/">Loan Comparison Calculator</a></li>
+        <li><a href="/finance/excel-tools/break-even/">Break-Even Analysis</a></li>
+        <li><a href="/finance/">Back to Finance Tools</a></li>
+      </ul>
+    </div>
+  </fragment>
+</Tool>
+
+<script is:inline src="/scripts/excel-tools-core.js"></script>
+<script>
+(function () {
+  function buildAmortization(principal, annualRate, years, startDateStr, extraPayment) {
+    const monthlyRate = annualRate / 100 / 12;
+    const totalMonths = years * 12;
+    const basePayment = monthlyRate === 0
+      ? principal / totalMonths
+      : (principal * monthlyRate * Math.pow(1 + monthlyRate, totalMonths))
+        / (Math.pow(1 + monthlyRate, totalMonths) - 1);
+
+    const payment = basePayment + extraPayment;
+    let balance = principal;
+    const rows = [];
+    let totalInterest = 0;
+    const date = new Date(startDateStr + '-01');
+
+    for (let m = 1; m <= totalMonths && balance > 0; m++) {
+      const interest = balance * monthlyRate;
+      const principalPaid = Math.min(payment - interest, balance);
+      balance -= principalPaid;
+      totalInterest += interest;
+
+      rows.push({
+        'Month': m,
+        'Date': date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+        'Payment': fmtCurrency(principalPaid + interest),
+        'Principal': fmtCurrency(principalPaid),
+        'Interest': fmtCurrency(interest),
+        'Balance': fmtCurrency(Math.max(0, balance))
+      });
+
+      date.setMonth(date.getMonth() + 1);
+      if (balance <= 0) break;
+    }
+
+    return { rows, totalInterest, totalPayments: rows.length };
+  }
+
+  const generateBtn = document.getElementById('generateBtn');
+  const tableWrap = document.getElementById('tableWrap');
+  const amortTable = document.getElementById('amortTable');
+  const summaryRow = document.getElementById('summaryRow');
+  const summaryGrid = document.getElementById('summaryGrid');
+  const exportRow = document.getElementById('exportRow');
+
+  function render() {
+    const principal = parseFloat(document.getElementById('loanAmount').value) || 0;
+    const annualRate = parseFloat(document.getElementById('annualRate').value) || 0;
+    const years = parseInt(document.getElementById('loanTerm').value) || 1;
+    const startDate = document.getElementById('startDate').value || new Date().toISOString().slice(0, 7);
+    const extra = parseFloat(document.getElementById('extraPayment').value) || 0;
+
+    if (!principal || !annualRate || !years) return;
+
+    const result = buildAmortization(principal, annualRate, years, startDate, extra);
+    const baseResult = extra > 0 ? buildAmortization(principal, annualRate, years, startDate, 0) : null;
+    const interestSaved = extra > 0 ? baseResult.totalInterest - result.totalInterest : 0;
+
+    summaryRow.style.display = 'block';
+    const lastRow = result.rows[result.rows.length - 1];
+    summaryGrid.innerHTML = `
+      <div class="metric-card"><div class="result-number">${fmtCurrency(result.totalInterest)}</div><div class="result-label">Total Interest Paid</div></div>
+      <div class="metric-card"><div class="result-number">${fmtCurrency(principal + result.totalInterest)}</div><div class="result-label">Total Amount Paid</div></div>
+      <div class="metric-card"><div class="result-number">${lastRow ? lastRow['Date'] : 'N/A'}</div><div class="result-label">Payoff Date</div></div>
+      ${extra > 0 ? `<div class="metric-card"><div class="result-number" style="color:var(--success);">${fmtCurrency(interestSaved)}</div><div class="result-label">Interest Saved</div></div>` : ''}
+    `;
+
+    tableWrap.style.display = 'block';
+    const headers = ['Month','Date','Payment','Principal','Interest','Balance'];
+    let html = '<thead><tr>' + headers.map(h => '<th style="text-align:left;padding:6px 8px;border-bottom:2px solid #1a1a1a;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;">' + h + '</th>').join('') + '</tr></thead><tbody>';
+    result.rows.forEach(row => {
+      html += '<tr>' + headers.map(h => '<td style="padding:6px 8px;border-bottom:1px solid #e8e8e4;">' + row[h] + '</td>').join('') + '</tr>';
+    });
+    html += '</tbody>';
+    amortTable.innerHTML = html;
+    exportRow.style.display = 'flex';
+  }
+
+  if (!document.getElementById('startDate').value) {
+    document.getElementById('startDate').value = new Date().toISOString().slice(0, 7);
+  }
+
+  generateBtn.addEventListener('click', render);
+})();
+</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How accurate is the amortization calculation?","acceptedAnswer":{"@type":"Answer","text":"The calculation uses the standard amortization formula used by banks and mortgage lenders. Results match what you would get from Excel\u2019s PMT function or a bank\u2019s official schedule."}},{"@type":"Question","name":"Can I model a loan with a balloon payment?","acceptedAnswer":{"@type":"Answer","text":"This tool models fully amortizing loans \u2014 loans where the balance reaches zero at the end of the term. Balloon payment structures are not currently supported."}},{"@type":"Question","name":"What does extra monthly payment mean?","acceptedAnswer":{"@type":"Answer","text":"It is an additional amount you pay each month on top of your regular payment. The extra amount is applied entirely to principal, reducing your balance faster and cutting total interest."}},{"@type":"Question","name":"Can I use this for an adjustable-rate mortgage?","acceptedAnswer":{"@type":"Answer","text":"This tool models fixed-rate loans only. For an ARM, use the initial fixed rate to see the schedule for the fixed period."}},{"@type":"Question","name":"Why does my first payment have so much interest?","acceptedAnswer":{"@type":"Answer","text":"Interest accrues on the full outstanding balance. At the start of the loan, the balance is highest, so the interest charge is largest. As you pay down the principal, the interest portion of each payment gradually decreases."}}]}</script>

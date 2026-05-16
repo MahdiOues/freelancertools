@@ -1,0 +1,203 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free ROI Calculator",
+  "description": "Calculate ROI for any business investment. Simple mode for general investments, marketing mode for ad campaigns.",
+  "url": "https://freelancertools.io/saas/roi-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Free ROI Calculator"
+  description="Calculate ROI for any business investment. Simple mode for general investments, marketing mode for ad campaigns."
+  canonicalUrl="https://freelancertools.io/saas/roi-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'SaaS', href: '/saas/' }, { label: 'ROI Calculator' }]}
+  relatedTools={[
+    { name: 'SaaS Pricing Calculator', href: '/saas/pricing-calculator/', category: 'SaaS' },
+    { name: 'MRR Calculator', href: '/saas/mrr-calculator/', category: 'SaaS' },
+    { name: 'Ad Profitability Calculator', href: '/marketing/ad-profit-calculator/', category: 'Marketing' },
+    { name: 'Freelancer Rate Calculator', href: '/freelancer/rate-calculator/', category: 'Freelancer' },
+  ]}
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>ROI Calculator</h1>
+      <p class="subhead">Calculate ROI for any investment — simple mode for general projects, marketing mode for ad campaigns.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>ROI Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+      <div style="display: flex; gap: 0; margin-bottom: 24px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;">
+        <label style="flex: 1; padding: 8px 16px; text-align: center; cursor: pointer; background: var(--ink); color: #fff; font-size: 14px; font-weight: 600;">
+          <input type="radio" name="mode" value="simple" checked style="display: none;" /> Simple
+        </label>
+        <label style="flex: 1; padding: 8px 16px; text-align: center; cursor: pointer; background: var(--surface); color: var(--ink); font-size: 14px; font-weight: 600;">
+          <input type="radio" name="mode" value="marketing" style="display: none;" /> Marketing
+        </label>
+      </div>
+
+      <div id="simpleFields">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Investment ($)" tip="The total amount you put in — money spent, capital deployed, or cost of the project." /></label>
+            <input type="number" id="investment" value="10000" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Revenue generated ($)" tip="The total money returned or earned from this investment." /></label>
+            <input type="number" id="revenue" value="25000" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Time period (months)" tip="How long this investment ran. Used to calculate an annualized ROI so you can compare it to other investments." /></label>
+          <input type="number" id="timePeriod" value="12" />
+        </div>
+      </div>
+
+      <div id="marketingFields" style="display: none;">
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="CPC ($)" tip="Cost Per Click — what you pay each time someone clicks your ad." /></label>
+            <input type="number" id="cpc" value="1.50" step="0.01" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Clicks" tip="Total number of clicks your ad campaign generated in the period." /></label>
+            <input type="number" id="clicks" value="10000" />
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Conversion rate (%)" tip="The percentage of clicks that turned into a paying customer. A 2% rate means 2 out of every 100 clicks bought something." /></label>
+            <input type="number" id="convRate" value="3" step="0.1" />
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="AOV ($)" tip="The average amount a customer spends per transaction." /></label>
+            <input type="number" id="aov" value="75" />
+          </div>
+        </div>
+      </div>
+
+      <button id="calcBtn" class="btn btn-primary btn-full">Calculate</button>
+
+      <div id="resultArea" class="result-area">
+        <div class="result-empty">Enter your numbers and click Calculate.</div>
+      </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>What is ROI?</h2>
+      <p>Return on Investment (ROI) measures the profitability of an investment relative to its cost. A positive ROI means you made money; a negative ROI means you lost money. The higher the ROI, the better the investment.</p>
+      <p>For marketing campaigns, ROAS (Return on Ad Spend) is a related metric that measures gross revenue generated per dollar spent on advertising. A ROAS of 4 means you earn $4 for every $1 spent on ads.</p>
+      <p>This is an estimate. Actual results vary.</p>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+let mode = 'simple';
+
+function switchMode(m) {
+  mode = m;
+  document.getElementById('simpleFields').style.display = m === 'simple' ? 'block' : 'none';
+  document.getElementById('marketingFields').style.display = m === 'marketing' ? 'block' : 'none';
+  document.querySelectorAll('input[name="mode"]').forEach(el => {
+    const label = el.closest('label');
+    if (el.value === m) {
+      label.style.background = 'var(--ink)';
+      label.style.color = '#fff';
+    } else {
+      label.style.background = 'var(--surface)';
+      label.style.color = 'var(--ink)';
+    }
+  });
+  calculate();
+}
+
+function calculate() {
+  if (mode === 'simple') {
+    const investment = parseFloat(document.getElementById('investment').value) || 0;
+    const revenue = parseFloat(document.getElementById('revenue').value) || 0;
+    const months = parseFloat(document.getElementById('timePeriod').value) || 1;
+
+    const netProfit = revenue - investment;
+    const roi = investment > 0 ? (netProfit / investment) * 100 : 0;
+    const annualizedRoi = months > 0 ? roi * (12 / months) : 0;
+    const paybackPeriod = netProfit > 0 && revenue > 0 ? investment / (revenue / months) : 0;
+
+    document.getElementById('resultArea').innerHTML = `
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="result-number">${roi.toFixed(1)}%</div>
+          <div class="result-label"><span class="kpi-tooltip-wrapper">ROI<button class="kpi-info-btn" aria-label="What is ROI?" data-tip="Return on Investment — net profit divided by your investment, expressed as a percentage. 100% ROI means you doubled your money." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Return on Investment — net profit divided by your investment, expressed as a percentage. 100% ROI means you doubled your money.</span></span></div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number">${annualizedRoi.toFixed(1)}%</div>
+          <div class="result-label"><span class="kpi-tooltip-wrapper">Annualized ROI<button class="kpi-info-btn" aria-label="What is Annualized ROI?" data-tip="Your ROI scaled to a 12-month period, so you can compare investments with different time horizons on equal footing." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your ROI scaled to a 12-month period, so you can compare investments with different time horizons on equal footing.</span></span></div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number" style="${netProfit >= 0 ? 'color: var(--success)' : 'color: var(--danger)'}">${netProfit >= 0 ? '+' : ''}$${netProfit.toLocaleString()}</div>
+          <div class="result-label"><span class="kpi-tooltip-wrapper">Net Profit<button class="kpi-info-btn" aria-label="What is Net Profit?" data-tip="Revenue minus total investment. The actual dollar amount you gained (or lost) after costs." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Revenue minus total investment. The actual dollar amount you gained (or lost) after costs.</span></span></div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number">${paybackPeriod.toFixed(1)} mo</div>
+          <div class="result-label"><span class="kpi-tooltip-wrapper">Payback Period<button class="kpi-info-btn" aria-label="What is Payback Period?" data-tip="How long until cumulative revenue repays your original investment. Shorter is better." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">How long until cumulative revenue repays your original investment. Shorter is better.</span></span></div>
+        </div>
+      </div>
+    `;
+  } else {
+    const cpc = parseFloat(document.getElementById('cpc').value) || 0;
+    const clicks = parseFloat(document.getElementById('clicks').value) || 0;
+    const convRate = parseFloat(document.getElementById('convRate').value) || 0;
+    const aov = parseFloat(document.getElementById('aov').value) || 0;
+
+    const adSpend = cpc * clicks;
+    const conversions = clicks * (convRate / 100);
+    const totalRevenue = conversions * aov;
+    const netProfit = totalRevenue - adSpend;
+    const roas = adSpend > 0 ? totalRevenue / adSpend : 0;
+    const profitMargin = totalRevenue > 0 ? (netProfit / totalRevenue) * 100 : 0;
+
+    document.getElementById('resultArea').innerHTML = `
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="result-number">$${adSpend.toLocaleString()}</div>
+          <div class="result-label"><span class="kpi-tooltip-wrapper">Total Ad Spend<button class="kpi-info-btn" aria-label="What is Total Ad Spend?" data-tip="The total amount spent on ads across the campaign period, based on your CPC and click volume." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">The total amount spent on ads across the campaign period, based on your CPC and click volume.</span></span></div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number">$${totalRevenue.toLocaleString()}</div>
+          <div class="result-label"><span class="kpi-tooltip-wrapper">Total Revenue<button class="kpi-info-btn" aria-label="What is Total Revenue?" data-tip="Clicks × conversion rate × average order value — the gross revenue generated by the campaign." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Clicks × conversion rate × average order value — the gross revenue generated by the campaign.</span></span></div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number">${roas.toFixed(2)}x</div>
+          <div class="result-label"><span class="kpi-tooltip-wrapper">ROAS<button class="kpi-info-btn" aria-label="What is ROAS?" data-tip="Return on Ad Spend — revenue divided by ad spend. A ROAS of 4x means you earned $4 for every $1 spent on ads." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Return on Ad Spend — revenue divided by ad spend. A ROAS of 4x means you earned $4 for every $1 spent on ads.</span></span></div>
+        </div>
+        <div class="metric-card">
+          <div class="result-number" style="${netProfit >= 0 ? 'color: var(--success)' : 'color: var(--danger)'}">${netProfit >= 0 ? '+' : ''}$${netProfit.toLocaleString()}</div>
+          <div class="result-label"><span class="kpi-tooltip-wrapper">Net Profit<button class="kpi-info-btn" aria-label="What is Net Profit?" data-tip="Revenue minus total investment. The actual dollar amount you gained (or lost) after costs." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Revenue minus total investment. The actual dollar amount you gained (or lost) after costs.</span></span></div>
+        </div>
+        <div class="metric-card" style="grid-column: span 2;">
+          <div class="result-number" style="${profitMargin >= 0 ? 'color: var(--success)' : 'color: var(--danger)'}">${profitMargin.toFixed(1)}%</div>
+          <div class="result-label"><span class="kpi-tooltip-wrapper">Profit Margin<button class="kpi-info-btn" aria-label="What is Profit Margin?" data-tip="Net profit as a percentage of revenue. Shows how much of each dollar earned you actually keep." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Net profit as a percentage of revenue. Shows how much of each dollar earned you actually keep.</span></span></div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+calculate();
+document.getElementById('calcBtn').addEventListener('click', calculate);
+document.querySelectorAll('input[name="mode"]').forEach(el => el.addEventListener('change', function() { switchMode(this.value); }));
+</script>
