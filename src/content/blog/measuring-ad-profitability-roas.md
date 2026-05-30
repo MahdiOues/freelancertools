@@ -1,7 +1,7 @@
-﻿---
+---
 title: "Measuring ad profitability: ROAS and profit margins explained"
 description: "Learn how to measure ad profitability with ROAS, ROI, and profit margin. Understand which metrics matter and how to optimize ad spend."
-date: 2025-04-28
+date: 2026-04-28
 category: Marketing
 relatedTool: /marketing/ad-profit-calculator/
 relatedToolName: Free Ad Profit Calculator

@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to build a cash flow forecast for your small business"
 description: "Learn how to forecast cash flow for your business. Track income and expenses, predict shortfalls, and make smarter financial decisions."
-date: 2025-03-02
+date: 2026-03-02
 category: Finance
 relatedTool: /finance/excel-tools/cash-flow-waterfall/
 relatedToolName: Free Cash Flow Waterfall Tool

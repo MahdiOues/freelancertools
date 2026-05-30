@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to calculate your exact age in years, months, and days"
 description: "Learn how to calculate your precise age including years, months, and days. Understand age calculation for legal, medical, and personal use."
-date: 2025-03-12
+date: 2026-03-12
 category: Finance
 relatedTool: /math/age-calculator/
 relatedToolName: Free Age Calculator

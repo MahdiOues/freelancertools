@@ -1,7 +1,7 @@
-﻿---
+---
 title: "Freelance taxes explained: what you owe and how to not get surprised"
 description: "Complete guide to freelance taxes. Self-employment tax, quarterly estimated payments, deductions, and how to avoid an April surprise."
-date: 2025-04-05
+date: 2026-04-05
 category: Freelancer
 relatedTool: /finance/tax-deduction-finder/
 relatedToolName: Free Tax Deduction Finder

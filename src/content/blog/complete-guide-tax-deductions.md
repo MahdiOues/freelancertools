@@ -1,7 +1,7 @@
-﻿---
+---
 title: "The complete guide to tax deductions for self-employed professionals"
 description: "Every tax deduction available to self-employed professionals. Learn what you can deduct, how to track expenses, and how to maximize your write-offs."
-date: 2025-02-12
+date: 2026-02-12
 category: Finance
 relatedTool: /finance/tax-deduction-finder/
 relatedToolName: Free Tax Deduction Finder

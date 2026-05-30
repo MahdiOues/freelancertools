@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to calculate compound interest by hand (and why you should understand it)"
 description: "Learn the compound interest formula and how to calculate it by hand. Understand why compounding is the most powerful force in personal finance."
-date: 2025-02-01
+date: 2026-02-01
 category: Finance
 relatedTool: /finance/compound-interest/
 relatedToolName: Free Compound Interest Calculator

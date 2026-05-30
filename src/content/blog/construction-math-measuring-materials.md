@@ -1,7 +1,7 @@
-﻿---
+---
 title: "Construction math: how to measure and estimate materials"
 description: "Learn the essential math skills every contractor needs. Measure areas, estimate material quantities, and avoid costly overages or shortages."
-date: 2025-04-08
+date: 2026-04-08
 category: Freelancer
 relatedTool: /construction/concrete-calculator/
 relatedToolName: Free Concrete Calculator

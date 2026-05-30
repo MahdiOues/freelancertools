@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to plan for retirement in your 30s, 40s, and 50s"
 description: "Retirement planning guide by decade. Learn how much to save, where to invest, and what milestones to hit in your 30s, 40s, and 50s."
-date: 2025-01-20
+date: 2026-01-20
 category: Finance
 relatedTool: /finance/retirement-calculator/
 relatedToolName: Free Retirement Calculator

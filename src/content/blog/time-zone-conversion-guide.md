@@ -1,7 +1,7 @@
-﻿---
+---
 title: "Time zone math: how to convert time zones without confusion"
 description: "Learn how to convert between time zones for travel, remote work, and international business. Understand UTC, DST, and time zone offsets."
-date: 2025-03-15
+date: 2026-03-15
 category: Finance
 relatedTool: /math/time-zone-converter/
 relatedToolName: Free Time Zone Converter

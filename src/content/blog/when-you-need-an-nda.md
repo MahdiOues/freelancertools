@@ -1,7 +1,7 @@
-﻿---
+---
 title: "When you need an NDA (and when you don't)"
 description: "Learn when a non-disclosure agreement is necessary and when it creates unnecessary friction. Practical NDA advice for startups and freelancers."
-date: 2025-05-07
+date: 2026-05-07
 category: Legal
 relatedTool: /legal/nda-generator/
 relatedToolName: Free NDA Generator

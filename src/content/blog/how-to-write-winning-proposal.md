@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to write a winning freelance proposal that gets clients"
 description: "Learn how to write proposals that win freelance projects. Structure, pricing, and proven templates for landing more clients."
-date: 2025-04-15
+date: 2026-04-15
 category: Freelancer
 relatedTool: /freelancer/proposal-generator/
 relatedToolName: Free Proposal Generator

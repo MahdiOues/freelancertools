@@ -1,7 +1,7 @@
-﻿---
+---
 title: "Should you charge hourly or per project as a freelancer?"
 description: "Compare hourly vs project-based pricing for freelancers. Learn which model works best for different types of work and how to switch between them."
-date: 2025-04-18
+date: 2026-04-18
 category: Freelancer
 relatedTool: /freelancer/rate-calculator/
 relatedToolName: Free Rate Calculator

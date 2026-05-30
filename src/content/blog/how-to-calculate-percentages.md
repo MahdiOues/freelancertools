@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to calculate percentages in everyday life"
 description: "Master percentage calculations for tips, discounts, taxes, and more. Learn simple formulas and mental math tricks for everyday situations."
-date: 2025-03-05
+date: 2026-03-05
 category: Finance
 relatedTool: /math/percentage-calculator/
 relatedToolName: Free Percentage Calculator

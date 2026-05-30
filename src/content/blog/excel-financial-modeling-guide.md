@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to use Excel for financial modeling: a beginner's guide"
 description: "Learn financial modeling in Excel from scratch. Build forecasts, track budgets, and create professional financial models for your business."
-date: 2025-02-25
+date: 2026-02-25
 category: Finance
 relatedTool: /finance/excel-tools/
 relatedToolName: Free Excel Financial Tools

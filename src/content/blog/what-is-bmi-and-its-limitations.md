@@ -1,7 +1,7 @@
-﻿---
+---
 title: "Understanding BMI: what it means and its limitations"
 description: "Learn what BMI measures, how to calculate it, and why it is not the full picture. Understand its limitations for athletes and older adults."
-date: 2025-03-20
+date: 2026-03-20
 category: Freelancer
 relatedTool: /health/bmi-calculator/
 relatedToolName: Free BMI Calculator

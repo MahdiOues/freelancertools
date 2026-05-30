@@ -1,7 +1,7 @@
-﻿---
+---
 title: "The real cost of a mortgage: what banks don't tell you upfront"
 description: "Mortgage costs go far beyond the interest rate. Learn about PMI, closing costs, property taxes, and the true total cost of buying a home."
-date: 2025-03-10
+date: 2026-03-10
 category: Finance
 relatedTool: /finance/mortgage-calculator/
 relatedToolName: Free Mortgage Calculator

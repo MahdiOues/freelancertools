@@ -1,7 +1,7 @@
-﻿---
+---
 title: "Debt avalanche vs debt snowball: which method saves more money?"
 description: "Compare avalanche and snowball debt payoff methods. See which saves you more in interest and which keeps you motivated. Real examples included."
-date: 2025-02-10
+date: 2026-02-10
 category: Finance
 relatedTool: /finance/debt-payoff/
 relatedToolName: Free Debt Payoff Calculator

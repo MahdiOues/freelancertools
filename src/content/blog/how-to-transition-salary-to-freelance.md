@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to transition from salary to freelance without financial stress"
 description: "A step-by-step guide to leaving your 9-5 for freelancing. Learn how to calculate what you need, build a safety net, and make the switch."
-date: 2025-04-20
+date: 2026-04-20
 category: Freelancer
 relatedTool: /freelancer/salary-to-hourly/
 relatedToolName: Free Salary to Hourly Converter

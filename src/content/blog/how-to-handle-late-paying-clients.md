@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to handle late-paying clients without ruining the relationship"
 description: "Learn how to prevent late payments, what to do when a client is late, and how to charge late fees without damaging client relationships."
-date: 2025-04-10
+date: 2026-04-10
 category: Freelancer
 relatedTool: /freelancer/late-fee-calculator/
 relatedToolName: Free Late Fee Calculator

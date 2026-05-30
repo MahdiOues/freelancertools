@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How inflation erodes purchasing power: a 10-year analysis"
 description: "See how inflation has reduced the purchasing power of the US dollar over the last decade. Real-world examples and what it means for your savings."
-date: 2025-03-05
+date: 2026-03-05
 category: Finance
 relatedTool: /finance/inflation-calculator/
 relatedToolName: Free Inflation Calculator

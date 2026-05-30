@@ -1,7 +1,7 @@
-﻿---
+---
 title: "MRR: the most important SaaS metric and how to grow it"
 description: "Learn what Monthly Recurring Revenue (MRR) is, how to calculate it, and proven strategies to grow your MRR consistently."
-date: 2025-05-03
+date: 2026-05-03
 category: SaaS
 relatedTool: /saas/mrr-calculator/
 relatedToolName: Free MRR Calculator

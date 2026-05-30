@@ -1,7 +1,7 @@
-﻿---
+---
 title: "Understanding discounts: how to calculate your real savings"
 description: "Learn how to calculate discounts, compare percentage off vs dollar off, and avoid common shopping math mistakes that cost you money."
-date: 2025-03-08
+date: 2026-03-08
 category: Finance
 relatedTool: /math/discount-calculator/
 relatedToolName: Free Discount Calculator

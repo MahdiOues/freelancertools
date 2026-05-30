@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to calculate square footage for any home project"
 description: "Learn how to measure and calculate square footage for flooring, painting, tiling, and landscaping. Formulas for rectangles, circles, and odd shapes."
-date: 2025-03-18
+date: 2026-03-18
 category: Finance
 relatedTool: /math/square-footage/
 relatedToolName: Free Square Footage Calculator

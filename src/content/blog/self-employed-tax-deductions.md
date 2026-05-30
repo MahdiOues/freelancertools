@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to claim every tax deduction you're entitled to as a self-employed person"
 description: "Complete guide to self-employed tax deductions. Home office, vehicle, health insurance, equipment, and more. Maximize your write-offs legally."
-date: 2025-03-15
+date: 2026-03-15
 category: Finance
 relatedTool: /finance/tax-deduction-finder/
 relatedToolName: Free Tax Deduction Finder

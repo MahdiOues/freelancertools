@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How much water should you drink daily? A science-based guide"
 description: "Learn how much water you really need each day based on your weight, activity level, and climate. Factors that increase your hydration needs."
-date: 2025-03-28
+date: 2026-03-28
 category: Freelancer
 relatedTool: /health/water-intake/
 relatedToolName: Free Water Intake Calculator

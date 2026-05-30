@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to convert units like a pro: a practical guide"
 description: "Master unit conversions for length, weight, volume, and temperature. Learn the formulas, common conversions, and when to use them."
-date: 2025-03-10
+date: 2026-03-10
 category: Finance
 relatedTool: /math/unit-converter/
 relatedToolName: Free Unit Converter

@@ -1,7 +1,7 @@
-﻿---
+---
 title: "What is a good salary? How to evaluate a job offer"
 description: "Learn how to evaluate a job offer beyond the base salary. Understand total compensation, benefits, and how to negotiate your next raise."
-date: 2025-02-22
+date: 2026-02-22
 category: Finance
 relatedTool: /finance/paycheck-calculator/
 relatedToolName: Free Paycheck Calculator

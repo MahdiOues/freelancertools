@@ -1,7 +1,7 @@
-﻿---
+---
 title: "DIY legal documents vs hiring a lawyer: what you need to know"
 description: "Compare DIY legal document services vs hiring a lawyer. Learn when you can save money with templates and when you need professional legal advice."
-date: 2025-05-12
+date: 2026-05-12
 category: Legal
 relatedTool: /legal/contract-generator/
 relatedToolName: Free Contract Generator

@@ -1,7 +1,7 @@
-﻿---
+---
 title: "Understanding investment returns: CAGR vs simple returns explained"
 description: "Learn the difference between CAGR and simple returns. Understand how to measure investment performance and why compounding matters."
-date: 2025-01-22
+date: 2026-01-22
 category: Finance
 relatedTool: /finance/investment-return/
 relatedToolName: Free Investment Return Calculator

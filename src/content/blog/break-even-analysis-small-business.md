@@ -1,7 +1,7 @@
-﻿---
+---
 title: "Break-even analysis for small businesses: find your profit point"
 description: "Learn how to calculate your break-even point. Understand fixed costs, variable costs, and how many units you need to sell to be profitable."
-date: 2025-02-28
+date: 2026-02-28
 category: Finance
 relatedTool: /finance/excel-tools/break-even/
 relatedToolName: Free Break-Even Calculator

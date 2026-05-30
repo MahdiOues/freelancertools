@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to read your paycheck: taxes, deductions, and net pay"
 description: "Learn what every line on your paycheck means. Understand federal and state taxes, FICA, benefits deductions, and how your net pay is calculated."
-date: 2025-02-01
+date: 2026-02-01
 category: Finance
 relatedTool: /finance/paycheck-calculator/
 relatedToolName: Free Paycheck Calculator

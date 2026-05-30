@@ -1,7 +1,7 @@
-﻿---
+---
 title: "How to calculate how much concrete you need for any project"
 description: "Learn how to estimate concrete volume for slabs, footings, columns, and stairs. Avoid waste and shortages with accurate calculations."
-date: 2025-04-05
+date: 2026-04-05
 category: Freelancer
 relatedTool: /construction/concrete-calculator/
 relatedToolName: Free Concrete Calculator

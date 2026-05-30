@@ -1,7 +1,7 @@
-﻿---
+---
 title: "The real difference between an employee salary and freelance income"
 description: "Compare freelance income vs employee salary honestly. Factor in taxes, benefits, downtime, and overhead to see which comes out ahead."
-date: 2025-04-15
+date: 2026-04-15
 category: Freelancer
 relatedTool: /freelancer/salary-to-hourly/
 relatedToolName: Free Salary to Hourly Calculator
