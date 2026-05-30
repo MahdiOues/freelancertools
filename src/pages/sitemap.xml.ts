@@ -1,4 +1,4 @@
-import type { APIRoute } from 'astro';
+﻿import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
 const STATES = [
@@ -19,7 +19,7 @@ const CONVERSION_SLUGS = [
 
 export const GET: APIRoute = async () => {
   const posts = await getCollection('blog');
-  const base = 'https://freelancertools.io';
+  const base = 'https://megalancer.online';
 
   const staticPages = [
     '/', '/about/', '/contact/', '/privacy/', '/terms/', '/disclaimer/',

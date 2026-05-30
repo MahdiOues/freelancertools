@@ -1,4 +1,4 @@
----
+﻿---
 import { getCollection, render } from 'astro:content';
 import Blog from '../../layouts/Blog.astro';
 
@@ -19,7 +19,7 @@ const readTime = Math.ceil(wordCount / 200);
 <Blog
   title={post.data.title}
   description={post.data.description}
-  canonicalUrl={`https://freelancertools.io/blog/${post.id}/`}
+  canonicalUrl={`https://megalancer.online/blog/${post.id}/`}
   date={post.data.date}
   category={post.data.category}
   readTime={readTime}

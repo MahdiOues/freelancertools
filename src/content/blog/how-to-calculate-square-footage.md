@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to calculate square footage for any home project"
 description: "Learn how to measure and calculate square footage for flooring, painting, tiling, and landscaping. Formulas for rectangles, circles, and odd shapes."
 date: 2025-03-18

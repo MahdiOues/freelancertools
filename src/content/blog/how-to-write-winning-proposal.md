@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to write a winning freelance proposal that gets clients"
 description: "Learn how to write proposals that win freelance projects. Structure, pricing, and proven templates for landing more clients."
 date: 2025-04-15

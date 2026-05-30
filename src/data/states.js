@@ -1,4 +1,4 @@
-const BASE_STATES = [
+﻿const BASE_STATES = [
   { name: 'Alabama', slug: 'alabama', stateTaxRate: 0.05, notes: 'Alabama has a progressive income tax ranging from 2% to 5%.', hasNoIncomeTax: false },
   { name: 'Alaska', slug: 'alaska', stateTaxRate: 0, notes: 'Alaska has no state income tax — one of nine states that do not.', hasNoIncomeTax: true },
   { name: 'Arizona', slug: 'arizona', stateTaxRate: 0.025, notes: 'Arizona has a flat 2.5% state income tax as of 2023.', hasNoIncomeTax: false },

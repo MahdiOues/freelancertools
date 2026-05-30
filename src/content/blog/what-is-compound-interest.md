@@ -1,4 +1,4 @@
----
+﻿---
 title: "What is compound interest and why Einstein called it the 8th wonder"
 description: "Compound interest explained simply. Learn how earning interest on your interest makes your money grow faster. Examples, formulas, and strategies."
 date: 2025-03-01

@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to write hooks that capture attention in 5 seconds"
 description: "Learn how to write hooks for social media, emails, and blog posts. Proven formulas and examples that stop the scroll and get clicks."
 date: 2025-04-25

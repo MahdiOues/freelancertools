@@ -1,4 +1,4 @@
----
+﻿---
 title: "How many calories do you need? TDEE explained"
 description: "Learn about Total Daily Energy Expenditure (TDEE). Understand how your body burns calories and how to calculate your maintenance calories."
 date: 2025-03-22

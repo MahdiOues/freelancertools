@@ -1,4 +1,4 @@
----
+﻿---
 title: "How many calories does exercise really burn?"
 description: "See the real calorie burn for walking, running, cycling, swimming, and strength training. Learn how to estimate calories burned accurately."
 date: 2025-03-25

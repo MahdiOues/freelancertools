@@ -1,4 +1,4 @@
----
+﻿---
 title: "VAT explained for freelancers and small businesses"
 description: "A complete guide to VAT for freelancers and small business owners. Learn when to register, how to charge, and how to file VAT returns."
 date: 2025-01-28

@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to review a contract before signing: key clauses to check"
 description: "Learn how to review any contract before signing. The key clauses to check, red flags to watch for, and when to walk away from a bad deal."
 date: 2025-05-10

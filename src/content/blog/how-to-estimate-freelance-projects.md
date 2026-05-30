@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to estimate freelance projects accurately every time"
 description: "Learn how to estimate freelance project timelines and costs. Avoid underquoting with proven techniques for scoping and pricing projects."
 date: 2025-04-12

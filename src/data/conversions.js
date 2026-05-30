@@ -1,4 +1,4 @@
-export const CONVERSION_PAIRS = [
+﻿export const CONVERSION_PAIRS = [
   { slug: 'cm-to-inches', from: 'cm', to: 'inches', fromFull: 'centimeters', toFull: 'inches', factor: 0.393701, category: 'length', volume: '2.4M/mo', examples: [1,5,10,15,20,25,30,50,100,170,180,190] },
   { slug: 'kg-to-lbs', from: 'kg', to: 'lbs', fromFull: 'kilograms', toFull: 'pounds', factor: 2.20462, category: 'weight', volume: '1.8M/mo', examples: [1,5,10,20,30,40,50,60,70,80,90,100] },
   { slug: 'celsius-to-fahrenheit', from: '°C', to: '°F', fromFull: 'Celsius', toFull: 'Fahrenheit', formula: 'c2f', reverseFormula: 'f2c', category: 'temperature', volume: '1.5M/mo', examples: [0,10,20,25,30,35,37,40,100] },

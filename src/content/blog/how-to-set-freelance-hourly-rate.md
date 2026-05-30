@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to set your freelance hourly rate in 2025 (the formula that works)"
 description: "A step-by-step formula for setting your freelance hourly rate. Factor in expenses, taxes, downtime, and profit to arrive at a rate that works."
 date: 2025-04-01

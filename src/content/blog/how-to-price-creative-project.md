@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to price a creative project without undercharging"
 description: "Learn how to price creative freelance projects. Task-based pricing, value-based pricing, and how to avoid the most common pricing mistakes."
 date: 2025-04-20

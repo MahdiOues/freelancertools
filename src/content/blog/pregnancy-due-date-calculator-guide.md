@@ -1,4 +1,4 @@
----
+﻿---
 title: "Due date calculator: how pregnancy due dates are estimated"
 description: "Learn how due dates are calculated, why they are estimates, and what factors can affect your delivery date. Naegele's rule explained simply."
 date: 2025-04-03

@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to manage your finances as a freelancer: a complete guide"
 description: "Learn how to manage irregular income, save for taxes, track expenses, and build financial stability as a freelancer or self-employed professional."
 date: 2025-04-22

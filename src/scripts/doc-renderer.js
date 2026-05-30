@@ -1,4 +1,4 @@
-export function renderDocument(data, template = 'classic') {
+﻿export function renderDocument(data, template = 'classic') {
   const fns = { classic: renderClassic, modern: renderModern, minimal: renderMinimal };
   return (fns[template] || renderClassic)(data);
 }

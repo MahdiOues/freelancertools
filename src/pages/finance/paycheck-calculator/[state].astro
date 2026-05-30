@@ -1,4 +1,4 @@
----
+﻿---
 import Tool from '../../../layouts/Tool.astro';
 import { STATES } from '../../../data/states.js';
 
@@ -53,7 +53,7 @@ const schema = {
   "@type": "WebApplication",
   "name": `Free ${state.name} Paycheck Calculator`,
   "description": `Calculate your take-home pay in ${state.name} after federal and state taxes for ${year}. Free instant paycheck calculator with current tax brackets.`,
-  "url": `https://freelancertools.io/finance/paycheck-calculator/${state.slug}/`,
+  "url": `https://megalancer.online/finance/paycheck-calculator/${state.slug}/`,
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -63,7 +63,7 @@ const schema = {
 <Tool
   title={`${state.name} Paycheck Calculator`}
   description={`Calculate your ${year} take-home pay in ${state.name} after federal and state taxes. Free instant paycheck calculator. ${state.notes}`}
-  canonicalUrl={`https://freelancertools.io/finance/paycheck-calculator/${state.slug}/`}
+  canonicalUrl={`https://megalancer.online/finance/paycheck-calculator/${state.slug}/`}
   schema={[schema, faqSchema]}
   breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Paycheck Calculator', href: '/finance/paycheck-calculator/' }, { label: state.name }]}
   relatedTools={[

@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to calculate how much concrete you need for any project"
 description: "Learn how to estimate concrete volume for slabs, footings, columns, and stairs. Avoid waste and shortages with accurate calculations."
 date: 2025-04-05

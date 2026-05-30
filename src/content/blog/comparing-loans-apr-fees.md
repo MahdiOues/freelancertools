@@ -1,4 +1,4 @@
----
+﻿---
 title: "Comparing loans: APR, fees, and total cost of borrowing"
 description: "Learn how to compare loans beyond the interest rate. Understand APR, origination fees, closing costs, and how to find the cheapest loan."
 date: 2025-02-05

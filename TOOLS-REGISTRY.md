@@ -1,4 +1,4 @@
-# FreelancerTools.io — Tools Registry
+# MegaLancer — Tools Registry
 Last updated: 2026-05-14
 
 ## Finance

@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to calculate SaaS ROI for your business investment"
 description: "Learn how to calculate the return on investment for SaaS tools. Evaluate software costs against productivity gains and revenue impact."
 date: 2025-05-01

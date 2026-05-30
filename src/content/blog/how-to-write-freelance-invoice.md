@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to write a freelance invoice that gets paid on time"
 description: "Learn how to create a professional freelance invoice. Essential elements, payment terms, late fees, and tips for getting paid faster."
 date: 2025-04-10

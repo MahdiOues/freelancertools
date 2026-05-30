@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to write a freelance contract (without hiring a lawyer)"
 description: "A practical guide to writing a freelance contract that protects you — covering the 8 clauses every contract needs, common mistakes, and how to get it signed fast."
 date: 2025-01-15

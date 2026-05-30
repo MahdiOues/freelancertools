@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to calculate your debt-to-income ratio (and why lenders care so much)"
 description: "Learn how to calculate your DTI ratio. What is a good DTI, how lenders use it, and how to improve yours before applying for a loan."
 date: 2025-03-25

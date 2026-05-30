@@ -1,19 +1,19 @@
-# FreelancerTools.io — Changelog
+# MegaLancer — Changelog
 
 <!-- OpenCode: append a new entry below after every session. Never delete previous entries. -->
 
 ## [2026-05-16] Title length remediation, source citations, and excel tool title fix
 
 ### Files modified
-- Shortened title props on ~30 tool pages to ≤44 chars (base title + "| FreelancerTools" ≤62 chars total)
-- Fixed excel tools pages (chart-builder, budget-variance, amortization-table, cash-flow-waterfall, pivot-summarizer, break-even, financial-ratios, growth-modeler) — removed "| FreelancerTools" suffix from title props that was causing double-tagging
+- Shortened title props on ~30 tool pages to ≤44 chars (base title + "| MegaLancer" ≤62 chars total)
+- Fixed excel tools pages (chart-builder, budget-variance, amortization-table, cash-flow-waterfall, pivot-summarizer, break-even, financial-ratios, growth-modeler) — removed "| MegaLancer" suffix from title props that was causing double-tagging
 - Added IRS/SSA source citations to paycheck-calculator.astro main page SEO body
 
 ### SEO changes
-- All title tags now stay under 62 characters total (title prop + "| FreelancerTools")
+- All title tags now stay under 62 characters total (title prop + "| MegaLancer")
 - Primary keywords positioned within first 30 characters of every title
 - Paycheck calculator main page now cites IRS Publication 15-T and SSA sources
-- Excel tool pages no longer have duplicated "| FreelancerTools | FreelancerTools" rendering
+- Excel tool pages no longer have duplicated "| MegaLancer | MegaLancer" rendering
 - All 50 state paycheck pages already have uniqueFacts, sources, and state-specific data
 
 ### Build status

@@ -1,4 +1,4 @@
----
+﻿---
 title: "What is a good net worth by age in 2025?"
 description: "See average and median net worth by age in the US. Find out where you stand and what net worth target to aim for at every decade."
 date: 2025-02-15

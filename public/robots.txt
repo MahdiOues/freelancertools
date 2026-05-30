@@ -1,4 +1,4 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 
-Sitemap: https://freelancertools.io/sitemap.xml
+Sitemap: https://megalancer.online/sitemap.xml

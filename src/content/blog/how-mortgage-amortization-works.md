@@ -1,4 +1,4 @@
----
+﻿---
 title: "How mortgage amortization works and why early payments matter"
 description: "Understand mortgage amortization schedules, how interest is front-loaded, and why extra early payments save you thousands in interest."
 date: 2025-02-15

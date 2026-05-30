@@ -1,4 +1,4 @@
----
+﻿---
 title: "How exchange rates work and when to lock in a rate"
 description: "Understanding currency exchange rates for travel and business. Learn how rates are set, when to lock in, and how to avoid bad exchanges."
 date: 2025-01-25

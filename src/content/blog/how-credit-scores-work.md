@@ -1,4 +1,4 @@
----
+﻿---
 title: "How your credit score is calculated and how to improve it"
 description: "Understand how FICO and VantageScore credit scores are calculated. Learn the 5 factors that determine your score and how to improve each one."
 date: 2025-02-08

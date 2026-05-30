@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to price your SaaS product: strategies that work"
 description: "Learn SaaS pricing strategies from tiered to usage-based. Find the right price point, test your pricing, and maximize customer lifetime value."
 date: 2025-05-05

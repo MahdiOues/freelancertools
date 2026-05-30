@@ -1,4 +1,4 @@
----
+﻿---
 title: "Construction math: how to measure and estimate materials"
 description: "Learn the essential math skills every contractor needs. Measure areas, estimate material quantities, and avoid costly overages or shortages."
 date: 2025-04-08

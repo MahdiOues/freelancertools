@@ -1,4 +1,4 @@
----
+﻿---
 title: "When should you claim Social Security? The breakeven math explained"
 description: "The breakeven age for Social Security determines when delaying benefits pays off. See the math behind claiming at 62 vs 67 vs 70 and find your optimal age."
 date: 2025-03-20

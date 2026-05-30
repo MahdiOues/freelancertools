@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to build a monthly budget that actually works (with the 50/30/20 rule)"
 description: "Learn the 50/30/20 budgeting rule. A simple framework for managing your money: 50% needs, 30% wants, 20% savings. Step-by-step guide with examples."
 date: 2025-02-20

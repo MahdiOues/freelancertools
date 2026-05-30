@@ -1,4 +1,4 @@
----
+﻿---
 import Tool from '../../../layouts/Tool.astro';
 import { CONVERSION_PAIRS, convertValue } from '../../../data/conversions.js';
 
@@ -54,7 +54,7 @@ const schema = {
   "@type": "WebApplication",
   "name": `Free ${pair.fromFull} to ${pair.toFull} Converter`,
   "description": `Convert ${pair.fromFull} to ${pair.toFull} instantly with our free calculator. Get accurate ${pair.from} to ${pair.to} conversions with formula, table, and examples.`,
-  "url": `https://freelancertools.io/math/convert/${pair.slug}/`,
+  "url": `https://megalancer.online/math/convert/${pair.slug}/`,
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -105,9 +105,9 @@ const faqSchema = {
 ---
 
 <Tool
-  title={`Convert ${pair.from} to ${pair.to} — Free ${capitalize(pair.fromFull)} to ${capitalize(pair.toFull)} Calculator | FreelancerTools`}
+  title={`Convert ${pair.from} to ${pair.to} — Free ${capitalize(pair.fromFull)} to ${capitalize(pair.toFull)} Calculator | MegaLancer`}
   description={`Convert ${pair.fromFull} to ${pair.toFull} instantly. Free online ${pair.from} to ${pair.to} calculator with formula, conversion table, and examples. Accurate and easy to use.`}
-  canonicalUrl={`https://freelancertools.io/math/convert/${pair.slug}/`}
+  canonicalUrl={`https://megalancer.online/math/convert/${pair.slug}/`}
   schema={[schema, faqSchema]}
   breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Unit Converter', href: '/math/unit-converter/' }, { label: `Convert ${pair.from} to ${pair.to}` }]}
   relatedTools={relatedTools}

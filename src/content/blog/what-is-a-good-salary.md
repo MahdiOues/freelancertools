@@ -1,4 +1,4 @@
----
+﻿---
 title: "What is a good salary? How to evaluate a job offer"
 description: "Learn how to evaluate a job offer beyond the base salary. Understand total compensation, benefits, and how to negotiate your next raise."
 date: 2025-02-22

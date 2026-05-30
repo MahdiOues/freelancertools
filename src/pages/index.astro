@@ -1,4 +1,4 @@
----
+﻿---
 import Page from '../layouts/Page.astro';
 import AdZone from '../components/AdZone.astro';
 import { getCollection } from 'astro:content';
@@ -10,22 +10,22 @@ const posts = (await getCollection('blog')).sort(
 const schema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "FreelancerTools.io",
+  "name": "megalancer.online",
   "description": "Free tools for freelancers, founders, and small business owners — calculators, generators, and AI-powered helpers.",
-  "url": "https://freelancertools.io/",
+  "url": "https://megalancer.online/",
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "FreelancerTools",
-  "url": "https://freelancertools.io",
+  "name": "MegaLancer",
+  "url": "https://megalancer.online",
   "description": "Free calculators and tools for freelancers, founders, and finance professionals.",
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "https://freelancertools.io/search?q={search_term_string}"
+      "urlTemplate": "https://megalancer.online/search?q={search_term_string}"
     },
     "query-input": "required name=search_term_string"
   }
@@ -43,7 +43,7 @@ const categories = [
 <Page
   title="Free Tools for Freelancers & Small Business Owners"
   description="Free calculators, contract generators, and AI-powered tools for freelancers, founders, and small business owners. Finance, Legal, SaaS, Marketing, and Freelancer tools."
-  canonicalUrl="https://freelancertools.io/"
+  canonicalUrl="https://megalancer.online/"
   schema={[schema, websiteSchema]}
 >
   <section class="hero">
