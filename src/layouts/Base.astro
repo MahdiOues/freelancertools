@@ -10,7 +10,7 @@ interface Props {
 }
 const { title, description, canonicalUrl, schema, ogImage = '/og-default.png' } = Astro.props;
 const gaId = import.meta.env.PUBLIC_GA_ID;
-const adsenseId = import.meta.env.PUBLIC_ADSENSE_ID;
+
 const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
 const normalizedTitle = title.length > 40 ? title.slice(0, 37).trimEnd() + '...' : title;
 const fullTitle = `${normalizedTitle} | MegaLancer`;
@@ -52,13 +52,7 @@ const fullTitle = `${normalizedTitle} | MegaLancer`;
       </script>
     </>
   )}
-  {adsenseId && (
-    <script
-      async
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
-      crossorigin="anonymous"
-    ></script>
-  )}
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7347718403990190" crossorigin="anonymous"></script>
 </head>
 <body>
   <slot />
