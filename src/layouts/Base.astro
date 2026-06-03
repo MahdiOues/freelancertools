@@ -12,8 +12,8 @@ const { title, description, canonicalUrl, schema, ogImage = '/og-default.png' } 
 const gaId = import.meta.env.PUBLIC_GA_ID;
 
 const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
-const normalizedTitle = title.length > 40 ? title.slice(0, 37).trimEnd() + '...' : title;
-const fullTitle = `${normalizedTitle} | MegaLancer`;
+const normalizedTitle = title.length > 60 ? title.slice(0, 57).trimEnd() + '...' : title;
+const fullTitle = `${title} | MegaLancer`;
 ---
 <!DOCTYPE html>
 <html lang="en">

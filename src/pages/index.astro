@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-).slice(0, 3);
+).slice(0, 6);
 
 const schema = {
   "@context": "https://schema.org",
@@ -25,18 +25,68 @@ const websiteSchema = {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "https://megalancer.online/search?q={search_term_string}"
+      "urlTemplate": "https://megalancer.online/search/?q={search_term_string}"
     },
     "query-input": "required name=search_term_string"
   }
 };
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which MegaLancer tool should I use first?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with the tool that matches the decision you need to make: rate calculator for pricing work, invoice generator for billing, debt payoff or budget planner for cash flow, and contract or NDA generators for client paperwork."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the calculators free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. MegaLancer tools are free to use and do not require an account."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can freelancers use these tools for client work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The tools are designed for freelancers, consultants, agencies, and small business owners who need quick estimates, invoices, proposals, contracts, and finance calculations."
+      }
+    }
+  ]
+};
+
 const categories = [
-  { href: '/finance/', label: 'Finance', accent: 'var(--cat-finance)', bg: 'var(--cat-finance-bg)', desc: 'Credit scores, loans, investing', count: '15 free tools' },
-  { href: '/math/', label: 'Math / Calculators', accent: 'var(--cat-math)', bg: 'var(--cat-math-bg)', desc: 'Percentages, conversions, GPA, time zones', count: '12 free tools' },
-  { href: '/health/', label: 'Health / Fitness', accent: 'var(--cat-health)', bg: 'var(--cat-health-bg)', desc: 'BMI, TDEE, sleep, pregnancy', count: '6 free tools' },
-  { href: '/legal/', label: 'Legal', accent: 'var(--cat-legal)', bg: 'var(--cat-legal-bg)', desc: 'Contracts, NDAs, document summarizer', count: '3 free tools' },
-  { href: '/freelancer/', label: 'Freelancer', accent: 'var(--cat-freelancer)', bg: 'var(--cat-freelancer-bg)', desc: 'Rate calculator, invoices, proposals', count: '6 free tools' },
+  { href: '/freelancer/', label: 'Freelancer', icon: '$', accent: 'var(--cat-freelancer)', bg: 'var(--cat-freelancer-bg)', desc: 'Rates, invoices, proposals, project estimates, and late fees.', count: '6 tools' },
+  { href: '/finance/', label: 'Finance', icon: '%', accent: 'var(--cat-finance)', bg: 'var(--cat-finance-bg)', desc: 'Debt payoff, mortgages, budgets, taxes, loans, and investing.', count: '23 tools' },
+  { href: '/legal/', label: 'Legal', icon: '#', accent: 'var(--cat-legal)', bg: 'var(--cat-legal-bg)', desc: 'Contracts, NDAs, and plain-English contract summaries.', count: '3 tools' },
+  { href: '/math/', label: 'Math', icon: '+', accent: 'var(--cat-math)', bg: 'var(--cat-math-bg)', desc: 'Percentages, conversions, dates, GPA, discounts, and time zones.', count: '27 tools' },
+  { href: '/health/', label: 'Health', icon: 'H', accent: 'var(--cat-health)', bg: 'var(--cat-health-bg)', desc: 'BMI, TDEE, sleep, water intake, pregnancy, and calories.', count: '6 tools' },
+  { href: '/marketing/', label: 'Marketing', icon: 'A', accent: 'var(--cat-marketing)', bg: 'var(--cat-marketing-bg)', desc: 'Ad profit, ROAS, and hook analysis for campaigns.', count: '2 tools' },
+  { href: '/saas/', label: 'SaaS', icon: 'S', accent: 'var(--cat-saas)', bg: 'var(--cat-saas-bg)', desc: 'MRR, SaaS pricing, and ROI calculators for founders.', count: '3 tools' },
+  { href: '/construction/', label: 'Construction', icon: 'C', accent: 'var(--cat-construction)', bg: 'var(--cat-construction-bg)', desc: 'Concrete and jobsite math calculators for material planning.', count: '2 tools' },
+];
+
+const popularTools = [
+  { href: '/freelancer/rate-calculator/', title: 'Freelancer Rate Calculator', tag: 'Set your price', desc: 'Find the hourly, daily, and project rate that covers taxes, expenses, and downtime.' },
+  { href: '/freelancer/invoice-generator/', title: 'Invoice Generator', tag: 'Get paid', desc: 'Create a clean invoice with payment terms, late-fee language, and PDF-ready formatting.' },
+  { href: '/freelancer/late-fee-calculator/', title: 'Late Fee Calculator', tag: 'Overdue invoices', desc: 'Calculate fair late-payment interest and total amount due from any invoice date.' },
+  { href: '/finance/debt-payoff/', title: 'Debt Payoff Calculator', tag: 'Cash flow', desc: 'Compare avalanche and snowball payoff plans with extra-payment scenarios.' },
+  { href: '/finance/mortgage-calculator/', title: 'Mortgage Calculator', tag: 'Big decisions', desc: 'Estimate payment, taxes, PMI, insurance, and amortization before you buy.' },
+  { href: '/legal/contract-generator/', title: 'Contract Generator', tag: 'Client safety', desc: 'Draft a freelance or business contract with scope, milestones, and payment terms.' },
+];
+
+const painPoints = [
+  { problem: 'I do not know what to charge.', help: 'Use the rate calculator, salary-to-hourly converter, and pricing articles to price from your real costs instead of guessing.', href: '/freelancer/rate-calculator/' },
+  { problem: 'Clients pay late or disappear.', help: 'Create clearer invoices, calculate late fees, and follow a calm reminder timeline.', href: '/freelancer/late-fee-calculator/' },
+  { problem: 'Projects keep growing after the quote.', help: 'Use contracts, project estimates, milestones, and change-order language before work starts.', href: '/freelancer/project-estimator/' },
+  { problem: 'I need quick finance answers.', help: 'Compare loans, budget income, model debt payoff, and estimate taxes without opening a spreadsheet.', href: '/finance/' },
 ];
 ---
 
@@ -44,97 +94,110 @@ const categories = [
   title="Free Tools for Freelancers & Small Business Owners"
   description="Free calculators, contract generators, and AI-powered tools for freelancers, founders, and small business owners. Finance, Legal, SaaS, Marketing, and Freelancer tools."
   canonicalUrl="https://megalancer.online/"
-  schema={[schema, websiteSchema]}
+  schema={[schema, websiteSchema, faqSchema]}
 >
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-badge">Built for the self-employed</div>
-      <h1>The tools you need to<br/><span class="hero-highlight">run your freelance business</span></h1>
-      <p class="hero-sub">Free calculators, generators, and analyzers for finance, legal, marketing, and more. No spreadsheets, no lawyers, no guesswork.</p>
-      <div class="hero-cats">
-        <a href="/finance" class="hero-cat-pill" style="--cat: var(--cat-finance)">Finance</a>
-        <a href="/math" class="hero-cat-pill" style="--cat: var(--cat-math)">Math</a>
-        <a href="/health" class="hero-cat-pill" style="--cat: var(--cat-health)">Health</a>
-        <a href="/legal" class="hero-cat-pill" style="--cat: var(--cat-legal)">Legal</a>
-        <a href="/freelancer" class="hero-cat-pill" style="--cat: var(--cat-freelancer)">Freelancer</a>
+      <div class="hero-copy">
+        <div class="hero-badge">Free calculators, generators, and guides</div>
+        <h1>Run the numbers before work gets messy.</h1>
+        <p class="hero-sub">MegaLancer helps freelancers, founders, and small business owners price projects, send invoices, compare financial decisions, and protect client work.</p>
+        <form class="hero-search" action="/search/" method="get">
+          <label class="sr-only" for="home-search">Search tools and guides</label>
+          <input id="home-search" name="q" type="search" placeholder="Search rates, invoices, mortgage, debt, contracts..." />
+          <button type="submit">Search</button>
+        </form>
+        <div class="hero-cats" aria-label="Popular shortcuts">
+          <a href="/freelancer/rate-calculator/" class="hero-cat-pill" style="--cat: var(--cat-freelancer)">Rate calculator</a>
+          <a href="/freelancer/invoice-generator/" class="hero-cat-pill" style="--cat: var(--cat-freelancer)">Invoice generator</a>
+          <a href="/finance/debt-payoff/" class="hero-cat-pill" style="--cat: var(--cat-finance)">Debt payoff</a>
+          <a href="/legal/contract-generator/" class="hero-cat-pill" style="--cat: var(--cat-legal)">Contract generator</a>
+        </div>
+      </div>
+      <div class="hero-panel" aria-label="Common freelance business questions">
+        <span class="hero-panel-kicker">Most searched problems</span>
+        {painPoints.slice(0, 3).map(item => (
+          <a href={item.href} class="hero-problem">
+            <strong>{item.problem}</strong>
+            <span>{item.help}</span>
+          </a>
+        ))}
       </div>
     </div>
-      <div class="hero-stat-row">
+    <div class="hero-stat-row">
       <div class="hero-stat"><span class="hero-stat-num">50+</span><span class="hero-stat-label">Free tools</span></div>
-      <div class="hero-stat-divider"></div>
-      <div class="hero-stat"><span class="hero-stat-num">5</span><span class="hero-stat-label">Categories</span></div>
-      <div class="hero-stat-divider"></div>
-      <div class="hero-stat"><span class="hero-stat-num">100%</span><span class="hero-stat-label">Free forever</span></div>
+      <div class="hero-stat-divider" aria-hidden="true"></div>
+      <div class="hero-stat"><span class="hero-stat-num">8</span><span class="hero-stat-label">Topic hubs</span></div>
+      <div class="hero-stat-divider" aria-hidden="true"></div>
+      <div class="hero-stat"><span class="hero-stat-num">0</span><span class="hero-stat-label">Sign-up needed</span></div>
     </div>
   </section>
 
   <div class="container">
     <AdZone size="leaderboard" />
 
-    <section>
-      <h2>Tools by category</h2>
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+    <section class="home-section">
+      <div class="section-heading">
+        <span class="eyebrow">Start here</span>
+        <h2>Tools by category</h2>
+        <p>Choose the area you are working on, then jump straight into a calculator or generator.</p>
+      </div>
+      <div class="home-category-grid">
         {categories.map(cat => (
-          <a href={cat.href} class="home-cat-card" style={`--cat-accent:${cat.accent};`}>
-            <h3>{cat.label}</h3>
+          <a href={cat.href} class="home-cat-card" style={`--cat-accent:${cat.accent};--cat-bg:${cat.bg};`}>
+            <span class="home-cat-icon">{cat.icon}</span>
+            <div>
+              <h3>{cat.label}</h3>
+              <span class="tool-count">{cat.count}</span>
+            </div>
             <p>{cat.desc}</p>
-            <div class="tool-count">{cat.count}</div>
-            <div class="arrow">→</div>
+            <div class="arrow">Explore</div>
           </a>
         ))}
       </div>
     </section>
 
-    <section>
-      <h2>Most used tools</h2>
-      <ul style="list-style: none;">
-        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
-          <a href="/finance/credit-score-simulator/">Credit Score Simulator</a>
-          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">Finance</span>
-        </li>
-        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
-          <a href="/legal/contract-generator/">Contract Generator</a>
-          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">Legal</span>
-        </li>
-        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
-          <a href="/freelancer/rate-calculator/">Freelancer Rate Calculator</a>
-          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">Freelancer</span>
-        </li>
-        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
-          <a href="/saas/pricing-calculator/">SaaS Pricing Calculator</a>
-          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">SaaS</span>
-        </li>
-        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
-          <a href="/legal/nda-generator/">NDA Generator</a>
-          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">Legal</span>
-        </li>
-        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
-          <a href="/saas/mrr-calculator/">MRR Calculator</a>
-          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">SaaS</span>
-        </li>
-        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
-          <a href="/marketing/ad-profit-calculator/">Ad Profitability Calculator</a>
-          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">Marketing</span>
-        </li>
-        <li style="padding: 10px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
-          <a href="/freelancer/invoice-generator/">Invoice Generator</a>
-          <span class="cat-tag" style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;">Freelancer</span>
-        </li>
-      </ul>
+    <section class="home-section">
+      <div class="section-heading">
+        <span class="eyebrow">Fast answers</span>
+        <h2>Most useful tools</h2>
+        <p>These are the tools that map to common high-intent searches and recurring freelancer pain points.</p>
+      </div>
+      <div class="featured-tool-grid">
+        {popularTools.map(tool => (
+          <a href={tool.href} class="featured-tool-card">
+            <span>{tool.tag}</span>
+            <h3>{tool.title}</h3>
+            <p>{tool.desc}</p>
+          </a>
+        ))}
+      </div>
     </section>
 
     <AdZone size="square" />
 
-    <section>
-      <h2>How it works</h2>
-      <p>Pick a tool from one of five categories — Finance, Legal, SaaS/B2B, Marketing, or Freelancer. Each tool is designed to give you an answer in under a minute.</p>
-      <p>Calculators update instantly as you adjust inputs. Document generators use AI to draft contracts, invoices, and proposals. Everything runs in your browser.</p>
-      <p>No sign-up. No charges. No data stored on our servers. If you find a tool useful, bookmark it or share it with someone who needs it.</p>
+    <section class="home-section">
+      <div class="section-heading">
+        <span class="eyebrow">What people struggle with</span>
+        <h2>Practical help for messy business moments</h2>
+      </div>
+      <div class="pain-grid">
+        {painPoints.map(item => (
+          <a href={item.href} class="pain-card">
+            <h3>{item.problem}</h3>
+            <p>{item.help}</p>
+          </a>
+        ))}
+      </div>
     </section>
 
-    <section>
-      <h2>From the blog</h2>
-      <ul class="blog-list">
+    <section class="home-section">
+      <div class="section-heading">
+        <span class="eyebrow">Guides</span>
+        <h2>From the blog</h2>
+        <p>Step-by-step articles for the questions people ask before they trust a calculator.</p>
+      </div>
+      <ul class="blog-list home-blog-list">
         {posts.map(post => (
           <li>
             <span class="blog-date">{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>

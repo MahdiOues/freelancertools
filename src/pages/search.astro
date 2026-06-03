@@ -1,0 +1,107 @@
+---
+import Page from '../layouts/Page.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const tools = [
+  { title: 'Freelancer Rate Calculator', href: '/freelancer/rate-calculator/', category: 'Freelancer', description: 'Calculate hourly, daily, weekly, and project rates from income goals, taxes, expenses, and billable hours.' },
+  { title: 'Invoice Generator', href: '/freelancer/invoice-generator/', category: 'Freelancer', description: 'Create professional invoices with payment terms, line items, and late fee language.' },
+  { title: 'Late Fee Calculator', href: '/freelancer/late-fee-calculator/', category: 'Freelancer', description: 'Calculate late payment interest and the total amount due on overdue invoices.' },
+  { title: 'Project Estimator', href: '/freelancer/project-estimator/', category: 'Freelancer', description: 'Estimate project scope, timeline, cost, and contingency before sending a quote.' },
+  { title: 'Proposal Generator', href: '/freelancer/proposal-generator/', category: 'Freelancer', description: 'Generate client proposals with deliverables, timeline, investment, and next steps.' },
+  { title: 'Salary to Hourly Calculator', href: '/freelancer/salary-to-hourly/', category: 'Freelancer', description: 'Convert salary to hourly, daily, weekly, and monthly pay.' },
+  { title: 'Debt Payoff Calculator', href: '/finance/debt-payoff/', category: 'Finance', description: 'Compare debt avalanche and debt snowball strategies with payoff dates and interest savings.' },
+  { title: 'Mortgage Calculator', href: '/finance/mortgage-calculator/', category: 'Finance', description: 'Estimate mortgage payment, taxes, insurance, PMI, and amortization.' },
+  { title: 'Budget Planner', href: '/finance/budget-planner/', category: 'Finance', description: 'Build a monthly budget using the 50/30/20 rule or custom categories.' },
+  { title: 'Loan Comparison Calculator', href: '/finance/loan-comparison/', category: 'Finance', description: 'Compare loans side by side by payment, APR, fees, and total interest.' },
+  { title: 'Compound Interest Calculator', href: '/finance/compound-interest/', category: 'Finance', description: 'Model investment growth with contributions, compounding, and time.' },
+  { title: 'Contract Generator', href: '/legal/contract-generator/', category: 'Legal', description: 'Draft contracts with scope, payment terms, milestones, and protections.' },
+  { title: 'NDA Generator', href: '/legal/nda-generator/', category: 'Legal', description: 'Create a non-disclosure agreement for client, contractor, or startup conversations.' },
+  { title: 'Percentage Calculator', href: '/math/percentage-calculator/', category: 'Math', description: 'Calculate percentages, percent of a number, and percent change.' },
+  { title: 'Unit Converter', href: '/math/unit-converter/', category: 'Math', description: 'Convert common length, weight, temperature, volume, and speed units.' },
+  { title: 'BMI Calculator', href: '/health/bmi-calculator/', category: 'Health', description: 'Calculate BMI and understand what the category means.' },
+  { title: 'SaaS Pricing Calculator', href: '/saas/pricing-calculator/', category: 'SaaS', description: 'Model SaaS pricing, margins, customer counts, and revenue targets.' },
+  { title: 'Ad Profitability Calculator', href: '/marketing/ad-profit-calculator/', category: 'Marketing', description: 'Calculate ROAS, CPA, gross profit, and break-even ad spend.' },
+];
+
+const blogResults = posts.map(post => ({
+  title: post.data.title,
+  href: `/blog/${post.id}/`,
+  category: post.data.category,
+  description: post.data.description,
+}));
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SearchResultsPage",
+  "name": "Search MegaLancer tools and guides",
+  "description": "Search free calculators, generators, and practical guides for freelancers and small business owners.",
+};
+---
+
+<Page
+  title="Search Free Calculators, Tools & Guides"
+  description="Search MegaLancer's free calculators, invoice tools, finance calculators, contract generators, and practical freelancer guides."
+  canonicalUrl="https://megalancer.online/search/"
+  schema={schema}
+>
+  <div class="container">
+    <div class="page-hero search-page-hero">
+      <h1>Search tools and guides</h1>
+      <p class="subhead">Find calculators, generators, and articles by problem, topic, or business question.</p>
+      <div class="search-input-wrap">
+        <label class="sr-only" for="toolSearch">Search MegaLancer</label>
+        <input id="toolSearch" type="search" placeholder="Try invoice, rate, debt, mortgage, contract..." autocomplete="off" />
+      </div>
+    </div>
+
+    <section>
+      <h2>Tools</h2>
+      <div class="search-results" id="toolResults">
+        {tools.map(item => (
+          <a class="search-result-card" href={item.href} data-search={`${item.title} ${item.category} ${item.description}`.toLowerCase()}>
+            <span>{item.category}</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>Guides</h2>
+      <div class="search-results" id="blogResults">
+        {blogResults.map(item => (
+          <a class="search-result-card" href={item.href} data-search={`${item.title} ${item.category} ${item.description}`.toLowerCase()}>
+            <span>{item.category}</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</Page>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const input = document.getElementById('toolSearch');
+const cards = Array.from(document.querySelectorAll('.search-result-card'));
+
+function runSearch(value) {
+  const query = value.trim().toLowerCase();
+  cards.forEach(card => {
+    const matches = !query || card.dataset.search.includes(query);
+    card.hidden = !matches;
+  });
+}
+
+if (input) {
+  input.value = params.get('q') || '';
+  runSearch(input.value);
+  input.addEventListener('input', () => runSearch(input.value));
+}
+</script>

@@ -52,7 +52,7 @@ export const GET: APIRoute = async () => {
     '/finance/excel-tools/cash-flow-waterfall/', '/finance/excel-tools/pivot-summarizer/',
     '/finance/excel-tools/break-even/', '/finance/excel-tools/financial-ratios/',
     '/finance/excel-tools/growth-modeler/',
-    '/blog/',
+    '/blog/', '/search/',
   ];
 
   const statePages = STATES.map(s => `/finance/paycheck-calculator/${s}/`);
