@@ -3,17 +3,27 @@ interface Props {
   size?: 'leaderboard' | 'square' | 'footer' | 'skyscraper';
   slot?: string;
 }
-const { size = 'leaderboard' } = Astro.props;
+
+const active = import.meta.env.PUBLIC_ADSENSE_ACTIVE === 'true';
+if (!active) return;
+
+const { size = 'leaderboard', slot = '' } = Astro.props;
 const dimensions = {
-  leaderboard: { width: '728px', height: '90px', label: '728×90' },
-  square:      { width: '336px', height: '280px', label: '336×280' },
-  footer:      { width: '728px', height: '90px', label: '728×90' },
-  skyscraper:  { width: '160px', height: '600px', label: '160×600' },
+  leaderboard: { width: '728', height: '90' },
+  square:      { width: '336', height: '280' },
+  footer:      { width: '728', height: '90' },
+  skyscraper:  { width: '160', height: '600' },
 };
 const d = dimensions[size];
+const adClient = import.meta.env.PUBLIC_ADSENSE_ID || 'ca-pub-0000000000000000';
 const cls = size === 'skyscraper' ? 'ad-zone-skyscraper' : 'ad-zone';
 ---
 
-<div class={cls} style={`width:${d.width};height:${d.height}`} aria-hidden="true">
-  <span>Advertisement</span>
+<div class={cls}>
+  <ins class="adsbygoogle"
+       style={`display:inline-block;width:${d.width}px;height:${d.height}px`}
+       data-ad-client={adClient}
+       data-ad-slot={slot || '0000000000'}></ins>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
