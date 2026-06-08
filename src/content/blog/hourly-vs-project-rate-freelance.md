@@ -80,3 +80,25 @@ Use the [Free Rate Calculator](/freelancer/rate-calculator/) to compare hourly a
 ## The takeaway
 
 Neither model is better universally. Hourly pricing protects you from scope creep but caps your income. Project pricing rewards efficiency but punishes bad estimates. The smartest approach is to use both — charge by the hour when the work is open-ended and by the project when you know exactly what is involved. As you get better at estimating, shift more of your work to project pricing. Your income will grow and your clients will appreciate the certainty.
+
+## Frequently asked questions
+
+<details><summary>Should I charge hourly or per project as a freelancer?</summary>
+Charge hourly when scope is unclear, the client tends to request many changes, or you are new to estimating this type of work. Charge per project when you have experience with similar projects, the requirements are well-defined, and you want to reward your efficiency. Many successful freelancers use both models depending on the project.
+</details>
+
+<details><summary>When is hourly pricing better than project pricing?</summary>
+Hourly pricing is better for ongoing maintenance work, projects with vague requirements, clients who frequently change their minds, and when you are working with a new type of technology or service you haven't estimated before. It protects you from losing money when the project expands beyond expectations.
+</details>
+
+<details><summary>How do I set a project rate based on my hourly rate?</summary>
+Estimate the total hours, multiply by your hourly rate, then add a 20-30% buffer. Convert that to a flat fee. For example, if your hourly rate is $100 and you estimate 40 hours, your project fee would be $4,000 + $800-1,200 buffer = $4,800-5,200. This ensures you earn at least your target hourly rate even with unexpected delays.
+</details>
+
+<details><summary>What are the pros and cons of hourly billing?</summary>
+Pros: you get paid for every hour worked, scope creep automatically increases your pay, and there is less pricing anxiety. Cons: your income is capped by your available hours, clients may question your efficiency, and there is no upside for working faster or delivering exceptional value.
+</details>
+
+<details><summary>How do I switch from hourly to value-based pricing?</summary>
+Start by tracking the results your work produces — if your designs increase a client's sales by 20%, you have a value story. Then quote projects based on the value delivered rather than hours spent. A common transition approach is to offer both: "This project is $5,000 flat fee, or $150/hour estimated at 40 hours."
+</details>

@@ -7,6 +7,8 @@ relatedTool: /math/square-footage/
 relatedToolName: Free Square Footage Calculator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 Square footage is the language of real estate and home improvement. Whether you are buying flooring, ordering paint, or estimating landscaping materials, everything starts with the same basic calculation. Here is how to measure and calculate square footage for any project.
 
 ## The basic formula
@@ -47,3 +49,35 @@ Sometimes you will encounter dimensions in yards or meters. One square yard equa
 - A 2,000-square-foot house has roughly 3,200 square feet of wall area (assuming 8-foot ceilings)
 
 Accurate square footage saves money and materials. Whether you are laying tile or seeding a lawn, measuring carefully and using the [Square Footage Calculator](/math/square-footage/) ensures you buy the right amount and avoid costly returns or shortages.
+
+## Frequently asked questions
+
+<details><summary>How do I calculate square footage of a room?</summary>
+
+Measure the length and width of the room in feet, then multiply them together. A bedroom that is 12 feet long and 10 feet wide is 120 square feet. For rectangular rooms, the formula is simply Length × Width.
+
+</details>
+
+<details><summary>How many square feet is a 10x10 room?</summary>
+
+A 10x10 room is 100 square feet. This is calculated by multiplying 10 feet by 10 feet. Keep in mind that this assumes the room is perfectly square — measure each wall to confirm.
+
+</details>
+
+<details><summary>How do I calculate square footage of a house?</summary>
+
+Measure each room individually using Length × Width, then add all the room totals together. For a 2,000-square-foot house, this typically includes all finished living spaces but excludes garages, unfinished basements, and attics.
+
+</details>
+
+<details><summary>How do I calculate square footage for flooring?</summary>
+
+Calculate the room's square footage (Length × Width), then add 10% for waste on straight installations and 15% for diagonal or patterned layouts. A 200-square-foot room needs 220 square feet of flooring with a 10% waste buffer.
+
+</details>
+
+<details><summary>How do I measure square footage of an irregular room?</summary>
+
+Divide the room into regular shapes (rectangles, triangles, circles), calculate each area separately, and add them together. For an L-shaped room, split it into two rectangles — for example, a 20×12 section (240 sq ft) plus a 5×5 alcove (25 sq ft) equals 265 square feet total.
+
+</details>

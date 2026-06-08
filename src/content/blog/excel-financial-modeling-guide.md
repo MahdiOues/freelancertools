@@ -68,3 +68,35 @@ Once your base model works, build scenarios. Create a base case (most likely), a
 This is where financial modeling becomes powerful. Instead of guessing the future, you prepare for multiple futures. If the downside case shows you running out of cash in 12 months, you know you need to raise money or cut costs now.
 
 Use the [Excel Financial Tools](/finance/excel-tools/) to access pre-built templates and calculators that can jumpstart your financial modeling process.
+
+## Frequently asked questions
+
+<details>
+<summary>What is financial modeling?</summary>
+
+Financial modeling is the process of creating a spreadsheet that forecasts a company's financial performance based on historical data and assumptions. It includes projecting income statements, balance sheets, and cash flow statements to support decision-making around investments, fundraising, budgeting, and strategic planning.
+</details>
+
+<details>
+<summary>How do I build a financial model in Excel?</summary>
+
+Start with historical financial data, then build assumptions about growth rates, costs, and margins. Create three linked statements (income, balance sheet, cash flow) with formulas that flow data between them. Use separate input sheets for assumptions and output sheets for results, and avoid hard-coding numbers in formulas to make updates easy.
+</details>
+
+<details>
+<summary>What are common Excel financial functions?</summary>
+
+Key Excel financial functions include NPV (net present value), IRR (internal rate of return), PMT (loan payment), FV (future value), PV (present value), and XNPV/XIRR for irregular cash flows. PMT(0.05/12, 360, 300000) calculates the monthly payment on a $300,000, 30-year mortgage at 5% as $1,610.
+</details>
+
+<details>
+<summary>What is the difference between NPV and IRR?</summary>
+
+NPV (Net Present Value) calculates the total value of a project in dollars by discounting future cash flows to today. IRR (Internal Rate of Return) is the discount rate that makes NPV equal to zero, expressed as a percentage. NPV tells you if a project adds value, while IRR tells you the expected rate of return.
+</details>
+
+<details>
+<summary>How do I forecast revenue in Excel?</summary>
+
+Start with historical revenue data and identify growth drivers — units sold, average price, customer acquisition rate. Use trendlines (linear, exponential, or moving average) for simple projections, or build driver-based models that multiply volume × price. For seasonal businesses, use monthly factors based on historical patterns to adjust annual forecasts.
+</details>

@@ -48,3 +48,25 @@ Some terms are dealbreakers. Non-compete clauses that are overly broad or indefi
 ## The final review
 
 After you have reviewed the contract clause by clause, read it one more time from start to finish. Does it accurately reflect the deal you agreed to? Does anything surprise you? If the answer to either question is no, you are ready to sign. If yes, go back and negotiate before you put pen to paper. A few hours of careful review now can save you months of legal headaches later.
+
+## Frequently asked questions
+
+<details><summary>What should I look for in a freelance contract?</summary>
+Focus on five key areas: scope of work, payment terms (amount, schedule, late fees), intellectual property ownership, termination clauses, and liability limits. These five sections cover 90% of disputes that arise between freelancers and clients.
+</details>
+
+<details><summary>What are red flags in a client contract?</summary>
+Major red flags include unlimited revision clauses, indefinite non-compete terms, requirements to indemnify the client for their own negligence, exclusivity clauses that prevent you from working with other clients, and provisions that let the client terminate for convenience but lock you into the project.
+</details>
+
+<details><summary>How do I negotiate contract terms with a client?</summary>
+Focus on your interests, not positions. Instead of saying "I won't sign this indemnity clause," say "I need my liability to be proportional to what I'm being paid." Most clients are open to reasonable changes if you explain why — 80% of contract negotiations result in at least one term being modified.
+</details>
+
+<details><summary>What is a non-compete clause and should I sign one?</summary>
+A non-compete clause prevents you from working with competing businesses during or after the project. Avoid signing broad non-competes that last more than 6 months or cover entire industries. Narrow non-competes limited to the client's direct competitors during the project period are more reasonable.
+</details>
+
+<details><summary>Can I change a contract after signing?</summary>
+Yes — both parties can agree to modify a contract through a written amendment or addendum signed by both sides. Verbal agreements to change terms are difficult to enforce. Always document changes in writing, even for small modifications like deadline extensions.
+</details>

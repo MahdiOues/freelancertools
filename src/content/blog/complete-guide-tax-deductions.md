@@ -64,3 +64,35 @@ Workshops, conferences, online courses, and seminars that maintain or improve yo
 The [Tax Deduction Finder](/finance/tax-deduction-finder/) helps you identify every deduction you qualify for. Answer a few questions about your business and expenses, and the tool generates a personalized list of deductions with estimated amounts. Use it during tax planning throughout the year, not just at filing time.
 
 The best tax strategy is simple: deduct every legitimate expense, keep meticulous records, and pay estimated taxes quarterly to avoid penalties. Your business expenses reduce your taxable income dollar for dollar. The more you track, the more you save.
+
+## Frequently asked questions
+
+<details>
+<summary>What is the standard deduction for 2024?</summary>
+
+For the 2024 tax year, the standard deduction is $14,600 for single filers, $29,200 for married couples filing jointly, and $21,900 for heads of household. Most taxpayers take the standard deduction because it is simpler and often larger than itemizing unless they have significant deductible expenses.
+</details>
+
+<details>
+<summary>What itemized deductions can I claim?</summary>
+
+Common itemized deductions include mortgage interest (up to $750,000 in mortgage debt), state and local taxes (capped at $10,000), charitable donations, medical expenses exceeding 7.5% of your AGI, and casualty losses. You can claim these only if your total itemized deductions exceed the standard deduction for your filing status.
+</details>
+
+<details>
+<summary>Should I take the standard deduction or itemize?</summary>
+
+You should itemize only if your total eligible expenses exceed the standard deduction. For a single filer in 2024, that means having more than $14,600 in deductible expenses like mortgage interest, state taxes, and charitable gifts. For most people without a mortgage, the standard deduction is the better choice.
+</details>
+
+<details>
+<summary>What is the child tax credit for 2024?</summary>
+
+The child tax credit for 2024 is up to $2,000 per qualifying child under age 17, with up to $1,700 refundable per child. The credit begins to phase out at $200,000 of AGI for single filers and $400,000 for married couples. To qualify, the child must have a valid Social Security number and live with you for more than half the year.
+</details>
+
+<details>
+<summary>How do medical expense deductions work?</summary>
+
+You can deduct medical expenses that exceed 7.5% of your adjusted gross income. For someone earning $60,000, you can deduct medical costs exceeding $4,500. Qualifying expenses include doctor visits, prescriptions, dental care, vision, mental health treatment, and long-term care insurance premiums.
+</details>

@@ -7,6 +7,8 @@ relatedTool: /health/bmi-calculator/
 relatedToolName: Free BMI Calculator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 Body Mass Index is a simple screening tool used by doctors and insurers to categorize weight relative to height. But BMI has serious limitations that are important to understand before drawing conclusions about your health.
 
 ## How BMI is calculated
@@ -36,3 +38,35 @@ Calculate your BMI with the [BMI Calculator](/health/bmi-calculator/) and then u
 ## The takeaway
 
 BMI is a useful population screening tool that loses accuracy at the individual level. Use it as one data point among many, not the final word on your health. Combine it with waist measurement, physical fitness assessment, and blood work for a complete picture.
+
+## Frequently asked questions
+
+<details><summary>What is BMI and how is it calculated?</summary>
+
+Body Mass Index (BMI) is a screening tool that estimates body fat based on height and weight. The formula is weight in kilograms divided by height in meters squared. For imperial units, multiply weight in pounds by 703 and divide by height in inches squared.
+
+</details>
+
+<details><summary>What is a normal BMI range?</summary>
+
+A normal BMI falls between 18.5 and 24.9. Below 18.5 is considered underweight, 25 to 29.9 is overweight, and 30 or above is obese. For a person who is 5 foot 9, a normal weight ranges from 125 to 168 pounds.
+
+</details>
+
+<details><summary>Is BMI accurate for athletes?</summary>
+
+No, BMI frequently misclassifies athletes as overweight or obese because it does not distinguish between muscle and fat. A professional bodybuilder with 8% body fat and high muscle mass may have a BMI of 28, which falls in the overweight category, despite being in excellent health.
+
+</details>
+
+<details><summary>What are the limitations of BMI?</summary>
+
+BMI does not measure body composition, fat distribution, or muscle mass. It cannot differentiate between visceral fat (dangerous fat around organs) and subcutaneous fat, and it becomes less accurate for older adults who lose muscle mass. Two people with the same BMI can have very different health profiles.
+
+</details>
+
+<details><summary>What is a better measurement than BMI?</summary>
+
+Waist circumference is a simple and effective alternative — a measurement over 40 inches for men or 35 inches for women indicates increased health risk. Body fat percentage, measured via calipers, bioelectrical impedance, or DEXA scans, provides a more accurate picture. Blood markers like fasting glucose and cholesterol should also be considered.
+
+</details>

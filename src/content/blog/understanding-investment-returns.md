@@ -52,3 +52,35 @@ Rather than crunching these numbers by hand, use the [Investment Return Calculat
 Run one scenario with a conservative 6% return and another with an aggressive 10% return. The difference over 30 years is enormous. Understanding CAGR helps you see why small differences in annual returns compound into life-changing gaps over decades.
 
 Know your numbers. CAGR tells you the truth about your investments. Simple return tells you a story. Make sure you are reading the right one.
+
+## Frequently asked questions
+
+<details>
+<summary>What is average stock market return?</summary>
+
+The S&P 500 has averaged approximately 10% annual returns before inflation over the last century. After accounting for the average 3% inflation rate, the real return is about 7%. In any given year, returns can range from -38% to +38%, so long-term holding is essential to realize those averages.
+</details>
+
+<details>
+<summary>How do I calculate investment return?</summary>
+
+Simple return is (Ending Value - Beginning Value) / Beginning Value. For example, $10,000 invested that grows to $12,000 has a simple return of 20%. For multi-year periods, use CAGR: (Ending Value / Beginning Value)^(1/Years) - 1. An investment growing from $10,000 to $20,000 over 5 years has a CAGR of about 14.9%.
+</details>
+
+<details>
+<summary>What is the difference between nominal and real return?</summary>
+
+Nominal return is the raw percentage gain on your investment before accounting for inflation. Real return is nominal return minus inflation rate, which represents your actual purchasing power gain. A 10% nominal return with 3% inflation gives you a 7% real return — you are 7% richer in buying power.
+</details>
+
+<details>
+<summary>How does compound interest affect investment returns?</summary>
+
+Compound interest causes your returns to earn returns themselves, creating exponential growth over time. $10,000 invested at 10% annual return grows to $25,937 in 10 years with compounding, compared to only $20,000 with simple interest. The effect becomes dramatic over 30 years: $174,494 vs $40,000.
+</details>
+
+<details>
+<summary>What is a good annual return on investments?</summary>
+
+A good annual return depends on your asset allocation. For a balanced portfolio of 60% stocks and 40% bonds, 6-8% is reasonable. For an all-stock portfolio, 8-10% is a solid long-term expectation. Anything claiming consistent returns above 12% should be treated with skepticism as it likely carries unreported risk.
+</details>

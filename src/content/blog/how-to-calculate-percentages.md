@@ -7,6 +7,8 @@ relatedTool: /math/percentage-calculator/
 relatedToolName: Free Percentage Calculator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 Percentages are everywhere. Sales tax, tips, discounts, interest rates, and investment returns all use percentages. Understanding how to calculate them quickly saves you money and helps you make better decisions.
 
 ## The basic percentage formula
@@ -58,3 +60,35 @@ Every financial decision involves percentages. Your credit card charges interest
 Understanding percentages lets you compare offers, evaluate deals, and manage your money effectively. When a bank offers 3.5% APY on savings and 24% APR on credit cards, you recognize immediately which one benefits you.
 
 Use the [Percentage Calculator](/math/percentage-calculator/) to quickly calculate tips, discounts, tax amounts, and any other percentage problem you encounter.
+
+## Frequently asked questions
+
+<details><summary>How do I calculate percentage of a number?</summary>
+
+Multiply the number by the percentage expressed as a decimal. For example, to find 15% of $40, multiply 40 by 0.15 to get $6. The formula is: (Percentage / 100) × Number = Result.
+
+</details>
+
+<details><summary>How do I calculate percentage increase?</summary>
+
+Subtract the old value from the new value, divide the result by the old value, and multiply by 100. If your rent went from $1,200 to $1,320, the increase is (1,320 - 1,200) / 1,200 × 100 = 10%.
+
+</details>
+
+<details><summary>How do I find what percent one number is of another?</summary>
+
+Divide the part by the whole and multiply by 100. If you answered 45 questions correctly out of 60, your percentage is (45 / 60) × 100 = 75%. The formula is: (Part / Whole) × 100 = Percentage.
+
+</details>
+
+<details><summary>How do I calculate a 20% tip?</summary>
+
+Multiply the bill total by 0.20. For a $45 meal, the tip is 45 × 0.20 = $9. A quick mental shortcut is to calculate 10% by moving the decimal one place left ($4.50) and double it.
+
+</details>
+
+<details><summary>What is the formula for percentage change?</summary>
+
+(New Value - Old Value) / Old Value × 100. A positive result is an increase, and a negative result is a decrease. For example, a stock that rises from $50 to $60 has a percentage change of (60 - 50) / 50 × 100 = 20%.
+
+</details>

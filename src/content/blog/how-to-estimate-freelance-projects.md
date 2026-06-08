@@ -88,3 +88,25 @@ Use the [Free Project Estimator](/freelancer/project-estimator/) to structure yo
 ## The takeaway
 
 Estimating freelance projects accurately is not about guessing better. It is about having a system that accounts for every task, every hidden hour, and every possible delay. Use the four-step process, add your buffers, and trust your numbers. You will win fewer projects at first, but the ones you win will be profitable.
+
+## Frequently asked questions
+
+<details><summary>How do I estimate freelance project hours?</summary>
+Break the project into individual tasks (research, design, revisions, communication), estimate hours for each using past projects as reference, then add a 20-30% buffer for unexpected delays. Tracking your actual hours against estimates for 5-10 projects will dramatically improve your accuracy over time.
+</details>
+
+<details><summary>How do I price a freelance project?</summary>
+Multiply your estimated hours by your hourly rate, then add a 15-25% contingency buffer. Cross-check your number against what similar projects charge in your market. If your estimate feels too high or too low, review your task breakdown rather than arbitrarily adjusting the final number.
+</details>
+
+<details><summary>What is a good buffer for scope creep?</summary>
+A 20-30% buffer on hours is standard for most freelance projects. For projects with vague requirements or new client relationships, bump the buffer to 40-50%. This protects you when the client asks for "one small change" that inevitably adds several hours.
+</details>
+
+<details><summary>How do I estimate a project with unclear requirements?</summary>
+Quote a range rather than a fixed price, or charge hourly until the requirements solidify. Alternatively, propose a discovery phase — a paid scoping engagement of 5-10 hours to define the full requirements before you commit to a fixed project price.
+</details>
+
+<details><summary>Should I charge hourly or per project?</summary>
+Charge per project when the scope is well-defined and you can accurately estimate the hours. Charge hourly when the requirements are unclear or the client tends to request frequent changes. Many experienced freelancers start with hourly rates and switch to project pricing as they gain estimating experience.
+</details>

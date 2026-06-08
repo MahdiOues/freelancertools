@@ -67,3 +67,25 @@ These are expenses your employer used to cover. Now they are your responsibility
 Transitioning from salary to freelance is not about taking a leap of faith. It is about doing the math, building the safety net, and starting before you quit. Know your expenses. Calculate your rate. Save six months of runway. Build clients on the side. Plan for taxes. Replace your benefits.
 
 Do those six things and the transition is not a risk — it is a plan. The [Free Salary to Hourly Converter](/freelancer/salary-to-hourly/) is the first step. Run the numbers, then build your plan around what they tell you.
+
+## Frequently asked questions
+
+<details><summary>How much should I save before quitting my job to freelance?</summary>
+Aim for 6-12 months of living expenses saved before making the leap. Most freelancers take 3-6 months to replace their full-time income, and some need up to 12 months if they are starting with no client base. A 6-month buffer covers your personal expenses plus business startup costs.
+</details>
+
+<details><summary>How do I calculate my freelance rate from my salary?</summary>
+Take your current salary, add 30% for taxes and benefits your employer covered, add your expected business expenses, then divide by 1,200 billable hours. A $70,000 salary becomes roughly $76/hour: ($70,000 × 1.3 + $10,000 expenses) ÷ 1,200 = $84/hour minimum to match your current income.
+</details>
+
+<details><summary>How do I find my first freelance clients?</summary>
+Start with your professional network — former colleagues, former employers, and industry contacts. Freelancers who get their first client through a referral typically earn 20-30% more than those who cold pitch. LinkedIn, freelance platforms like Upwork, and local business meetups are also effective starting points.
+</details>
+
+<details><summary>How long does it take to replace a full-time income freelancing?</summary>
+Most freelancers reach their former salary within 6-12 months, though it varies by industry. Tech freelancers often match their salary in 3-6 months, while creative freelancers may take 12-18 months. Building a steady pipeline of repeat clients is the fastest path to income stability.
+</details>
+
+<details><summary>Should I freelance while working full-time?</summary>
+Yes — starting freelance work 3-6 months before leaving your job is the safest approach. Use evenings and weekends to build your client base and savings. This lets you test whether freelancing suits you before giving up your steady paycheck, and most successful freelancers started this way.
+</details>

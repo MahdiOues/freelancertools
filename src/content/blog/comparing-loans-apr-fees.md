@@ -50,3 +50,35 @@ The [Loan Comparison Calculator](/finance/loan-comparison/) helps you compare up
 Use it before signing any loan documents. Compare the best offers you receive. The calculator handles the math so you can focus on which loan fits your budget and goals.
 
 A lower interest rate is not always the cheapest loan when fees are included. A shorter term is not always better if the monthly payment stretches your budget. Run the numbers, understand the trade-offs, and choose the loan that works for your specific situation.
+
+## Frequently asked questions
+
+<details>
+<summary>What is the difference between APR and interest rate?</summary>
+
+The interest rate is the cost of borrowing the principal, while APR (Annual Percentage Rate) includes the interest rate plus any fees, points, and other charges spread across the loan term. APR gives you a more complete picture of the total cost — a loan with a 6% rate and $3,000 in fees might have a 6.5% APR.
+</details>
+
+<details>
+<summary>How do loan fees affect APR?</summary>
+
+Origination fees, processing fees, and discount points all increase your APR because they are added to the total cost of the loan. For example, a $10,000 personal loan at 8% interest with a $500 origination fee would have an APR of roughly 9.3% because the fee is amortized into the effective rate.
+</details>
+
+<details>
+<summary>What is a good APR for a personal loan?</summary>
+
+A good APR for a personal loan depends on your credit score. Borrowers with excellent credit (740+) can qualify for rates as low as 6-10%, while those with fair credit (640-680) might see rates of 15-25%. For credit cards, a good APR is anything below the national average of around 20%.
+</details>
+
+<details>
+<summary>Should I always choose the loan with the lowest APR?</summary>
+
+Not always — the lowest APR loan is generally best if all other terms are similar, but you should also consider the loan term, monthly payment, and prepayment penalties. A very low APR on a 60-month car loan costs more in total interest than a slightly higher APR on a 36-month loan.
+</details>
+
+<details>
+<summary>How do I compare loans with different terms?</summary>
+
+Compare loans with different terms by looking at the total cost of borrowing (principal + interest + fees), not just the monthly payment. A 60-month $20,000 loan at 7% APR has a $396 monthly payment and $3,761 total interest, while a 36-month loan at 6% APR has a $608 payment but only $1,900 total interest.
+</details>

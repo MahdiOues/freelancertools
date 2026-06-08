@@ -7,6 +7,8 @@ relatedTool: /health/sleep-calculator/
 relatedToolName: Free Sleep Calculator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 Sleep is not just rest. It is an active biological process that affects every system in your body. Yet most people do not get enough, and many do not know what enough actually means for them.
 
 ## How much sleep by age
@@ -38,3 +40,35 @@ Work backward from your wake time. If you need to wake at 6:30 AM and you know y
 ## Practical takeaways
 
 Consistency matters more than any single night. Going to bed and waking at the same time every day (including weekends) strengthens your circadian rhythm and improves sleep quality over time. Prioritize 7 to 9 hours, keep your bedroom cool and dark, and use the [Sleep Calculator](/health/sleep-calculator/) to plan your schedule around complete sleep cycles.
+
+## Frequently asked questions
+
+<details><summary>How many hours of sleep do I need?</summary>
+
+Adults aged 18 to 64 need 7 to 9 hours per night, while adults 65 and older need 7 to 8 hours. Teenagers require 8 to 10 hours, and school-age children need 9 to 11 hours. Consistently sleeping less than 6 hours per night is associated with increased risks of obesity, diabetes, and cardiovascular disease.
+
+</details>
+
+<details><summary>What is a sleep cycle and how long is it?</summary>
+
+A sleep cycle lasts about 90 minutes and includes four stages: light sleep (stages 1 and 2), deep sleep (stage 3), and REM sleep. Over a full night, you typically go through 4 to 6 complete cycles. Waking up at the end of a cycle rather than in the middle of deep sleep leaves you feeling more refreshed.
+
+</details>
+
+<details><summary>What is the best time to go to sleep?</summary>
+
+The best bedtime is one that allows you to complete 5 to 6 full sleep cycles before your wake time. If you wake at 6:30 AM and need 8 hours of sleep, a bedtime of 10:00 PM (allowing 30 minutes to fall asleep) works well. Consistency matters most — going to bed and waking at the same time daily strengthens your circadian rhythm.
+
+</details>
+
+<details><summary>How do I fix my sleep schedule?</summary>
+
+Shift your bedtime and wake time gradually by 15 to 30 minutes per day until you reach your target schedule. Expose yourself to bright light immediately upon waking, avoid blue light from screens 1 to 2 hours before bed, and maintain the same schedule on weekends. Most people can reset their circadian rhythm within 3 to 7 days using these methods.
+
+</details>
+
+<details><summary>Does napping count toward total sleep?</summary>
+
+Naps count toward total sleep but are not a replacement for nighttime sleep. A 20- to 30-minute power nap can improve alertness and performance, but longer naps (over 90 minutes) may disrupt nighttime sleep. The ideal nap window is early afternoon (1:00 to 3:00 PM) to avoid interfering with your nighttime sleep cycle.
+
+</details>

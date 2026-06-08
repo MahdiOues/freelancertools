@@ -46,3 +46,25 @@ Including one-time fees in MRR inflates the number and hides the true state of t
 Tracking MRR manually across spreadsheets is error-prone and time-consuming. The [MRR Calculator](/saas/mrr-calculator/) automates the tracking, separates MRR by type, and shows your growth rate at a glance. Use it to set monthly targets, track performance, and identify trends before they become problems.
 
 MRR is not just a number. It is the pulse of your SaaS business. Measure it accurately, understand what drives it, and relentlessly pursue growth in the right ways. Everything else is noise.
+
+## Frequently asked questions
+
+<details><summary>What is MRR in SaaS?</summary>
+Monthly Recurring Revenue (MRR) is the predictable, recurring revenue your SaaS business earns each month from subscriptions. It excludes one-time fees, setup charges, and non-recurring services. MRR is the key metric for measuring business health, growth trajectory, and valuation — investors typically value SaaS companies at 5-15x annual MRR.
+</details>
+
+<details><summary>How do I calculate MRR?</summary>
+Multiply the number of paying customers by the average revenue per customer per month. For example, 100 customers paying $50/month = $5,000 MRR. For accurate MRR, use the formula: Total MRR = (Number of customers × Average Revenue Per Account). Track new MRR, expansion MRR, churned MRR, and contraction MRR separately.
+</details>
+
+<details><summary>What is a good MRR growth rate?</summary>
+The median SaaS company grows MRR at 10-15% month over month in early stages, slowing to 3-5% as the business matures. Top-quartile companies grow at 20%+ monthly in early stages. A $10,000 MRR company growing at 10% monthly will reach approximately $31,000 MRR in 12 months and $93,000 in 24 months.
+</details>
+
+<details><summary>What is the difference between MRR and ARR?</summary>
+ARR (Annual Recurring Revenue) is simply MRR × 12. ARR is used for larger, mature SaaS businesses with annual contracts, while MRR is better for tracking monthly trends and early-stage growth. A company with $50,000 MRR has $600,000 ARR. Both metrics should trend upward over time for a healthy business.
+</details>
+
+<details><summary>How do I increase MRR?</summary>
+MRR grows through five levers: acquiring new customers (new MRR), upselling existing customers (expansion MRR), reducing churn (retained MRR), increasing prices (price MRR), and reducing discounts (revenue MRR). A 5% reduction in churn combined with a 10% price increase can grow MRR by 25-40% without acquiring a single new customer.
+</details>

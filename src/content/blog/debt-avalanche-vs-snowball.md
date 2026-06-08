@@ -7,6 +7,8 @@ relatedTool: /finance/debt-payoff/
 relatedToolName: Free Debt Payoff Calculator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 If you have multiple debts, you need a strategy. Two methods dominate the personal finance world: the debt avalanche (highest interest rate first) and the debt snowball (smallest balance first). Both work. But they work differently, and the right choice depends on your personality.
 
 ## How the debt avalanche method works
@@ -44,3 +46,35 @@ Choose the **avalanche** if you are disciplined and motivated by efficiency. You
 Choose the **snowball** if you have struggled with debt before or if you need quick wins to stay motivated. The extra interest cost is the price of building better financial habits.
 
 The best method is the one you stick with. Use the [Debt Payoff Calculator](/finance/debt-payoff/) to compare both methods side by side with your actual debt numbers.
+
+## Frequently asked questions
+
+<details>
+<summary>What is the debt avalanche method?</summary>
+
+The debt avalanche method means paying off debts in order of highest interest rate first while making minimum payments on everything else. This mathematically saves you the most money — on $20,000 of debt at mixed rates, the avalanche method can save hundreds of dollars in interest compared to other approaches.
+</details>
+
+<details>
+<summary>What is the debt snowball method?</summary>
+
+The debt snowball method means paying off debts from smallest balance to largest, regardless of interest rate. You make minimum payments on all debts and put any extra money toward the smallest debt first. Once that is paid off, you roll that payment into the next smallest debt.
+</details>
+
+<details>
+<summary>Which debt payoff method saves more money?</summary>
+
+The avalanche method always saves more money because it targets high-interest debt first. On $15,000 in credit card debt at 22% APR, the avalanche method could save you $800-$1,200 in interest compared to the snowball method. The snowball's extra cost is the premium you pay for the motivation of quick wins.
+</details>
+
+<details>
+<summary>Which method is better for motivation?</summary>
+
+The snowball method is better for motivation because you see debts disappear quickly. Paying off a $500 medical bill in your first month feels rewarding and builds momentum. Studies suggest people who use the snowball method are more likely to stick with their payoff plan and become debt-free faster.
+</details>
+
+<details>
+<summary>How do I decide which debt to pay first?</summary>
+
+Start by listing all your debts with balances, interest rates, and minimum payments. If you are disciplined and motivated by math, use the avalanche. If you have struggled with debt before or need quick psychological wins, use the snowball. The best method is whichever one you will actually follow consistently.
+</details>

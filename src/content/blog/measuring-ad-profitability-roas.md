@@ -42,3 +42,25 @@ Manually tracking all of this across multiple campaigns and platforms is tedious
 Some campaigns are not designed for direct sales. Brand awareness campaigns, retargeting campaigns, and content promotion campaigns serve different purposes. A retargeting campaign might have a very high ROAS because it only reaches warm audiences, but its real value is in converting people who would otherwise be lost. Measure these campaigns by their ultimate contribution to revenue, not by raw ROAS alone. The goal is not the highest ROAS on every campaign. The goal is the highest total profit across all campaigns combined.
 
 Ad profitability is not complicated, but it is easy to get wrong when you track vanity metrics instead of real ones. Know your margins, know your break-even, and measure every campaign against the same standard. That standard is profit.
+
+## Frequently asked questions
+
+<details><summary>What is ROAS in advertising?</summary>
+Return on Ad Spend (ROAS) measures revenue generated per dollar spent on ads. The formula is ROAS = Revenue ÷ Ad Spend. If you spend $1,000 on ads and generate $5,000 in revenue, your ROAS is 5:1 (500%). ROAS is the most common metric for evaluating advertising campaign performance across channels.
+</details>
+
+<details><summary>What is a good ROAS?</summary>
+A "good" ROAS depends on your profit margins. A business with 20% profit margins needs a 5:1 ROAS just to break even on ad spend after product costs. For most ecommerce businesses, a 4:1 ROAS is average, 6:1 is good, and 10:1 is excellent. For high-margin SaaS (80%+ margins), a 2:1 ROAS can be profitable.
+</details>
+
+<details><summary>How do I calculate ad profit?</summary>
+Ad Profit = (Revenue × Profit Margin) - Ad Spend. If you spend $2,000 on ads, generate $10,000 in revenue at a 30% profit margin, your ad profit is ($10,000 × 0.30) - $2,000 = $1,000. ROAS alone does not tell you if you are making money — you need profit margin to get the real picture.
+</details>
+
+<details><summary>What is the difference between ROAS and ROI?</summary>
+ROAS measures revenue against ad spend only (marketing efficiency), while ROI measures total return against total investment (profitability). ROAS of 5:1 means $5 revenue per $1 ad spend. ROI of 500% means $5 net return per $1 total investment including product costs, overhead, and labor. ROI is more comprehensive but harder to calculate.
+</details>
+
+<details><summary>How do I improve my advertising ROAS?</summary>
+Improve ROAS by refining audience targeting (reducing waste), improving ad creative (higher click-through rates), optimizing landing pages (better conversion rates), increasing average order value (upsells and bundles), and reducing cost per click through quality score improvements. A 10% improvement in conversion rate can improve ROAS by 25% or more.
+</details>

@@ -84,3 +84,35 @@ A monthly review takes an hour and prevents the year-end panic when you realize 
 ## The takeaway
 
 Freelance financial management comes down to a few simple habits: separate your accounts, build a buffer, save for taxes first, track your expenses, pay yourself consistently, and review your numbers monthly. Do these things and the income instability of freelancing becomes manageable. You will never love a slow month, but you will survive it without financial stress.
+
+## Frequently asked questions
+
+<details>
+<summary>How should freelancers manage irregular income?</summary>
+
+Calculate your monthly baseline using your lowest-earning quarter from the past year. Send all income to a holding account and pay yourself a fixed salary each month. During high-earning months, save the surplus in a buffer account. During slow months, draw from that buffer to maintain your fixed salary.
+</details>
+
+<details>
+<summary>What percentage of freelance income should go to taxes?</summary>
+
+Freelancers in the US should set aside 25-30% of their gross income for federal and state taxes, including self-employment tax (15.3%) and income tax. If you earn $80,000, put $20,000-$24,000 in a separate tax savings account. Make quarterly estimated tax payments to avoid penalties and underpayment interest.
+</details>
+
+<details>
+<summary>What bank accounts do freelancers need?</summary>
+
+At minimum, freelancers should have three accounts: a business checking account for all income and expenses, a high-yield savings account for tax savings, and a personal checking account for your salary and personal spending. Consider a fourth savings account for an emergency fund of 3-6 months of personal expenses.
+</details>
+
+<details>
+<summary>How do freelancers create a budget?</summary>
+
+Base your budget on your fixed salary rather than your variable income. If you pay yourself $4,000/month from your business, create a 50/30/20 budget around that amount. Track business expenses separately — aim to keep overhead under 20-30% of revenue. Review and adjust your salary quarterly based on income trends.
+</details>
+
+<details>
+<summary>What is the best way to save for taxes as a freelancer?</summary>
+
+Automate tax savings by setting up an automatic transfer of 25-30% of every invoice payment into a dedicated high-yield savings account. Use accounting software like QuickBooks or FreshBooks that tracks tax liability in real time. Keep a running estimate of your effective tax rate and adjust throughout the year as income changes.
+</details>

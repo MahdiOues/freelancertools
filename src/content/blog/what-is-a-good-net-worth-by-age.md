@@ -7,6 +7,8 @@ relatedTool: /finance/net-worth-calculator/
 relatedToolName: Free Net Worth Calculator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 Net worth is the single best measure of financial health. It is what you own minus what you owe. But what should your net worth be at each age? The answer depends on income, savings rate, and when you started.
 
 ## Average vs median net worth by age
@@ -39,3 +41,35 @@ Assets include cash, investments, retirement accounts, home equity, and valuable
 Two levers: increase assets and decrease liabilities. The fastest way to increase net worth in your 20s and 30s is to increase your savings rate. Every dollar saved and invested is a dollar working for you. In your 40s and 50s, protecting what you have becomes equally important — adequate insurance, diversified investments, and avoiding lifestyle inflation.
 
 Calculate your net worth with the [Net Worth Calculator](/finance/net-worth-calculator/) and track it over time. Consistent progress matters more than the starting number.
+
+## Frequently asked questions
+
+<details>
+<summary>What is the average net worth by age?</summary>
+
+According to Federal Reserve data, the average net worth for Americans under 35 is approximately $76,000, while the median is much lower at $14,000 due to high-net-worth outliers. For ages 35-44, the average is $168,000 (median $36,000). For ages 55-64, the average is $1.17 million (median $213,000).
+</details>
+
+<details>
+<summary>What is a good net worth at 30?</summary>
+
+A good net worth target by 30 is roughly 0.5 to 1 times your annual salary. If you earn $60,000, a net worth of $30,000 to $60,000 is on track. This typically includes retirement accounts, emergency savings, and home equity, minus student loans and other debts.
+</details>
+
+<details>
+<summary>How do I calculate my net worth?</summary>
+
+Net worth is total assets minus total liabilities. Add up everything you own (cash, investments, retirement accounts, home value, car value) and subtract everything you owe (mortgage, car loans, student loans, credit card balances). If you own a $300,000 home with a $200,000 mortgage, that home contributes $100,000 to your net worth.
+</details>
+
+<details>
+<summary>Does net worth include home equity?</summary>
+
+Yes, net worth includes home equity, which is your home's current market value minus any mortgage balance. If your house is worth $350,000 and you owe $250,000, your home equity of $100,000 counts toward your net worth. However, home equity is not as liquid as cash or investment assets.
+</details>
+
+<details>
+<summary>How can I increase my net worth?</summary>
+
+Increase your net worth by saving more (higher savings rate), investing wisely (diversified stock and bond portfolio), paying down high-interest debt, and increasing your income. The most powerful lever for most people is raising their savings rate — saving 20% instead of 10% doubles the speed of net worth growth.
+</details>

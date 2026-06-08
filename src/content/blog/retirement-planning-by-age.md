@@ -52,3 +52,34 @@ All of these guidelines are general. Your actual numbers depend on your expected
 Run multiple scenarios — optimistic and conservative — to understand the range of possible outcomes. Adjust your savings rate until you feel confident in the plan. A few hours of planning now can save you years of uncertainty later.
 
 The most important takeaway is to start where you are. The best retirement plan is the one you actually follow, adjusted as your life changes.
+
+## Frequently asked questions
+
+<details>
+<summary>How much should I have saved for retirement by age 40?</summary>
+
+A common benchmark is to have 3 times your annual salary saved by age 40. If you earn $80,000, you should aim for $240,000 in retirement accounts by 40. This assumes you plan to retire at 67 and maintain a similar lifestyle, and that you will continue saving 15% of your income from 40 onward.
+</details>
+
+<details>
+<summary>What is a catch-up contribution and when can I use it?</summary>
+
+A catch-up contribution allows people aged 50 and older to contribute extra money to their retirement accounts beyond the standard limit. In 2024, the standard 401(k) limit is $23,000, and the catch-up amount is an additional $7,500, for a total of $30,500. For IRAs, the standard limit is $7,000 with a $1,000 catch-up, totaling $8,000.
+</details>
+
+<details>
+<summary>How much do I need to retire comfortably?</summary>
+
+Most estimates say you need between $1 million and $1.5 million to retire comfortably, but the real number depends on your expected expenses. A general rule is to have 10-12 times your final annual salary saved. If you expect to spend $60,000 per year in retirement and receive $22,000 from Social Security, you need about $950,000 to generate the remaining $38,000 using the 4% rule.
+</details>
+
+<details>
+<summary>What is the 4% rule in retirement?</summary>
+
+The 4% rule says you can withdraw 4% of your retirement portfolio in your first year of retirement and adjust for inflation each year, and your money should last at least 30 years. On a $1 million portfolio, you withdraw $40,000 in year one. This rule comes from the Trinity Study and is a starting point, not a guarantee — many retirees use 3.5% to be more conservative.
+</details>
+
+<details>
+<summary>Should I choose a Roth IRA or traditional 401k?</summary>
+
+Choose a Roth IRA if you expect to be in a higher tax bracket in retirement — you pay taxes now and withdraw tax-free later. Choose a traditional 401(k) if you want a tax break today and expect a lower tax bracket in retirement. Many people use both: contribute enough to the 401(k) to get the full employer match, then fund a Roth IRA up to the $7,000 limit.

@@ -7,6 +7,8 @@ relatedTool: /legal/contract-generator/
 relatedToolName: Free Contract Generator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 Many freelance payment problems are contract problems in disguise. If the agreement does not explain when payment is due, what happens after a missed payment, and when ownership transfers, every invoice becomes a negotiation.
 
 Clear payment terms do not make you difficult to work with. They make the project easier to trust.
@@ -68,3 +70,25 @@ This is especially important for designers, developers, writers, and agencies.
 Good payment terms prevent awkward conversations later. Define the deposit, milestones, due date, late fees, pause rights, and ownership transfer before work starts.
 
 Use the [Free Contract Generator](/legal/contract-generator/) to draft a starting agreement, then have a qualified attorney review it for your location and business model.
+
+## Frequently asked questions
+
+<details><summary>What are standard payment terms for freelancers?</summary>
+Net-15 or Net-30 are the most common payment terms — payment is due 15 or 30 days after the invoice date. For new clients, many freelancers require a 50% deposit upfront with the balance due on completion, which reduces your risk and improves cash flow.
+</details>
+
+<details><summary>What is net-30 vs net-60 payment terms?</summary>
+Net-30 means full payment is due 30 days after the invoice date; net-60 gives the client 60 days. Net-30 is standard for freelancers, while net-60 is more common with large corporations that have slower accounts payable cycles. Avoid net-60 if possible — it creates serious cash flow challenges.
+</details>
+
+<details><summary>Should I ask for a deposit upfront?</summary>
+Always ask for a deposit from new clients. A 25-50% upfront deposit is standard practice and protects you from non-payment. Even established freelancers with long-term clients often keep a 25% deposit policy for projects over $2,000 to maintain healthy cash flow.
+</details>
+
+<details><summary>What is a milestone payment schedule?</summary>
+Milestone payments break a large project into phases, with each phase paid upon completion. For a $10,000 website project, you might structure it as: $2,500 on signing, $2,500 on wireframe approval, $2,500 on design approval, and $2,500 on launch. This reduces risk for both parties.
+</details>
+
+<details><summary>How do I enforce payment terms in a contract?</summary>
+Include a clause allowing you to pause work on overdue accounts, charge late fees (typically 1.5% monthly), and retain ownership of deliverables until paid in full. Having the right to stop work is the most effective enforcement mechanism — most clients pay quickly when their project is at risk.
+</details>

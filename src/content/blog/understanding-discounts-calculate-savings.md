@@ -60,3 +60,30 @@ Some retailers inflate the original price to make the discount look bigger. If a
 The best way to evaluate any discount is to look at the final price and compare it to the price at other stores. The discount percentage is less important than what you actually pay.
 
 Use the [Discount Calculator](/math/discount-calculator/) to compare different discount offers and find the deal that actually saves you the most money.
+
+## Frequently asked questions
+
+<details>
+<summary>How do I calculate percent off?</summary>
+Multiply the original price by the discount percentage as a decimal, then subtract from the original price. A $50 item at 30% off: $50 × 0.30 = $15 discount, so you pay $35. The shortcut is to multiply by (1 minus the discount rate): $50 × 0.70 = $35.
+</details>
+
+<details>
+<summary>What is 30% off $50?</summary>
+30% of $50 is $15, so the sale price is $35. You pay 70% of the original price, which is $50 × 0.70 = $35. The same calculation works for any percentage: multiply the original price by (100% minus the discount percentage) expressed as a decimal.
+</details>
+
+<details>
+<summary>How do stacked discounts work?</summary>
+Stacked discounts are applied one after another, not added together. If an item is 30% off with an extra 20% off, you first calculate 30% off ($100 → $70), then 20% off the reduced price ($70 → $56). The total savings is 44%, not 50%. Always calculate sequentially.
+</details>
+
+<details>
+<summary>Is BOGO the same as 50% off?</summary>
+Buy-one-get-one-free is 50% off if you buy two items at the same price. BOGO 50% off means you pay full price for the first item and half price for the second, which averages to 25% off each item. Both deals only save you money if you actually need two items.
+</details>
+
+<details>
+<summary>How do I calculate the final price after a percentage discount?</summary>
+Multiply the original price by (1 minus the discount rate). For a 25% discount, multiply by 0.75. For 40% off, multiply by 0.60. A $120 jacket at 25% off: $120 × 0.75 = $90. This is the fastest way to find the final price without calculating the discount amount separately.
+</details>

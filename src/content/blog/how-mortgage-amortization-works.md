@@ -54,3 +54,35 @@ When you refinance, your amortization clock resets. The principal is lower but t
 The [Mortgage Calculator](/finance/mortgage-calculator/) shows you the full amortization schedule for any loan. Enter your loan amount, interest rate, and term to see the breakdown of every payment. Add extra monthly payments to see how much interest you save and how many years you cut off the loan.
 
 Understanding amortization transforms how you think about your mortgage. An extra $50 per month in year one saves more than $500 per month in year 20. The early years are the most powerful. Use that knowledge to your advantage.
+
+## Frequently asked questions
+
+<details>
+<summary>What is mortgage amortization?</summary>
+
+Mortgage amortization is the process of spreading out your loan payments over a fixed term so that the loan is fully paid off by the end. Each monthly payment is split between interest and principal, with the interest portion decreasing over time as the principal balance shrinks.
+</details>
+
+<details>
+<summary>How much of my early payments go to interest?</summary>
+
+In the first year of a 30-year, $300,000 mortgage at 7%, approximately 80% of each payment goes toward interest. That means out of your $1,996 monthly payment, roughly $1,597 pays interest and only $399 reduces the principal balance.
+</details>
+
+<details>
+<summary>When do I start paying more principal than interest?</summary>
+
+For a 30-year, $300,000 mortgage at 7%, you will start paying more principal than interest around year 18 of the loan. This is called the amortization crossover point, and it shifts earlier if you make extra principal payments or have a lower interest rate.
+</details>
+
+<details>
+<summary>How does extra principal payment affect amortization?</summary>
+
+An extra $100 per month on a $300,000, 30-year mortgage at 7% would save you roughly $48,000 in interest and shorten the loan by about 5 years. Extra payments made early have a much larger impact because they reduce the principal that future interest is calculated on.
+</details>
+
+<details>
+<summary>What is an amortization schedule?</summary>
+
+An amortization schedule is a table showing every monthly payment throughout the loan term, broken down by principal, interest, and remaining balance. It lets you see exactly how much interest you will pay in any given year and how extra payments change the timeline.
+</details>

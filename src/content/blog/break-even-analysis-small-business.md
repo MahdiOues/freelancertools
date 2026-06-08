@@ -62,3 +62,35 @@ To lower your break-even point, you need to increase your contribution margin or
 Increasing sales volume does not change your break-even point, but it does get you past it faster. The best strategy is usually a combination: control costs and drive sales.
 
 Use the [Break-Even Calculator](/finance/excel-tools/break-even/) to run your numbers. Change your price, costs, and volume assumptions to see how each variable affects your break-even point.
+
+## Frequently asked questions
+
+<details>
+<summary>What is break-even analysis?</summary>
+
+Break-even analysis determines the point at which total revenue equals total costs, meaning your business is neither making nor losing money. It helps you understand how many units you need to sell or how much revenue you need to generate before you start turning a profit.
+</details>
+
+<details>
+<summary>How do I calculate my break-even point?</summary>
+
+Break-even point (in units) = Fixed Costs / (Price per Unit - Variable Cost per Unit). If your fixed costs are $10,000/month, you sell a product for $50, and each unit costs $20 to make, your break-even is $10,000 / ($50 - $20) = 334 units per month. In revenue: 334 × $50 = $16,700 per month.
+</details>
+
+<details>
+<summary>What is contribution margin?</summary>
+
+Contribution margin is the selling price minus variable costs per unit — the amount each sale contributes to covering fixed costs and generating profit. If you sell a $50 product with $20 variable costs, your contribution margin is $30. A higher contribution margin means fewer sales needed to break even.
+</details>
+
+<details>
+<summary>How does price affect break-even point?</summary>
+
+Raising your price lowers your break-even point by increasing contribution margin per unit. If you raise the price from $50 to $60 while keeping variable costs at $20, your contribution margin grows from $30 to $40, and break-even drops from 334 to 250 units. Every dollar of price increase reduces the number of units you need to sell.
+</details>
+
+<details>
+<summary>What is a good break-even period for a small business?</summary>
+
+Most small businesses should aim to break even within 6 to 18 months of starting. Service-based businesses often break even faster (3-6 months) due to low startup costs, while retail or manufacturing businesses may take 12-24 months. If you have not broken even after 2 years, evaluate your pricing, costs, and business model.
+</details>

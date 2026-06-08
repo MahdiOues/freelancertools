@@ -46,3 +46,25 @@ You should raise prices when you have added significant value since the last pri
 Odd pricing — $49 instead of $50 — works because it feels cheaper. Anchoring works because the first price a customer sees sets their reference point. Decoy pricing works because a strategically placed unattractive option makes the target option look better. These techniques are not manipulation. They are communication. You are helping the customer make a decision that is good for both of you.
 
 Pricing is not a one-time decision. It is an ongoing process of optimization. Research your customers, test your assumptions, and adjust as your product evolves. The right price today will not be the right price next year. Keep optimizing.
+
+## Frequently asked questions
+
+<details><summary>How should I price my SaaS product?</summary>
+Start with customer research — what do similar tools cost, what is your customer's willingness to pay, and what value does your product deliver? Common strategies include tiered pricing (3-4 plans), usage-based pricing (pay per unit), or value-based pricing (price tied to customer outcomes). Most successful SaaS companies use a hybrid of tiered and usage-based models.
+</details>
+
+<details><summary>What is value-based pricing for SaaS?</summary>
+Value-based pricing means charging customers based on the value they receive rather than your costs. If your software saves a customer $50,000/year, pricing at $5,000-10,000/year captures 10-20% of that value. This approach typically yields higher revenue than cost-plus or competitor-based pricing.
+</details>
+
+<details><summary>How do I compare monthly vs annual pricing?</summary>
+Annual pricing should offer a discount of 15-25% compared to monthly to incentivize commitment. For example, $50/month vs $500/year (17% savings). Annual plans improve cash flow and reduce churn. About 40-60% of SaaS customers choose annual plans when offered a meaningful discount.
+</details>
+
+<details><summary>What is a good price for a SaaS product?</summary>
+For B2B SaaS, typical pricing ranges from $10-50/month per user for basic tools, $50-200/month for professional tools, and $200-1,000+/month for enterprise solutions. Your price should be at least 10x what it costs you to serve the customer (a 90% gross margin is standard for healthy SaaS businesses).
+</details>
+
+<details><summary>How do I test SaaS pricing?</summary>
+Run A/B tests with different price points, offer limited-time discounts to measure price sensitivity, and survey customers at different price levels. Start with a price 20-30% higher than your initial instinct — most founders underprice, and raising prices later is harder than lowering them.
+</details>

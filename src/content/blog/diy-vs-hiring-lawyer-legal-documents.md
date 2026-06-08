@@ -46,3 +46,25 @@ Operating agreements for LLCs and corporations, partnership agreements, investme
 Ask other business owners for referrals. Look for lawyers who specialize in your industry and your type of work. A real estate lawyer is not the right choice for a software licensing agreement. Look for a lawyer who offers flat-fee pricing for standard documents so you know the cost upfront. Avoid lawyers who are too busy to explain things clearly. If a lawyer makes you feel stupid for asking questions, find a different lawyer.
 
 The decision between DIY and hiring a lawyer is not binary. Use templates for the routine stuff. Hire a lawyer for the important stuff. And when in doubt, spend the money on the lawyer. The cost of a mistake is almost always higher than the cost of prevention.
+
+## Frequently asked questions
+
+<details><summary>Do I need a lawyer for freelance contracts?</summary>
+You do not need a lawyer for simple, routine contracts with direct clients. High-quality templates cover most standard freelance arrangements. However, you should hire a lawyer when your contract involves intellectual property licensing, equity or revenue sharing, large sums (over $25,000), or clients in unfamiliar jurisdictions.
+</details>
+
+<details><summary>Can I write my own freelance contract?</summary>
+Yes — using a reputable template from a contract generator or industry association is perfectly acceptable for most freelance projects. The key is customizing it for each project by filling in the specific scope, payment terms, and deadlines. Avoid copying contracts from random online sources without legal review.
+</details>
+
+<details><summary>When should I hire a lawyer for contract review?</summary>
+Hire a lawyer for any contract that involves significant financial risk, long-term commitments (over 6 months), non-disclosure of proprietary information, or complex payment structures. A standard contract review costs $300-800 and is worth it for any agreement exceeding $10,000 in value.
+</details>
+
+<details><summary>How much does a lawyer cost for a contract review?</summary>
+Most lawyers charge $300-500 per hour for contract review, with a typical contract review taking 1-2 hours. Many freelance-focused lawyers offer flat-fee reviews for $400-800. Document drafting costs more — expect $1,000-3,000 for a customized contract from scratch.
+</details>
+
+<details><summary>What legal documents does every freelancer need?</summary>
+Every freelancer needs a standard service contract (with scope, payment terms, and IP clauses), an NDA for confidential discussions, and an invoice template. As your business grows, add a privacy policy for your website, terms of service for any digital products, and a partnership agreement if you collaborate with other freelancers.
+</details>

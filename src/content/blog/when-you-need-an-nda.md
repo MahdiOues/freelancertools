@@ -42,3 +42,25 @@ If a party refuses to sign a reasonable NDA when genuinely confidential informat
 Keep a signed mutual NDA ready to go so you are not negotiating terms every time you need one. Use a standard form and only deviate when necessary. Store signed NDAs in a central location where you can find them later. Remember that an NDA is only as good as your willingness to enforce it. If you are not prepared to sue someone for violating it, the NDA is a paper tiger. And most importantly, do not let NDA negotiations delay business. If the information is not truly sensitive, skip the NDA and move forward.
 
 NDAs are a tool, not a ritual. Use them when they serve a purpose. Skip them when they do not. Your business partners will appreciate your pragmatism.
+
+## Frequently asked questions
+
+<details><summary>What is an NDA and when do I need one?</summary>
+A non-disclosure agreement (NDA) is a legal contract that prevents one or both parties from sharing confidential information. You need one when discussing proprietary technology, business strategies, financial data, customer lists, or any information that would harm your business if disclosed to competitors.
+</details>
+
+<details><summary>What is the difference between mutual and one-way NDA?</summary>
+A one-way (unilateral) NDA protects only one party disclosing information to the other. A mutual NDA protects both parties when sharing confidential information in both directions. Mutual NDAs are common when exploring partnerships or joint ventures; one-way NDAs are typical for freelancers working with a client who shares proprietary details.
+</details>
+
+<details><summary>Can a freelancer ask a client to sign an NDA?</summary>
+Yes — freelancers can and should ask clients to sign an NDA before sharing their own proprietary methods, tools, or trade secrets. However, be aware that some clients will refuse, viewing it as friction early in the relationship. Have a standard mutual NDA ready for when both sides need protection.
+</details>
+
+<details><summary>What should an NDA include?</summary>
+Every NDA should define what counts as confidential information, the duration of the agreement (typically 1-5 years), exclusions (information already public or independently developed), the permitted use of the information, and consequences of breach. Vague definitions of confidential information benefit the disclosing party.
+</details>
+
+<details><summary>How long does an NDA last?</summary>
+Most NDAs last 1-5 years, with 2-3 years being the most common term for standard business relationships. Trade secrets can be protected indefinitely under law without an NDA, but the NDA itself typically has a fixed term. Avoid NDAs longer than 5 years unless there is a specific business reason.
+</details>

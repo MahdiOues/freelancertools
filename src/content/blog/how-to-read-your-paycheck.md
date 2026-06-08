@@ -56,3 +56,35 @@ Net pay is your gross pay minus all deductions. This is the amount deposited int
 The [Paycheck Calculator](/finance/paycheck-calculator/) lets you enter your gross pay, filing status, pay frequency, and state to see what your net pay should be. Compare the result to your actual pay stub. If they differ significantly, your W-4 may need adjustment.
 
 Understanding your paycheck gives you control over your finances. You can optimize your withholding, verify your pay is correct, and make informed choices about your benefits elections during open enrollment.
+
+## Frequently asked questions
+
+<details>
+<summary>What do all the deductions on my paycheck mean?</summary>
+
+Common paycheck deductions include federal income tax (based on your W-4), FICA (Social Security and Medicare), state income tax, health insurance premiums, retirement plan contributions (like 401k), and other benefits. Your gross pay minus all deductions equals your net pay — the amount actually deposited in your bank account.
+</details>
+
+<details>
+<summary>What is FICA and how much is taken out?</summary>
+
+FICA stands for the Federal Insurance Contributions Act and funds Social Security and Medicare. The total FICA tax rate is 7.65% of your gross wages — 6.2% for Social Security (up to the wage base of $168,600 in 2024) and 1.45% for Medicare with no income cap. If you earn $60,000, FICA takes $4,590 annually.
+</details>
+
+<details>
+<summary>How is federal income tax calculated on my paycheck?</summary>
+
+Federal income tax is calculated using the information on your W-4 form and the IRS tax brackets. Your employer applies the withholding tables to your taxable wages after pre-tax deductions. A single person earning $5,000/month with standard withholding would have roughly $500-$700 withheld monthly, depending on W-4 adjustments.
+</details>
+
+<details>
+<summary>What is the difference between pre-tax and post-tax deductions?</summary>
+
+Pre-tax deductions (401k contributions, health insurance premiums, HSA contributions) are taken before income tax is calculated, reducing your taxable income. Post-tax deductions (Roth 401k, union dues) are taken after taxes. Contributing $200 pre-tax to a 401k saves you $44 in federal taxes at the 22% bracket, while post-tax does not.
+</details>
+
+<details>
+<summary>Why does my paycheck vary between pay periods?</summary>
+
+Paychecks can vary due to changes in hours worked (for hourly employees), bonuses or commissions, changes in benefits elections, reaching the Social Security wage cap mid-year, or adjustments to your W-4 withholding. Once you hit $168,600 in earnings, Social Security tax stops withholding, increasing your net pay for the remainder of the year.
+</details>

@@ -74,3 +74,25 @@ Use the [Free Proposal Generator](/freelancer/proposal-generator/) to build a st
 ## The takeaway
 
 A winning proposal answers the client's three questions: do you understand my problem, can you solve it, and can I trust you. Focus on the client from the first sentence. Keep it short, specific, and outcome-oriented. Send proposals that make the client feel understood, and you will close more projects than you lose.
+
+## Frequently asked questions
+
+<details><summary>What should a freelance proposal include?</summary>
+A winning proposal includes a brief summary of the client's problem, your proposed solution, deliverables and timeline, pricing, relevant experience or case studies, and a clear next step. Keep it to 3-5 pages — clients spend an average of 2-3 minutes reading proposals before deciding.
+</details>
+
+<details><summary>How long should a freelance proposal be?</summary>
+One to three pages is ideal for most projects. Longer proposals are appropriate for enterprise clients or complex multi-phase projects exceeding $20,000. For standard projects, shorter proposals with bullet points and clear pricing convert better than lengthy documents.
+</details>
+
+<details><summary>How do I price a project in a proposal?</summary>
+Break your pricing into clear line items or phases so the client understands what they are paying for. Include the total price prominently. Offering 2-3 tiered options (good, better, best) can increase your close rate by 30% or more because clients feel they have control over the decision.
+</details>
+
+<details><summary>What is the difference between a proposal and a quote?</summary>
+A proposal is a sales document that explains the problem and solution — it persuades the client to hire you. A quote is a simple price list for specific services. Proposals are for new client relationships; quotes are for repeat clients who already know your value.
+</details>
+
+<details><summary>How do I follow up on a proposal?</summary>
+Send a follow-up email 3-5 business days after sending the proposal. Keep it brief: ask if they have questions and offer to hop on a quick call. Freelancers who follow up within one week close 40-50% more projects than those who send a proposal and wait.
+</details>

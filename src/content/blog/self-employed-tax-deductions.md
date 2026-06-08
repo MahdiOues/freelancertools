@@ -7,6 +7,8 @@ relatedTool: /finance/tax-deduction-finder/
 relatedToolName: Free Tax Deduction Finder
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 As a self-employed person, you are both the employee and the employer. That means you pay both halves of Social Security and Medicare taxes — 15.3% instead of 7.65%. But it also means you qualify for deductions most employees cannot touch. Here is how to claim every deduction you are entitled to.
 
 ## The home office deduction
@@ -34,3 +36,35 @@ Section 179 lets you deduct the full cost of qualifying equipment in the year yo
 You can deduct half of your self-employment tax (the employer-equivalent portion) on your Form 1040. This does not reduce your self-employment tax itself, but it reduces your adjusted gross income, which may lower your income tax.
 
 Use the [Tax Deduction Finder](/finance/tax-deduction-finder/) to discover which deductions apply to your specific situation, and consult a tax professional if you have questions.
+
+## Frequently asked questions
+
+<details>
+<summary>What tax deductions can I claim as self-employed?</summary>
+
+Self-employed individuals can deduct home office expenses, health insurance premiums, retirement contributions, vehicle expenses, business equipment, supplies, software subscriptions, professional development, and half of your self-employment tax. Most freelancers can reduce their taxable income by 20-40% through legitimate deductions.
+</details>
+
+<details>
+<summary>Can I deduct my home office?</summary>
+
+Yes, if you use a dedicated area of your home exclusively and regularly for business. You can use the simplified method ($5 per square foot, up to 300 square feet, max $1,500) or the regular method based on actual expenses. The space must be your principal place of business — a spare bedroom desk qualifies if used only for work.
+</details>
+
+<details>
+<summary>What is the standard mileage rate for 2024?</summary>
+
+The standard mileage rate for 2024 is 67 cents per mile driven for business use. This rate covers gas, maintenance, insurance, and depreciation. If you drive 5,000 miles for business in 2024, you can deduct $3,350. Keep a mileage log with dates, destinations, and purposes for each trip.
+</details>
+
+<details>
+<summary>How do I deduct health insurance premiums?</summary>
+
+Self-employed individuals can deduct 100% of their health insurance premiums for themselves, their spouse, and dependents as an above-the-line deduction on Form 1040. This includes medical, dental, and long-term care insurance. You cannot claim this deduction if you are eligible for an employer-subsidized health plan through a spouse.
+</details>
+
+<details>
+<summary>What is the difference between a deduction and a credit?</summary>
+
+A deduction reduces your taxable income, while a credit reduces your tax bill dollar for dollar. A $1,000 deduction saves you $220 if you are in the 22% tax bracket. A $1,000 tax credit saves you the full $1,000. Credits are generally more valuable, but deductions are more common for self-employed expenses.
+</details>

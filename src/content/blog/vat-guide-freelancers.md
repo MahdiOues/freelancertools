@@ -48,3 +48,35 @@ The [VAT Calculator](/finance/vat-calculator/) helps you quickly calculate VAT a
 Use the calculator when preparing invoices to make sure you charge the correct amount. Use it when reviewing supplier invoices to verify their VAT calculations. The more accurate your VAT handling, the fewer headaches at filing time.
 
 VAT does not have to be scary. Learn your obligations, keep good records, file on time, and use the right tools to stay on top of it.
+
+## Frequently asked questions
+
+<details>
+<summary>Do I need to register for VAT as a freelancer?</summary>
+
+You must register for VAT if your taxable turnover exceeds the threshold, which is £90,000 in the UK (2024/25) and €15,000-€35,000 in most EU countries depending on the member state. If your income is below the threshold, registration is voluntary but can be beneficial if you have significant business expenses with VAT you want to reclaim.
+</details>
+
+<details>
+<summary>What is the VAT threshold in the UK/EU?</summary>
+
+In the UK, the VAT registration threshold is £90,000 in taxable turnover over a 12-month rolling period. In the EU, thresholds vary by country: Germany €22,000, France €37,500 (services), Spain €24,000 (services), and Ireland €40,000 (services). Once you exceed the threshold, you must register within 30 days.
+</details>
+
+<details>
+<summary>How do I charge VAT on my invoices?</summary>
+
+Add the VAT percentage to your net price and show it as a separate line on your invoice. If your service costs £1,000 and the VAT rate is 20%, charge £1,200 total and show £200 as VAT. Your invoice must include your VAT registration number, the VAT rate, and the total VAT amount to be compliant.
+</details>
+
+<details>
+<summary>Can I reclaim VAT on business expenses?</summary>
+
+Yes, if you are VAT-registered, you can reclaim the VAT you pay on most business expenses by deducting it from the VAT you collected from customers and owe to HMRC. This includes VAT on software subscriptions, equipment, business travel, and professional services. You can only reclaim VAT on expenses used for your taxable business activities.
+</details>
+
+<details>
+<summary>What is the difference between VAT and sales tax?</summary>
+
+VAT (Value Added Tax) is charged at each stage of the supply chain, with businesses reclaiming VAT on their purchases and collecting it on their sales. Sales tax is charged only at the final point of sale to the consumer. VAT is common in Europe and the UK, while sales tax is used in the US — and the US has no federal VAT.
+</details>

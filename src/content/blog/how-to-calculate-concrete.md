@@ -50,3 +50,35 @@ Ordering in quarter-yard increments is standard. Most ready-mix trucks carry a m
 For small projects, pre-mixed 80-pound bags yield about 0.6 cubic feet each. A 1-cubic-yard project needs about 45 bags. This is only practical for projects under 1 cubic yard due to the labor involved. For anything larger, order ready-mix.
 
 Accurate concrete calculations save money, time, and frustration. Measure twice, calculate carefully, and always add the waste factor. The [Concrete Calculator](/construction/concrete-calculator/) handles all the math so you can focus on the pour.
+
+## Frequently asked questions
+
+<details><summary>How many bags of concrete do I need for a 10x10 slab?</summary>
+
+A 10x10 slab at 4 inches thick requires about 1.23 cubic yards of concrete. With 80-pound bags yielding 0.6 cubic feet each, you would need approximately 56 bags. For a 6-inch-thick slab, the need increases to about 84 bags, making ready-mix a more practical option.
+
+</details>
+
+<details><summary>How do I calculate concrete volume in cubic yards?</summary>
+
+Multiply the length by width by depth (all in feet), then divide by 27. For a 10-foot by 10-foot slab that is 4 inches thick (0.33 feet): 10 × 10 × 0.33 = 33 cubic feet, divided by 27 equals 1.22 cubic yards. Always add 5-10% for waste.
+
+</details>
+
+<details><summary>How much does an 80lb bag of concrete cover?</summary>
+
+An 80-pound bag of premix concrete yields approximately 0.6 cubic feet. At 4 inches thick, one bag covers about 1.8 square feet. For a 4-inch-thick slab, you would need roughly 56 bags for a 10x10 area (100 square feet).
+
+</details>
+
+<details><summary>How do I calculate concrete for a round post?</summary>
+
+Use the formula π × r² × height, where r is the radius of the post hole in feet. For a 12-inch-diameter hole (0.5-foot radius) that is 2 feet deep: 3.14 × 0.5² × 2 = 1.57 cubic feet, or about 0.058 cubic yards. An 80-pound bag of concrete will fill roughly two-thirds of this hole.
+
+</details>
+
+<details><summary>Should I use bagged or ready-mix concrete?</summary>
+
+Use bagged concrete for projects under 1 cubic yard, such as small patios, fence posts, or repairs. For anything larger, ready-mix is more cost-effective and practical — a 1-cubic-yard project requires about 45 bags of 80-pound concrete versus a single truck delivery. Ready-mix trucks typically have a 3- to 5-cubic-yard minimum.
+
+</details>

@@ -46,3 +46,35 @@ For zones you convert frequently, build mental shortcuts. For example, Pacific T
 A missed time zone conversion costs meetings, deadlines, and client calls. A 9:00 AM EST meeting invite sent to a London contact (2:00 PM) is fine, but if you forget DST, you might accidentally invite them at 1:00 PM or 3:00 PM. Double-checking with the [Time Zone Converter](/math/time-zone-converter/) takes seconds and prevents the confusion entirely.
 
 Time zone math is just addition and subtraction — once you know the offsets and account for DST. Use UTC as your reference point, check DST for both locations, and verify with a reliable tool for important meetings.
+
+## Frequently asked questions
+
+<details><summary>How do I convert time zones?</summary>
+
+Convert the source time to UTC first by adding or subtracting its offset, then convert from UTC to the target time zone. For example, 3:00 PM in New York (UTC-5) becomes 8:00 PM UTC, which is 5:00 AM the next day in Tokyo (UTC+9).
+
+</details>
+
+<details><summary>What is UTC and how does it work?</summary>
+
+Coordinated Universal Time (UTC) is the global time standard from which all time zones are offset. Every time zone is defined as UTC plus or minus a certain number of hours — for example, New York is UTC-5 and London is UTC+0 during standard time. UTC does not observe daylight saving time, making it a reliable reference point.
+
+</details>
+
+<details><summary>How do I convert EST to PST?</summary>
+
+Pacific Time is 3 hours behind Eastern Time. When it is 2:00 PM EST, it is 11:00 AM PST. During daylight saving time, the offset remains the same since both zones shift together — EDT is UTC-4 and PDT is UTC-7, maintaining the 3-hour difference.
+
+</details>
+
+<details><summary>What is the easiest way to schedule across time zones?</summary>
+
+Use UTC as your common reference and convert both times to UTC before comparing. A meeting at 10:00 AM EST (15:00 UTC) is 12:00 PM PST and 8:00 PM in London. Setting your calendar to display UTC eliminates AM/PM confusion and makes cross-zone scheduling foolproof.
+
+</details>
+
+<details><summary>How does daylight saving time affect time zone conversion?</summary>
+
+DST shifts clocks by one hour in most locations, changing their UTC offset. New York goes from UTC-5 (EST) to UTC-4 (EDT), and London goes from UTC+0 (GMT) to UTC+1 (BST). Always check whether DST is active in both locations — if one zone observes DST and the other does not, the time difference changes by an hour.
+
+</details>

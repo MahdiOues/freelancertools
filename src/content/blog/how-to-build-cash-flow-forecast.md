@@ -56,3 +56,35 @@ A cash flow forecast is not a set-it-and-forget-it document. Update it every mon
 If your forecast shows a cash shortfall in three months, you have time to act. You can cut expenses, accelerate collections, or arrange a line of credit before the crisis hits.
 
 Use the [Cash Flow Waterfall Tool](/finance/excel-tools/cash-flow-waterfall/) to visualize your cash flow and identify potential shortfalls before they become emergencies.
+
+## Frequently asked questions
+
+<details>
+<summary>What is a cash flow forecast?</summary>
+
+A cash flow forecast projects the money flowing in and out of your business over a future period. It shows when you will have cash surpluses and when you might face shortfalls so you can plan ahead. Unlike a profit and loss statement, it tracks actual cash timing — when money hits your account versus when you earn it.
+</details>
+
+<details>
+<summary>How do I forecast cash flow for my business?</summary>
+
+Start by listing all expected cash inflows (customer payments, loans, investments) and outflows (rent, payroll, supplies, taxes) by month. Estimate payment timing based on historical patterns — if clients typically pay in 45 days, do not count an invoice as cash until then. Subtract outflows from inflows to find your net cash position each period.
+</details>
+
+<details>
+<summary>What is the difference between cash flow and profit?</summary>
+
+Profit is revenue minus expenses on an accrual basis, while cash flow tracks actual money movement. You can be profitable on paper but run out of cash if clients pay late. A business with $100,000 in sales and $80,000 in expenses is profitable, but if only $50,000 has been collected, you have a cash flow problem.
+</details>
+
+<details>
+<summary>How far ahead should I forecast?</summary>
+
+Most small businesses should forecast 12 months ahead, with the first 3 months projected weekly and the remaining 9 monthly. Once established, maintain a rolling 12-month forecast updated each month. Seasonal businesses should forecast at least 18 months to capture the full annual cycle.
+</details>
+
+<details>
+<summary>What tools can I use for cash flow forecasting?</summary>
+
+Excel and Google Sheets are the most common starting points with built-in templates available. For more advanced needs, tools like Float, Pulse, or QuickBooks Cash Flow Planner integrate with your accounting software. A simple spreadsheet works well for most small businesses with fewer than 50 transactions per month.
+</details>

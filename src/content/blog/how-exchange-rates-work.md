@@ -52,3 +52,35 @@ For frequent international transactions, consider a multi-currency account from 
 Check rates before you travel to establish a baseline. Use fee-free debit cards for ATM withdrawals abroad. Avoid exchanging money at airports, hotels, and tourist areas where spreads are widest. Send larger amounts less frequently to minimize fixed transfer fees. And always read the fine print on exchange rate guarantees — some come with conditions that make them less valuable than they appear.
 
 Understanding exchange rates is not complicated once you know what to look for. The mid-market rate is your truth. Everything else is a cost.
+
+## Frequently asked questions
+
+<details>
+<summary>How are exchange rates determined?</summary>
+
+Exchange rates are determined by supply and demand in the foreign exchange market, influenced by interest rates, inflation, economic stability, and trade flows. Central banks can also intervene by adjusting interest rates or directly buying/selling currency. The mid-market rate is the true exchange rate before any bank or service adds its markup.
+</details>
+
+<details>
+<summary>What is the difference between spot and forward exchange rates?</summary>
+
+The spot rate is the current exchange rate for immediate delivery (settlement in 2 business days). The forward rate is an agreed-upon rate for a future date, used by businesses to lock in rates and hedge against currency fluctuations. Forward rates are derived from the spot rate plus or minus the interest rate differential.
+</details>
+
+<details>
+<summary>How do I convert USD to EUR?</summary>
+
+Multiply your USD amount by the current USD/EUR exchange rate. If the rate is 0.92, $1,000 × 0.92 = €920. Always check the mid-market rate on sites like XE.com or Google and compare it to what your bank or service offers. Banks typically add a 1-3% markup on top of the mid-market rate.
+</details>
+
+<details>
+<summary>What affects currency exchange rates?</summary>
+
+Currency rates are affected by interest rate differentials (higher rates attract foreign capital), inflation rates (lower inflation strengthens currency), political stability, trade balances, and market speculation. When the Federal Reserve raises interest rates, the USD typically strengthens against currencies of countries with lower rates.
+</details>
+
+<details>
+<summary>Where can I get the best exchange rate?</summary>
+
+The best rates are typically from online transfer services like Wise or Revolut, which use the mid-market rate with low transparent fees. ATMs abroad often give decent rates with small fees. Airport exchange bureaus and hotels offer the worst rates — markups of 5-10% above the mid-market rate are common.
+</details>

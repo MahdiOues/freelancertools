@@ -7,6 +7,8 @@ relatedTool: /health/due-date-calculator/
 relatedToolName: Free Due Date Calculator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 An estimated due date gives expecting parents a target to plan around, but many do not realize how the date is calculated or how accurate it really is. Here is what you need to know about due dates.
 
 ## Naegele's rule explained
@@ -44,3 +46,35 @@ Use the [Due Date Calculator](/health/due-date-calculator/) to get your estimate
 ## Planning around the estimate
 
 Use the due date as a planning tool, not an expectation. Pack your hospital bag by 36 weeks, finalize parental leave arrangements for a range of dates, and mentally prepare for the possibility of going past 40 weeks. Most first-time mothers deliver between 40 and 41 weeks. The [Due Date Calculator](/health/due-date-calculator/) gives you the starting point for all that planning.
+
+## Frequently asked questions
+
+<details><summary>How is my due date calculated?</summary>
+
+The standard method is Naegele's rule: take the first day of your last menstrual period (LMP), add 280 days (40 weeks). A simpler version is to add 9 months and 7 days. For example, an LMP of January 1 gives a due date of October 8.
+
+</details>
+
+<details><summary>How accurate are due dates?</summary>
+
+Only about 4% of babies are born on their exact due date. Approximately 80% of babies are born within two weeks before or after the estimated due date, and full-term pregnancy is defined as 37 to 42 weeks. First-trimester ultrasound dating is more accurate than LMP-based calculation, with a margin of about 5 to 7 days.
+
+</details>
+
+<details><summary>How do I calculate my current week of pregnancy?</summary>
+
+Count the number of weeks and days since the first day of your last menstrual period. For example, if your LMP was January 1 and today is March 12, you are 10 weeks and 1 day pregnant. Pregnancy is divided into three trimesters: first trimester (weeks 1-13), second trimester (weeks 14-27), and third trimester (weeks 28-40).
+
+</details>
+
+<details><summary>What is a conception date calculator?</summary>
+
+A conception date calculator estimates when conception likely occurred, usually by subtracting 266 days (38 weeks) from the due date or adding 14 days to the first day of your LMP. This assumes ovulation occurred around day 14 of your cycle. Conception date is rarely known exactly unless pregnancy is achieved through fertility treatments.
+
+</details>
+
+<details><summary>How do I calculate due date after IVF?</summary>
+
+For IVF pregnancies, the due date is calculated from the embryo transfer date rather than LMP. For a day 5 blastocyst transfer, add 261 days (37 weeks and 2 days) from the transfer date. For a day 3 embryo transfer, add 263 days. IVF due dates are more accurate because the conception date is precisely known.
+
+</details>

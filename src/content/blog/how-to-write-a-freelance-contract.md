@@ -68,3 +68,25 @@ Send the contract as a PDF with your proposal. Tell the client: "Here is the con
 Most clients will read it and sign. If they push back on a clause, listen to their concern and explain why it is there. In nine out of ten cases, the concern is a misunderstanding.
 
 Use the [Contract Generator](/legal/contract-generator/) on this site to create a professional freelance contract in under two minutes. Fill in your details, choose your clauses, and get a clean document ready to send.
+
+## Frequently asked questions
+
+<details><summary>What should a freelance contract include?</summary>
+A strong freelance contract covers scope of work, payment terms (amount, schedule, late fees), deadlines, revision limits, ownership of deliverables, confidentiality, cancellation terms, and dispute resolution. These eight clauses handle 90% of problems that arise between freelancers and clients.
+</details>
+
+<details><summary>Do I need a contract for every freelance project?</summary>
+Yes — even for small projects or clients you trust. A written contract protects both parties and sets clear expectations. Projects under $500 may use a simpler letter agreement, but always get something in writing. Verbal agreements are difficult to enforce in most jurisdictions.
+</details>
+
+<details><summary>What is a scope of work in a contract?</summary>
+A scope of work (SOW) defines exactly what you will deliver, including specific deliverables, timelines, revision limits, and what is explicitly excluded. A good SOW prevents scope creep by making it clear when a client's request falls outside the agreed-upon work.
+</details>
+
+<details><summary>How do I handle changes after the contract is signed?</summary>
+Use a change order form that documents the new request, the additional cost, and the revised timeline. Both parties must sign the change order before work begins on the new scope. This keeps the original contract intact and prevents disputes about what was agreed.
+</details>
+
+<details><summary>What is a kill fee in a freelance contract?</summary>
+A kill fee is a cancellation payment — typically 25-50% of the project fee — paid if the client cancels after work has begun. It compensates you for time already spent and the opportunity cost of turning down other work. Always include a kill fee clause for projects over $1,000.
+</details>

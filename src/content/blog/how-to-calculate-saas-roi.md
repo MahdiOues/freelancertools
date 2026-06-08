@@ -46,3 +46,25 @@ Running the numbers manually for every tool in your stack is tedious, which is e
 Set a recurring reminder to audit your SaaS stack every quarter. List every active subscription, note whether it is still being used, and run the ROI calculation for each one. Cancel tools with negative ROI that serve no strategic purpose. Downgrade plans that offer features you do not use. Invest more in tools with strong positive ROI. This simple process can free up thousands of dollars per year that can be reinvested into tools that actually move your business forward.
 
 SaaS ROI calculation is not complex math. It is a discipline. The discipline of asking whether every dollar you spend on software is earning its keep. Start with the tools that cost the most. The answers will surprise you.
+
+## Frequently asked questions
+
+<details><summary>How do I calculate ROI for a SaaS investment?</summary>
+The basic formula is (Net Benefit ÷ Cost) × 100. For a CRM costing $500/month that helps your team close $5,000/month in additional deals, the ROI is (($5,000 - $500) ÷ $500) × 100 = 900%. Include all costs (subscription, implementation, training) and all benefits (time saved, revenue gained, costs reduced) for an accurate picture.
+</details>
+
+<details><summary>What is a good SaaS ROI?</summary>
+A good SaaS ROI is anything above 100% — meaning the tool generates more value than it costs. Industry benchmarks show that top-performing SaaS tools deliver 300-500% ROI, while average tools deliver 100-200%. Tools with below 50% ROI should be evaluated for cancellation or replacement.
+</details>
+
+<details><summary>How do I calculate payback period for SaaS?</summary>
+Payback period is Total Cost ÷ Monthly Net Benefit. If onboarding a SaaS tool costs $5,000 (setup, training, migration) and it saves your team $1,000/month, the payback period is 5 months. Most businesses look for a payback period of 6-12 months or less for SaaS investments.
+</details>
+
+<details><summary>How do I use SaaS ROI in a client proposal?</summary>
+Include a clear before/after comparison showing the client's current costs vs. projected savings with your solution. Use the formula: (Time saved per month × hourly rate × number of employees) - tool cost = monthly ROI. This transforms a feature discussion into a financial decision the client can justify.
+</details>
+
+<details><summary>What is the difference between ROI and payback period?</summary>
+ROI measures total return relative to cost over the tool's lifetime (a percentage), while payback period measures how long until the investment breaks even (in months). A tool might have 500% ROI over 3 years but an 8-month payback period. Both metrics matter — ROI tells you if it is worth it, payback tells you when.
+</details>

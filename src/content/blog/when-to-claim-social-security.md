@@ -7,6 +7,8 @@ relatedTool: /finance/social-security-estimator/
 relatedToolName: Free Social Security Estimator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 Deciding when to claim Social Security is one of the most consequential financial decisions you will make. Claim at 62 and you get smaller checks for longer. Wait until 70 and you get larger checks for fewer years. The right answer depends on your health, other income, and life expectancy.
 
 ## How benefits are calculated
@@ -36,3 +38,35 @@ Men aged 65 have an average life expectancy of about 84. Women about 86. If you 
 If you plan to work past 62, your benefits are reduced by $1 for every $2 you earn above the annual limit ($22,320 in 2025). Once you reach FRA, there is no earnings penalty. If you are married, coordinating spousal and survivor benefits adds complexity — the higher earner waiting benefits both.
 
 Use the [Social Security Estimator](/finance/social-security-estimator/) to compare your benefits at every claiming age from 62 to 70.
+
+## Frequently asked questions
+
+<details>
+<summary>What is the best age to claim Social Security?</summary>
+
+The best age depends on your health, life expectancy, and financial needs. For a single person in average health, the breakeven age is typically around 80-82, meaning delaying benefits pays off if you live past that age. If you expect to live past 82, waiting until 70 maximizes lifetime benefits.
+</details>
+
+<details>
+<summary>How much does my benefit increase if I delay claiming?</summary>
+
+Benefits increase by 8% per year for each year you delay past full retirement age (FRA), up to age 70. If your FRA benefit at 67 is $2,000/month, waiting until 70 increases it to $2,480/month — a 24% permanent increase. Claiming at 62 instead of 67 reduces benefits by approximately 30%.
+</details>
+
+<details>
+<summary>Can I work while collecting Social Security?</summary>
+
+Yes, but if you are under full retirement age, benefits are reduced by $1 for every $2 earned above the annual limit ($22,320 in 2024). In the year you reach FRA, the limit is higher ($59,520) and the reduction is $1 per $3 earned. Once you hit FRA, there is no earnings limit and no benefit reduction.
+</details>
+
+<details>
+<summary>What is the full retirement age?</summary>
+
+Full retirement age (FRA) for Social Security depends on your birth year. For those born between 1943-1954, FRA is 66. It gradually increases to 67 for those born in 1960 or later. If you were born in 1960+, your FRA is 67, and you can claim reduced benefits as early as 62 or enhanced benefits as late as 70.
+</details>
+
+<details>
+<summary>How is my Social Security benefit calculated?</summary>
+
+Your benefit is based on your highest 35 years of inflation-adjusted earnings. The Social Security Administration calculates your Average Indexed Monthly Earnings (AIME) and applies a progressive formula: 90% of the first $1,174 of monthly earnings, 32% from $1,174 to $7,078, and 15% above that. The result is your Primary Insurance Amount at FRA.
+</details>

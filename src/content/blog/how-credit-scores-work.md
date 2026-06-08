@@ -46,3 +46,35 @@ The [Credit Score Simulator](/finance/credit-score-simulator/) lets you see how 
 Use it before making major credit decisions. If you are planning to apply for a mortgage, run the simulator to see whether paying off debt or opening a new card helps or hurts your score first. Knowledge is power when it comes to credit.
 
 Your credit score is not a mystery. It is a formula. Learn the formula, optimize each factor, and watch your score rise.
+
+## Frequently asked questions
+
+<details>
+<summary>What is a credit score?</summary>
+
+A credit score is a three-digit number (300-850) that represents your creditworthiness based on your credit history. Lenders use it to decide whether to approve loans and what interest rates to offer. The most common scoring model is FICO, followed by VantageScore, with higher scores indicating lower risk.
+</details>
+
+<details>
+<summary>What is a good credit score?</summary>
+
+A FICO score of 670-739 is considered good, 740-799 is very good, and 800+ is exceptional. Scores below 580 are poor, and 580-669 are fair. A score of 760+ typically qualifies you for the best interest rates on mortgages and auto loans. Raising your score from 650 to 750 can save you thousands of dollars in interest.
+</details>
+
+<details>
+<summary>How is my credit score calculated?</summary>
+
+FICO scores are calculated from five factors: payment history (35%) — paying on time is the biggest factor, amounts owed/credit utilization (30%) — keep credit card balances below 30% of limits, length of credit history (15%), credit mix (10%), and new credit inquiries (10%). A late payment can drop your score by 50-100 points.
+</details>
+
+<details>
+<summary>How can I improve my credit score fast?</summary>
+
+The fastest ways to improve your score are paying down credit card balances (utilization is 30% of your score), disputing errors on your credit report, and becoming an authorized user on a well-managed account. Paying a card from 90% utilization to 10% can boost your score by 30-50 points in a month.
+</details>
+
+<details>
+<summary>Does checking my credit score lower it?</summary>
+
+Checking your own credit score through free services like Credit Karma or AnnualCreditReport.com does not lower your score — these are soft inquiries. Hard inquiries, which happen when a lender checks your credit for a loan application, may temporarily drop your score by 5-10 points and remain on your report for 2 years.
+</details>

@@ -7,6 +7,8 @@ relatedTool: /finance/compound-interest/
 relatedToolName: Free Compound Interest Calculator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 Albert Einstein reportedly called compound interest the eighth wonder of the world. "He who understands it, earns it. He who doesn't, pays it." Whether or not the quote is authentic, the sentiment is right.
 
 ## Compound interest explained simply
@@ -34,3 +36,35 @@ Three factors determine how powerful compounding is for you:
 Compound interest works against you on debt. Credit cards at 22% APR compound daily. A $5,000 credit card balance with minimum payments takes over 15 years to pay off and costs more than $7,000 in interest. That is the eighth wonder working in reverse.
 
 Use the [Compound Interest Calculator](/finance/compound-interest/) to see how your money grows, and the [Investment Return Calculator](/finance/investment-return/) to compare different scenarios.
+
+## Frequently asked questions
+
+<details>
+<summary>What is compound interest?</summary>
+
+Compound interest is interest earned on both your original principal and the accumulated interest from previous periods. Unlike simple interest, which only pays on the principal, compound interest grows exponentially because each period's interest is added to the base that earns interest in the next period.
+</details>
+
+<details>
+<summary>How do I calculate compound interest?</summary>
+
+Use the formula A = P(1 + r/n)^(nt), where A is the final amount, P is principal, r is the annual rate, n is compounding frequency per year, and t is years. For $5,000 at 8% compounded monthly for 10 years: A = 5000(1 + 0.08/12)^(12×10) = $11,098. Use the [Compound Interest Calculator](/finance/compound-interest/) to avoid manual math.
+</details>
+
+<details>
+<summary>What is the rule of 72?</summary>
+
+The rule of 72 is a shortcut to estimate how long it takes to double your money at a given rate. Divide 72 by your annual return rate. At 8% return, your money doubles in 72/8 = 9 years. At 6%, it takes 12 years. At 10%, it takes about 7.2 years. This rule works for annual returns between 4% and 15%.
+</details>
+
+<details>
+<summary>How does compounding frequency matter?</summary>
+
+The more frequently interest compounds, the faster your money grows. $10,000 at 8% annual rate grows to $21,589 with annual compounding, $21,673 with monthly compounding, and $21,725 with daily compounding over 10 years. The difference between monthly and daily is small, but switching from annual to monthly adds about $84 per $10,000.
+</details>
+
+<details>
+<summary>How much can I earn with compound interest over 10 years?</summary>
+
+Investing $10,000 at 8% compounded annually grows to $21,589 over 10 years — more than doubling your money. Add $200 monthly contributions and the total reaches $47,217. Over 30 years, that same $10,000 with $200/month grows to roughly $327,000 at 8% return.
+</details>

@@ -70,3 +70,35 @@ In medical contexts, your exact age can affect drug dosages, treatment protocols
 For personal milestones, knowing your exact age is a reminder of how much time you have and how you want to spend it.
 
 Use the [Age Calculator](/math/age-calculator/) to find your exact age in years, months, and days. Enter your birth date and let the tool handle the leap years and month-length variations.
+
+## Frequently asked questions
+
+<details><summary>How do I calculate exact age in years and months?</summary>
+
+Subtract your birth year from the current year, then subtract 1 if your birthday has not occurred yet this year. For months, subtract your birth month from the current month and add 12 if the result is negative. For example, someone born June 15, 1990 would be 34 years and 9 months old on March 15, 2025.
+
+</details>
+
+<details><summary>How do I calculate age in days?</summary>
+
+Multiply your age in years by 365.2425 (the average length of a year accounting for leap years) and add the days since your last birthday. A 30-year-old has lived approximately 10,957 days, while a 50-year-old has lived about 18,262 days.
+
+</details>
+
+<details><summary>How do I calculate age between two dates?</summary>
+
+Subtract the earlier date from the later date using the same year-month-day method. For years, subtract the earlier year from the later year and subtract 1 if the month/day of the earlier date is after the month/day of the later date. Repeat for months and days.
+
+</details>
+
+<details><summary>How old will I be in 2050?</summary>
+
+Subtract your birth year from 2050. If you were born in 1990, you will be 60 years old in 2050, though your exact age depends on whether your birthday has already occurred in that year. This does not account for your current age relative to that target year.
+
+</details>
+
+<details><summary>What is the formula for calculating age?</summary>
+
+Age = Current Year - Birth Year - (1 if your birthday has not occurred yet this year, else 0). For precise age in years and months, also calculate: Current Month - Birth Month + 12 (if negative), and Current Day - Birth Day + days in previous month (if negative).
+
+</details>

@@ -54,3 +54,35 @@ Before you dip into your fund, ask yourself: would I go into debt for this? If t
 If you use your emergency fund, make rebuilding it your top financial priority. Reduce your other savings goals temporarily and focus on getting the fund back to its target. Life happens. The important thing is to be ready for the next time.
 
 Use the [Budget Planner](/finance/budget-planner/) to track your spending and find extra room in your budget for emergency savings.
+
+## Frequently asked questions
+
+<details>
+<summary>How much should I save in an emergency fund?</summary>
+
+Most experts recommend 3 to 6 months of essential living expenses. For someone with $3,000/month in essential costs, that means $9,000 to $18,000. Single income households and freelancers should aim for 6 months, while dual-income households with stable jobs may be fine with 3 months.
+</details>
+
+<details>
+<summary>How long does it take to build a 6-month emergency fund?</summary>
+
+If you save $500 per month and need $15,000 for a 6-month fund, it will take 30 months (2.5 years). Saving $1,000 per month cuts that to 15 months. Starting with a $1,000 mini-fund for immediate emergencies lets you build the full fund more comfortably over time.
+</details>
+
+<details>
+<summary>Where should I keep my emergency fund?</summary>
+
+Keep your emergency fund in a high-yield savings account (HYSA) earning 4-5% APY, separate from your checking account. It needs to be liquid and accessible within 1-3 business days without penalties. Avoid investing it in the stock market, where a market downturn could coincide with your emergency.
+</details>
+
+<details>
+<summary>What counts as an emergency?</summary>
+
+An emergency is an unexpected, necessary expense that you cannot avoid. Job loss, medical emergencies, major car repairs, urgent home repairs (like a broken water heater), and unexpected travel for a family emergency qualify. A vacation, new TV, or clothing sale does not count.
+</details>
+
+<details>
+<summary>Should I pay off debt or build an emergency fund first?</summary>
+
+Build a $1,000 starter emergency fund first, then focus on high-interest debt (above 10% APR). Once that debt is under control, build a full 3-6 month emergency fund. Without an emergency fund, a single unexpected expense can force you into more debt, making the payoff process a constant battle.
+</details>

@@ -66,3 +66,25 @@ Some clients will never pay on time no matter what you do. After three late paym
 Late payments are part of freelance life, but they do not have to dominate your cash flow. Prevent them with clear terms and automated reminders. Handle them with a graduated escalation system. And charge late fees not as punishment, but as the agreed-upon cost of paying late.
 
 Set your terms, enforce them consistently, and you will train your clients to pay on time.
+
+## Frequently asked questions
+
+<details><summary>How do I follow up on a late invoice?</summary>
+Send a polite reminder on day 1 (a friendly "just checking you received this"), a firmer follow-up at day 7, a formal notice at day 14, and a final demand at day 30. Each email should escalate slightly in tone while remaining professional — 80% of late payers will pay after the second reminder.
+</details>
+
+<details><summary>What late fee can I charge as a freelancer?</summary>
+The standard late fee is 1.5% per month (18% APR) on the overdue balance, which is legal in most states without a usury limit. Some freelancers charge a flat $25-50 late fee per overdue invoice instead. Whatever you choose, it must be written into your contract before work begins.
+</details>
+
+<details><summary>How long should I wait before charging late fees?</summary>
+Most freelancers apply late fees after 15-30 days past the invoice due date. The most common approach is Net-30 terms with late fees starting on day 31. Including a 5-day grace period is a reasonable courtesy that preserves goodwill with otherwise reliable clients.
+</details>
+
+<details><summary>What do I do if a client refuses to pay?</summary>
+Send a formal demand letter via certified mail, then consider small claims court for amounts under $10,000 or a collection agency for larger sums. Before legal action, try offering a payment plan — recovering 80% of what you are owed is better than recovering nothing after legal fees.
+</details>
+
+<details><summary>How do I prevent late payments from new clients?</summary>
+Require a 50% deposit before starting work, run a credit check for projects over $5,000, and always have a signed contract with clear payment terms. Using invoicing software with automated reminders can reduce late payments by up to 50% compared to manual follow-ups.
+</details>

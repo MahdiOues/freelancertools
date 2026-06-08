@@ -76,3 +76,30 @@ A 2,000-square-foot footprint with a 6/12 pitch needs 2,000 × 1.12 = 2,240 squa
 Construction math is not advanced. It is addition, multiplication, and unit conversion. But it matters because materials are expensive and mistakes are costlier. Measure twice, calculate twice, and use a calculator to confirm your numbers before you place an order.
 
 The [Free Concrete Calculator](/construction/concrete-calculator/) on this site handles the volume math for concrete pours. For other materials, the same formulas apply — just change the conversion factor. Take the extra five minutes to run the numbers, and your profit margin will thank you.
+
+## Frequently asked questions
+
+<details>
+<summary>How do I calculate how much concrete I need for a slab?</summary>
+Multiply length by width by thickness in feet to get cubic feet, then divide by 27 to get cubic yards. A 10x10 slab at 4 inches thick: 10 × 10 × 0.333 = 33.3 cubic feet, or 1.23 cubic yards. Add 10% for waste, bringing it to 1.36 cubic yards or roughly 62 bags of 80 lb concrete.
+</details>
+
+<details>
+<summary>How many bags of concrete do I need per cubic yard?</summary>
+One cubic yard equals 27 cubic feet. An 80 lb bag yields about 0.6 cubic feet, so you need 45 bags per cubic yard. A 60 lb bag yields about 0.45 cubic feet, so you need 60 bags per cubic yard. The concrete calculator does this conversion automatically.
+</details>
+
+<details>
+<summary>How do I calculate square footage for flooring materials?</summary>
+Multiply the room length by width in feet. A 12x14 room is 168 square feet. Always add 10% for waste and pattern matching: 168 × 1.10 = 185 square feet of material needed. For tile or patterned flooring, add 15% instead.
+</details>
+
+<details>
+<summary>What is the formula for calculating gravel or fill dirt?</summary>
+Same as concrete: length × width × depth in feet, divided by 27 for cubic yards. A 20x30 foot area with 6 inches of gravel: 20 × 30 × 0.5 = 300 cubic feet, or 11.1 cubic yards. Gravel is sold by the cubic yard, typically weighing about 1.4 tons per yard.
+</details>
+
+<details>
+<summary>How do I estimate paint needed for a room?</summary>
+Measure the wall area (perimeter × wall height) minus doors and windows. One gallon of paint covers roughly 350-400 square feet. A 12x14 room with 8-foot ceilings has about 416 square feet of wall area, so you need 2 gallons for one coat or 4 gallons for two coats.
+</details>

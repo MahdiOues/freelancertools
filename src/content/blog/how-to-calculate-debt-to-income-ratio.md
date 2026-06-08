@@ -7,6 +7,8 @@ relatedTool: /finance/loan-comparison/
 relatedToolName: Free Loan Comparison Calculator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 Your debt-to-income (DTI) ratio is one of the most important numbers in your financial life. Lenders use it to decide whether to approve you for a mortgage, car loan, or credit card. Understanding yours gives you power in the borrowing process.
 
 ## How to calculate DTI
@@ -47,3 +49,35 @@ For a qualified mortgage, the maximum DTI is typically 43% for manual underwriti
 Two approaches: increase income or decrease debt. The fastest fix is paying down credit card balances (which lowers your minimum payment). The second fastest is paying off a car loan or small debt entirely. Avoid taking on new debt before applying for a major loan.
 
 Use the [Loan Comparison Calculator](/finance/loan-comparison/) to see how different loan terms affect your monthly payment and DTI.
+
+## Frequently asked questions
+
+<details>
+<summary>What is debt-to-income ratio?</summary>
+
+Debt-to-income ratio (DTI) is the percentage of your gross monthly income that goes toward debt payments. It is calculated by dividing your total monthly debt payments by your gross monthly income. Lenders use it to assess your ability to manage monthly payments and repay borrowed money.
+</details>
+
+<details>
+<summary>How do I calculate my DTI?</summary>
+
+Add up all your monthly debt payments (mortgage/rent, car loans, student loans, credit card minimums, personal loans) and divide by your gross monthly income. For example, if your total debt payments are $2,000 and your gross income is $6,000, your DTI is 33%. Exclude utilities, insurance, and groceries.
+</details>
+
+<details>
+<summary>What is a good debt-to-income ratio?</summary>
+
+A DTI of 36% or less is considered good by most lenders. Below 20% is excellent, 36-43% is acceptable but may require explanation, and above 43% makes it difficult to qualify for mortgages. For FHA loans, the maximum DTI is typically 43%, while conventional loans often allow up to 50% with compensating factors.
+</details>
+
+<details>
+<summary>Does DTI affect mortgage approval?</summary>
+
+Yes, DTI is one of the most important factors in mortgage approval. Lenders use two DTIs: front-end (housing costs only, ideally under 28%) and back-end (all debts, ideally under 36%). A high DTI can result in higher interest rates, larger down payment requirements, or outright denial.
+</details>
+
+<details>
+<summary>How can I lower my debt-to-income ratio?</summary>
+
+You can lower your DTI by increasing your income (raise, side hustle) or decreasing your debt payments (pay off credit cards, refinance to lower payments). Paying off a $300/month car loan reduces your DTI by 5% if your income is $6,000. Avoid taking on new debt before applying for a major loan.
+</details>

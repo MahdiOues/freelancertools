@@ -7,6 +7,8 @@ relatedTool: /finance/inflation-calculator/
 relatedToolName: Free Inflation Calculator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 Inflation is often described as a silent tax. You do not feel it day to day, but over years it dramatically reduces what your money can buy. A dollar in 2015 is worth about 78 cents today. That 22% loss of purchasing power happened quietly.
 
 ## The 2015–2025 inflation story
@@ -30,3 +32,35 @@ The house you could have bought for $300,000 in 2015 would cost roughly $400,000
 ## The one number that matters
 
 Your real return is your nominal return minus inflation. A 7% investment return with 3% inflation is a 4% real return. Use the [Inflation Calculator](/finance/inflation-calculator/) to see how much any dollar amount from the past is worth today.
+
+## Frequently asked questions
+
+<details>
+<summary>What is inflation and how does it work?</summary>
+
+Inflation is the gradual increase in prices of goods and services over time, which reduces the purchasing power of money. When the money supply grows faster than the production of goods, each dollar buys less than it used to. A $100 grocery trip in 2020 would cost roughly $120 today due to cumulative inflation.
+</details>
+
+<details>
+<summary>How does inflation affect my savings?</summary>
+
+If your savings earn less interest than the inflation rate, you are effectively losing purchasing power. Money earning 1% in a regular savings account while inflation runs at 3% loses 2% of its purchasing power each year. $10,000 in such an account would be worth only about $8,200 in real terms after 10 years.
+</details>
+
+<details>
+<summary>What is the average inflation rate?</summary>
+
+The average annual inflation rate in the US has been approximately 3.2% over the past century. In recent years (2021-2024), inflation spiked as high as 9.1% in June 2022 before settling back toward 3%. The Federal Reserve targets a 2% long-term inflation rate as ideal for economic stability.
+</details>
+
+<details>
+<summary>How do I calculate purchasing power loss?</summary>
+
+To calculate purchasing power loss, use the formula: Future Value = Present Value / (1 + Inflation Rate)^Years. $1,000 today at 3% inflation will be worth $744 in 10 years, meaning you lose about $256 in purchasing power. The [Inflation Calculator](/finance/inflation-calculator/) does this calculation automatically.
+</details>
+
+<details>
+<summary>What investments protect against inflation?</summary>
+
+Assets that historically protect against inflation include stocks (S&P 500 has outpaced inflation by about 7% annually), Treasury Inflation-Protected Securities (TIPS), real estate, and commodities like gold. Cash and fixed-rate bonds are the most vulnerable to inflation erosion.
+</details>

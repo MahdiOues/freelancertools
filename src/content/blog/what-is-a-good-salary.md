@@ -56,3 +56,35 @@ The best time to negotiate is after you have an offer but before you accept. At 
 Not every offer is worth taking. If the salary is too low to cover your basic needs, the benefits are poor, or the company culture is toxic, walk away. A bad job at a higher salary is still a bad job.
 
 Use the [Paycheck Calculator](/finance/paycheck-calculator/) to see exactly how much of your salary you will take home after taxes, insurance, and retirement contributions. The number in your bank account is what ultimately matters.
+
+## Frequently asked questions
+
+<details>
+<summary>What is a good salary in 2024?</summary>
+
+A good salary in 2024 depends on your location and lifestyle, but nationally, $75,000-$100,000 is comfortable for a single person in most US cities. In high-cost areas like San Francisco or New York, a good salary starts at $100,000-$120,000. The US median household income is roughly $75,000, so anything above that is above average.
+</details>
+
+<details>
+<summary>What is the median salary in the US?</summary>
+
+The median personal income in the US for full-time workers in 2024 is approximately $60,000 per year. The median household income is about $75,000. Half of all workers earn less than this amount, making it a better benchmark than the average, which is pulled higher by top earners.
+</details>
+
+<details>
+<summary>How do I know if my salary is competitive?</summary>
+
+Research salary data on sites like Glassdoor, Levels.fyi, and the Bureau of Labor Statistics for your role, experience level, and location. A software engineer with 5 years of experience in Austin should earn differently than the same role in rural Ohio. Aim for at least the 50th percentile for your specific combination.
+</details>
+
+<details>
+<summary>What salary do I need to live comfortably?</summary>
+
+To live comfortably (50/30/20 budget with savings), you typically need 2-3 times your rent in gross monthly income. If rent is $1,500, a gross income of $4,500/month ($54,000/year) covers needs and leaves room for wants and savings. This varies significantly by city — comfortable in San Francisco might require $120,000+.
+</details>
+
+<details>
+<summary>How does location affect what is a good salary?</summary>
+
+Location is the single biggest factor in salary expectations. A $70,000 salary in Memphis puts you in the top 20% of earners, while the same salary in Manhattan leaves you below the median. Cost-of-living calculators show that $60,000 in Dallas is equivalent to $120,000 in San Francisco after adjusting for housing and taxes.
+</details>

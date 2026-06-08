@@ -7,6 +7,8 @@ relatedTool: /health/calories-burned/
 relatedToolName: Free Calories Burned Calculator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 Exercise burns calories, but the numbers on the treadmill display or fitness watch are often inaccurate. Understanding what drives calorie burn during exercise helps you set realistic expectations and avoid the frustration of working hard without seeing results.
 
 ## What determines calorie burn during exercise
@@ -40,3 +42,35 @@ The most accurate method is using MET (metabolic equivalent of task) values comb
 Do not eat back all the calories your tracker says you burned. A good rule is to eat back half at most if you are trying to lose weight. The margin of error is simply too large to trust the full number.
 
 Focus on consistency rather than precision. A 300-calorie run every day adds up to 2,100 calories per week, which translates to about 0.6 pounds of fat loss per week. The exact number matters less than the habit. Use the [Calories Burned Calculator](/health/calories-burned/) to get a science-based estimate for any activity and build your exercise plan around sustainable effort.
+
+## Frequently asked questions
+
+<details><summary>How many calories does walking burn?</summary>
+
+A 155-pound person burns approximately 250 to 350 calories per hour walking at a moderate pace of 3 mph. At a brisk 4 mph, that increases to 300 to 400 calories per hour. Heavier individuals burn more — a 200-pound person burns roughly 30% more calories than a 150-pound person doing the same activity.
+
+</details>
+
+<details><summary>How many calories do I burn running a mile?</summary>
+
+The average person burns about 100 calories per mile run, regardless of speed. A 155-pound person running a 10-minute mile burns approximately 110-120 calories per mile, while a 185-pound person burns about 130-145 calories per mile. Running faster increases per-minute burn but not per-mile burn significantly.
+
+</details>
+
+<details><summary>How many calories does weightlifting burn?</summary>
+
+A 155-pound person burns 200 to 400 calories per hour during strength training, depending on intensity and rest periods. Circuit training with minimal rest between sets burns more. The afterburn effect (EPOC) adds 50 to 100 additional calories over the next several hours as your body repairs muscle tissue.
+
+</details>
+
+<details><summary>How many calories do I burn sleeping?</summary>
+
+Sleeping burns about 50 to 70 calories per hour, or roughly 400 to 560 calories over an 8-hour night for a 155-pound person. This is close to your Basal Metabolic Rate since your body is at rest, still powering essential functions like breathing, circulation, and brain activity.
+
+</details>
+
+<details><summary>How accurate are calorie burn estimates?</summary>
+
+Most fitness trackers overestimate calorie burn by 20 to 50%, according to multiple studies. Wrist-based devices use heart rate and movement data but cannot account for individual differences in metabolism, muscle mass, and exercise efficiency. The most accurate method is using MET values combined with your body weight.
+
+</details>

@@ -7,6 +7,8 @@ relatedTool: /health/tdee-calculator/
 relatedToolName: Free TDEE Calculator
 ---
 
+<!-- UNDER 600 WORDS - REVIEW NEEDED -->
+
 Every day your body burns a specific number of calories just to stay alive and function. That number is your Total Daily Energy Expenditure, or TDEE. Knowing it is the foundation of any weight management plan.
 
 ## The four components of TDEE
@@ -44,3 +46,35 @@ Use the [TDEE Calculator](/health/tdee-calculator/) to get your personalized num
 Most people overestimate their activity level. If you have a desk job and work out three times per week, you are likely in the light activity category, not moderate. Overestimating activity leads to overestimating TDEE, which stalls weight loss.
 
 TDEE is an estimate, not a precise measurement. Individual variation of plus or minus 200 calories is normal. Track your weight and intake for two weeks and adjust based on real-world results.
+
+## Frequently asked questions
+
+<details><summary>How many calories do I need per day?</summary>
+
+The average adult needs 2,000 to 2,500 calories per day, but your personal TDEE depends on age, sex, weight, height, and activity level. A 180-pound, 5-foot-10, 30-year-old man with moderate activity needs about 2,800 calories per day to maintain weight.
+
+</details>
+
+<details><summary>What is TDEE and how do I calculate it?</summary>
+
+Total Daily Energy Expenditure (TDEE) is the total number of calories your body burns in a day. Calculate it by estimating your BMR using the Mifflin-St Jeor equation, then multiplying by an activity factor: 1.2 (sedentary), 1.375 (light), 1.55 (moderate), 1.725 (very active), or 1.9 (extremely active).
+
+</details>
+
+<details><summary>What is the difference between BMR and TDEE?</summary>
+
+Basal Metabolic Rate (BMR) is the calories your body burns at complete rest — just keeping your heart, lungs, and cells functioning — and accounts for 60-75% of your TDEE. TDEE includes BMR plus the thermic effect of food (about 10%), non-exercise activity, and deliberate exercise. BMR is a component of TDEE, not a separate number.
+
+</details>
+
+<details><summary>How many calories should I eat to lose weight?</summary>
+
+Create a 500-calorie daily deficit below your TDEE to lose about 1 pound per week. If your TDEE is 2,800 calories, eating 2,300 calories per day should result in 1 pound of weight loss per week. A deficit of 1,000 calories per day leads to about 2 pounds of loss per week, but larger deficits are harder to sustain.
+
+</details>
+
+<details><summary>How do I calculate calories for muscle gain?</summary>
+
+Eat 200 to 300 calories above your TDEE per day to support muscle growth without excessive fat gain. If your TDEE is 2,800 calories, aim for 3,000 to 3,100 calories daily. Eat at least 0.7 to 1 gram of protein per pound of body weight to maximize muscle protein synthesis.
+
+</details>

@@ -68,3 +68,35 @@ The most common mistake is dividing when you should multiply. If you are convert
 Another common mistake is forgetting that temperature conversions are not proportional. 100°C is not twice as hot as 50°C because the zero points are different. Only Kelvin and Rankine scales have true zero points.
 
 Use the [Unit Converter](/math/unit-converter/) to quickly convert between any units for length, weight, volume, temperature, and more.
+
+## Frequently asked questions
+
+<details><summary>How do I convert inches to centimeters?</summary>
+
+Multiply the number of inches by 2.54. For example, 10 inches × 2.54 = 25.4 centimeters. A 32-inch waist measures 81.3 centimeters, and a 12-inch ruler is exactly 30.48 centimeters.
+
+</details>
+
+<details><summary>How do I convert Fahrenheit to Celsius?</summary>
+
+Subtract 32 from the Fahrenheit temperature, then multiply by 5/9. For example, 68°F becomes (68 - 32) × 5/9 = 20°C. A quick reference: 32°F is freezing (0°C), 72°F is room temperature (22°C), and 212°F is boiling (100°C).
+
+</details>
+
+<details><summary>How many ounces in a cup?</summary>
+
+There are 8 fluid ounces in 1 US cup. A standard 2-cup measuring cup holds 16 ounces, and 4 cups (32 ounces) equals 1 quart. For dry ingredients, weight per cup varies — 1 cup of flour weighs about 4.5 ounces, while 1 cup of sugar weighs about 7 ounces.
+
+</details>
+
+<details><summary>How do I convert miles to kilometers?</summary>
+
+Multiply the number of miles by 1.609. For example, 5 miles × 1.609 = 8.045 kilometers. A 26.2-mile marathon is 42.2 kilometers, and a 10-mile run is about 16.1 kilometers.
+
+</details>
+
+<details><summary>How do I convert pounds to kilograms?</summary>
+
+Divide the number of pounds by 2.205, or multiply by 0.4536. For example, 150 pounds ÷ 2.205 = 68 kilograms. A 200-pound person weighs about 90.7 kilograms, and a 10-pound dumbbell is approximately 4.5 kilograms.
+
+</details>
