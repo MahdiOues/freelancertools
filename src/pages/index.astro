@@ -37,26 +37,66 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Which MegaLancer tool should I use first?",
+      "name": "How do I calculate my freelance rate?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Start with the tool that matches the decision you need to make: rate calculator for pricing work, invoice generator for billing, debt payoff or budget planner for cash flow, and contract or NDA generators for client paperwork."
+        "text": "Start with your desired annual income, add your business expenses and tax burden, then divide by the number of billable hours you can realistically work in a year. Most freelancers use 1,000 billable hours (roughly 20 hours per week) rather than 2,000, because the rest goes to admin, marketing, and unpaid work. The freelancer rate calculator does this math for you and shows hourly, daily, and project rates."
       }
     },
     {
       "@type": "Question",
-      "name": "Are the calculators free?",
+      "name": "What is a good hourly rate for a freelancer?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. MegaLancer tools are free to use and do not require an account."
+        "text": "There is no single good rate — it depends on your expenses, target income, and market. A common baseline is to take the salary you want, add 30% for taxes and benefits, and divide by 1,000 billable hours. For example, an $80,000 target works out to roughly $80/hour minimum. The rate calculator factors in your specific costs and compares your rate to industry averages."
       }
     },
     {
       "@type": "Question",
-      "name": "Can freelancers use these tools for client work?",
+      "name": "How much should I charge for a freelance project?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The tools are designed for freelancers, consultants, agencies, and small business owners who need quick estimates, invoices, proposals, contracts, and finance calculations."
+        "text": "Estimate the hours each phase of the project will take, multiply by your hourly rate, and add a buffer for revisions and scope creep. A $5,000 website at $100/hour means roughly 50 hours of work. The project estimator breaks your work into phases, estimates hours per phase, and gives you a realistic total to include in your proposal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate mortgage payments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your monthly mortgage payment includes principal, interest, property taxes, homeowners insurance, and PMI if your down payment is under 20%. The standard formula uses the loan amount, interest rate, and loan term to calculate the principal and interest portion. The mortgage calculator gives you the full monthly number including taxes and insurance so you see the real cost, not just the P&I payment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long will it take to pay off my debt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your total balance, interest rate, minimum payment, and how much extra you put toward it each month. At the minimum payment, a $10,000 credit card balance at 18% APR takes over 20 years. Adding $100 per month cuts that to roughly 5 years. The debt payoff calculator compares avalanche and snowball strategies so you see exactly how long each debt will take at your chosen payment amount."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate the percentage of a number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply the number by the percentage expressed as a decimal. To find 15% of $200, multiply 200 by 0.15 to get $30. For the reverse — what percent X is of Y — divide X by Y and multiply by 100. The percentage calculator handles both modes and also does percentage increase and decrease between any two numbers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert inches to centimeters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply inches by 2.54 to get centimeters. A 12-inch ruler is 12 times 2.54, or 30.48 centimeters. Going the other way, divide centimeters by 2.54. The unit converter handles length, weight, temperature, volume, speed, area, and pressure all in one page, plus dedicated conversion pages for the 15 most common unit pairs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a contract for freelance work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, for every project regardless of size. A one-page contract with scope, payment terms, deadlines, and revision limits prevents disputes and gives you leverage if a client refuses to pay. Without one, you have no written proof of what was agreed. The contract generator builds a freelance contract tailored to your project type, so you have signed terms before you start working."
       }
     }
   ]
@@ -206,6 +246,45 @@ const painPoints = [
           </li>
         ))}
       </ul>
+    </section>
+
+    <section class="home-section">
+      <div class="section-heading">
+        <span class="eyebrow">Quick answers</span>
+        <h2>Frequently asked questions</h2>
+      </div>
+      <details>
+        <summary>How do I calculate my freelance rate?</summary>
+        <p>Start with your desired annual income, add your business expenses and tax burden, then divide by the number of billable hours you can realistically work in a year. Most freelancers use 1,000 billable hours (roughly 20 hours per week) rather than 2,000, because the rest goes to admin, marketing, and unpaid work. The <a href="/freelancer/rate-calculator/">freelancer rate calculator</a> does this math for you and shows hourly, daily, and project rates.</p>
+      </details>
+      <details>
+        <summary>What is a good hourly rate for a freelancer?</summary>
+        <p>There is no single good rate — it depends on your expenses, target income, and market. A common baseline is to take the salary you want, add 30% for taxes and benefits, and divide by 1,000 billable hours. For example, an $80,000 target works out to roughly $80/hour minimum. The <a href="/freelancer/rate-calculator/">rate calculator</a> factors in your specific costs and compares your rate to industry averages.</p>
+      </details>
+      <details>
+        <summary>How much should I charge for a freelance project?</summary>
+        <p>Estimate the hours each phase of the project will take, multiply by your hourly rate, and add a buffer for revisions and scope creep. A $5,000 website at $100/hour means roughly 50 hours of work. The <a href="/freelancer/project-estimator/">project estimator</a> breaks your work into phases, estimates hours per phase, and gives you a realistic total to include in your proposal.</p>
+      </details>
+      <details>
+        <summary>How do I calculate mortgage payments?</summary>
+        <p>Your monthly mortgage payment includes principal, interest, property taxes, homeowners insurance, and PMI if your down payment is under 20%. The <a href="/finance/mortgage-calculator/">mortgage calculator</a> gives you the full monthly number including taxes and insurance so you see the real cost, not just the principal and interest payment.</p>
+      </details>
+      <details>
+        <summary>How long will it take to pay off my debt?</summary>
+        <p>It depends on your total balance, interest rate, minimum payment, and how much extra you put toward it each month. At the minimum payment, a $10,000 credit card balance at 18% APR takes over 20 years. Adding $100 per month cuts that to roughly 5 years. The <a href="/finance/debt-payoff/">debt payoff calculator</a> compares avalanche and snowball strategies so you see exactly how long each debt will take at your chosen payment amount.</p>
+      </details>
+      <details>
+        <summary>How do I calculate the percentage of a number?</summary>
+        <p>Multiply the number by the percentage expressed as a decimal. To find 15% of $200, multiply 200 by 0.15 to get $30. For the reverse — what percent X is of Y — divide X by Y and multiply by 100. The <a href="/math/percentage-calculator/">percentage calculator</a> handles both modes and also does percentage increase and decrease between any two numbers.</p>
+      </details>
+      <details>
+        <summary>How do I convert inches to centimeters?</summary>
+        <p>Multiply inches by 2.54 to get centimeters. A 12-inch ruler is 12 times 2.54, or 30.48 centimeters. Going the other way, divide centimeters by 2.54. The <a href="/math/unit-converter/">unit converter</a> handles length, weight, temperature, volume, speed, area, and pressure all in one page, plus dedicated conversion pages for the 15 most common unit pairs.</p>
+      </details>
+      <details>
+        <summary>Do I need a contract for freelance work?</summary>
+        <p>Yes, for every project regardless of size. A one-page contract with scope, payment terms, deadlines, and revision limits prevents disputes and gives you leverage if a client refuses to pay. The <a href="/legal/contract-generator/">contract generator</a> builds a freelance contract tailored to your project type, so you have signed terms before you start working.</p>
+      </details>
     </section>
 
     <AdZone size="footer" />
