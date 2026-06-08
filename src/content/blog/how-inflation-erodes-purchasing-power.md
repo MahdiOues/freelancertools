@@ -7,8 +7,6 @@ relatedTool: /finance/inflation-calculator/
 relatedToolName: Free Inflation Calculator
 ---
 
-<!-- UNDER 600 WORDS - REVIEW NEEDED -->
-
 Inflation is often described as a silent tax. You do not feel it day to day, but over years it dramatically reduces what your money can buy. A dollar in 2015 is worth about 78 cents today. That 22% loss of purchasing power happened quietly.
 
 ## The 2015–2025 inflation story
@@ -32,6 +30,18 @@ The house you could have bought for $300,000 in 2015 would cost roughly $400,000
 ## The one number that matters
 
 Your real return is your nominal return minus inflation. A 7% investment return with 3% inflation is a 4% real return. Use the [Inflation Calculator](/finance/inflation-calculator/) to see how much any dollar amount from the past is worth today.
+
+## Why your raise might be a pay cut
+
+If you got a 3% raise in 2023 but inflation was 5%, your purchasing power actually dropped by 2%. This is called real wage decline and it has affected most workers since the pandemic. Your nominal salary went up, but what that salary can buy went down. The only number that matters is your real income: nominal income minus inflation.
+
+This is especially important for freelancers setting multi-year contracts. A three-year agreement at $100/hour with no escalation clause means your real rate drops roughly 9% over the contract at 3% inflation. Include an annual inflation adjustment in your contracts: "Rates will increase annually by the CPI-U percentage change from the prior year, with a minimum increase of 3%."
+
+## What $50,000 in 2015 is worth today
+
+A $50,000 salary in 2015 has the same purchasing power as roughly $64,000 today. If your income has not kept pace with that growth, you have experienced a real wage decline even if your nominal income stayed flat or grew modestly. The same applies to savings, retirement goals, and business pricing.
+
+This is why financial planning must assume 2-3% long-term inflation. Retirement calculators that do not account for inflation are dangerously misleading. A $1 million nest egg sounds like a lot, but at 3% inflation over 30 years, its purchasing power drops to roughly $412,000 in today's dollars. Your savings need to grow at least at the inflation rate just to maintain their real value.
 
 ## Frequently asked questions
 

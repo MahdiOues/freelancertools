@@ -7,8 +7,6 @@ relatedTool: /freelancer/invoice-generator/
 relatedToolName: Free Invoice Generator
 ---
 
-<!-- UNDER 600 WORDS - REVIEW NEEDED -->
-
 A good invoice does more than ask for money. It reinforces your professionalism, sets clear expectations, and includes everything the client needs to pay you without asking follow-up questions.
 
 ## The essential elements
@@ -36,6 +34,18 @@ Include a late fee clause on every invoice. A typical policy: 1.5% monthly inter
 Send invoices as PDFs via email. The subject line should include the invoice number and amount: "Invoice INV-001 from Your Name — $2,500." Use a professional tone. Include a brief message thanking the client and asking them to confirm receipt.
 
 Use the [Invoice Generator](/freelancer/invoice-generator/) to create clean, professional invoices in minutes. Fill in your details, add line items, and download a ready-to-send PDF.
+
+## What happens if you do not specify terms
+
+In many jurisdictions, if your invoice does not specify payment terms, the default "reasonable time" applies — which is vague and works against you. In the US, the Prompt Payment Act sets 30 days for government contracts, but private clients have no default. Without written terms, a client can legally hold payment for 60 or 90 days. Putting "Net 15" or "Due upon receipt" on every invoice removes that ambiguity.
+
+In some industries, 90-day payment cycles are standard for corporations. If you are subcontracting through an agency or working with a large company, ask about their standard payment terms before you start. A Net-90 client is not necessarily a bad client, but you need to factor that into your cash flow planning and potentially charge higher rates to account for the delay.
+
+## How to follow up on late payments
+
+Send a polite reminder on day one past due. A simple email: "Hi [Client], this is a friendly reminder that invoice INV-001 for $2,500 was due on [date]. Please let me know if you need anything else to process payment." On day 7, resend with the late fee clause highlighted. On day 14, send a firmer notice. On day 30, consider a formal demand letter or small claims court filing.
+
+Most late payments are not intentional — they get lost in the client's inbox or AP queue. A quick, professional reminder resolves 80% of late payments within 48 hours. The remaining 20% may require escalation, but having clear terms and documented follow-ups makes legal action straightforward.
 
 ## Frequently asked questions
 

@@ -7,8 +7,6 @@ relatedTool: /freelancer/salary-to-hourly/
 relatedToolName: Free Salary to Hourly Calculator
 ---
 
-<!-- UNDER 600 WORDS - REVIEW NEEDED -->
-
 When comparing a job offer to freelance work, the headline numbers are misleading. A $100,000 salary is not the same as $100,000 in freelance revenue. The gap comes from taxes, benefits, downtime, and overhead.
 
 ## The tax gap
@@ -35,6 +33,26 @@ To find the freelance equivalent of a salary:
 A $100,000 salary: $100,000 × 1.3 = $130,000. Add $15,000 in expenses = $145,000. Divide by 1,200 hours = $121/hour.
 
 Use the [Salary to Hourly Calculator](/freelancer/salary-to-hourly/) to do the math for your specific numbers.
+
+## The self-employment tax trap
+
+Many freelancers do not realize that the 15.3% self-employment tax applies to their net earnings, not just their draw. If you earn $90,000 in freelance revenue and have $20,000 in business expenses, your net earnings are $70,000. Self-employment tax: $70,000 × 0.153 = $10,710. An employee earning $70,000 would pay only $5,355 in FICA (half), with their employer covering the other $5,355. That extra $5,355 is money you never see.
+
+The IRS allows you to deduct half of your self-employment tax on your income tax return, which reduces your income tax burden but does not eliminate the FICA gap. This is why the standard advice to "set aside 30% for taxes" is too low for many freelancers — 15.3% goes to self-employment tax alone, and then income tax still applies on top.
+
+## The benefits gap by the numbers
+
+A typical employer-sponsored health insurance plan costs the employer roughly $7,000 per year for an individual and $21,000 for a family (Kaiser Family Foundation, 2024). On the individual market, a comparable plan runs $5,000-$9,000 per year with higher deductibles. A 401(k) match of 4% on an $80,000 salary is $3,200 annually. Paid time off at 15 days plus 10 holidays is $7,700 in paid leave at the same salary.
+
+Add those up: $7,000 (health) + $3,200 (retirement) + $7,700 (PTO) = $17,900 in benefits. Plus the employer half of FICA ($6,120 on $80K) and the total employer-side gap is roughly $24,000 per year. That means a freelancer earning $80,000 in revenue actually needs roughly $104,000 just to match an employee making $80,000.
+
+## When freelancing wins
+
+Freelancing wins when you can charge a premium for your specialization. A senior graphic designer earning $75,000 as an employee might charge $100-120/hour as a freelancer. At 1,200 billable hours, that is $120,000-144,000 in revenue. After taxes, expenses, and benefits, the net income is $80,000-95,000 — noticeably ahead of the salaried track.
+
+Freelancing also offers tax advantages employees do not get. The home office deduction, business equipment expensing (Section 179), health insurance premium deduction, and retirement plan contributions (SEP IRA up to 25% of net earnings) all reduce taxable income. These deductions can narrow or eliminate the tax gap if you track them properly.
+
+The real question is not which path pays more. It is whether you can maintain high billable utilization and charge a premium rate. If you can, freelancing wins on income. If you cannot, the salary track offers more predictable earnings with less risk.
 
 ## Frequently asked questions
 

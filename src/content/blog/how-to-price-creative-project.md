@@ -7,8 +7,6 @@ relatedTool: /freelancer/project-estimator/
 relatedToolName: Free Project Estimator
 ---
 
-<!-- UNDER 600 WORDS - REVIEW NEEDED -->
-
 Pricing creative work is harder than pricing technical work. A logo design might take 5 hours or 50 hours depending on how many directions the client wants. Here is how to price projects confidently without leaving money on the table.
 
 ## The three pricing models
@@ -32,6 +30,18 @@ Do not justify your price. State it confidently. If you say "my rate is $100/hou
 ## Common pricing mistakes
 
 Underestimating revision rounds is the most expensive mistake. Always set a fixed number of rounds in your scope. Not accounting for communication time (emails, calls, meetings) is the second most common error. Add 15-20% of project time for client communication.
+
+## The discovery call is your pricing foundation
+
+Never quote a project without a discovery call. In that call, uncover the real scope: how many stakeholders need to approve, what existing brand guidelines exist, what the deadline is, and what "done" looks like. A logo project where one person makes the call is very different from a logo project where a committee of six needs to sign off. Price accordingly.
+
+During discovery, ask about the client's budget range directly. "To make sure I am in the right ballpark, what budget range are you working with?" This question filters out tire-kickers and helps you position your quote appropriately. If the budget is $2,000 and your bottom price is $5,000, you save everyone time by knowing upfront.
+
+## How to handle scope creep
+
+Scope creep happens when a client asks for "one small change" five times in a row. Define scope in writing before the project starts, including: number of concepts, number of revision rounds, file formats delivered, and what constitutes a revision versus a new request. Any request outside these boundaries triggers a change order with additional cost.
+
+Build a buffer into your estimate. If you expect 10 hours of work, quote 13-14 hours. This covers small requests that are not worth a formal change order. When the buffer is exhausted, the next change order is easy to present: "We have used the estimated hours for this phase. The additional concept direction will require a supplemental estimate of $X."
 
 ## Frequently asked questions
 

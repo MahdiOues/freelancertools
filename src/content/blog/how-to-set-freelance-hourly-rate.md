@@ -7,8 +7,6 @@ relatedTool: /freelancer/rate-calculator/
 relatedToolName: Free Freelancer Rate Calculator
 ---
 
-<!-- UNDER 600 WORDS - REVIEW NEEDED -->
-
 Most freelancers set their rate by guessing what the market will bear. That is backwards. Your rate should start with your financial needs, then be validated against the market — not the other way around.
 
 ## The formula
@@ -50,6 +48,18 @@ Now see if $100/hour is realistic for your niche and experience level. Generalis
 Instead of hourly pricing, consider value-based pricing for projects. If your work saves a client $50,000, charging $5,000 (10% of the value) is a bargain regardless of whether it takes 10 hours or 50 hours. Value-based pricing aligns your incentives with your client's outcomes.
 
 Use the [Freelancer Rate Calculator](/freelancer/rate-calculator/) and [Salary to Hourly Calculator](/freelancer/salary-to-hourly/) to model different scenarios and find your ideal rate.
+
+## The unpaid time factor
+
+Most freelancers forget to factor unpaid time off into their billable hour calculation. If you want to take three weeks of vacation and one week of sick time per year, that is four weeks of zero billing. On a 52-week year, you are down to 48 working weeks. At 24 billable hours per week, that drops your annual billable hours from 1,200 to 1,152 — and your effective hourly rate must account for this.
+
+Some freelancers build this into their rate by using 46-48 weeks instead of 50. Others simply accept that their annual revenue target covers 48 working weeks and price accordingly. Either approach works, but ignoring unpaid time off is how freelancers end up working 50 weeks a year with no breaks and still feeling underpaid.
+
+## Raising rates over time
+
+Your rate should not stay the same year after year. Inflation alone means $100/hour in 2025 will be worth roughly $85/hour in 2030 at 3% inflation. Annual rate increases of 10-15% are standard in freelance markets, with larger jumps when you add a significant new skill or certification.
+
+When raising rates with existing clients, anchor the increase to the value you have delivered rather than your costs. A message like "Based on the results we achieved together, my rate is increasing to $150/hour effective next month" frames the raise around value. Most clients accept increases of 10-25% without pushback, especially if you give proper notice.
 
 ## Frequently asked questions
 
