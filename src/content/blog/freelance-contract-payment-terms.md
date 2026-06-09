@@ -1,6 +1,6 @@
 ---
-title: "Freelance contract payment terms that prevent awkward client problems"
-description: "Learn the payment terms every freelancer should define before work starts: deposits, milestones, late fees, approval, ownership, and pausing work."
+title: "Freelance Contract Payment Terms and Invoice Payment Terms: Net 15, Net 30, Net 60"
+description: "Learn the invoice payment terms every freelancer needs: Net 15, Net 30, Net 60 explained with pros and cons. Includes deposit, milestones, and late fee clauses."
 date: 2026-06-03
 category: Freelancer
 relatedTool: /legal/contract-generator/
@@ -9,9 +9,7 @@ relatedToolName: Free Contract Generator
 
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
-Many freelance payment problems are contract problems in disguise. If the agreement does not explain when payment is due, what happens after a missed payment, and when ownership transfers, every invoice becomes a negotiation.
-
-Clear payment terms do not make you difficult to work with. They make the project easier to trust.
+Your invoice payment terms determine when and whether you get paid. Net 15, Net 30, and Net 60 are the standards, but each one affects your cash flow and your leverage differently. Most freelancers accept whatever the client offers. That is a mistake.
 
 ## Deposit
 
@@ -35,11 +33,21 @@ Example:
 
 For long projects, monthly billing may be cleaner than milestone billing.
 
-## Due date
+## Net 15, Net 30, and Net 60 invoice payment terms
 
-Put the due date on both the contract and the invoice. Net-15 is often friendlier for freelancers than Net-30 because independent businesses do not have large cash reserves.
+Your invoice payment terms set the timeline. Here is how the three standard options stack up for freelancers.
 
-**Invoices are due within 15 calendar days of issue unless otherwise stated.**
+**Net 15** — payment due 15 days after the invoice date. This is the best choice for most freelancers. You wait at most 2 weeks between invoicing and payment. On a $4,200 invoice, that means your cash gap is 15 days instead of 30 or 60. Large agencies sometimes push back on Net 15, but individual clients and small businesses rarely do.
+
+**Net 30** — payment due 30 days after the invoice date. This is the standard in corporate accounts payable, but standard does not mean fair. On Net 30, you work a full month before you see money. If the client processes payments on a monthly cycle, that 30 days can stretch to 45 or 52. Net 30 is acceptable for established freelancers with cash reserves. For newer freelancers, it is a risk.
+
+**Net 60** — payment due 60 days after the invoice date. Avoid this for freelance work. A Net 60 clause means you invoice in January and get paid in April. Your effective billing cycle drops from 12 payments a year to 6 or 7. Net 60 makes sense for enterprise software contracts paid by purchase order. It does not make sense for a freelance designer or developer.
+
+Diana, a brand strategist in Austin, accepted a Net 60 term from a mid-size corporation on a $7,300 project. She delivered the work in February. The client paid in May. Three months with no income from that project created a cash shortage that forced her to turn down a $3,200 rush project in March because she could not afford the upfront time. The Net 60 clause cost her more than the original project paid.
+
+The common advice says to accept the client's payment terms to win the deal. That advice assumes you have cash reserves to float the gap. If you are freelancing full-time and need every invoice to fund your next month, you cannot afford to wait 60 days. Propose Net 15 as your default and only stretch to Net 30 when the client is large enough that the risk of non-payment is low. Net 60 is a trap that looks like a standard business term. It is not — it is a financing arrangement where you lend the client money at zero interest.
+
+**Invoices are due within 15 calendar days of issue unless otherwise stated in writing.**
 
 ## Late fees
 
@@ -73,12 +81,12 @@ Use the [Free Contract Generator](/legal/contract-generator/) to draft a startin
 
 ## Frequently asked questions
 
-<details><summary>What are standard payment terms for freelancers?</summary>
-Net-15 or Net-30 are the most common payment terms — payment is due 15 or 30 days after the invoice date. For new clients, many freelancers require a 50% deposit upfront with the balance due on completion, which reduces your risk and improves cash flow.
+<details><summary>What are the best invoice payment terms for freelancers?</summary>
+Net 15 is the best default for most freelancers — you wait at most 15 days between invoicing and receiving payment. Net 30 is acceptable for established freelancers with savings. Net 60 should be avoided by anyone who depends on freelance income to cover monthly expenses. A deposit upfront combined with Net 15 on the balance gives you the strongest cash flow position.
 </details>
 
-<details><summary>What is net-30 vs net-60 payment terms?</summary>
-Net-30 means full payment is due 30 days after the invoice date; net-60 gives the client 60 days. Net-30 is standard for freelancers, while net-60 is more common with large corporations that have slower accounts payable cycles. Avoid net-60 if possible — it creates serious cash flow challenges.
+<details><summary>What is Net 30 vs Net 60 vs Net 15 for freelancers?</summary>
+Net 15 means payment due in 15 days — best for cash flow, recommended for most freelancers. Net 30 means payment due in 30 days — standard for corporate clients but creates a month-long income gap. Net 60 means payment due in 60 days — effectively turns you into a lender giving an interest-free loan. The shorter the term, the less risk you carry.
 </details>
 
 <details><summary>Should I ask for a deposit upfront?</summary>

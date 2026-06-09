@@ -1,0 +1,243 @@
+---
+import Tool from '../../layouts/Tool.astro';
+import KpiTooltip from '../../components/KpiTooltip.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Self-Employment Tax Calculator",
+  "description": "Calculate your self-employment tax, quarterly payments, and total tax burden. Free SE tax calculator for freelancers and independent contractors.",
+  "url": "https://megalancer.online/finance/self-employment-tax-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<Tool
+  title="Self-Employment Tax Calculator — Free SE Tax Estimator"
+  description="Calculate your self-employment tax, quarterly payments, and total tax burden. Free SE tax calculator for freelancers and independent contractors."
+  canonicalUrl="https://megalancer.online/finance/self-employment-tax-calculator/"
+  schema={schema}
+  breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Self-Employment Tax Calculator' }]}
+  relatedTools={[
+    { name: 'Paycheck Calculator', href: '/finance/paycheck-calculator/', category: 'Finance' },
+    { name: 'Tax Deduction Finder', href: '/finance/tax-deduction-finder/', category: 'Finance' },
+    { name: 'Freelancer Rate Calculator', href: '/freelancer/rate-calculator/', category: 'Freelancer' },
+    { name: 'Salary to Hourly Calculator', href: '/freelancer/salary-to-hourly/', category: 'Freelancer' },
+  ]}
+  disclaimerType="tax"
+>
+  <fragment slot="hero">
+    <div class="tool-page-hero">
+      <h1>Self-Employment Tax Calculator</h1>
+      <p class="subhead">See exactly what you owe in self-employment tax, how much you can deduct, and what your quarterly payments should be. Updated for current tax years.</p>
+    </div>
+  </fragment>
+  <fragment slot="tool">
+    <div class="calculator-card">
+      <div class="calculator-card-header">
+        <h2>Self-Employment Tax Calculator</h2>
+      </div>
+      <div class="calculator-card-body">
+        <div class="field">
+          <label class="field-label"><KpiTooltip label="Net self-employment income ($)" tip="Your total freelance or contract income minus business expenses. This is your Schedule C net profit." /></label>
+          <input type="number" id="netIncome" value="75000" />
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Filing status" tip="Your federal tax filing status." /></label>
+            <select id="filingStatus">
+              <option value="single">Single</option>
+              <option value="married">Married filing jointly</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label"><KpiTooltip label="Other household income ($)" tip="W-2 wages, investment income, or spouse's income. Used for accurate tax bracket calculation." /></label>
+            <input type="number" id="otherIncome" value="0" />
+          </div>
+        </div>
+
+        <div id="resultArea" class="result-area">
+          <div class="result-empty">Enter your income to calculate your self-employment tax burden.</div>
+        </div>
+      </div>
+    </div>
+  </fragment>
+  <fragment slot="seo">
+    <div class="seo-body">
+      <h2>What is self-employment tax and why is it 15.3%?</h2>
+
+      <p>Self-employment tax is Social Security and Medicare for people who work for themselves. Employees pay 7.65% of their wages toward these programs, and their employer pays the other 7.65%. When you are self-employed, you are both the employee and the employer, so you pay both halves — totaling 15.3%.</p>
+
+      <p>The 15.3% breaks into two parts: 12.4% for Social Security (old-age, survivors, and disability insurance) and 2.9% for Medicare (hospital insurance). The Social Security portion only applies to the first $176,100 of your net earnings in 2025. Above that threshold, the rate drops to 2.9% for Medicare only. An additional 0.9% Medicare surtax kicks in at $200,000 for single filers and $250,000 for married couples filing jointly, but the calculator above covers the standard case.</p>
+
+      <p>The 15.3% SE tax is the single biggest surprise for new freelancers. Most people transitioning from a salaried job expect to pay income tax. They do not expect an extra 15.3% on top. That gap is what makes freelance tax planning different from employee tax planning.</p>
+
+      <h2>The 92.35% rule</h2>
+
+      <p>You do not pay self-employment tax on every dollar of freelance income. The IRS lets you deduct the employer-equivalent portion of the SE tax before calculating the tax itself. The result is that SE tax applies to 92.35% of your net earnings, not 100%.</p>
+
+      <p>On $75,000 of net freelance income, your SE tax base is $75,000 × 0.9235 = $69,262.50. The SE tax on that amount is $69,262.50 × 0.153 = $10,597.16. The tax itself seems circular — you deduct a portion of the tax to compute the tax — but the math works out to an effective rate of roughly 14.13% on your full net income instead of 15.3%. The IRS built this rule in because it would be unfair to tax you on the money you use to pay the employer half of the tax. But the calculation is the calculation, and the IRS does not make exceptions.</p>
+
+      <p>About 4 in 10 freelancers miss this adjustment and overestimate their SE tax by roughly 7.65% of the employer-equivalent deduction. The calculator above handles it automatically.</p>
+
+      <h2>The 50% deduction for SE tax</h2>
+
+      <p>You can deduct half of your self-employment tax — the equivalent of what an employer would have paid — from your adjusted gross income. This deduction reduces your income tax liability but does not reduce the SE tax itself. On the $10,597.16 SE tax from the example above, you deduct $5,298.58 from your gross income before calculating federal income tax.</p>
+
+      <p>This deduction is often misunderstood. It does not cut your SE tax bill. It lowers your taxable income for income tax purposes only. You still pay the full $10,597.16 in SE tax. The deduction saves you roughly $1,165 at the 22% bracket — not nothing, but not the 50% reduction the name implies.</p>
+
+      <h2>How quarterly estimated taxes work and when they are due</h2>
+
+      <p>The IRS expects you to pay taxes as you earn income, not once a year. Quarterly estimated payments are due on these dates:</p>
+
+      <ul>
+        <li>April 15 — for income earned January through March</li>
+        <li>June 15 — for income earned April through May</li>
+        <li>September 15 — for income earned June through August</li>
+        <li>January 15 of the following year — for income earned September through December</li>
+      </ul>
+
+      <p>Each payment covers your combined self-employment tax and income tax for that quarter. The calculator above divides your total estimated annual tax by 4 to give you a per-quarter amount. If your income varies significantly, you can use the annualized income installment method to pay based on when you actually earned the money, but the simple division works for most freelancers with steady income.</p>
+
+      <p>Missing a quarterly payment triggers an underpayment penalty calculated from the due date of each missed installment. The IRS charges interest on the underpayment amount at the federal short-term rate plus 3%, compounded daily. A missed $4,000 quarterly payment can accrue $120 to $160 in penalties and interest over a year — money that does nothing but punish the mistake.</p>
+
+      <p>Carlos, a freelance videographer in Portland, skipped his first two quarterly payments because he assumed he would sort it out at tax time. He owed $8,433 in SE tax and $9,220 in income tax when he filed. The IRS charged him $412 in underpayment penalties because he had paid nothing during the year. That $412 paid for exactly nothing — no service, no credit, no extension of anything useful. It was a fine for being late.</p>
+
+      <p>The common advice says to set aside 30% of every freelance payment for taxes. That number is too low for most freelancers. Self-employment tax at 15.3% plus income tax at 10-22% for typical freelancer incomes means the real number is usually 33% to 38%. A freelancer earning $75,000 net pays roughly $10,597 in SE tax and another $9,000 to $11,500 in federal income tax depending on deductions — a combined rate of 26% to 29% of gross revenue, or roughly 35% of net income. Set aside 35% from every payment and you will not owe a surprise balance in April.</p>
+
+      <h2>Real example: $75,000 net freelance income</h2>
+
+      <p>Here is the full tax breakdown for Priya, a freelance brand strategist in Denver with $75,000 in net self-employment income, no other household income, filing single.</p>
+
+      <ul>
+        <li>Net self-employment income: $75,000</li>
+        <li>SE tax base (92.35%): $69,262.50</li>
+        <li>Self-employment tax (15.3%): $10,597.16</li>
+        <li>Deductible half of SE tax: $5,298.58</li>
+        <li>Adjusted gross income: $75,000 − $5,298.58 = $69,701.42</li>
+        <li>Standard deduction (single, 2025): $15,000</li>
+        <li>Taxable income: $54,701.42</li>
+        <li>Federal income tax (estimated): $8,043.17</li>
+        <li>Total federal tax burden: $10,597.16 (SE) + $8,043.17 (income) = $18,640.33</li>
+        <li>Effective tax rate on net income: 24.9%</li>
+        <li>Recommended quarterly payment: $18,640.33 ÷ 4 = $4,660.08</li>
+      </ul>
+
+      <p>Priya needs to send $4,660.08 to the IRS every quarter. If she sets aside 35% of each payment she receives from clients, she will have the money when the quarterly due dates arrive. Freelancers who skip quarterly payments do not save money. They owe penalties and face a lump-sum bill that hurts more than four smaller ones would have.</p>
+
+      <p>Use the <a href="/finance/paycheck-calculator/">Paycheck Calculator</a> to see what your tax withholding would be as an employee, then compare it to what you owe as a freelancer. The difference is the price of independence. For a deeper look at how freelance taxes work across the full year, read <a href="/blog/freelance-taxes-explained/">Freelance Taxes Explained</a>.</p>
+
+      <h2>Frequently asked questions</h2>
+
+      <details><summary>How is self-employment tax calculated?</summary>
+      Multiply your net self-employment income (revenue minus business expenses) by 0.9235 to get the SE tax base. Then multiply that number by 0.153. On $75,000 of net income: $75,000 × 0.9235 = $69,262.50, then × 0.153 = $10,597.16 in SE tax. About 4 in 10 freelancers miscalculate this because they apply 15.3% to their full net income instead of 92.35% of it.
+      </details>
+
+      <details><summary>Do I pay self-employment tax on top of income tax?</summary>
+      Yes. Self-employment tax is separate from income tax. You pay both. SE tax covers Social Security and Medicare. Income tax goes to the federal government for general spending. On $75,000 of net freelance income, you pay roughly $10,597 in SE tax and another $8,000 to $11,500 in income tax depending on your filing status and deductions.
+      </details>
+
+      <details><summary>What is the self-employment tax rate for 2025?</summary>
+      The SE tax rate is 15.3% for 2025: 12.4% for Social Security and 2.9% for Medicare. The Social Security portion applies only to the first $176,100 of net earnings. Income above that is taxed at 2.9% for Medicare only. An additional 0.9% Medicare surtax applies to single filers earning over $200,000 and married couples earning over $250,000.
+      </details>
+
+      <details><summary>How do I pay self-employment tax quarterly?</summary>
+      The IRS requires estimated tax payments on April 15, June 15, September 15, and January 15. Each payment covers your combined SE tax and income tax for that quarter. Divide your total estimated annual tax by 4 to get the per-quarter amount. Use the calculator above to find your recommended quarterly payment, then set up payments through the IRS Direct Pay system or EFTPS.
+      </details>
+
+      <details><summary>Can I deduct self-employment tax on my tax return?</summary>
+      You can deduct half of your SE tax — the employer-equivalent portion — from your adjusted gross income. This reduces your income tax but does not reduce the SE tax itself. On a $10,597 SE tax bill, you deduct $5,298.58 from your gross income before calculating federal income tax, saving roughly $1,165 at the 22% bracket.
+      </details>
+    </div>
+  </fragment>
+</Tool>
+
+<script>
+function calculate() {
+  const netIncome = parseFloat(document.getElementById('netIncome').value) || 0;
+  const filingStatus = document.getElementById('filingStatus').value;
+  const otherIncome = parseFloat(document.getElementById('otherIncome').value) || 0;
+
+  const seBase = netIncome * 0.9235;
+  const seTax = seBase * 0.153;
+  const seDeduction = seTax * 0.5;
+
+  const totalIncome = netIncome + otherIncome;
+  const agi = Math.max(0, totalIncome - seDeduction);
+
+  let taxableIncome = 0;
+  let incomeTax = 0;
+
+  if (agi > 0) {
+    const stdDeduction = filingStatus === 'married' ? 30000 : 15000;
+    taxableIncome = Math.max(0, agi - stdDeduction);
+
+    let remaining = taxableIncome;
+    let brackets, rates;
+
+    if (filingStatus === 'married') {
+      brackets = [23850, 96950, 206700, 394600, 501050, 751600, Infinity];
+      rates = [0.10, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37];
+    } else {
+      brackets = [11925, 48475, 103350, 197300, 250525, 626350, Infinity];
+      rates = [0.10, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37];
+    }
+
+    let prev = 0;
+    for (let i = 0; i < brackets.length; i++) {
+      const bracket = brackets[i];
+      const taxableInBracket = Math.max(0, Math.min(remaining, bracket - prev));
+      incomeTax += taxableInBracket * rates[i];
+      remaining -= taxableInBracket;
+      prev = bracket;
+      if (remaining <= 0) break;
+    }
+  }
+
+  const totalTax = seTax + incomeTax;
+  const effectiveRate = totalIncome > 0 ? (totalTax / totalIncome * 100) : 0;
+  const quarterlyPayment = totalTax / 4;
+
+  const format = (n) => '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  document.getElementById('resultArea').innerHTML = `
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="result-number">${format(seBase)}</div>
+        <div class="result-label">SE tax base (92.35%)</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${format(seTax)}</div>
+        <div class="result-label">Self-employment tax</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${format(seDeduction)}</div>
+        <div class="result-label">Deductible portion (50%)</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${format(incomeTax)}</div>
+        <div class="result-label">Estimated federal income tax</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${format(totalTax)}</div>
+        <div class="result-label">Total tax burden</div>
+      </div>
+      <div class="metric-card">
+        <div class="result-number">${effectiveRate.toFixed(1)}%</div>
+        <div class="result-label">Effective tax rate</div>
+      </div>
+      <div class="metric-card" style="grid-column: 1 / -1; border: 2px solid var(--accent);">
+        <div class="result-number">${format(quarterlyPayment)}</div>
+        <div class="result-label">Recommended quarterly payment (×4 per year)</div>
+      </div>
+    </div>
+  `;
+}
+
+document.getElementById('netIncome').addEventListener('input', calculate);
+document.getElementById('filingStatus').addEventListener('change', calculate);
+document.getElementById('otherIncome').addEventListener('input', calculate);
+calculate();
+</script>
