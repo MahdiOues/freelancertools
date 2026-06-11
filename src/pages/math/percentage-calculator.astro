@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/Tool.astro';
 
 const schema = {
@@ -6,7 +6,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Percentage Calculator",
   "description": "Calculate percentages three ways: what is X% of Y, X is what % of Y, and percentage change between two numbers.",
-  "url": "https://megalancer.online/math/percentage-calculator/",
+  "url": "https://www.megalancer.online/math/percentage-calculator/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -14,9 +14,9 @@ const schema = {
 ---
 
 <Tool
-  title="Free Percentage Calculator â€” 3 Modes"
+  title="Free Percentage Calculator — 3 Modes"
   description="Calculate percentages instantly. What is X% of Y? X is what % of Y? Percentage change? Free online percentage calculator with formula and explanation."
-  canonicalUrl="https://megalancer.online/math/percentage-calculator/"
+  canonicalUrl="https://www.megalancer.online/math/percentage-calculator/"
   schema={schema}
   breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Percentage Calculator' }]}
   relatedTools={[
@@ -84,17 +84,17 @@ function calculate() {
   switch (mode) {
     case 'whatIsXofY':
       result = (v1 / 100) * v2;
-      formula = `${v1}% of ${v2} = (${v1} / 100) Ã— ${v2} = ${result.toFixed(4)}`;
+      formula = `${v1}% of ${v2} = (${v1} / 100) × ${v2} = ${result.toFixed(4)}`;
       explanation = `${v1}% of ${v2} is ${+result.toFixed(2)}.`;
       break;
     case 'xIsWhatPctOfY':
       result = (v1 / v2) * 100;
-      formula = `${v1} is what % of ${v2} = (${v1} / ${v2}) Ã— 100 = ${result.toFixed(4)}%`;
+      formula = `${v1} is what % of ${v2} = (${v1} / ${v2}) × 100 = ${result.toFixed(4)}%`;
       explanation = `${v1} is ${result.toFixed(2)}% of ${v2}.`;
       break;
     case 'pctChange':
       result = v2 !== 0 ? ((v2 - v1) / Math.abs(v1)) * 100 : 0;
-      formula = `Change from ${v1} to ${v2} = ((${v2} - ${v1}) / |${v1}|) Ã— 100 = ${result.toFixed(4)}%`;
+      formula = `Change from ${v1} to ${v2} = ((${v2} - ${v1}) / |${v1}|) × 100 = ${result.toFixed(4)}%`;
       const direction = result >= 0 ? 'increased' : 'decreased';
       explanation = `${v1} ${direction} by ${Math.abs(result).toFixed(2)}% to ${v2}.`;
       break;

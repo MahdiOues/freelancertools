@@ -19,7 +19,7 @@ const CONVERSION_SLUGS = [
 
 export const GET: APIRoute = async () => {
   const posts = await getCollection('blog');
-  const base = 'https://megalancer.online';
+  const base = 'https://www.megalancer.online';
 
   const staticPages = [
     '/', '/about/', '/contact/', '/privacy/', '/terms/', '/disclaimer/',
@@ -30,7 +30,8 @@ export const GET: APIRoute = async () => {
     '/finance/investment-return/', '/finance/debt-payoff/',
     '/finance/retirement-calculator/', '/finance/net-worth-calculator/',
     '/finance/social-security-estimator/', '/finance/budget-planner/',
-    '/finance/vat-calculator/', '/finance/currency-converter/',
+    '/finance/vat-calculator/',     '/finance/currency-converter/',
+    '/finance/self-employment-tax-calculator/',
     '/math/', '/math/percentage-calculator/', '/math/tip-calculator/',
     '/math/gpa-calculator/', '/math/age-calculator/', '/math/unit-converter/',
     '/math/discount-calculator/', '/math/date-calculator/', '/math/grade-calculator/',

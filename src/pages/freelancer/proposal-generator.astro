@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/ToolWithExcel.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 import DocTemplatePicker from '../../components/DocTemplatePicker.astro';
@@ -8,7 +8,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free AI Proposal Generator",
   "description": "Create a professional project proposal in minutes using AI. Covers overview, deliverables, timeline, and investment.",
-  "url": "https://megalancer.online/freelancer/proposal-generator/",
+  "url": "https://www.megalancer.online/freelancer/proposal-generator/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -18,7 +18,7 @@ const schema = {
 <Tool
   title="Free AI Proposal Generator"
   description="Create a professional project proposal in minutes using AI. Covers overview, deliverables, timeline, and investment."
-  canonicalUrl="https://megalancer.online/freelancer/proposal-generator/"
+  canonicalUrl="https://www.megalancer.online/freelancer/proposal-generator/"
   schema={schema}
   breadcrumb={[{ label: 'Freelancer', href: '/freelancer/' }, { label: 'Proposal Generator' }]}
   relatedTools={[
@@ -68,7 +68,7 @@ const schema = {
           <input type="text" id="timeline" placeholder="e.g. 6 weeks" />
         </div>
         <div class="field">
-          <label class="field-label"><KpiTooltip label="Investment range ($)" tip="Your price range for the project. Using a range (e.g. $2,000â€“$2,500) instead of a fixed price gives flexibility and anchors the conversation." /></label>
+          <label class="field-label"><KpiTooltip label="Investment range ($)" tip="Your price range for the project. Using a range (e.g. $2,000–$2,500) instead of a fixed price gives flexibility and anchors the conversation." /></label>
           <input type="text" id="investment" placeholder="e.g. 8,000 - 12,000" />
         </div>
       </div>
@@ -158,7 +158,7 @@ const deliverableItems = [
   "The following deliverables will be provided: {{deliverables}}. Each deliverable includes up to 2 rounds of revisions.",
   "Deliverables: {{deliverables}}. All final files will be delivered in source and export formats.",
   "You will receive the following upon completion: {{deliverables}}. Source files are included.",
-  "{{deliverables}} â€” these are the specific outputs I will produce and deliver to you.",
+  "{{deliverables}} — these are the specific outputs I will produce and deliver to you.",
   "My commitment is to deliver: {{deliverables}}. Each item will meet the quality standards we agree upon.",
   "Deliverables included: {{deliverables}}. Additional items can be scoped separately.",
   "The project includes these deliverables: {{deliverables}}. All files will be organized and documented.",
@@ -194,16 +194,16 @@ const investments = [
 ];
 
 const closings = [
-  "I'm excited about the possibility of working with {{clientName}} on this project. Please let me know if you have any questions. â€” {{yourName}}",
-  "Thank you for considering my proposal. I'm available to discuss any aspect in more detail. â€” {{yourName}}",
+  "I'm excited about the possibility of working with {{clientName}} on this project. Please let me know if you have any questions. — {{yourName}}",
+  "Thank you for considering my proposal. I'm available to discuss any aspect in more detail. — {{yourName}}",
   "I look forward to the opportunity to contribute to {{clientName}}'s success. Please reach out with any questions.",
-  "This proposal is valid for 14 days. I'd be happy to hop on a call to discuss it further. â€” {{yourName}}",
+  "This proposal is valid for 14 days. I'd be happy to hop on a call to discuss it further. — {{yourName}}",
   "Thank you for your time and consideration. I'm confident I can deliver exceptional results for {{clientName}}.",
-  "I would love to work with {{clientName}} on this project. Let me know when you'd like to get started. â€” {{yourName}}",
-  "Please feel free to reach out if you'd like to discuss this proposal or make adjustments. â€” {{yourName}}",
-  "I'm ready to start as soon as you are. Thank you for the opportunity. â€” {{yourName}}",
-  "I hope this proposal reflects my enthusiasm for this project. Looking forward to your feedback. â€” {{yourName}}",
-  "Thank you, {{clientName}}. I look forward to building something great together. â€” {{yourName}}"
+  "I would love to work with {{clientName}} on this project. Let me know when you'd like to get started. — {{yourName}}",
+  "Please feel free to reach out if you'd like to discuss this proposal or make adjustments. — {{yourName}}",
+  "I'm ready to start as soon as you are. Thank you for the opportunity. — {{yourName}}",
+  "I hope this proposal reflects my enthusiasm for this project. Looking forward to your feedback. — {{yourName}}",
+  "Thank you, {{clientName}}. I look forward to building something great together. — {{yourName}}"
 ];
 
 function displayDocument(sections, meta) {

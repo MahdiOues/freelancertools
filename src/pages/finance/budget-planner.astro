@@ -1,13 +1,13 @@
-ï»¿---
+---
 import Tool from '../../layouts/ToolWithCharts.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Free Budget Planner â€” 50/30/20 Rule",
+  "name": "Free Budget Planner — 50/30/20 Rule",
   "description": "Plan your monthly budget using the 50/30/20 rule. See your current allocation vs recommended targets with visual charts.",
-  "url": "https://megalancer.online/finance/budget-planner/",
+  "url": "https://www.megalancer.online/finance/budget-planner/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="Budget Planner â€” 50/30/20 Rule"
+  title="Budget Planner — 50/30/20 Rule"
   description="Create a monthly budget using the 50/30/20 rule. 50% needs, 30% wants, 20% savings. See how your spending compares with a visual chart."
-  canonicalUrl="https://megalancer.online/finance/budget-planner/"
+  canonicalUrl="https://www.megalancer.online/finance/budget-planner/"
   schema={schema}
   breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Budget Planner' }]}
   relatedTools={[
@@ -72,7 +72,7 @@ const schema = {
     <div class="seo-body">
       <h2>The 50/30/20 budget rule</h2>
       <p>Popularized by Senator Elizabeth Warren in her book "All Your Worth," the 50/30/20 rule is a simple budgeting framework: 50% of your after-tax income goes to needs (housing, food, utilities, insurance), 30% to wants (entertainment, dining, travel), and 20% to savings and debt repayment.</p>
-      <p>This rule is a guideline, not a strict law. If you live in a high-cost city, your needs might be 60% â€” in that case, adjust wants down to 20%. The key is being intentional about every dollar.</p>
+      <p>This rule is a guideline, not a strict law. If you live in a high-cost city, your needs might be 60% — in that case, adjust wants down to 20%. The key is being intentional about every dollar.</p>
       <h2>How to use this budget planner</h2>
       <p>Enter your monthly take-home income and your spending in each category. The calculator shows your current allocation versus the 50/30/20 targets, along with surplus or deficit in each category. The visual chart makes it easy to see at a glance whether your spending is balanced.</p>
     </div>
@@ -100,7 +100,7 @@ function calculate() {
   const balance = income - total;
 
   function diffHtml(diff) {
-    if (Math.abs(diff) < 1) return '<span style="color:var(--success);">âœ“ On target</span>';
+    if (Math.abs(diff) < 1) return '<span style="color:var(--success);">? On target</span>';
     return diff > 0
       ? `<span style="color:var(--danger);">+$${diff.toFixed(0)} over</span>`
       : `<span style="color:var(--success);">-$${Math.abs(diff).toFixed(0)} under</span>`;

@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../../layouts/ToolWithExcel.astro';
 
 const schema = {
@@ -6,7 +6,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Online Chart Generator",
   "description": "Generate bar, line, pie, and scatter charts from any CSV or spreadsheet data in seconds.",
-  "url": "https://megalancer.online/finance/excel-tools/chart-builder/",
+  "url": "https://www.megalancer.online/finance/excel-tools/chart-builder/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -29,7 +29,7 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "Can I change the chart colours?",
-      "acceptedAnswer": { "@type": "Answer", "text": "The tool uses a consistent professional colour palette by default. Custom colour picking is not supported in this free version â€” the default palette is designed to be legible in both screen and PDF export." }
+      "acceptedAnswer": { "@type": "Answer", "text": "The tool uses a consistent professional colour palette by default. Custom colour picking is not supported in this free version — the default palette is designed to be legible in both screen and PDF export." }
     },
     {
       "@type": "Question",
@@ -46,9 +46,9 @@ const faqSchema = {
 ---
 
 <Tool
-  title="Chart Generator â€” Bar, Line & Pie"
+  title="Chart Generator — Bar, Line & Pie"
   description="Turn any CSV or spreadsheet data into bar, line, pie, or scatter charts instantly. No Excel, no software. Free chart generator used by analysts, founders, and finance teams."
-  canonicalUrl="https://megalancer.online/finance/excel-tools/chart-builder/"
+  canonicalUrl="https://www.megalancer.online/finance/excel-tools/chart-builder/"
   schema={schema}
   breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Excel-Free Tools', href: '/finance/excel-tools/' }, { label: 'Chart Builder' }]}
   relatedTools={[
@@ -60,12 +60,12 @@ const faqSchema = {
 >
   <fragment slot="hero">
     <div class="tool-page-hero">
-      <h1>Free Online Chart Generator â€” Bar, Line, Pie & Scatter Charts</h1>
-      <p class="subhead">Upload or paste any tabular data and instantly generate bar, line, pie, or scatter charts â€” no Excel needed.</p>
+      <h1>Free Online Chart Generator — Bar, Line, Pie & Scatter Charts</h1>
+      <p class="subhead">Upload or paste any tabular data and instantly generate bar, line, pie, or scatter charts — no Excel needed.</p>
     </div>
   </fragment>
   <div class="tool-intro" style="max-width:720px;margin:0 auto 28px;">
-    <p>Paste any data from Excel, Google Sheets, or a CSV file and get a professional chart in seconds â€” no software, no sign-up, no cost. This free chart generator supports bar charts, line charts, pie charts, doughnut charts, and scatter plots. You can export every chart as a PDF or download the underlying data as an Excel file. Used by financial analysts, small business owners, and anyone who needs a quick visualisation without opening a spreadsheet.</p>
+    <p>Paste any data from Excel, Google Sheets, or a CSV file and get a professional chart in seconds — no software, no sign-up, no cost. This free chart generator supports bar charts, line charts, pie charts, doughnut charts, and scatter plots. You can export every chart as a PDF or download the underlying data as an Excel file. Used by financial analysts, small business owners, and anyone who needs a quick visualisation without opening a spreadsheet.</p>
   </div>
   <fragment slot="tool">
     <div class="calculator-card">
@@ -123,20 +123,20 @@ const faqSchema = {
   <fragment slot="seo">
     <div class="seo-body">
       <h2>How to create a chart from Excel or CSV data</h2>
-      <p>Paste your data directly from Excel or Google Sheets â€” tab-separated values copy across automatically. Alternatively, upload a .csv or .xlsx file using the upload button. Once your data loads, select which column to use on the X axis (typically dates, categories, or labels) and which column to plot on the Y axis (typically numbers). Choose your chart type and click Generate.</p>
+      <p>Paste your data directly from Excel or Google Sheets — tab-separated values copy across automatically. Alternatively, upload a .csv or .xlsx file using the upload button. Once your data loads, select which column to use on the X axis (typically dates, categories, or labels) and which column to plot on the Y axis (typically numbers). Choose your chart type and click Generate.</p>
       <p>The tool automatically detects numeric columns and filters them into the value selector, so you never accidentally try to chart a text field. Column headers from your first row become the axis labels and legend entries.</p>
 
       <h2>Which chart type should you use?</h2>
-      <p>Bar charts work best for comparing values across discrete categories â€” revenue by region, headcount by department, spend by vendor. Line charts are better for showing change over time: monthly revenue, weekly signups, quarterly growth. Pie and doughnut charts show proportional breakdowns â€” budget allocation, market share, expense categories â€” but only work well when you have fewer than seven segments.</p>
-      <p>Scatter charts are the right choice when you are looking for correlation between two numeric variables: price vs. sales volume, ad spend vs. conversions, headcount vs. output. If you are unsure which type to use, start with a bar chart â€” it is the most readable format for almost all financial comparisons.</p>
+      <p>Bar charts work best for comparing values across discrete categories — revenue by region, headcount by department, spend by vendor. Line charts are better for showing change over time: monthly revenue, weekly signups, quarterly growth. Pie and doughnut charts show proportional breakdowns — budget allocation, market share, expense categories — but only work well when you have fewer than seven segments.</p>
+      <p>Scatter charts are the right choice when you are looking for correlation between two numeric variables: price vs. sales volume, ad spend vs. conversions, headcount vs. output. If you are unsure which type to use, start with a bar chart — it is the most readable format for almost all financial comparisons.</p>
 
       <h2>Exporting your chart as a PDF or Excel file</h2>
-      <p>Every chart you generate can be exported in two ways. The "Export as PDF" button embeds the chart image in a clean PDF with your data table beneath it â€” ready to attach to a report or investor deck. The "Export Data as Excel" button downloads the underlying dataset as a properly formatted .xlsx file with a header row and correct column types.</p>
-      <p>Both exports are generated entirely in your browser. Your data is never sent to a server â€” everything runs locally in JavaScript.</p>
+      <p>Every chart you generate can be exported in two ways. The "Export as PDF" button embeds the chart image in a clean PDF with your data table beneath it — ready to attach to a report or investor deck. The "Export Data as Excel" button downloads the underlying dataset as a properly formatted .xlsx file with a header row and correct column types.</p>
+      <p>Both exports are generated entirely in your browser. Your data is never sent to a server — everything runs locally in JavaScript.</p>
 
       <h2>Using this tool instead of Excel charts</h2>
       <p>Creating a chart in Excel requires knowing which menu to use, formatting axes manually, adjusting legend positions, and dealing with version differences between Excel for Mac and Windows. This tool gives you a clean, correctly formatted chart in three steps: paste data, pick type, click generate. For quick analysis, presentations, or client reports, it is significantly faster than building the same chart in Excel.</p>
-      <p>Financial professionals use this tool most often for ad-hoc analysis â€” pulling a quick visual to answer a question in a meeting rather than opening a spreadsheet and reformatting an existing chart.</p>
+      <p>Financial professionals use this tool most often for ad-hoc analysis — pulling a quick visual to answer a question in a meeting rather than opening a spreadsheet and reformatting an existing chart.</p>
 
       <h2>Frequently asked questions</h2>
       <div class="faq-item">
@@ -149,7 +149,7 @@ const faqSchema = {
       </div>
       <div class="faq-item">
         <h3>Can I change the chart colours?</h3>
-        <p>The tool uses a consistent professional colour palette by default. Custom colour picking is not supported in this free version â€” the default palette is designed to be legible in both screen and PDF export.</p>
+        <p>The tool uses a consistent professional colour palette by default. Custom colour picking is not supported in this free version — the default palette is designed to be legible in both screen and PDF export.</p>
       </div>
       <div class="faq-item">
         <h3>Does my data get stored anywhere?</h3>
@@ -293,4 +293,4 @@ const faqSchema = {
 })();
 </script>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I upload an Excel file directly?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click the upload button and select any .xlsx or .csv file. The tool reads the first sheet automatically and populates the column selectors from your header row."}},{"@type":"Question","name":"How many rows of data can I chart?","acceptedAnswer":{"@type":"Answer","text":"The tool handles up to 5,000 rows comfortably in a browser. For very large datasets, consider summarising the data first using the Pivot Table Summariser before charting."}},{"@type":"Question","name":"Can I change the chart colours?","acceptedAnswer":{"@type":"Answer","text":"The tool uses a consistent professional colour palette by default. Custom colour picking is not supported in this free version â€” the default palette is designed to be legible in both screen and PDF export."}},{"@type":"Question","name":"Does my data get stored anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens in your browser. Your data is never uploaded to any server and is cleared when you close the tab."}},{"@type":"Question","name":"Can I generate multiple charts from the same data?","acceptedAnswer":{"@type":"Answer","text":"Yes. Change the chart type, axis selections, or title and click Generate again. Each generation replaces the previous chart. To compare two charts, export the first as PDF before generating the second."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I upload an Excel file directly?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click the upload button and select any .xlsx or .csv file. The tool reads the first sheet automatically and populates the column selectors from your header row."}},{"@type":"Question","name":"How many rows of data can I chart?","acceptedAnswer":{"@type":"Answer","text":"The tool handles up to 5,000 rows comfortably in a browser. For very large datasets, consider summarising the data first using the Pivot Table Summariser before charting."}},{"@type":"Question","name":"Can I change the chart colours?","acceptedAnswer":{"@type":"Answer","text":"The tool uses a consistent professional colour palette by default. Custom colour picking is not supported in this free version — the default palette is designed to be legible in both screen and PDF export."}},{"@type":"Question","name":"Does my data get stored anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens in your browser. Your data is never uploaded to any server and is cleared when you close the tab."}},{"@type":"Question","name":"Can I generate multiple charts from the same data?","acceptedAnswer":{"@type":"Answer","text":"Yes. Change the chart type, axis selections, or title and click Generate again. Each generation replaces the previous chart. To compare two charts, export the first as PDF before generating the second."}}]}</script>

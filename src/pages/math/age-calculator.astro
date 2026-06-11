@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -7,7 +7,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Age Calculator",
   "description": "Calculate exact age in years, months, and days. Includes next birthday countdown and fun facts about time lived.",
-  "url": "https://megalancer.online/math/age-calculator/",
+  "url": "https://www.megalancer.online/math/age-calculator/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="Free Age Calculator â€” How Old Am I?"
+  title="Free Age Calculator — How Old Am I?"
   description="Calculate your exact age in years, months, and days. See days until your next birthday and fun facts about how long you've been alive."
-  canonicalUrl="https://megalancer.online/math/age-calculator/"
+  canonicalUrl="https://www.megalancer.online/math/age-calculator/"
   schema={schema}
   breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Age Calculator' }]}
   relatedTools={[
@@ -106,7 +106,7 @@ function calculate() {
       </div>
     </div>
     <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border-light);">
-      <p style="font-size:13px;color:var(--text-muted);">Fun facts: ~${heartbeats.toLocaleString()} heartbeats so far â€¢ ~${hoursSlept.toLocaleString()} hours slept</p>
+      <p style="font-size:13px;color:var(--text-muted);">Fun facts: ~${heartbeats.toLocaleString()} heartbeats so far • ~${hoursSlept.toLocaleString()} hours slept</p>
     </div>
   `;
 }

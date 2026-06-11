@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Page from '../layouts/Page.astro';
 import AdZone from '../components/AdZone.astro';
 import { getCollection } from 'astro:content';
@@ -11,21 +11,21 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "megalancer.online",
-  "description": "Free tools for freelancers, founders, and small business owners â€” calculators, generators, and AI-powered helpers.",
-  "url": "https://megalancer.online/",
+  "description": "Free tools for freelancers, founders, and small business owners — calculators, generators, and AI-powered helpers.",
+  "url": "https://www.megalancer.online/",
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "MegaLancer",
-  "url": "https://megalancer.online",
+  "url": "https://www.megalancer.online",
   "description": "Free calculators and tools for freelancers, founders, and finance professionals.",
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "https://megalancer.online/search/?q={search_term_string}"
+      "urlTemplate": "https://www.megalancer.online/search/?q={search_term_string}"
     },
     "query-input": "required name=search_term_string"
   }
@@ -48,7 +48,7 @@ const faqSchema = {
       "name": "What is a good hourly rate for a freelancer?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "There is no single good rate â€” it depends on your expenses, target income, and market. A common baseline is to take the salary you want, add 30% for taxes and benefits, and divide by 1,000 billable hours. For example, an $80,000 target works out to roughly $80/hour minimum. The rate calculator factors in your specific costs and compares your rate to industry averages."
+        "text": "There is no single good rate — it depends on your expenses, target income, and market. A common baseline is to take the salary you want, add 30% for taxes and benefits, and divide by 1,000 billable hours. For example, an $80,000 target works out to roughly $80/hour minimum. The rate calculator factors in your specific costs and compares your rate to industry averages."
       }
     },
     {
@@ -80,7 +80,7 @@ const faqSchema = {
       "name": "How do I calculate the percentage of a number?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Multiply the number by the percentage expressed as a decimal. To find 15% of $200, multiply 200 by 0.15 to get $30. For the reverse â€” what percent X is of Y â€” divide X by Y and multiply by 100. The percentage calculator handles both modes and also does percentage increase and decrease between any two numbers."
+        "text": "Multiply the number by the percentage expressed as a decimal. To find 15% of $200, multiply 200 by 0.15 to get $30. For the reverse — what percent X is of Y — divide X by Y and multiply by 100. The percentage calculator handles both modes and also does percentage increase and decrease between any two numbers."
       }
     },
     {
@@ -133,7 +133,7 @@ const painPoints = [
 <Page
   title="Free Tools for Freelancers & Small Business Owners"
   description="Free calculators, contract generators, and AI-powered tools for freelancers, founders, and small business owners. Finance, Legal, SaaS, Marketing, and Freelancer tools."
-  canonicalUrl="https://megalancer.online/"
+  canonicalUrl="https://www.megalancer.online/"
   schema={[schema, websiteSchema, faqSchema]}
 >
   <section class="hero">
@@ -259,7 +259,7 @@ const painPoints = [
       </details>
       <details>
         <summary>What is a good hourly rate for a freelancer?</summary>
-        <p>There is no single good rate â€” it depends on your expenses, target income, and market. A common baseline is to take the salary you want, add 30% for taxes and benefits, and divide by 1,000 billable hours. For example, an $80,000 target works out to roughly $80/hour minimum. The <a href="/freelancer/rate-calculator/">rate calculator</a> factors in your specific costs and compares your rate to industry averages.</p>
+        <p>There is no single good rate — it depends on your expenses, target income, and market. A common baseline is to take the salary you want, add 30% for taxes and benefits, and divide by 1,000 billable hours. For example, an $80,000 target works out to roughly $80/hour minimum. The <a href="/freelancer/rate-calculator/">rate calculator</a> factors in your specific costs and compares your rate to industry averages.</p>
       </details>
       <details>
         <summary>How much should I charge for a freelance project?</summary>
@@ -275,7 +275,7 @@ const painPoints = [
       </details>
       <details>
         <summary>How do I calculate the percentage of a number?</summary>
-        <p>Multiply the number by the percentage expressed as a decimal. To find 15% of $200, multiply 200 by 0.15 to get $30. For the reverse â€” what percent X is of Y â€” divide X by Y and multiply by 100. The <a href="/math/percentage-calculator/">percentage calculator</a> handles both modes and also does percentage increase and decrease between any two numbers.</p>
+        <p>Multiply the number by the percentage expressed as a decimal. To find 15% of $200, multiply 200 by 0.15 to get $30. For the reverse — what percent X is of Y — divide X by Y and multiply by 100. The <a href="/math/percentage-calculator/">percentage calculator</a> handles both modes and also does percentage increase and decrease between any two numbers.</p>
       </details>
       <details>
         <summary>How do I convert inches to centimeters?</summary>

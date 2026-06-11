@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -7,7 +7,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Water Intake Calculator",
   "description": "Calculate how much water you should drink daily based on your weight, activity level, and climate. Get an hourly schedule.",
-  "url": "https://megalancer.online/health/water-intake/",
+  "url": "https://www.megalancer.online/health/water-intake/",
   "applicationCategory": "HealthApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="Free Water Intake Calculator â€” How Much Water Should I Drink?"
+  title="Free Water Intake Calculator — How Much Water Should I Drink?"
   description="Calculate your daily water intake needs based on weight, activity level, and climate. Get an hourly drinking schedule."
-  canonicalUrl="https://megalancer.online/health/water-intake/"
+  canonicalUrl="https://www.megalancer.online/health/water-intake/"
   schema={schema}
   breadcrumb={[{ label: 'Health', href: '/health/' }, { label: 'Water Intake Calculator' }]}
   relatedTools={[
@@ -47,10 +47,10 @@ const schema = {
           <div class="field">
             <label class="field-label">Activity level</label>
             <select id="activity">
-              <option value="1.0">Sedentary â€” little exercise</option>
-              <option value="1.2" selected>Moderate â€” 3-5 days/week</option>
-              <option value="1.5">Active â€” daily exercise</option>
-              <option value="1.8">Very active â€” intense daily</option>
+              <option value="1.0">Sedentary — little exercise</option>
+              <option value="1.2" selected>Moderate — 3-5 days/week</option>
+              <option value="1.5">Active — daily exercise</option>
+              <option value="1.8">Very active — intense daily</option>
             </select>
           </div>
         </div>
@@ -72,7 +72,7 @@ const schema = {
   <fragment slot="seo">
     <div class="seo-body">
       <h2>How much water do you need?</h2>
-      <p>A common recommendation is 8 glasses (64 oz / 1.9 L) per day, but individual needs vary. Your water requirement depends on your body weight, how active you are, and the climate you live in. A more accurate formula: weight (kg) Ã— 30-40 mL per kg, adjusted for activity and heat.</p>
+      <p>A common recommendation is 8 glasses (64 oz / 1.9 L) per day, but individual needs vary. Your water requirement depends on your body weight, how active you are, and the climate you live in. A more accurate formula: weight (kg) × 30-40 mL per kg, adjusted for activity and heat.</p>
       <p>This calculator uses your weight as the base and adjusts for activity level (more activity = more water lost through sweat) and climate (hot climates increase fluid needs). It shows results in both ounces and milliliters for convenience.</p>
       <h2>Signs of dehydration</h2>
       <p>Dark urine, dry mouth, fatigue, headache, dizziness, and reduced urine output are common signs of dehydration. If you're thirsty, you're already mildly dehydrated. Drink water throughout the day rather than chugging large amounts at once. The hourly schedule helps you spread your intake evenly.</p>
@@ -109,7 +109,7 @@ function calculate() {
       </div>
     </div>
     <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border-light);">
-      <p style="font-size:14px;color:var(--text-secondary);">ðŸ’§ Drink about <strong>${hourly.toFixed(1)} oz</strong> per hour over 16 waking hours.</p>
+      <p style="font-size:14px;color:var(--text-secondary);">?? Drink about <strong>${hourly.toFixed(1)} oz</strong> per hour over 16 waking hours.</p>
     </div>
   `;
 }

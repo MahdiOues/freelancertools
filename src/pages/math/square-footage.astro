@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -7,7 +7,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Square Footage Calculator",
   "description": "Calculate area in square feet for rectangles, triangles, circles, L-shapes, and custom polygons. Includes cost estimation.",
-  "url": "https://megalancer.online/math/square-footage/",
+  "url": "https://www.megalancer.online/math/square-footage/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="Free Square Footage Calculator â€” Area Calculator"
+  title="Free Square Footage Calculator — Area Calculator"
   description="Calculate square footage for any shape: rectangle, triangle, circle, L-shape, or custom polygon. Get area in sq ft and sq m with cost estimate."
-  canonicalUrl="https://megalancer.online/math/square-footage/"
+  canonicalUrl="https://www.megalancer.online/math/square-footage/"
   schema={schema}
   breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Square Footage Calculator' }]}
   relatedTools={[
@@ -78,10 +78,10 @@ const schema = {
   <fragment slot="seo">
     <div class="seo-body">
       <h2>How to calculate square footage</h2>
-      <p>Square footage is calculated differently depending on the shape. For a rectangle: length Ã— width. For a triangle: (base Ã— height) Ã· 2. For a circle: Ï€ Ã— radiusÂ². For an L-shape: divide into two rectangles and add their areas. For a regular polygon: (perimeter Ã— apothem) Ã· 2.</p>
+      <p>Square footage is calculated differently depending on the shape. For a rectangle: length × width. For a triangle: (base × height) ÷ 2. For a circle: p × radius². For an L-shape: divide into two rectangles and add their areas. For a regular polygon: (perimeter × apothem) ÷ 2.</p>
       <p>Knowing the square footage of a space is essential for flooring, painting, tiling, HVAC sizing, real estate listings, and material estimation. Always measure in the same unit and convert at the end.</p>
       <h2>Converting between sq ft and sq m</h2>
-      <p>1 square foot = 0.0929 square meters. 1 square meter = 10.764 square feet. This calculator shows both measurements automatically. When estimating material costs, always double-check whether the price is per square foot or per square meter â€” mixing them up leads to significant errors.</p>
+      <p>1 square foot = 0.0929 square meters. 1 square meter = 10.764 square feet. This calculator shows both measurements automatically. When estimating material costs, always double-check whether the price is per square foot or per square meter — mixing them up leads to significant errors.</p>
     </div>
   </fragment>
 </Tool>

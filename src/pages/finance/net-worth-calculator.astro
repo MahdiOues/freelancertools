@@ -1,4 +1,4 @@
-﻿---
+---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -7,7 +7,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Net Worth Calculator",
   "description": "Calculate your net worth by adding assets and liabilities. See your total net worth and assets-to-debt ratio.",
-  "url": "https://megalancer.online/finance/net-worth-calculator/",
+  "url": "https://www.megalancer.online/finance/net-worth-calculator/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="Net Worth Calculator — Financial Health"
+  title="Net Worth Calculator � Financial Health"
   description="Calculate your net worth instantly. Add your assets and liabilities to see your total net worth and financial health ratio."
-  canonicalUrl="https://megalancer.online/finance/net-worth-calculator/"
+  canonicalUrl="https://www.megalancer.online/finance/net-worth-calculator/"
   schema={schema}
   breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Net Worth Calculator' }]}
   relatedTools={[
@@ -98,7 +98,7 @@ function calculate() {
   const totalAssets = sumValues('assets');
   const totalLiabilities = sumValues('liabilities');
   const netWorth = totalAssets - totalLiabilities;
-  const ratio = totalLiabilities > 0 ? (totalAssets / totalLiabilities).toFixed(2) : '∞';
+  const ratio = totalLiabilities > 0 ? (totalAssets / totalLiabilities).toFixed(2) : '8';
   document.getElementById('resultArea').innerHTML = `
     <div class="metric-grid">
       <div class="metric-card">

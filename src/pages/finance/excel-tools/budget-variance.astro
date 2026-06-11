@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../../layouts/ToolWithExcel.astro';
 
 const schema = {
@@ -6,7 +6,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Budget vs Actual Variance Analysis Tool",
   "description": "Paste your budget and actual figures to instantly calculate variance in dollars and percentage. Get a colour-coded comparison chart and export to Excel or PDF.",
-  "url": "https://megalancer.online/finance/excel-tools/budget-variance/",
+  "url": "https://www.megalancer.online/finance/excel-tools/budget-variance/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -19,7 +19,7 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "Can I analyse revenue variance as well as expense variance?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The tool works for any numeric comparison â€” revenue, headcount, units, or any other metric. Label your rows appropriately and the variance calculation applies the same way." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The tool works for any numeric comparison — revenue, headcount, units, or any other metric. Label your rows appropriately and the variance calculation applies the same way." }
     },
     {
       "@type": "Question",
@@ -39,7 +39,7 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "Is there a limit on the number of line items?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No hard limit. The chart becomes harder to read beyond about 20 categories â€” for large budgets, consider grouping sub-categories before pasting." }
+      "acceptedAnswer": { "@type": "Answer", "text": "No hard limit. The chart becomes harder to read beyond about 20 categories — for large budgets, consider grouping sub-categories before pasting." }
     }
   ]
 };
@@ -48,7 +48,7 @@ const faqSchema = {
 <Tool
   title="Budget vs Actual Variance Analyzer"
   description="Paste your budget and actual figures to instantly calculate variance in dollars and percentage. Get a colour-coded comparison chart and export to Excel or PDF. No Excel knowledge needed."
-  canonicalUrl="https://megalancer.online/finance/excel-tools/budget-variance/"
+  canonicalUrl="https://www.megalancer.online/finance/excel-tools/budget-variance/"
   schema={schema}
   breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Excel-Free Tools', href: '/finance/excel-tools/' }, { label: 'Budget vs Actual' }]}
   relatedTools={[
@@ -60,12 +60,12 @@ const faqSchema = {
 >
   <fragment slot="hero">
     <div class="tool-page-hero">
-      <h1>Free Budget vs Actual Variance Analysis â€” Instant Financial Comparison</h1>
+      <h1>Free Budget vs Actual Variance Analysis — Instant Financial Comparison</h1>
       <p class="subhead">Paste or upload a budget and actual spend side by side. Instantly see variance ($), variance (%), and a color-coded bar chart.</p>
     </div>
   </fragment>
   <div class="tool-intro" style="max-width:720px;margin:0 auto 28px;">
-    <p>Paste your budget and actual figures into the tool and instantly see the variance for every line item â€” in both dollars and percentage. The tool generates a grouped bar chart comparing budget to actual across all categories and flags items that are over or under budget. Used by finance teams, accountants, and business owners who need variance analysis without building it manually in Excel. Export results as Excel or PDF in one click.</p>
+    <p>Paste your budget and actual figures into the tool and instantly see the variance for every line item — in both dollars and percentage. The tool generates a grouped bar chart comparing budget to actual across all categories and flags items that are over or under budget. Used by finance teams, accountants, and business owners who need variance analysis without building it manually in Excel. Export results as Excel or PDF in one click.</p>
   </div>
   <fragment slot="tool">
     <div class="calculator-card">
@@ -102,22 +102,22 @@ const faqSchema = {
   <fragment slot="seo">
     <div class="seo-body">
       <h2>What is budget variance analysis?</h2>
-      <p>Budget variance analysis compares the amounts you planned to spend (budget) against what you actually spent. A positive variance on a revenue line means you outperformed â€” you brought in more than expected. A positive variance on an expense line means you overspent. Finance teams run this analysis monthly, quarterly, and annually to track performance against plan. It is one of the most common FP&A tasks and is the foundation of management reporting.</p>
+      <p>Budget variance analysis compares the amounts you planned to spend (budget) against what you actually spent. A positive variance on a revenue line means you outperformed — you brought in more than expected. A positive variance on an expense line means you overspent. Finance teams run this analysis monthly, quarterly, and annually to track performance against plan. It is one of the most common FP&A tasks and is the foundation of management reporting.</p>
       <p>The tool calculates both the absolute dollar variance and the variance percentage, so you can see not just how much you were over or under but also the relative magnitude. A $5,000 variance on a $100,000 line item (5%) is very different from a $5,000 variance on a $10,000 line item (50%).</p>
 
       <h2>How to read the variance chart</h2>
-      <p>The grouped bar chart shows each category side by side â€” the blue bar is your budget, the red bar is your actual. The table beneath the chart gives you the exact dollar and percentage variance for every row. Categories are colour-coded: green for under budget (favourable), red for over budget (unfavourable), and grey for on target. Sort the table by Variance % descending to find the items that deviated most from plan.</p>
+      <p>The grouped bar chart shows each category side by side — the blue bar is your budget, the red bar is your actual. The table beneath the chart gives you the exact dollar and percentage variance for every row. Categories are colour-coded: green for under budget (favourable), red for over budget (unfavourable), and grey for on target. Sort the table by Variance % descending to find the items that deviated most from plan.</p>
 
       <h2>What input format does the tool accept?</h2>
-      <p>The tool expects three columns: Category, Budget, and Actual. You can paste this data directly from Excel or Google Sheets â€” the tab-separated values copy across automatically. Alternatively, upload a .csv or .xlsx file. Dollar signs and commas are stripped during parsing, so formatted accounting values work without modification.</p>
+      <p>The tool expects three columns: Category, Budget, and Actual. You can paste this data directly from Excel or Google Sheets — the tab-separated values copy across automatically. Alternatively, upload a .csv or .xlsx file. Dollar signs and commas are stripped during parsing, so formatted accounting values work without modification.</p>
 
       <h2>Exporting variance reports for management review</h2>
-      <p>The Excel export includes the full variance table with conditional formatting â€” over-budget items are highlighted in red, under-budget items in green. The PDF export includes the chart and the table on a single page, with a totals row at the bottom showing the net variance across all categories. Both exports are generated in your browser and ready to attach to a management report.</p>
+      <p>The Excel export includes the full variance table with conditional formatting — over-budget items are highlighted in red, under-budget items in green. The PDF export includes the chart and the table on a single page, with a totals row at the bottom showing the net variance across all categories. Both exports are generated in your browser and ready to attach to a management report.</p>
 
       <h2>Frequently asked questions</h2>
       <div class="faq-item">
         <h3>Can I analyse revenue variance as well as expense variance?</h3>
-        <p>Yes. The tool works for any numeric comparison â€” revenue, headcount, units, or any other metric. Label your rows appropriately and the variance calculation applies the same way.</p>
+        <p>Yes. The tool works for any numeric comparison — revenue, headcount, units, or any other metric. Label your rows appropriately and the variance calculation applies the same way.</p>
       </div>
       <div class="faq-item">
         <h3>How do I handle categories that were not budgeted?</h3>
@@ -133,7 +133,7 @@ const faqSchema = {
       </div>
       <div class="faq-item">
         <h3>Is there a limit on the number of line items?</h3>
-        <p>No hard limit. The chart becomes harder to read beyond about 20 categories â€” for large budgets, consider grouping sub-categories before pasting.</p>
+        <p>No hard limit. The chart becomes harder to read beyond about 20 categories — for large budgets, consider grouping sub-categories before pasting.</p>
       </div>
 
       <h2>Related tools</h2>

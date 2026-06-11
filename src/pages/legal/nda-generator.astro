@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 import DocTemplatePicker from '../../components/DocTemplatePicker.astro';
@@ -8,7 +8,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free AI NDA Generator",
   "description": "Create a mutual or one-way non-disclosure agreement tailored to your project using AI.",
-  "url": "https://megalancer.online/legal/nda-generator/",
+  "url": "https://www.megalancer.online/legal/nda-generator/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -18,7 +18,7 @@ const schema = {
 <Tool
   title="Free AI NDA Generator"
   description="Create a mutual or one-way non-disclosure agreement tailored to your project. Covers confidentiality terms, exclusions, and duration."
-  canonicalUrl="https://megalancer.online/legal/nda-generator/"
+  canonicalUrl="https://www.megalancer.online/legal/nda-generator/"
   schema={schema}
   breadcrumb={[{ label: 'Legal', href: '/legal/' }, { label: 'NDA Generator' }]}
   relatedTools={[
@@ -42,7 +42,7 @@ const schema = {
       <div class="calculator-card-body">
       <div class="field-grid">
         <div class="field">
-          <label class="field-label"><KpiTooltip label="Disclosing party" tip="The person or company sharing the confidential information â€” usually you or your client depending on the situation." /></label>
+          <label class="field-label"><KpiTooltip label="Disclosing party" tip="The person or company sharing the confidential information — usually you or your client depending on the situation." /></label>
           <input type="text" id="party1" placeholder="e.g. Acme Corp" />
         </div>
         <div class="field">
@@ -51,7 +51,7 @@ const schema = {
         </div>
       </div>
       <div class="field">
-          <label class="field-label"><KpiTooltip label="Purpose of disclosure" tip="A description of what exactly is considered confidential under this agreement. Be specific â€” vague definitions are harder to enforce." /></label>
+          <label class="field-label"><KpiTooltip label="Purpose of disclosure" tip="A description of what exactly is considered confidential under this agreement. Be specific — vague definitions are harder to enforce." /></label>
         <textarea id="purpose" placeholder="Describe why confidential information is being shared..."></textarea>
       </div>
       <div class="field-grid">
@@ -63,7 +63,7 @@ const schema = {
           </select>
         </div>
         <div class="field">
-          <label class="field-label"><KpiTooltip label="Duration (years)" tip="How long the confidentiality obligation lasts after signing. 2â€“5 years is typical for freelance work; perpetual NDAs are harder to enforce." /></label>
+          <label class="field-label"><KpiTooltip label="Duration (years)" tip="How long the confidentiality obligation lasts after signing. 2–5 years is typical for freelance work; perpetual NDAs are harder to enforce." /></label>
           <input type="number" id="duration" value="3" />
         </div>
       </div>

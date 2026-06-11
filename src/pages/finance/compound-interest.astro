@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/ToolWithCharts.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -7,7 +7,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Compound Interest Calculator",
   "description": "Calculate compound interest with monthly contributions. See year-by-year growth table and interactive chart.",
-  "url": "https://megalancer.online/finance/compound-interest/",
+  "url": "https://www.megalancer.online/finance/compound-interest/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="Compound Interest Calculator â€” With Contributions"
+  title="Compound Interest Calculator — With Contributions"
   description="Calculate how your investments grow with compound interest. Add monthly contributions and see year-by-year growth with an interactive chart."
-  canonicalUrl="https://megalancer.online/finance/compound-interest/"
+  canonicalUrl="https://www.megalancer.online/finance/compound-interest/"
   schema={schema}
   breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Compound Interest Calculator' }]}
   relatedTools={[
@@ -128,11 +128,11 @@ function calculate() {
       </div>
       <div class="metric-card">
         <div class="result-number">$${totalContributions.toFixed(2)}</div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">Total contributions<button class="kpi-info-btn" data-tip="The total amount you contributed â€” principal plus all monthly contributions." tabindex="0" type="button">i</button></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Total contributions<button class="kpi-info-btn" data-tip="The total amount you contributed — principal plus all monthly contributions." tabindex="0" type="button">i</button></span></div>
       </div>
       <div class="metric-card">
         <div class="result-number" style="color:var(--success);">$${totalInterest.toFixed(2)}</div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">Total interest earned<button class="kpi-info-btn" data-tip="The total amount earned from compounding â€” money you earned without lifting a finger." tabindex="0" type="button">i</button></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Total interest earned<button class="kpi-info-btn" data-tip="The total amount earned from compounding — money you earned without lifting a finger." tabindex="0" type="button">i</button></span></div>
       </div>
     </div>
   `;

@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/ToolWithCharts.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -7,7 +7,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free BMI Calculator",
   "description": "Calculate your Body Mass Index. Get your BMI value, weight category, and healthy weight range. Metric and imperial units.",
-  "url": "https://megalancer.online/health/bmi-calculator/",
+  "url": "https://www.megalancer.online/health/bmi-calculator/",
   "applicationCategory": "HealthApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="Free BMI Calculator â€” Body Mass Index"
+  title="Free BMI Calculator — Body Mass Index"
   description="Calculate your BMI instantly. Enter your height and weight to get your BMI value, weight category, and healthy weight range. Metric or imperial units."
-  canonicalUrl="https://megalancer.online/health/bmi-calculator/"
+  canonicalUrl="https://www.megalancer.online/health/bmi-calculator/"
   schema={schema}
   breadcrumb={[{ label: 'Health', href: '/health/' }, { label: 'BMI Calculator' }]}
   relatedTools={[
@@ -30,7 +30,7 @@ const schema = {
   <fragment slot="hero">
     <div class="tool-page-hero">
       <h1>BMI Calculator</h1>
-      <p class="subhead">Calculate your Body Mass Index to assess your weight category. For informational purposes â€” consult a healthcare professional.</p>
+      <p class="subhead">Calculate your Body Mass Index to assess your weight category. For informational purposes — consult a healthcare professional.</p>
     </div>
   </fragment>
   <fragment slot="tool">
@@ -83,7 +83,7 @@ const schema = {
   <fragment slot="seo">
     <div class="seo-body">
       <h2>What is BMI?</h2>
-      <p>Body Mass Index (BMI) is a simple calculation using your height and weight. The formula is weight in kilograms divided by height in meters squared. BMI is a screening tool â€” it helps identify if you are underweight, normal weight, overweight, or obese, but it does not measure body fat directly.</p>
+      <p>Body Mass Index (BMI) is a simple calculation using your height and weight. The formula is weight in kilograms divided by height in meters squared. BMI is a screening tool — it helps identify if you are underweight, normal weight, overweight, or obese, but it does not measure body fat directly.</p>
       <p>For most adults, a BMI between 18.5 and 24.9 is considered healthy. Below 18.5 is underweight, 25-29.9 is overweight, and 30 or above is obese. These ranges apply to both men and women.</p>
       <h2>Limitations of BMI</h2>
       <p>BMI does not account for muscle mass, bone density, body composition, or fat distribution. Athletes with high muscle mass may have a high BMI but low body fat. Older adults may have more body fat than BMI suggests. Use BMI as a general guideline, not a diagnostic tool.</p>
@@ -92,7 +92,7 @@ const schema = {
       <div class="sources">
         <h3>Sources</h3>
         <ul>
-          <li><a href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight" rel="nofollow noopener" target="_blank">World Health Organization â€” BMI Classification</a></li>
+          <li><a href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight" rel="nofollow noopener" target="_blank">World Health Organization — BMI Classification</a></li>
         </ul>
       </div>
     </div>
@@ -140,7 +140,7 @@ function calculate() {
         <div class="result-label">Category</div>
       </div>
       <div class="metric-card">
-        <div class="result-number" style="font-size:1.1rem;">${healthyMinDisplay} â€“ ${healthyMaxDisplay}</div>
+        <div class="result-number" style="font-size:1.1rem;">${healthyMinDisplay} – ${healthyMaxDisplay}</div>
         <div class="result-label">Healthy weight range</div>
       </div>
     </div>

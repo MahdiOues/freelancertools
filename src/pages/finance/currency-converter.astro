@@ -1,4 +1,4 @@
-﻿---
+---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -7,7 +7,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Currency Converter",
   "description": "Convert between world currencies with live exchange rates. Quick buttons for popular currency pairs.",
-  "url": "https://megalancer.online/finance/currency-converter/",
+  "url": "https://www.megalancer.online/finance/currency-converter/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="Currency Converter — USD, EUR, GBP & More"
+  title="Currency Converter � USD, EUR, GBP & More"
   description="Convert between major world currencies. Check exchange rates for USD, EUR, GBP, JPY, CAD, AUD, and more. Quick swap between popular pairs."
-  canonicalUrl="https://megalancer.online/finance/currency-converter/"
+  canonicalUrl="https://www.megalancer.online/finance/currency-converter/"
   schema={schema}
   breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Currency Converter' }]}
   relatedTools={[
@@ -54,11 +54,11 @@ const schema = {
           </div>
         </div>
         <div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;">
-          <button class="btn btn-secondary quick-pair" data-from="USD" data-to="EUR" style="flex:1;padding:8px;font-size:12px;">USD→EUR</button>
-          <button class="btn btn-secondary quick-pair" data-from="USD" data-to="GBP" style="flex:1;padding:8px;font-size:12px;">USD→GBP</button>
-          <button class="btn btn-secondary quick-pair" data-from="USD" data-to="JPY" style="flex:1;padding:8px;font-size:12px;">USD→JPY</button>
-          <button class="btn btn-secondary quick-pair" data-from="EUR" data-to="USD" style="flex:1;padding:8px;font-size:12px;">EUR→USD</button>
-          <button class="btn btn-secondary quick-pair" data-from="GBP" data-to="USD" style="flex:1;padding:8px;font-size:12px;">GBP→USD</button>
+          <button class="btn btn-secondary quick-pair" data-from="USD" data-to="EUR" style="flex:1;padding:8px;font-size:12px;">USD?EUR</button>
+          <button class="btn btn-secondary quick-pair" data-from="USD" data-to="GBP" style="flex:1;padding:8px;font-size:12px;">USD?GBP</button>
+          <button class="btn btn-secondary quick-pair" data-from="USD" data-to="JPY" style="flex:1;padding:8px;font-size:12px;">USD?JPY</button>
+          <button class="btn btn-secondary quick-pair" data-from="EUR" data-to="USD" style="flex:1;padding:8px;font-size:12px;">EUR?USD</button>
+          <button class="btn btn-secondary quick-pair" data-from="GBP" data-to="USD" style="flex:1;padding:8px;font-size:12px;">GBP?USD</button>
         </div>
 
         <div id="resultArea" class="result-area">

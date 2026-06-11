@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -7,7 +7,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Social Security Benefits Estimator",
   "description": "Estimate your Social Security benefits at different claiming ages. See breakeven analysis and lifetime benefit comparison.",
-  "url": "https://megalancer.online/finance/social-security-estimator/",
+  "url": "https://www.megalancer.online/finance/social-security-estimator/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="Social Security Estimator â€” When to Claim"
+  title="Social Security Estimator — When to Claim"
   description="Estimate your monthly Social Security benefit at ages 62-70. Compare lifetime benefits and find your optimal claiming age."
-  canonicalUrl="https://megalancer.online/finance/social-security-estimator/"
+  canonicalUrl="https://www.megalancer.online/finance/social-security-estimator/"
   schema={schema}
   breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Social Security Estimator' }]}
   relatedTools={[
@@ -121,7 +121,7 @@ function calculate() {
     html += `<tr style="border-bottom:1px solid var(--border-light);"><td style="padding:8px 12px;${isBest}">${age} ${age === fra ? '(FRA)' : ''}</td><td style="padding:8px 12px;text-align:right;">$${monthly.toLocaleString()}</td><td style="padding:8px 12px;text-align:right;">$${annual.toLocaleString()}</td><td style="padding:8px 12px;text-align:right;">$${lifetime.toLocaleString()}</td></tr>`;
   }
   html += '</tbody></table>';
-  html += `<p style="margin-top:16px;font-size:14px;color:var(--text-secondary);">Optimal claiming age: <strong>${bestAge}</strong> â€” estimated lifetime benefit: <strong>$${bestLifetime.toLocaleString()}</strong></p>`;
+  html += `<p style="margin-top:16px;font-size:14px;color:var(--text-secondary);">Optimal claiming age: <strong>${bestAge}</strong> — estimated lifetime benefit: <strong>$${bestLifetime.toLocaleString()}</strong></p>`;
 
   document.getElementById('resultArea').innerHTML = html;
 }

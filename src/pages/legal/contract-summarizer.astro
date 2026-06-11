@@ -1,4 +1,4 @@
-﻿---
+---
 import Tool from '../../layouts/Tool.astro';
 
 const schema = {
@@ -6,7 +6,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free AI Contract Summarizer",
   "description": "Paste a legal document and get a plain-English summary. Highlights risky clauses and key obligations.",
-  "url": "https://megalancer.online/legal/contract-summarizer/",
+  "url": "https://www.megalancer.online/legal/contract-summarizer/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -16,7 +16,7 @@ const schema = {
 <Tool
   title="Free AI Contract Summarizer"
   description="Paste a legal document and get a plain-English summary. Highlights risky clauses and key obligations so you know what you are signing."
-  canonicalUrl="https://megalancer.online/legal/contract-summarizer/"
+  canonicalUrl="https://www.megalancer.online/legal/contract-summarizer/"
   schema={schema}
   breadcrumb={[{ label: 'Legal', href: '/legal/' }, { label: 'Contract Summarizer' }]}
   relatedTools={[
@@ -114,7 +114,7 @@ async function summarize() {
     resultArea.innerHTML = `<div style="font-size: 15px;"><p>${formatted}</p></div>`;
     resultArea.style.display = 'block';
   } catch (err) {
-    errorMsg.textContent = 'Something went wrong — please try again.';
+    errorMsg.textContent = 'Something went wrong � please try again.';
     errorMsg.style.display = 'block';
   } finally {
     btn.disabled = false;

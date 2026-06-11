@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -7,7 +7,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free VAT / GST Calculator",
   "description": "Calculate VAT or GST amounts. Add or remove VAT from any amount. Includes country presets for common rates.",
-  "url": "https://megalancer.online/finance/vat-calculator/",
+  "url": "https://www.megalancer.online/finance/vat-calculator/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="VAT/GST Calculator â€” Add or Remove"
+  title="VAT/GST Calculator — Add or Remove"
   description="Calculate VAT and GST amounts instantly. Add VAT to a net price or remove VAT from a gross price. Country presets included."
-  canonicalUrl="https://megalancer.online/finance/vat-calculator/"
+  canonicalUrl="https://www.megalancer.online/finance/vat-calculator/"
   schema={schema}
   breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'VAT/GST Calculator' }]}
   relatedTools={[
@@ -42,15 +42,15 @@ const schema = {
         <div class="field">
           <label class="field-label">Country preset</label>
           <select id="countryPreset">
-            <option value="20">United Kingdom â€” 20%</option>
-            <option value="20">EU Standard â€” 20%</option>
-            <option value="10">Australia GST â€” 10%</option>
-            <option value="5">Canada GST â€” 5%</option>
-            <option value="19">Germany â€” 19%</option>
-            <option value="20">France â€” 20%</option>
-            <option value="22">Italy â€” 22%</option>
-            <option value="21">Spain â€” 21%</option>
-            <option value="25">Sweden â€” 25%</option>
+            <option value="20">United Kingdom — 20%</option>
+            <option value="20">EU Standard — 20%</option>
+            <option value="10">Australia GST — 10%</option>
+            <option value="5">Canada GST — 5%</option>
+            <option value="19">Germany — 19%</option>
+            <option value="20">France — 20%</option>
+            <option value="22">Italy — 22%</option>
+            <option value="21">Spain — 21%</option>
+            <option value="25">Sweden — 25%</option>
             <option value="0">No VAT (custom rate)</option>
           </select>
         </div>

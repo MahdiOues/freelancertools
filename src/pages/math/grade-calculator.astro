@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -7,7 +7,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Grade Calculator",
   "description": "Calculate what grade you need on the final exam or what your current grade is based on weighted assignments.",
-  "url": "https://megalancer.online/math/grade-calculator/",
+  "url": "https://www.megalancer.online/math/grade-calculator/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="Free Grade Calculator â€” Final Exam & Current Grade"
+  title="Free Grade Calculator — Final Exam & Current Grade"
   description="Calculate what grade you need on your final exam, or compute your current grade from weighted assignments. Free online grade calculator."
-  canonicalUrl="https://megalancer.online/math/grade-calculator/"
+  canonicalUrl="https://www.megalancer.online/math/grade-calculator/"
   schema={schema}
   breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Grade Calculator' }]}
   relatedTools={[
@@ -79,7 +79,7 @@ const schema = {
       <p>This calculator has two modes. "What do I need on the final?" tells you the minimum score required on your final exam to achieve a desired overall grade. "What is my current grade?" lets you add all your assignments with their weights to compute your running total.</p>
       <p>Understanding weighted grades is important. If your final is worth 20% of your grade, it has less impact than assignments worth 40%. This calculator handles weighted grading correctly so you know exactly where you stand.</p>
       <h2>Tips for final exams</h2>
-      <p>If the calculator says you need a score above 100% to get your desired grade, your goal may be out of reach for this grading period â€” focus on doing your best. If it says you need below 0%, you have already secured your target grade. Use this information to prioritize your study time effectively across all your classes.</p>
+      <p>If the calculator says you need a score above 100% to get your desired grade, your goal may be out of reach for this grading period — focus on doing your best. If it says you need below 0%, you have already secured your target grade. Use this information to prioritize your study time effectively across all your classes.</p>
     </div>
   </fragment>
 </Tool>
@@ -156,7 +156,7 @@ function calculate() {
     const desired = parseFloat(document.getElementById('desiredGrade').value) || 0;
     const needed = (desired - current * (1 - weight / 100)) / (weight / 100);
     let verdict = '';
-    if (needed > 100) verdict = 'Very challenging â€” consider adjusting your goal.';
+    if (needed > 100) verdict = 'Very challenging — consider adjusting your goal.';
     else if (needed <= 0) verdict = 'You have already secured this grade.';
     else if (needed <= 60) verdict = 'Easily achievable with basic preparation.';
     else if (needed <= 80) verdict = 'Achievable with consistent study.';

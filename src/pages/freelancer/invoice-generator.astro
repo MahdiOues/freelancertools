@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/ToolWithExcel.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 import DocTemplatePicker from '../../components/DocTemplatePicker.astro';
@@ -8,7 +8,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free AI Invoice Generator",
   "description": "Generate a professional invoice with all standard fields, payment terms, and late fee notices using AI.",
-  "url": "https://megalancer.online/freelancer/invoice-generator/",
+  "url": "https://www.megalancer.online/freelancer/invoice-generator/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -18,7 +18,7 @@ const schema = {
 <Tool
   title="Free AI Invoice Generator"
   description="Generate a professional invoice with all standard fields, payment terms, and late fee notices using AI. Print or send as PDF."
-  canonicalUrl="https://megalancer.online/freelancer/invoice-generator/"
+  canonicalUrl="https://www.megalancer.online/freelancer/invoice-generator/"
   schema={schema}
   breadcrumb={[{ label: 'Freelancer', href: '/freelancer/' }, { label: 'Invoice Generator' }]}
   relatedTools={[
@@ -81,7 +81,7 @@ const schema = {
         </div>
       </div>
       <div class="field">
-        <label class="field-label"><KpiTooltip label="Description of services" tip="A description of each service or deliverable being billed. Be specific â€” it reduces disputes and looks more professional." /></label>
+        <label class="field-label"><KpiTooltip label="Description of services" tip="A description of each service or deliverable being billed. Be specific — it reduces disputes and looks more professional." /></label>
         <textarea id="description" placeholder="Describe the work or products being invoiced..."></textarea>
       </div>
       <DocTemplatePicker />
@@ -141,15 +141,15 @@ const paymentNotes = [
 ];
 
 const thankYouFooters = [
-  "Thank you for your business. â€” {{yourName}}",
-  "It's been a pleasure working with you. â€” {{yourName}}",
-  "Looking forward to working together again. â€” {{yourName}}",
-  "Thank you for the opportunity. â€” {{yourName}}",
-  "Appreciate your trust in my work. â€” {{yourName}}",
-  "Thanks for a great project. â€” {{yourName}}",
-  "Grateful for your continued partnership. â€” {{yourName}}",
-  "It was a pleasure delivering this work for you. â€” {{yourName}}",
-  "Thank you â€” I hope to work together again soon. â€” {{yourName}}",
+  "Thank you for your business. — {{yourName}}",
+  "It's been a pleasure working with you. — {{yourName}}",
+  "Looking forward to working together again. — {{yourName}}",
+  "Thank you for the opportunity. — {{yourName}}",
+  "Appreciate your trust in my work. — {{yourName}}",
+  "Thanks for a great project. — {{yourName}}",
+  "Grateful for your continued partnership. — {{yourName}}",
+  "It was a pleasure delivering this work for you. — {{yourName}}",
+  "Thank you — I hope to work together again soon. — {{yourName}}",
   "With appreciation, {{yourName}}",
 ];
 

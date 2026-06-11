@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../../layouts/ToolWithExcel.astro';
 
 const schema = {
@@ -6,7 +6,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Waterfall Chart Generator",
   "description": "Generate professional waterfall charts showing how each income and expense item builds or reduces your cash position. No Excel needed.",
-  "url": "https://megalancer.online/finance/excel-tools/cash-flow-waterfall/",
+  "url": "https://www.megalancer.online/finance/excel-tools/cash-flow-waterfall/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -19,12 +19,12 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "How do I mark a row as a total vs a delta?",
-      "acceptedAnswer": { "@type": "Answer", "text": "The first and last rows are automatically treated as totals (shown as full-height bars). For intermediate totals like Gross Profit in a P&L, enter it as a separate row â€” the tool calculates it from the running total automatically." }
+      "acceptedAnswer": { "@type": "Answer", "text": "The first and last rows are automatically treated as totals (shown as full-height bars). For intermediate totals like Gross Profit in a P&L, enter it as a separate row — the tool calculates it from the running total automatically." }
     },
     {
       "@type": "Question",
       "name": "Can I enter a Gross Profit row that auto-calculates?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Enter the row with its label and leave the amount blank or enter 0 â€” the tool will show the running total at that point as the bar height." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Enter the row with its label and leave the amount blank or enter 0 — the tool will show the running total at that point as the bar height." }
     },
     {
       "@type": "Question",
@@ -46,9 +46,9 @@ const faqSchema = {
 ---
 
 <Tool
-  title="Waterfall Chart â€” Cash Flow & P&L"
+  title="Waterfall Chart — Cash Flow & P&L"
   description="Generate professional waterfall charts showing how each income and expense item builds or reduces your cash position. No Excel needed. Export as PDF or Excel instantly."
-  canonicalUrl="https://megalancer.online/finance/excel-tools/cash-flow-waterfall/"
+  canonicalUrl="https://www.megalancer.online/finance/excel-tools/cash-flow-waterfall/"
   schema={schema}
   breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Excel-Free Tools', href: '/finance/excel-tools/' }, { label: 'Cash Flow Waterfall' }]}
   relatedTools={[
@@ -60,12 +60,12 @@ const faqSchema = {
 >
   <fragment slot="hero">
     <div class="tool-page-hero">
-      <h1>Free Waterfall Chart Generator â€” Cash Flow and P&L Visualisation</h1>
-      <p class="subhead">The classic Excel waterfall chart â€” show how each income/expense item contributes to a running total. Essential for P&L summaries.</p>
+      <h1>Free Waterfall Chart Generator — Cash Flow and P&L Visualisation</h1>
+      <p class="subhead">The classic Excel waterfall chart — show how each income/expense item contributes to a running total. Essential for P&L summaries.</p>
     </div>
   </fragment>
   <div class="tool-intro" style="max-width:720px;margin:0 auto 28px;">
-    <p>A waterfall chart shows how individual items â€” revenues, costs, and adjustments â€” contribute to a starting total and arrive at a final figure. Paste your data with a label and amount for each item and the tool generates a professionally formatted waterfall chart instantly. Green bars show increases, red bars show decreases, and dark bars mark totals. Export as PDF for presentations or Excel for further editing.</p>
+    <p>A waterfall chart shows how individual items — revenues, costs, and adjustments — contribute to a starting total and arrive at a final figure. Paste your data with a label and amount for each item and the tool generates a professionally formatted waterfall chart instantly. Green bars show increases, red bars show decreases, and dark bars mark totals. Export as PDF for presentations or Excel for further editing.</p>
   </div>
   <fragment slot="tool">
     <div class="calculator-card">
@@ -102,25 +102,25 @@ const faqSchema = {
   <fragment slot="seo">
     <div class="seo-body">
       <h2>What is a waterfall chart and when should you use it?</h2>
-      <p>A waterfall chart is a data visualisation that shows how a starting value is incrementally affected by a series of positive and negative contributions to reach a final value. Each bar starts at the level where the previous bar ended, creating a "floating" effect that reveals the step-by-step progression. Finance teams use waterfall charts for P&L summaries, cash flow statements, budget bridges, and any analysis where you need to explain the gap between two figures â€” for example, beginning cash vs. ending cash, or budgeted profit vs. actual profit.</p>
+      <p>A waterfall chart is a data visualisation that shows how a starting value is incrementally affected by a series of positive and negative contributions to reach a final value. Each bar starts at the level where the previous bar ended, creating a "floating" effect that reveals the step-by-step progression. Finance teams use waterfall charts for P&L summaries, cash flow statements, budget bridges, and any analysis where you need to explain the gap between two figures — for example, beginning cash vs. ending cash, or budgeted profit vs. actual profit.</p>
 
       <h2>How to format your data for a waterfall chart</h2>
       <p>Your data needs two columns: Label and Amount. Positive amounts are shown as green bars (increases), negative amounts as red bars (decreases). The first row is treated as the starting total and is shown as a full-height dark bar. The last row is the ending total, also shown as a full-height bar. Everything in between is a delta. For a typical cash flow waterfall, you might have: Beginning Cash (first row, total), then Revenue, COGS, Salaries, Marketing, Rent, and then Ending Cash (last row, total).</p>
 
       <h2>Waterfall charts in Excel vs this tool</h2>
-      <p>Creating a waterfall chart in Excel traditionally required a stacked bar chart with a hidden bottom series â€” a workaround that takes 15-20 minutes to set up and format correctly. Excel 2016 and later includes a native waterfall chart type, but it still requires careful data arrangement and manual formatting to look professional. This tool produces the same output in under a minute: paste your data, click Build, and the chart is ready.</p>
+      <p>Creating a waterfall chart in Excel traditionally required a stacked bar chart with a hidden bottom series — a workaround that takes 15-20 minutes to set up and format correctly. Excel 2016 and later includes a native waterfall chart type, but it still requires careful data arrangement and manual formatting to look professional. This tool produces the same output in under a minute: paste your data, click Build, and the chart is ready.</p>
 
       <h2>Using waterfall charts in investor and board presentations</h2>
-      <p>Waterfall charts are one of the most effective ways to communicate financial change to stakeholders. A revenue bridge â€” showing how volume, price, mix, and FX each contributed to the change from prior year revenue â€” is a classic board presentation slide. Export as PDF and insert the page into your PowerPoint or Google Slides deck. The clean formatting means zero additional design work.</p>
+      <p>Waterfall charts are one of the most effective ways to communicate financial change to stakeholders. A revenue bridge — showing how volume, price, mix, and FX each contributed to the change from prior year revenue — is a classic board presentation slide. Export as PDF and insert the page into your PowerPoint or Google Slides deck. The clean formatting means zero additional design work.</p>
 
       <h2>Frequently asked questions</h2>
       <div class="faq-item">
         <h3>How do I mark a row as a total vs a delta?</h3>
-        <p>The first and last rows are automatically treated as totals (shown as full-height bars). For intermediate totals like Gross Profit in a P&L, enter it as a separate row â€” the tool calculates it from the running total automatically.</p>
+        <p>The first and last rows are automatically treated as totals (shown as full-height bars). For intermediate totals like Gross Profit in a P&L, enter it as a separate row — the tool calculates it from the running total automatically.</p>
       </div>
       <div class="faq-item">
         <h3>Can I enter a Gross Profit row that auto-calculates?</h3>
-        <p>Enter the row with its label and leave the amount blank or enter 0 â€” the tool will show the running total at that point as the bar height.</p>
+        <p>Enter the row with its label and leave the amount blank or enter 0 — the tool will show the running total at that point as the bar height.</p>
       </div>
       <div class="faq-item">
         <h3>What is the difference between a waterfall chart and a stacked bar chart?</h3>

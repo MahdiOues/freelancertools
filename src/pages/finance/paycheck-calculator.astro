@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -7,7 +7,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Paycheck Calculator",
   "description": "Calculate your take-home pay after federal and state taxes. Supports salary and hourly with all 50 state tax rates.",
-  "url": "https://megalancer.online/finance/paycheck-calculator/",
+  "url": "https://www.megalancer.online/finance/paycheck-calculator/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="Paycheck Calculator â€” Take-Home Pay"
+  title="Paycheck Calculator — Take-Home Pay"
   description="Calculate your net pay after federal income tax, FICA, and state tax. Supports salary and hourly pay with 2024/2025 tax brackets."
-  canonicalUrl="https://megalancer.online/finance/paycheck-calculator/"
+  canonicalUrl="https://www.megalancer.online/finance/paycheck-calculator/"
   schema={schema}
   breadcrumb={[{ label: 'Finance', href: '/finance/' }, { label: 'Paycheck Calculator' }]}
   relatedTools={[
@@ -97,7 +97,7 @@ const schema = {
   <fragment slot="seo">
     <div class="seo-body">
       <h2>How your paycheck is calculated</h2>
-      <p>Your gross pay is reduced by three main types of taxes: federal income tax (using progressive brackets), Social Security and Medicare (FICA â€” 7.65% total), and state income tax (varies by state, from 0% in Texas to 13.3% in California). Your net pay is what's left after all deductions.</p>
+      <p>Your gross pay is reduced by three main types of taxes: federal income tax (using progressive brackets), Social Security and Medicare (FICA — 7.65% total), and state income tax (varies by state, from 0% in Texas to 13.3% in California). Your net pay is what's left after all deductions.</p>
       <p>This calculator uses 2024/2025 federal tax brackets and includes all 50 states' income tax rates (or zero for states with no income tax). It estimates federal tax using the standard deduction and simplifies withholding calculations. For exact amounts, consult your payroll department or tax professional.</p>
       <h2>Understanding withholding</h2>
       <p>Your employer withholds taxes from each paycheck based on the W-4 form you filled out. If too little is withheld, you owe at tax time. If too much, you get a refund. This calculator helps you estimate your per-paycheck withholding so you can adjust your W-4 if needed.</p>
@@ -105,8 +105,8 @@ const schema = {
       <div class="sources">
         <h3>Sources</h3>
         <ul>
-          <li><a href="https://www.irs.gov/pub/irs-pdf/p15t.pdf" rel="nofollow noopener" target="_blank">IRS Publication 15-T â€” Federal Income Tax Withholding Methods</a></li>
-          <li><a href="https://www.ssa.gov/oact/cola/cbb.html" rel="nofollow noopener" target="_blank">Social Security Administration â€” Contribution and Benefit Base</a></li>
+          <li><a href="https://www.irs.gov/pub/irs-pdf/p15t.pdf" rel="nofollow noopener" target="_blank">IRS Publication 15-T — Federal Income Tax Withholding Methods</a></li>
+          <li><a href="https://www.ssa.gov/oact/cola/cbb.html" rel="nofollow noopener" target="_blank">Social Security Administration — Contribution and Benefit Base</a></li>
           <li>State tax rates sourced from each state's department of revenue (2025)</li>
         </ul>
       </div>
@@ -133,7 +133,7 @@ const stdDeduction = { single: 14600, married: 29200, head: 21900 };
 function populateStates() {
   const sel = document.getElementById('state');
   Object.entries(stateTax).forEach(([code, rate]) => {
-    sel.innerHTML += `<option value="${code}">${code} â€” ${rate > 0 ? rate + '%' : 'No income tax'}</option>`;
+    sel.innerHTML += `<option value="${code}">${code} — ${rate > 0 ? rate + '%' : 'No income tax'}</option>`;
   });
   sel.value = 'CA';
 }

@@ -1,4 +1,4 @@
-ï»¿---
+---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -7,7 +7,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Free Unit Converter",
   "description": "Convert between units of length, weight, temperature, volume, speed, area, energy, and pressure. All in one page.",
-  "url": "https://megalancer.online/math/unit-converter/",
+  "url": "https://www.megalancer.online/math/unit-converter/",
   "applicationCategory": "BusinessApplication",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0" }
@@ -15,9 +15,9 @@ const schema = {
 ---
 
 <Tool
-  title="Unit Converter â€” Length, Weight & Temp"
+  title="Unit Converter — Length, Weight & Temp"
   description="Convert between 8 categories of units instantly. Length, weight, temperature, volume, speed, area, energy, and pressure conversions."
-  canonicalUrl="https://megalancer.online/math/unit-converter/"
+  canonicalUrl="https://www.megalancer.online/math/unit-converter/"
   schema={schema}
   breadcrumb={[{ label: 'Math', href: '/math/' }, { label: 'Unit Converter' }]}
   relatedTools={[
@@ -89,7 +89,7 @@ const units = {
   temperature: { C: 'celsius', F: 'fahrenheit', K: 'kelvin' },
   volume: { L: 1, mL: 0.001, gal: 3.78541, qt: 0.946353, pt: 0.473176, cup: 0.236588, floz: 0.0295735, tbsp: 0.0147868, tsp: 0.00492892 },
   speed: { 'km/h': 0.277778, 'm/s': 1, 'mph': 0.44704, 'knot': 0.514444, 'ft/s': 0.3048 },
-  area: { 'mÂ²': 1, 'kmÂ²': 1000000, 'ftÂ²': 0.092903, 'inÂ²': 0.00064516, 'acre': 4046.86, 'ha': 10000, 'miÂ²': 2589988 },
+  area: { 'm²': 1, 'km²': 1000000, 'ft²': 0.092903, 'in²': 0.00064516, 'acre': 4046.86, 'ha': 10000, 'mi²': 2589988 },
   energy: { J: 1, kJ: 1000, cal: 4.184, kcal: 4184, kWh: 3600000, BTU: 1055.06 },
   pressure: { Pa: 1, kPa: 1000, bar: 100000, psi: 6894.76, atm: 101325, mmHg: 133.322 }
 };
@@ -99,7 +99,7 @@ const unitLabels = {
   temperature: ['C','F','K'],
   volume: ['L','mL','gal','qt','pt','cup','floz','tbsp','tsp'],
   speed: ['km/h','m/s','mph','knot','ft/s'],
-  area: ['mÂ²','kmÂ²','ftÂ²','inÂ²','acre','ha','miÂ²'],
+  area: ['m²','km²','ft²','in²','acre','ha','mi²'],
   energy: ['J','kJ','cal','kcal','kWh','BTU'],
   pressure: ['Pa','kPa','bar','psi','atm','mmHg']
 };
