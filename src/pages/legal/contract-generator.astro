@@ -42,15 +42,6 @@ const schema = {
       <div class="calculator-card-body">
       <div class="field-grid">
         <div class="field">
-          <label class="field-label">Language</label>
-          <select id="language">
-            <option value="English">English</option>
-            <option value="Spanish">Spanish</option>
-            <option value="French">French</option>
-            <option value="German">German</option>
-          </select>
-        </div>
-        <div class="field">
           <label class="field-label">Document type</label>
           <div id="docType">
             <label style="display: block; margin-bottom: 6px; font-size: 14px;"><input type="radio" name="docType" value="Freelance Contract" checked /> Freelance Contract</label>
@@ -556,6 +547,7 @@ function generateNDA(data) {
     { heading: 'Exclusions', body: pick(ndaExclusions) },
     { heading: 'Duration', body: fill(pick(ndaDuration), data) },
     { heading: 'Governing Law', body: pick(ndaJurisdiction) },
+    { heading: 'Signature', body: `IN WITNESS WHEREOF, the Parties have executed this Non-Disclosure Agreement as of the date set forth above.\n\n${data.party1} (Name): ___________________________\nSignature: ___________________________\nDate: ___________________________\n\n${data.party2} (Name): ___________________________\nSignature: ___________________________\nDate: ___________________________` },
   ];
 }
 

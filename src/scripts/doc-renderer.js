@@ -4,7 +4,7 @@
 }
 
 function esc(s) {
-  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br />');
 }
 
 function renderClassic({ title, from, to, sections, date, num, docType }) {
@@ -26,7 +26,7 @@ function renderClassic({ title, from, to, sections, date, num, docType }) {
   </div>
   ${sections.map(s => `
   <div class="doc-classic__section">
-    <div class="doc-section-head">${esc(s.heading)}</div>
+    ${s.heading ? `<div class="doc-section-head">${esc(s.heading)}</div>` : ''}
     <div class="doc-section-body">${esc(s.body)}</div>
   </div>`).join('')}
   ${!isInvoice && !isNda ? `
@@ -71,7 +71,7 @@ function renderModern({ title, from, to, sections, date, num, docType }) {
     </div>
     ${sections.map(s => `
     <div class="doc-modern__clause">
-      <div class="doc-modern__clause-head">${esc(s.heading)}</div>
+      ${s.heading ? `<div class="doc-modern__clause-head">${esc(s.heading)}</div>` : ''}
       <div class="doc-modern__clause-body">${esc(s.body)}</div>
     </div>`).join('')}
     ${!isInvoice && !isNda ? `
@@ -107,7 +107,7 @@ function renderMinimal({ title, from, to, sections, date, num, docType }) {
   </div>
   ${sections.map((s, i) => `
   <div class="doc-minimal__section">
-    <div class="doc-minimal__num">0${i + 1}. ${esc(s.heading.toUpperCase())}</div>
+    ${s.heading ? `<div class="doc-minimal__num">0${i + 1}. ${esc(s.heading.toUpperCase())}</div>` : ''}
     <div class="doc-section-body">${esc(s.body)}</div>
   </div>`).join('')}
   ${!isInvoice && !isNda ? `

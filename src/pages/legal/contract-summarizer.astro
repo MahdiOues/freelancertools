@@ -72,7 +72,7 @@ async function callAI(prompt, systemPrompt = '') {
     },
     body: JSON.stringify({
       model: 'claude-sonnet-4-20250514',
-      max_tokens: 1000,
+      max_tokens: 3000,
       system: systemPrompt,
       messages: [{ role: 'user', content: prompt }],
     }),
@@ -107,8 +107,10 @@ async function summarize() {
   try {
     const text = await callAI(prompt, systemPrompt);
     const formatted = text
-      .replace(/\[RISKY\]/g, '</p><div style="border-left: 3px solid var(--danger); padding-left: 16px; margin: 12px 0;"><p style="font-weight: 600; color: var(--danger); font-size: 14px;">RISKY</p><p style="font-size: 14px;">')
-      .replace(/##/g, '</p><h2 style="margin-top: 24px;">')
+      .replace(/\[RISKY\]\s*([\s\S]*?)(?=\n\n|\n#|$)/gm, '</p><div style="border-left: 3px solid var(--danger); padding-left: 16px; margin: 12px 0;"><p style="font-weight: 600; color: var(--danger); font-size: 14px;">RISKY</p><p style="font-size: 14px;">$1</p></div>')
+      .replace(/^### /gm, '</p><h3 style="margin-top: 24px;">')
+      .replace(/^## /gm, '</p><h2 style="margin-top: 24px;">')
+      .replace(/^# /gm, '</p><h1 style="margin-top: 24px;">')
       .replace(/\n\n/g, '</p><p>')
       .replace(/\n/g, '<br />');
     resultArea.innerHTML = `<div style="font-size: 15px;"><p>${formatted}</p></div>`;
