@@ -1,4 +1,4 @@
----
+﻿---
 title: "The real cost of a mortgage: what banks don't tell you upfront"
 description: "Mortgage costs go far beyond the interest rate. Learn about PMI, closing costs, property taxes, and the true total cost of buying a home."
 date: 2026-03-10
@@ -8,7 +8,7 @@ relatedToolName: Free Mortgage Calculator
 ---
 
 <div class="quick-answer">
-  <strong>Quick Answer:</strong> The true cost of a mortgage includes interest (which doubles the purchase price over 30 years at 7%), closing costs (2�5% of loan amount), PMI if down payment is under 20%, property taxes, insurance, and maintenance (1% of home value annually).
+  <strong>Quick Answer:</strong> The true cost of a mortgage includes interest (which doubles the purchase price over 30 years at 7%), closing costs (2–5% of loan amount), PMI if down payment is under 20%, property taxes, insurance, and maintenance (1% of home value annually).
 </div>
 
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
@@ -17,13 +17,13 @@ When you get a mortgage pre-approval, the lender quotes an interest rate and a m
 
 ## The four components of your true monthly payment
 
-**Principal and interest (P&I)** — This is what the bank quotes. It covers repaying the loan plus interest. On a $400,000 loan at 6.5% for 30 years, P&I is $2,528 per month.
+**Principal and interest (P&I)** â€” This is what the bank quotes. It covers repaying the loan plus interest. On a $400,000 loan at 6.5% for 30 years, P&I is $2,528 per month.
 
-**Property taxes** — These vary by location but typically run 0.5-2% of the home's value annually. On a $500,000 home, that is $250-$833 per month. Many homeowners forget to factor this in.
+**Property taxes** â€” These vary by location but typically run 0.5-2% of the home's value annually. On a $500,000 home, that is $250-$833 per month. Many homeowners forget to factor this in.
 
-**Homeowners insurance** — Expect $800-$2,000 per year depending on location, home age, and coverage. That adds $67-$167 per month.
+**Homeowners insurance** â€” Expect $800-$2,000 per year depending on location, home age, and coverage. That adds $67-$167 per month.
 
-**Private mortgage insurance (PMI)** — If you put down less than 20%, PMI costs 0.5-1% of the loan amount per year. On a $400,000 loan, that is $167-$333 per month until you reach 20% equity.
+**Private mortgage insurance (PMI)** â€” If you put down less than 20%, PMI costs 0.5-1% of the loan amount per year. On a $400,000 loan, that is $167-$333 per month until you reach 20% equity.
 
 ## The total picture
 
@@ -58,7 +58,7 @@ Use the [Mortgage Calculator](/finance/mortgage-calculator/) to see the true mon
 <details>
 <summary>What is the true cost of a 30-year mortgage?</summary>
 
-The true cost of a 30-year mortgage includes the purchase price plus all the interest you pay over the life of the loan. On a $400,000 mortgage at 7%, you will pay roughly $558,000 in interest alone, bringing the total cost to $958,000 — more than double the original loan amount.
+The true cost of a 30-year mortgage includes the purchase price plus all the interest you pay over the life of the loan. On a $400,000 mortgage at 7%, you will pay roughly $558,000 in interest alone, bringing the total cost to $958,000 â€” more than double the original loan amount.
 </details>
 
 <details>
@@ -70,7 +70,7 @@ On a $300,000, 30-year fixed mortgage at 7%, you will pay approximately $418,527
 <details>
 <summary>How does a lower rate affect total cost?</summary>
 
-Dropping the rate from 7% to 5% on a $300,000, 30-year mortgage reduces total interest from $418,527 to $279,768 — saving you $138,759. Even a 1% rate drop saves roughly $60,000 in interest over 30 years on a $300,000 loan.
+Dropping the rate from 7% to 5% on a $300,000, 30-year mortgage reduces total interest from $418,527 to $279,768 â€” saving you $138,759. Even a 1% rate drop saves roughly $60,000 in interest over 30 years on a $300,000 loan.
 </details>
 
 <details>

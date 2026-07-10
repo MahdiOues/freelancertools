@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to write a winning freelance proposal that gets clients"
 description: "Learn how to write proposals that win freelance projects. Structure, pricing, and proven templates for landing more clients."
 date: 2026-04-15
@@ -8,12 +8,12 @@ relatedToolName: Free Proposal Generator
 ---
 
 <div class="quick-answer">
-  <strong>Quick Answer:</strong> Start with a brief summary of the client's problem, then explain your approach, deliverables, timeline, and investment. Show you understand their specific situation. Keep it concise � decision-makers stop reading after two pages.
+  <strong>Quick Answer:</strong> Start with a brief summary of the client's problem, then explain your approach, deliverables, timeline, and investment. Show you understand their specific situation. Keep it concise — decision-makers stop reading after two pages.
 </div>
 
-A great proposal is the difference between landing a client and getting ghosted. But most freelancers get proposals wrong. They write about themselves — their experience, their process, their portfolio. The client reads it and thinks "so what?"
+A great proposal is the difference between landing a client and getting ghosted. But most freelancers get proposals wrong. They write about themselves â€” their experience, their process, their portfolio. The client reads it and thinks "so what?"
 
-Winning proposals do the opposite. They focus entirely on the client — their problem, their goals, and exactly how you will solve their problem. Here is how to write proposals that get you hired.
+Winning proposals do the opposite. They focus entirely on the client â€” their problem, their goals, and exactly how you will solve their problem. Here is how to write proposals that get you hired.
 
 ## What clients actually look for in a proposal
 
@@ -37,7 +37,7 @@ This proves you read their brief and understood it. If the project was posted on
 
 ### 2. The solution: describe your approach
 
-Explain how you will tackle the project. Do not go into every technical detail — focus on the outcome. "I will start with a content audit and wireframes to nail down the structure before any design work begins. This reduces revisions later and ensures the final site matches your vision."
+Explain how you will tackle the project. Do not go into every technical detail â€” focus on the outcome. "I will start with a content audit and wireframes to nail down the structure before any design work begins. This reduces revisions later and ensures the final site matches your vision."
 
 This is where you show expertise. A client who does not know design will not care about your grid system. They care that you have a process that eliminates guesswork.
 
@@ -67,7 +67,7 @@ Make it easy to say yes. A one-click response is better than a five-step process
 
 **Being vague.** "I will design a great website" is meaningless. "I will build a five-page site with a homepage, portfolio, services, about, and contact page" is a promise the client can hold you to.
 
-**Ignoring the instructions.** If the client asked for specific information in the proposal, include it. Some clients use the instructions as a filter — skip them and your proposal goes in the trash.
+**Ignoring the instructions.** If the client asked for specific information in the proposal, include it. Some clients use the instructions as a filter â€” skip them and your proposal goes in the trash.
 
 ## Templates versus custom proposals
 
@@ -82,7 +82,7 @@ A winning proposal answers the client's three questions: do you understand my pr
 ## Frequently asked questions
 
 <details><summary>What should a freelance proposal include?</summary>
-A winning proposal includes a brief summary of the client's problem, your proposed solution, deliverables and timeline, pricing, relevant experience or case studies, and a clear next step. Keep it to 3-5 pages — clients spend an average of 2-3 minutes reading proposals before deciding.
+A winning proposal includes a brief summary of the client's problem, your proposed solution, deliverables and timeline, pricing, relevant experience or case studies, and a clear next step. Keep it to 3-5 pages â€” clients spend an average of 2-3 minutes reading proposals before deciding.
 </details>
 
 <details><summary>How long should a freelance proposal be?</summary>
@@ -94,7 +94,7 @@ Break your pricing into clear line items or phases so the client understands wha
 </details>
 
 <details><summary>What is the difference between a proposal and a quote?</summary>
-A proposal is a sales document that explains the problem and solution — it persuades the client to hire you. A quote is a simple price list for specific services. Proposals are for new client relationships; quotes are for repeat clients who already know your value.
+A proposal is a sales document that explains the problem and solution â€” it persuades the client to hire you. A quote is a simple price list for specific services. Proposals are for new client relationships; quotes are for repeat clients who already know your value.
 </details>
 
 <details><summary>How do I follow up on a proposal?</summary>

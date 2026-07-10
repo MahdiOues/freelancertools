@@ -1,4 +1,4 @@
----
+﻿---
 title: "The science of sleep: how much do you really need?"
 description: "Learn how much sleep you need by age, the stages of sleep, and how sleep quality affects your health, productivity, and longevity."
 date: 2026-04-01
@@ -8,7 +8,7 @@ relatedToolName: Free Sleep Calculator
 ---
 
 <div class="quick-answer">
-  <strong>Quick Answer:</strong> Adults need 7�9 hours of sleep per night according to the National Sleep Foundation. Sleep deprivation impairs cognitive function, immune response, and emotional regulation. Consistency in sleep and wake times matters more than total hours alone.
+  <strong>Quick Answer:</strong> Adults need 7–9 hours of sleep per night according to the National Sleep Foundation. Sleep deprivation impairs cognitive function, immune response, and emotional regulation. Consistency in sleep and wake times matters more than total hours alone.
 </div>
 
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
@@ -27,7 +27,7 @@ Less than 6 hours per night consistently is associated with increased risk of ob
 
 Sleep cycles through four stages every 90 minutes or so. Stage one is light sleep where you can be easily woken. Stage two is deeper light sleep where body temperature drops and heart rate slows. Stage three is deep sleep or slow-wave sleep, which is critical for physical recovery, immune function, and growth hormone release.
 
-REM sleep — rapid eye movement — is when most dreaming occurs. This stage is crucial for memory consolidation, emotional regulation, and creative problem-solving. In a full night, you spend roughly 20 to 25 percent of sleep time in REM and the same in deep sleep.
+REM sleep â€” rapid eye movement â€” is when most dreaming occurs. This stage is crucial for memory consolidation, emotional regulation, and creative problem-solving. In a full night, you spend roughly 20 to 25 percent of sleep time in REM and the same in deep sleep.
 
 Waking up in the middle of deep sleep leaves you feeling groggy. Waking up at the end of a REM cycle feels more natural. This is why sleep cycle alarms that track your sleep stage can make a noticeable difference in morning energy.
 
@@ -35,7 +35,7 @@ Waking up in the middle of deep sleep leaves you feeling groggy. Waking up at th
 
 Sleep quality is defined by how quickly you fall asleep (under 30 minutes), how often you wake during the night (once or not at all), and how much time you spend in deep and REM sleep.
 
-Common quality disruptors include caffeine within 8 hours of bedtime, alcohol (which fragments sleep even if it helps you fall asleep), blue light from screens, and an inconsistent sleep schedule. A bedroom that is too warm (above 70°F) also reduces deep sleep.
+Common quality disruptors include caffeine within 8 hours of bedtime, alcohol (which fragments sleep even if it helps you fall asleep), blue light from screens, and an inconsistent sleep schedule. A bedroom that is too warm (above 70Â°F) also reduces deep sleep.
 
 ## Calculating your ideal bedtime
 
@@ -61,7 +61,7 @@ A sleep cycle lasts about 90 minutes and includes four stages: light sleep (stag
 
 <details><summary>What is the best time to go to sleep?</summary>
 
-The best bedtime is one that allows you to complete 5 to 6 full sleep cycles before your wake time. If you wake at 6:30 AM and need 8 hours of sleep, a bedtime of 10:00 PM (allowing 30 minutes to fall asleep) works well. Consistency matters most — going to bed and waking at the same time daily strengthens your circadian rhythm.
+The best bedtime is one that allows you to complete 5 to 6 full sleep cycles before your wake time. If you wake at 6:30 AM and need 8 hours of sleep, a bedtime of 10:00 PM (allowing 30 minutes to fall asleep) works well. Consistency matters most â€” going to bed and waking at the same time daily strengthens your circadian rhythm.
 
 </details>
 

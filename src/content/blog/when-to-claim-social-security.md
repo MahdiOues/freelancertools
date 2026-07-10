@@ -1,4 +1,4 @@
----
+﻿---
 title: "When should you claim Social Security? The breakeven math explained"
 description: "The breakeven age for Social Security determines when delaying benefits pays off. See the math behind claiming at 62 vs 67 vs 70 and find your optimal age."
 date: 2026-03-20
@@ -8,7 +8,7 @@ relatedToolName: Free Social Security Estimator
 ---
 
 <div class="quick-answer">
-  <strong>Quick Answer:</strong> Claiming at 62 gives you reduced benefits for life (about 30% less than full retirement age). Waiting until 70 increases benefits by 8% per year past full retirement age. The breakeven age is usually around 78�80 � if you expect to live longer, wait.
+  <strong>Quick Answer:</strong> Claiming at 62 gives you reduced benefits for life (about 30% less than full retirement age). Waiting until 70 increases benefits by 8% per year past full retirement age. The breakeven age is usually around 78–80 — if you expect to live longer, wait.
 </div>
 
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
@@ -39,7 +39,7 @@ Men aged 65 have an average life expectancy of about 84. Women about 86. If you 
 
 ## Other factors to consider
 
-If you plan to work past 62, your benefits are reduced by $1 for every $2 you earn above the annual limit ($22,320 in 2025). Once you reach FRA, there is no earnings penalty. If you are married, coordinating spousal and survivor benefits adds complexity — the higher earner waiting benefits both.
+If you plan to work past 62, your benefits are reduced by $1 for every $2 you earn above the annual limit ($22,320 in 2025). Once you reach FRA, there is no earnings penalty. If you are married, coordinating spousal and survivor benefits adds complexity â€” the higher earner waiting benefits both.
 
 Use the [Social Security Estimator](/finance/social-security-estimator/) to compare your benefits at every claiming age from 62 to 70.
 
@@ -54,7 +54,7 @@ The best age depends on your health, life expectancy, and financial needs. For a
 <details>
 <summary>How much does my benefit increase if I delay claiming?</summary>
 
-Benefits increase by 8% per year for each year you delay past full retirement age (FRA), up to age 70. If your FRA benefit at 67 is $2,000/month, waiting until 70 increases it to $2,480/month — a 24% permanent increase. Claiming at 62 instead of 67 reduces benefits by approximately 30%.
+Benefits increase by 8% per year for each year you delay past full retirement age (FRA), up to age 70. If your FRA benefit at 67 is $2,000/month, waiting until 70 increases it to $2,480/month â€” a 24% permanent increase. Claiming at 62 instead of 67 reduces benefits by approximately 30%.
 </details>
 
 <details>

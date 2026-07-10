@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to estimate freelance projects accurately every time"
 description: "Learn how to estimate freelance project timelines and costs. Avoid underquoting with proven techniques for scoping and pricing projects."
 date: 2026-04-12
@@ -8,7 +8,7 @@ relatedToolName: Free Project Estimator
 ---
 
 <div class="quick-answer">
-  <strong>Quick Answer:</strong> Break the project into individual tasks, estimate each one separately, add 25�50% buffer for surprises, and never give a firm price on the spot. Track your actual hours against estimates to calibrate future quotes.
+  <strong>Quick Answer:</strong> Break the project into individual tasks, estimate each one separately, add 25–50% buffer for surprises, and never give a firm price on the spot. Track your actual hours against estimates to calibrate future quotes.
 </div>
 
 Underquoting is the fastest way to lose money as a freelancer. You give a price based on your best guess, the project takes twice as long, and suddenly you are earning less than minimum wage. It happens to every freelancer at least once. The goal is to make it happen only once.
@@ -39,7 +39,7 @@ The last point is the most important. Stating what is out of scope protects you 
 
 ### Step 2: Break the project into tasks
 
-A project is not one thing — it is a list of tasks. Write every single one down. For a website project, the list might include:
+A project is not one thing â€” it is a list of tasks. Write every single one down. For a website project, the list might include:
 
 - Kickoff meeting
 - Content gathering
@@ -108,7 +108,7 @@ A 20-30% buffer on hours is standard for most freelance projects. For projects w
 </details>
 
 <details><summary>How do I estimate a project with unclear requirements?</summary>
-Quote a range rather than a fixed price, or charge hourly until the requirements solidify. Alternatively, propose a discovery phase — a paid scoping engagement of 5-10 hours to define the full requirements before you commit to a fixed project price.
+Quote a range rather than a fixed price, or charge hourly until the requirements solidify. Alternatively, propose a discovery phase â€” a paid scoping engagement of 5-10 hours to define the full requirements before you commit to a fixed project price.
 </details>
 
 <details><summary>Should I charge hourly or per project?</summary>

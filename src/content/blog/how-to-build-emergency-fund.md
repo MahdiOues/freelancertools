@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to build an emergency fund in 6 months or less"
 description: "A step-by-step guide to building a 3-6 month emergency fund. Learn how much you need, where to keep it, and how to save faster."
 date: 2026-02-18
@@ -8,7 +8,7 @@ relatedToolName: Free Budget Planner
 ---
 
 <div class="quick-answer">
-  <strong>Quick Answer:</strong> Aim for 3�6 months of essential expenses. Automate a fixed transfer to a high-yield savings account on payday. Cut non-essential spending temporarily and redirect windfalls (tax refunds, bonuses) to accelerate savings.
+  <strong>Quick Answer:</strong> Aim for 3–6 months of essential expenses. Automate a fixed transfer to a high-yield savings account on payday. Cut non-essential spending temporarily and redirect windfalls (tax refunds, bonuses) to accelerate savings.
 </div>
 
 An emergency fund is your financial safety net. It is the money you set aside for unexpected expenses: a car repair, a medical bill, or a job loss. Without one, a single surprise bill can push you into credit card debt. With one, you sleep better knowing you can handle whatever comes.

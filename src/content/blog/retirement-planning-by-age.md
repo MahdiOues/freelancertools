@@ -1,4 +1,4 @@
----
+﻿---
 title: "How to plan for retirement in your 30s, 40s, and 50s"
 description: "Retirement planning guide by decade. Learn how much to save, where to invest, and what milestones to hit in your 30s, 40s, and 50s."
 date: 2026-01-20
@@ -8,7 +8,7 @@ relatedToolName: Free Retirement Calculator
 ---
 
 <div class="quick-answer">
-  <strong>Quick Answer:</strong> In your 30s, focus on maximizing retirement account contributions and paying off high-interest debt. In your 40s, increase savings rate to 15�20% of income. In your 50s, max out catch-up contributions and create a detailed withdrawal strategy.
+  <strong>Quick Answer:</strong> In your 30s, focus on maximizing retirement account contributions and paying off high-interest debt. In your 40s, increase savings rate to 15–20% of income. In your 50s, max out catch-up contributions and create a detailed withdrawal strategy.
 </div>
 
 Retirement planning looks different at every stage of your career. The decisions you make in your 30s, 40s, and 50s have a compounding effect on your financial future. The earlier you start, the less you need to save each month to reach the same goal. But no matter where you are, the best time to adjust your plan is today.
@@ -19,11 +19,11 @@ Your 30s are the most powerful decade for retirement savings because time is on 
 
 **How much to save.** Aim to save 15% of your gross income for retirement, including any employer match. If you cannot hit 15% yet, start at 10% and increase by 1% every year. The key is automating contributions so you never see the money in your checking account.
 
-**Where to invest.** Focus on tax-advantaged accounts first. If you have a 401(k) with an employer match, contribute enough to get the full match — that is free money. Then max a Roth IRA if your income allows. Any additional savings go back into your 401(k) or a taxable brokerage account.
+**Where to invest.** Focus on tax-advantaged accounts first. If you have a 401(k) with an employer match, contribute enough to get the full match â€” that is free money. Then max a Roth IRA if your income allows. Any additional savings go back into your 401(k) or a taxable brokerage account.
 
 **Milestones to hit.** By age 30, aim to have saved the equivalent of your annual salary. By 35, target 1.5 to 2 times your salary. These are rough benchmarks, not hard rules. If you are behind, do not panic. Increasing your savings rate by a few percent makes a big difference over 30 years.
 
-**What to avoid.** Do not cash out retirement accounts when changing jobs. Do not invest too conservatively — you have decades to ride out market downturns. And do not let lifestyle inflation consume every raise. When your income goes up, increase your savings rate.
+**What to avoid.** Do not cash out retirement accounts when changing jobs. Do not invest too conservatively â€” you have decades to ride out market downturns. And do not let lifestyle inflation consume every raise. When your income goes up, increase your savings rate.
 
 ## Your 40s: Accelerate and optimize
 
@@ -31,7 +31,7 @@ Your 40s are the peak earning years for most people. This is the time to acceler
 
 **How much to save.** If you were at 15% in your 30s, consider bumping it to 20% or 25% now. Catch-up contributions become available at 50, but you do not want to rely on them. The more you save now, the less pressure you feel later.
 
-**Where to invest.** Rebalance your portfolio to maintain your target asset allocation. By your 40s, you should have a clear strategy — typically 70-80% stocks, 20-30% bonds. Avoid making emotional decisions during market volatility. Stick to your plan.
+**Where to invest.** Rebalance your portfolio to maintain your target asset allocation. By your 40s, you should have a clear strategy â€” typically 70-80% stocks, 20-30% bonds. Avoid making emotional decisions during market volatility. Stick to your plan.
 
 **Milestones to hit.** By age 40, aim for 2 to 3 times your salary saved. By 45, target 3 to 4 times. By 50, 4 to 6 times. If you are behind, consider working with a fee-only financial planner who can help you build a catch-up plan.
 
@@ -53,7 +53,7 @@ Your 50s are the last decade before retirement. This is when you lock in your pl
 
 All of these guidelines are general. Your actual numbers depend on your expected retirement age, spending needs, investment returns, and many other variables. Use the [Retirement Calculator](/finance/retirement-calculator/) to run your own scenarios. Enter your current savings, monthly contributions, and target retirement age to see if you are on track.
 
-Run multiple scenarios — optimistic and conservative — to understand the range of possible outcomes. Adjust your savings rate until you feel confident in the plan. A few hours of planning now can save you years of uncertainty later.
+Run multiple scenarios â€” optimistic and conservative â€” to understand the range of possible outcomes. Adjust your savings rate until you feel confident in the plan. A few hours of planning now can save you years of uncertainty later.
 
 The most important takeaway is to start where you are. The best retirement plan is the one you actually follow, adjusted as your life changes.
 
@@ -80,10 +80,10 @@ Most estimates say you need between $1 million and $1.5 million to retire comfor
 <details>
 <summary>What is the 4% rule in retirement?</summary>
 
-The 4% rule says you can withdraw 4% of your retirement portfolio in your first year of retirement and adjust for inflation each year, and your money should last at least 30 years. On a $1 million portfolio, you withdraw $40,000 in year one. This rule comes from the Trinity Study and is a starting point, not a guarantee — many retirees use 3.5% to be more conservative.
+The 4% rule says you can withdraw 4% of your retirement portfolio in your first year of retirement and adjust for inflation each year, and your money should last at least 30 years. On a $1 million portfolio, you withdraw $40,000 in year one. This rule comes from the Trinity Study and is a starting point, not a guarantee â€” many retirees use 3.5% to be more conservative.
 </details>
 
 <details>
 <summary>Should I choose a Roth IRA or traditional 401k?</summary>
 
-Choose a Roth IRA if you expect to be in a higher tax bracket in retirement — you pay taxes now and withdraw tax-free later. Choose a traditional 401(k) if you want a tax break today and expect a lower tax bracket in retirement. Many people use both: contribute enough to the 401(k) to get the full employer match, then fund a Roth IRA up to the $7,000 limit.
+Choose a Roth IRA if you expect to be in a higher tax bracket in retirement â€” you pay taxes now and withdraw tax-free later. Choose a traditional 401(k) if you want a tax break today and expect a lower tax bracket in retirement. Many people use both: contribute enough to the 401(k) to get the full employer match, then fund a Roth IRA up to the $7,000 limit.

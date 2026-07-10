@@ -1,4 +1,4 @@
----
+﻿---
 title: "How much water should you drink daily? A science-based guide"
 description: "Learn how much water you really need each day based on your weight, activity level, and climate. Factors that increase your hydration needs."
 date: 2026-03-28
@@ -8,7 +8,7 @@ relatedToolName: Free Water Intake Calculator
 ---
 
 <div class="quick-answer">
-  <strong>Quick Answer:</strong> The general recommendation is 3.7 liters (125 oz) per day for men and 2.7 liters (91 oz) for women from all sources, including food. Adjust based on activity level, climate, and thirst � urine color should be pale yellow.
+  <strong>Quick Answer:</strong> The general recommendation is 3.7 liters (125 oz) per day for men and 2.7 liters (91 oz) for women from all sources, including food. Adjust based on activity level, climate, and thirst — urine color should be pale yellow.
 </div>
 
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
@@ -37,11 +37,11 @@ Illness with fever, vomiting, or diarrhea dramatically increases water loss. In 
 
 A reasonable formula is your body weight in pounds divided by two, giving you the target ounces per day as a baseline. A 180-pound person would target 90 ounces per day. Then add 12 ounces for every 30 minutes of exercise and adjust for climate.
 
-This formula is simple and accounts for the most significant variable — body size. Use the [Water Intake Calculator](/health/water-intake/) to get a personalized recommendation based on your full profile.
+This formula is simple and accounts for the most significant variable â€” body size. Use the [Water Intake Calculator](/health/water-intake/) to get a personalized recommendation based on your full profile.
 
 ## Signs you are dehydrated
 
-Dark urine is the most accessible indicator. Pale yellow means adequate hydration. Dark yellow or amber means you need water. Thirst is a late signal — by the time you feel thirsty, you are already mildly dehydrated.
+Dark urine is the most accessible indicator. Pale yellow means adequate hydration. Dark yellow or amber means you need water. Thirst is a late signal â€” by the time you feel thirsty, you are already mildly dehydrated.
 
 Other signs include headache, fatigue, dry mouth, reduced urine output, and difficulty concentrating. Chronic low-level dehydration is common and often goes unnoticed.
 
@@ -73,7 +73,7 @@ Yes, coffee and tea count toward your daily fluid intake. While caffeine has a m
 
 <details><summary>How do I know if I am dehydrated?</summary>
 
-Check your urine color — pale yellow indicates proper hydration, while dark yellow or amber means you need water. Other signs include headache, fatigue, dry mouth, reduced urine output, and difficulty concentrating. Thirst is a late signal; by the time you feel thirsty, you are already mildly dehydrated.
+Check your urine color â€” pale yellow indicates proper hydration, while dark yellow or amber means you need water. Other signs include headache, fatigue, dry mouth, reduced urine output, and difficulty concentrating. Thirst is a late signal; by the time you feel thirsty, you are already mildly dehydrated.
 
 </details>
 
