@@ -67,6 +67,61 @@ const schema = {
           <input type="number" id="duration" value="3" />
         </div>
       </div>
+      <div class="field">
+        <label class="field-label">Governing state</label>
+        <select id="governingState">
+          <option value="Alabama">Alabama</option>
+          <option value="Alaska">Alaska</option>
+          <option value="Arizona">Arizona</option>
+          <option value="Arkansas">Arkansas</option>
+          <option value="California" selected>California</option>
+          <option value="Colorado">Colorado</option>
+          <option value="Connecticut">Connecticut</option>
+          <option value="Delaware">Delaware</option>
+          <option value="Florida">Florida</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Hawaii">Hawaii</option>
+          <option value="Idaho">Idaho</option>
+          <option value="Illinois">Illinois</option>
+          <option value="Indiana">Indiana</option>
+          <option value="Iowa">Iowa</option>
+          <option value="Kansas">Kansas</option>
+          <option value="Kentucky">Kentucky</option>
+          <option value="Louisiana">Louisiana</option>
+          <option value="Maine">Maine</option>
+          <option value="Maryland">Maryland</option>
+          <option value="Massachusetts">Massachusetts</option>
+          <option value="Michigan">Michigan</option>
+          <option value="Minnesota">Minnesota</option>
+          <option value="Mississippi">Mississippi</option>
+          <option value="Missouri">Missouri</option>
+          <option value="Montana">Montana</option>
+          <option value="Nebraska">Nebraska</option>
+          <option value="Nevada">Nevada</option>
+          <option value="New Hampshire">New Hampshire</option>
+          <option value="New Jersey">New Jersey</option>
+          <option value="New Mexico">New Mexico</option>
+          <option value="New York">New York</option>
+          <option value="North Carolina">North Carolina</option>
+          <option value="North Dakota">North Dakota</option>
+          <option value="Ohio">Ohio</option>
+          <option value="Oklahoma">Oklahoma</option>
+          <option value="Oregon">Oregon</option>
+          <option value="Pennsylvania">Pennsylvania</option>
+          <option value="Rhode Island">Rhode Island</option>
+          <option value="South Carolina">South Carolina</option>
+          <option value="South Dakota">South Dakota</option>
+          <option value="Tennessee">Tennessee</option>
+          <option value="Texas">Texas</option>
+          <option value="Utah">Utah</option>
+          <option value="Vermont">Vermont</option>
+          <option value="Virginia">Virginia</option>
+          <option value="Washington">Washington</option>
+          <option value="West Virginia">West Virginia</option>
+          <option value="Wisconsin">Wisconsin</option>
+          <option value="Wyoming">Wyoming</option>
+        </select>
+      </div>
       <DocTemplatePicker />
 
       <button id="generateBtn" class="btn btn-primary btn-full">Generate NDA</button>
@@ -123,17 +178,17 @@ const INTROS = [
   "{{party1}} and {{party2}} wish to explore a working relationship and agree to protect each other's confidential information as follows.",
 ];
 
-const DEFS = [
-  "Confidential Information includes all business, financial, technical, and operational data shared regarding {{purpose}}.",
-  "For purposes of {{purpose}}, Confidential Information means any non-public information, documentation, or materials disclosed.",
-  "Confidential Information covers any data, strategies, processes, or intellectual property discussed in connection with {{purpose}}.",
-  "All information disclosed in relation to {{purpose}} that is marked as confidential or reasonably understood to be confidential is protected under this agreement.",
-  "Confidential Information includes, but is not limited to, business plans, financial data, technical specifications, and customer lists relevant to {{purpose}}.",
-  "Any information related to {{purpose}} that gives the disclosing party a competitive advantage is considered Confidential Information.",
-  "Protected information includes all proprietary materials, trade secrets, and business knowledge shared regarding {{purpose}}.",
-  "Confidential Information comprises all written, oral, or electronic information disclosed concerning {{purpose}}.",
-  "The term Confidential Information covers any sensitive business data exchanged during discussions about {{purpose}}.",
-  "Confidential Information is any non-public information pertaining to {{purpose}} that the designating party marks as confidential at the time of disclosure.",
+const DEFS_BOILERPLATE = [
+  "business plans, strategies, and financial projections",
+  "technical specifications, source code, and system architecture",
+  "customer lists, pricing data, and supplier information",
+  "trade secrets, inventions, and proprietary processes",
+  "marketing plans, sales data, and competitive analysis",
+  "employee and contractor information, including compensation",
+  "product roadmaps, research data, and unpublished materials",
+  "contract terms, legal strategies, and negotiation positions",
+  "manufacturing processes, formulas, and quality control methods",
+  "any information marked as confidential or reasonably understood to be confidential",
 ];
 
 const OBLIGATIONS = [
@@ -175,18 +230,25 @@ const DURATIONS = [
   "The term of confidentiality is {{duration}} years. Trade secret protections continue as long as the information remains a trade secret.",
 ];
 
-const GOVERNING_LAWS = [
-  "This agreement shall be governed by and construed in accordance with the laws of the State of New York.",
-  "Any disputes arising under this NDA shall be resolved in the courts of the State of California.",
-  "This agreement is governed by the laws of the State of Delaware. Both parties consent to jurisdiction in Delaware.",
-  "The laws of the State of Texas shall govern this agreement.",
-  "This NDA is governed by English law. The parties submit to the exclusive jurisdiction of the English courts.",
-  "The courts of the Province of Ontario shall have exclusive jurisdiction over any disputes related to this agreement.",
-  "This agreement shall be governed by the laws of the State of Washington.",
-  "The laws of the State of Illinois govern this NDA.",
-  "This NDA is governed by the federal laws of Australia.",
-  "The laws of the State of Florida shall apply to this agreement.",
+const TERM_TERMINATION = [
+  "This agreement will remain in effect for the duration set forth above. Either party may terminate this agreement at any time by providing 30 days written notice to the other party. Confidentiality obligations shall survive termination.",
+  "The term of this NDA begins on the date above and continues indefinitely until terminated by either party with 30 days written notice. Obligations related to confidentiality survive termination.",
+  "Either party may end this agreement by delivering 30 days advance written notice. Upon termination, the receiving party remains bound by confidentiality obligations for the full duration period.",
 ];
+
+const RETURN_INFO = [
+  "Upon the request of the Disclosing Party, the Receiving Party shall promptly return or destroy all copies of Confidential Information, including notes, summaries, and derivatives. The Receiving Party shall certify in writing that the return or destruction has been completed.",
+  "Within 14 days of a written request from the Disclosing Party, the Receiving Party must return all tangible materials containing Confidential Information or certify that they have been destroyed. Electronic copies must be permanently deleted.",
+  "The Receiving Party agrees to return or destroy all Confidential Information upon the Disclosing Party's request or upon termination of this agreement. No copies may be retained except as required by law or automated backup systems, which must be subject to continued confidentiality.",
+];
+
+const REMEDIES = [
+  "The Parties acknowledge that a breach of this agreement may cause irreparable harm for which monetary damages would be inadequate. Accordingly, the non-breaching Party shall be entitled to seek injunctive relief and specific performance in addition to any other remedies available at law or equity.",
+  "Because Confidential Information is unique and valuable, any breach or threatened breach may cause irreparable injury. The Disclosing Party may seek a temporary restraining order, preliminary injunction, or other equitable relief without the requirement of posting a bond.",
+  "In the event of a breach or threatened breach, the non-breaching Party is entitled to equitable relief, including injunctive relief and specific performance, in addition to all other remedies available. The breaching Party shall also be liable for reasonable attorneys fees and costs incurred in enforcement.",
+];
+
+const SIGNATURE_BLOCK = "IN WITNESS WHEREOF, the Parties have executed this Non-Disclosure Agreement as of the date set forth above.\n\nParty A (Name): ___________________________\nSignature: ___________________________\nDate: ___________________________\n\nParty B (Name): ___________________________\nSignature: ___________________________\nDate: ___________________________";
 
 function displayDocument(sections, meta) {
   lastDocData = { ...meta, sections };
@@ -203,8 +265,9 @@ function generate() {
   const purpose = document.getElementById('purpose').value || '[Purpose]';
   const ndaType = document.getElementById('ndaType').value;
   const duration = document.getElementById('duration').value || '3';
+  const governingState = document.getElementById('governingState').value || 'California';
 
-  const data = { party1, party2, purpose, duration };
+  const data = { party1, party2, duration };
 
   const context = ndaType === 'Mutual'
     ? 'This is a Mutual Non-Disclosure Agreement where both parties agree to protect each other\'s confidential information.'
@@ -212,13 +275,20 @@ function generate() {
 
   document.getElementById('errorMsg').style.display = 'none';
 
+  const boilerplate = pick(DEFS_BOILERPLATE);
+  const definition = 'Confidential Information includes but is not limited to: ' + boilerplate + '. This agreement covers information shared in connection with: ' + purpose + '.';
+
   const sections = [
     { heading: 'Introduction', body: context + ' ' + fill(pick(INTROS), data) },
-    { heading: 'Definition of Confidential Information', body: fill(pick(DEFS), data) },
+    { heading: 'Definition of Confidential Information', body: definition },
     { heading: 'Obligations', body: pick(OBLIGATIONS) },
     { heading: 'Exclusions', body: pick(EXCLUSIONS) },
     { heading: 'Duration', body: fill(pick(DURATIONS), data) },
-    { heading: 'Governing Law', body: pick(GOVERNING_LAWS) },
+    { heading: 'Term and Termination', body: pick(TERM_TERMINATION) },
+    { heading: 'Return of Information', body: pick(RETURN_INFO) },
+    { heading: 'Remedies', body: pick(REMEDIES) },
+    { heading: 'Governing Law', body: 'This agreement shall be governed by and construed in accordance with the laws of the State of ' + governingState + '.' },
+    { heading: 'Signature', body: SIGNATURE_BLOCK },
   ];
 
   displayDocument(sections, {

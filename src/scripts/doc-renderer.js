@@ -9,17 +9,18 @@ function esc(s) {
 
 function renderClassic({ title, from, to, sections, date, num, docType }) {
   const isInvoice = docType === 'invoice';
+  const isNda = docType === 'nda';
   return `
 <div class="doc doc-classic">
   <div class="doc-classic__title">${esc(title)}</div>
   <div class="doc-classic__date">${esc(date)}</div>
   <div class="doc-classic__parties">
     <div class="doc-classic__party">
-      <span class="doc-label">${isInvoice ? 'From' : 'Consultant'}</span>
+      ${isNda ? '' : `<span class="doc-label">${isInvoice ? 'From' : 'Consultant'}</span>`}
       <strong>${esc(from)}</strong>
     </div>
     <div class="doc-classic__party">
-      <span class="doc-label">${isInvoice ? 'Bill To' : 'Client'}</span>
+      ${isNda ? '' : `<span class="doc-label">${isInvoice ? 'Bill To' : 'Client'}</span>`}
       <strong>${esc(to)}</strong>
     </div>
   </div>
@@ -28,7 +29,7 @@ function renderClassic({ title, from, to, sections, date, num, docType }) {
     <div class="doc-section-head">${esc(s.heading)}</div>
     <div class="doc-section-body">${esc(s.body)}</div>
   </div>`).join('')}
-  ${!isInvoice ? `
+  ${!isInvoice && !isNda ? `
   <div class="doc-sigs">
     <div class="doc-sig">
       <div class="doc-sig__line"></div>
@@ -44,6 +45,7 @@ function renderClassic({ title, from, to, sections, date, num, docType }) {
 
 function renderModern({ title, from, to, sections, date, num, docType }) {
   const isInvoice = docType === 'invoice';
+  const isNda = docType === 'nda';
   return `
 <div class="doc doc-modern">
   <div class="doc-modern__header">
@@ -59,11 +61,11 @@ function renderModern({ title, from, to, sections, date, num, docType }) {
   <div class="doc-modern__body">
     <div class="doc-modern__parties">
       <div class="doc-party-col">
-        <span class="doc-label">${isInvoice ? 'From' : 'Consultant'}</span>
+        ${isNda ? '' : `<span class="doc-label">${isInvoice ? 'From' : 'Consultant'}</span>`}
         <strong>${esc(from)}</strong>
       </div>
       <div class="doc-party-col">
-        <span class="doc-label">${isInvoice ? 'Bill To' : 'Client'}</span>
+        ${isNda ? '' : `<span class="doc-label">${isInvoice ? 'Bill To' : 'Client'}</span>`}
         <strong>${esc(to)}</strong>
       </div>
     </div>
@@ -72,7 +74,7 @@ function renderModern({ title, from, to, sections, date, num, docType }) {
       <div class="doc-modern__clause-head">${esc(s.heading)}</div>
       <div class="doc-modern__clause-body">${esc(s.body)}</div>
     </div>`).join('')}
-    ${!isInvoice ? `
+    ${!isInvoice && !isNda ? `
     <div class="doc-sigs doc-sigs--modern">
       <div class="doc-sig"><div class="doc-sig__line"></div><div class="doc-sig__label">${esc(from)}</div></div>
       <div class="doc-sig"><div class="doc-sig__line"></div><div class="doc-sig__label">${esc(to)}</div></div>
@@ -83,6 +85,7 @@ function renderModern({ title, from, to, sections, date, num, docType }) {
 
 function renderMinimal({ title, from, to, sections, date, num, docType }) {
   const isInvoice = docType === 'invoice';
+  const isNda = docType === 'nda';
   return `
 <div class="doc doc-minimal">
   <div class="doc-minimal__eyebrow">${isInvoice ? 'Invoice' : 'Legal Document'} &nbsp;·&nbsp; ${esc(date)}</div>
@@ -90,11 +93,11 @@ function renderMinimal({ title, from, to, sections, date, num, docType }) {
   <div class="doc-minimal__rule"></div>
   <div class="doc-minimal__meta">
     <div class="doc-meta-item">
-      <span class="doc-label">${isInvoice ? 'From' : 'Party A'}</span>
+      ${isNda ? '' : `<span class="doc-label">${isInvoice ? 'From' : 'Party A'}</span>`}
       <strong>${esc(from)}</strong>
     </div>
     <div class="doc-meta-item">
-      <span class="doc-label">${isInvoice ? 'Bill To' : 'Party B'}</span>
+      ${isNda ? '' : `<span class="doc-label">${isInvoice ? 'Bill To' : 'Party B'}</span>`}
       <strong>${esc(to)}</strong>
     </div>
     ${isInvoice && num ? `<div class="doc-meta-item">
@@ -107,7 +110,7 @@ function renderMinimal({ title, from, to, sections, date, num, docType }) {
     <div class="doc-minimal__num">0${i + 1}. ${esc(s.heading.toUpperCase())}</div>
     <div class="doc-section-body">${esc(s.body)}</div>
   </div>`).join('')}
-  ${!isInvoice ? `
+  ${!isInvoice && !isNda ? `
   <div class="doc-sigs doc-sigs--minimal">
     <div class="doc-sig"><div class="doc-sig__line"></div><div class="doc-sig__label">${esc(from)}</div></div>
     <div class="doc-sig"><div class="doc-sig__line"></div><div class="doc-sig__label">${esc(to)}</div></div>
