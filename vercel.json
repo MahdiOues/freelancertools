@@ -2,9 +2,15 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{"type": "host", "value": "megalancer.online"}],
+      "has": [
+        {
+          "type": "host",
+          "value": "megalancer.online"
+        }
+      ],
       "destination": "https://www.megalancer.online/:path*",
-      "permanent": true
+      "permanent": true,
+      "statusCode": 308
     }
   ]
 }
