@@ -35,11 +35,11 @@ const schema = {
     </div>
   </fragment>
   <fragment slot="tool">
-    <div class="calculator-card">
+      <div class="calculator-card">
       <div class="calculator-card-header">
-        <h2>NDA Generator</h2>
+        <h2 data-noprint>NDA Generator</h2>
       </div>
-      <div class="calculator-card-body">
+      <div class="calculator-card-body" data-noprint>
       <div class="field-grid">
         <div class="field">
           <label class="field-label"><KpiTooltip label="Disclosing party" tip="The person or company sharing the confidential information — usually you or your client depending on the situation." /></label>
@@ -124,7 +124,7 @@ const schema = {
       </div>
       <DocTemplatePicker />
 
-      <button id="generateBtn" class="btn btn-primary btn-full">Generate NDA</button>
+      <button id="generateBtn" class="btn btn-primary btn-full" data-noprint>Generate NDA</button>
 
       <div id="errorMsg" style="display: none; margin-top: 12px; font-size: 14px; color: var(--danger);"></div>
 
@@ -260,9 +260,9 @@ function displayDocument(sections, meta) {
 }
 
 function generate() {
-  const party1 = document.getElementById('party1').value || '[Disclosing Party]';
-  const party2 = document.getElementById('party2').value || '[Receiving Party]';
-  const purpose = document.getElementById('purpose').value || '[Purpose]';
+  const party1 = document.getElementById('party1').value || '';
+  const party2 = document.getElementById('party2').value || '';
+  const purpose = document.getElementById('purpose').value || '';
   const ndaType = document.getElementById('ndaType').value;
   const duration = document.getElementById('duration').value || '3';
   const governingState = document.getElementById('governingState').value || 'California';
@@ -292,7 +292,7 @@ function generate() {
   ];
 
   displayDocument(sections, {
-    title: 'Non-Disclosure Agreement',
+    title: 'NON-DISCLOSURE AGREEMENT',
     from: party1,
     to: party2,
     date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),

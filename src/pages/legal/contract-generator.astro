@@ -35,11 +35,11 @@ const schema = {
     </div>
   </fragment>
   <fragment slot="tool">
-    <div class="calculator-card">
+      <div class="calculator-card">
       <div class="calculator-card-header">
-        <h2>Contract Generator</h2>
+        <h2 data-noprint>Contract Generator</h2>
       </div>
-      <div class="calculator-card-body">
+      <div class="calculator-card-body" data-noprint>
       <div class="field-grid">
         <div class="field">
           <label class="field-label">Document type</label>
@@ -156,7 +156,7 @@ const schema = {
 
       <DocTemplatePicker />
 
-      <button id="generateBtn" class="btn btn-primary btn-full">Generate Document</button>
+      <button id="generateBtn" class="btn btn-primary btn-full" data-noprint>Generate Document</button>
 
       <div id="errorMsg" style="display: none; margin-top: 12px; font-size: 14px; color: var(--danger);"></div>
 
@@ -454,7 +454,7 @@ const proposalApproach = [
   `I approach every project with a focus on outcomes. Each phase is designed to move toward measurable results.`,
   `My workflow is agile and transparent. You'll see progress at every stage and have opportunities to provide input.`,
   `I combine deep expertise with a fresh perspective. The result is work that's both strategic and creative.`,
-  `My methodology: Listen ? Plan ? Create ? Refine ? Deliver. Each step builds on the last for maximum quality.`,
+  `My methodology: Listen, Plan, Create, Refine, Deliver. Each step builds on the last for maximum quality.`,
   `I take a results-driven approach. Every decision is measured against your core objectives and expected outcomes.`,
 ];
 
@@ -585,50 +585,50 @@ function generate() {
     const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     if (type === 'Freelance Contract') {
       const data = {
-        yourName: document.getElementById('yourName').value || '[Your Name]',
-        clientName: document.getElementById('clientName').value || '[Client Name]',
-        projectTitle: document.getElementById('projectDesc').value || '[Project Description]',
-        overview: document.getElementById('projectDesc').value || '[Project Description]',
-        deliverables: document.getElementById('projectDesc').value || '[Project Description]',
+        yourName: document.getElementById('yourName').value || '',
+        clientName: document.getElementById('clientName').value || '',
+        projectTitle: document.getElementById('projectDesc').value || '',
+        overview: document.getElementById('projectDesc').value || '',
+        deliverables: document.getElementById('projectDesc').value || '',
         paymentAmount: document.getElementById('projectValue').value || '0',
         paymentTerms: '50% upfront, 50% on delivery',
         revisions: '2',
-        timeline: document.getElementById('timeline').value || '[Timeline]',
+        timeline: document.getElementById('timeline').value || '',
       };
       sections = generateContract(data);
-      meta = { title: 'Freelance Service Agreement', from: data.yourName, to: data.clientName, date: today, docType: 'contract' };
+      meta = { title: 'FREELANCE CONTRACT AGREEMENT', from: data.yourName, to: data.clientName, date: today, docType: 'contract' };
     } else if (type === 'Invoice') {
-      const invYourName = document.getElementById('invYourName').value || '[Your Name]';
-      const invClientName = document.getElementById('invClientName').value || '[Client Name]';
+      const invYourName = document.getElementById('invYourName').value || '';
+      const invClientName = document.getElementById('invClientName').value || '';
       const data = {
         yourName: invYourName,
         clientName: invClientName,
         invNumber: document.getElementById('invNumber').value || 'INV-001',
         invAmount: document.getElementById('invAmount').value || '0',
-        invDesc: document.getElementById('invDesc').value || '[Description]',
+        invDesc: document.getElementById('invDesc').value || '',
       };
       sections = generateInvoice(data);
-      meta = { title: 'Invoice', from: data.yourName, to: data.clientName, date: today, num: data.invNumber, docType: 'invoice' };
+      meta = { title: `INVOICE #${data.invNumber}`, from: data.yourName, to: data.clientName, date: today, num: data.invNumber, docType: 'invoice' };
     } else if (type === 'NDA') {
-      const party1 = document.getElementById('ndaParty1').value || '[Party 1]';
-      const party2 = document.getElementById('ndaParty2').value || '[Party 2]';
-      const data = { party1, party2, purpose: document.getElementById('ndaPurpose').value || '[Purpose]', duration: '2' };
+      const party1 = document.getElementById('ndaParty1').value || '';
+      const party2 = document.getElementById('ndaParty2').value || '';
+      const data = { party1, party2, purpose: document.getElementById('ndaPurpose').value || '', duration: '2' };
       sections = generateNDA(data);
-      meta = { title: 'Non-Disclosure Agreement', from: data.party1, to: data.party2, date: today, docType: 'nda' };
+      meta = { title: 'NON-DISCLOSURE AGREEMENT', from: data.party1, to: data.party2, date: today, docType: 'nda' };
     } else if (type === 'Proposal') {
-      const propYourName = document.getElementById('propYourName').value || '[Your Name]';
-      const propClientName = document.getElementById('propClientName').value || '[Client Name]';
+      const propYourName = document.getElementById('propYourName').value || '';
+      const propClientName = document.getElementById('propClientName').value || '';
       const data = {
         yourName: propYourName,
         clientName: propClientName,
-        projectTitle: document.getElementById('propOverview').value || '[Project Overview]',
-        overview: document.getElementById('propOverview').value || '[Project Overview]',
-        deliverables: document.getElementById('propDeliverables').value || '[Deliverables]',
-        timeline: document.getElementById('propTimeline').value || '[Timeline]',
+        projectTitle: document.getElementById('propOverview').value || '',
+        overview: document.getElementById('propOverview').value || '',
+        deliverables: document.getElementById('propDeliverables').value || '',
+        timeline: document.getElementById('propTimeline').value || '',
         investment: document.getElementById('propInvestment').value || '0',
       };
       sections = generateProposal(data);
-      meta = { title: 'Project Proposal', from: data.yourName, to: data.clientName, date: today, docType: 'proposal' };
+      meta = { title: `PROJECT PROPOSAL — ${data.projectTitle}`, from: data.yourName, to: data.clientName, date: today, docType: 'proposal' };
     }
     displayDocument(sections, meta);
   } catch (err) {

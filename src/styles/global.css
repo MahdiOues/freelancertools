@@ -1795,7 +1795,10 @@ input[type="range"] {
   .site-header, .site-footer,
   .tool-page-hero, .page-hero,
   .tpl-picker, .doc-output-wrap > .btn-row,
-  #export-pdf, .kpi-info-btn { display: none !important; }
+  #export-pdf, .kpi-info-btn,
+  .last-updated, .tool-header, .tool-label,
+  .calculator-card-header, .calculator-card-header h2,
+  [data-noprint] { display: none !important; }
 
   .result-area, .tool-output, .output-area,
   .metric-grid, .metric-card, .card,

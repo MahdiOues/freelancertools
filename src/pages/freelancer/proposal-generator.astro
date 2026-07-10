@@ -35,11 +35,11 @@ const schema = {
     </div>
   </fragment>
   <fragment slot="tool">
-    <div class="calculator-card">
+      <div class="calculator-card">
       <div class="calculator-card-header">
-        <h2>Proposal Generator</h2>
+        <h2 data-noprint>Proposal Generator</h2>
       </div>
-      <div class="calculator-card-body">
+      <div class="calculator-card-body" data-noprint>
       <div class="field-grid">
         <div class="field">
           <label class="field-label"><KpiTooltip label="Your name" tip="Your name as the freelancer or agency owner submitting the proposal." /></label>
@@ -74,7 +74,7 @@ const schema = {
       </div>
       <DocTemplatePicker />
 
-      <button id="generateBtn" class="btn btn-primary btn-full">Generate Proposal</button>
+      <button id="generateBtn" class="btn btn-primary btn-full" data-noprint>Generate Proposal</button>
 
       <div id="errorMsg" style="display: none; margin-top: 12px; font-size: 14px; color: var(--danger);"></div>
 
@@ -216,13 +216,13 @@ function displayDocument(sections, meta) {
 }
 
 function generate() {
-  const yourName = document.getElementById('yourName').value || '[Your Name]';
-  const clientName = document.getElementById('clientName').value || '[Client Name]';
-  const projectTitle = document.getElementById('projectTitle').value || '[Project Title]';
-  const overview = document.getElementById('overview').value || '[Overview]';
-  const deliverables = document.getElementById('deliverables').value || '[Deliverables]';
-  const timeline = document.getElementById('timeline').value || '[Timeline]';
-  const investment = document.getElementById('investment').value || '[Investment]';
+  const yourName = document.getElementById('yourName').value || '';
+  const clientName = document.getElementById('clientName').value || '';
+  const projectTitle = document.getElementById('projectTitle').value || '';
+  const overview = document.getElementById('overview').value || '';
+  const deliverables = document.getElementById('deliverables').value || '';
+  const timeline = document.getElementById('timeline').value || '';
+  const investment = document.getElementById('investment').value || '';
 
   const data = { yourName, clientName, projectTitle, overview, deliverables, timeline, investment };
 
@@ -239,7 +239,7 @@ function generate() {
   ];
 
   displayDocument(sections, {
-    title: 'Project Proposal',
+    title: `PROJECT PROPOSAL — ${projectTitle}`,
     from: yourName,
     to: clientName,
     date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
