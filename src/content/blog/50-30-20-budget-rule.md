@@ -7,6 +7,10 @@ relatedTool: /finance/budget-planner/
 relatedToolName: Free Budget Planner
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Divide your after-tax income into three buckets: 50% for needs (rent, groceries, utilities), 30% for wants (dining, entertainment, travel), and 20% for savings and debt repayment.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 Most budgets fail because they are too complicated. The 50/30/20 rule, popularized by Senator Elizabeth Warren in her book "All Your Worth," is simple enough to stick with. You divide your after-tax income into three buckets: 50% for needs, 30% for wants, and 20% for savings and debt repayment.

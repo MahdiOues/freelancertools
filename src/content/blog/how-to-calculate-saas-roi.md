@@ -7,6 +7,10 @@ relatedTool: /saas/roi-calculator/
 relatedToolName: Free SaaS ROI Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> SaaS ROI = (Net gain from investment - Cost of investment) ÷ Cost of investment × 100. Include all costs (subscription, implementation, training) and measure against specific metrics like hours saved, revenue gained, or churn reduced.
+</div>
+
 Every month, your business pays for software. Project management tools, CRMs, analytics platforms, design tools, communication apps â€” the list keeps growing. Some of these tools pay for themselves many times over. Others quietly drain your budget. Here is how to calculate the real return on investment for any SaaS tool in your stack.
 
 ## Why most businesses do not calculate SaaS ROI

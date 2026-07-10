@@ -7,6 +7,10 @@ relatedTool: /freelancer/rate-calculator/
 relatedToolName: Free Rate Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Start with your desired annual income, add business expenses and taxes, then divide by your billable hours per year. A freelancer wanting $80,000 with $15,000 in expenses working 25 billable hours per week needs to charge at least $73 per hour.
+</div>
+
 You have been freelancing long enough to know that guessing your rate is expensive. Here is how to stop.
 
 ## Start with your number, not the market

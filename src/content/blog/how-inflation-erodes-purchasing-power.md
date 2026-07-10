@@ -7,6 +7,10 @@ relatedTool: /finance/inflation-calculator/
 relatedToolName: Free Inflation Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> At 3% annual inflation, $100 today buys the same as $74.41 ten years from now. Inflation erodes purchasing power because rising prices mean each dollar buys fewer goods and services over time.
+</div>
+
 Inflation is often described as a silent tax. You do not feel it day to day, but over years it dramatically reduces what your money can buy. A dollar in 2015 is worth about 78 cents today. That 22% loss of purchasing power happened quietly.
 
 ## The 2015–2025 inflation story

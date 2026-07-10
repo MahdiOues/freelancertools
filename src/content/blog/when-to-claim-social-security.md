@@ -7,6 +7,10 @@ relatedTool: /finance/social-security-estimator/
 relatedToolName: Free Social Security Estimator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Claiming at 62 gives you reduced benefits for life (about 30% less than full retirement age). Waiting until 70 increases benefits by 8% per year past full retirement age. The breakeven age is usually around 78–80 — if you expect to live longer, wait.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 Deciding when to claim Social Security is one of the most consequential financial decisions you will make. Claim at 62 and you get smaller checks for longer. Wait until 70 and you get larger checks for fewer years. The right answer depends on your health, other income, and life expectancy.

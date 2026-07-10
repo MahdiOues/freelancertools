@@ -7,6 +7,10 @@ relatedTool: /finance/vat-calculator/
 relatedToolName: Free VAT Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> VAT (Value Added Tax) is a consumption tax added at each stage of production. In most countries, freelancers must register for VAT once their annual turnover exceeds a threshold (typically £85,000 in the UK, €10,000 in the EU for cross-border sales).
+</div>
+
 VAT, or value-added tax, is one of the most confusing obligations for freelancers and small business owners. Unlike income tax, VAT is a tax on consumption that you collect on behalf of the government. Understanding your obligations keeps you compliant and prevents nasty surprises when the tax authority comes calling.
 
 ## What is VAT exactly

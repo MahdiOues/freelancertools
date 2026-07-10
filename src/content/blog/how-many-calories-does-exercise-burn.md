@@ -7,6 +7,10 @@ relatedTool: /health/calories-burned/
 relatedToolName: Free Calories Burned Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> A 155-pound person burns roughly 230 calories per 30 minutes of moderate cycling, 370 calories running at 6 mph, and 130 calories walking at 3.5 mph. Actual burn depends on weight, intensity, and individual metabolism.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 Exercise burns calories, but the numbers on the treadmill display or fitness watch are often inaccurate. Understanding what drives calorie burn during exercise helps you set realistic expectations and avoid the frustration of working hard without seeing results.

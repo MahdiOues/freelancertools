@@ -7,6 +7,10 @@ relatedTool: /math/percentage-calculator/
 relatedToolName: Free Percentage Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> To find a percentage of a number, multiply the number by the percentage divided by 100. To find what percent one number is of another, divide the part by the whole and multiply by 100. A 20% tip on a $45 bill is $9.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 Percentages are everywhere. Sales tax, tips, discounts, interest rates, and investment returns all use percentages. Understanding how to calculate them quickly saves you money and helps you make better decisions.

@@ -7,6 +7,10 @@ relatedTool: /health/sleep-calculator/
 relatedToolName: Free Sleep Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Adults need 7–9 hours of sleep per night according to the National Sleep Foundation. Sleep deprivation impairs cognitive function, immune response, and emotional regulation. Consistency in sleep and wake times matters more than total hours alone.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 Sleep is not just rest. It is an active biological process that affects every system in your body. Yet most people do not get enough, and many do not know what enough actually means for them.

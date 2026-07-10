@@ -7,6 +7,10 @@ relatedTool: /freelancer/salary-to-hourly/
 relatedToolName: Free Salary to Hourly Converter
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Save 6 months of living expenses before quitting, start freelancing part-time while employed to build a client base, set up your business entity and separate bank account, and plan for the self-employment tax increase from 7.65% to 15.3%.
+</div>
+
 Leaving a salaried job to go freelance is terrifying and exhilarating in equal measure. The freedom is real. So is the financial uncertainty. Most people who fail at the transition do not fail because they lack skill — they fail because they run out of money before their freelance income stabilizes.
 
 The key to a stress-free transition is preparation. You need to know exactly what your expenses are, how much you need to earn, and how long you can survive while you build your client base. Here is how to make the switch without financial panic.

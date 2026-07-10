@@ -7,6 +7,10 @@ relatedTool: /saas/pricing-calculator/
 relatedToolName: Free SaaS Pricing Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> The three main SaaS pricing models are flat-rate (one price for all), tiered (feature-based plans), and usage-based (pay per seat or consumption). Start with tiered pricing at three levels and optimize based on customer feedback and conversion data.
+</div>
+
 Pricing is the most powerful lever in your SaaS business. A 10% increase in price flows almost entirely to profit, while a 10% increase in customers typically requires significant marketing spend. Despite this, most founders set their prices based on competitors or gut feeling. Here is a systematic approach to SaaS pricing that maximizes revenue and customer lifetime value.
 
 ## Why pricing matters more than you think

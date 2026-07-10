@@ -1,4 +1,4 @@
----
+﻿---
 title: "Understanding discounts: how to calculate your real savings"
 description: "Learn how to calculate discounts, compare percentage off vs dollar off, and avoid common shopping math mistakes that cost you money."
 date: 2026-03-08
@@ -6,6 +6,10 @@ category: Finance
 relatedTool: /math/discount-calculator/
 relatedToolName: Free Discount Calculator
 ---
+
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> A percentage discount means you pay (100% - discount%) of the original price. For a 30% off $50 item, you pay $35. Stacked discounts are applied sequentially, not added — 20% off then 10% off is 28% total, not 30%.
+</div>
 
 A sale sign can make you feel like you are saving money. But not all discounts are created equal. Understanding how to calculate your actual savings helps you decide whether a deal is worth taking or just marketing.
 

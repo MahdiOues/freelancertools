@@ -7,6 +7,10 @@ relatedTool: /legal/contract-generator/
 relatedToolName: Free Contract Generator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Net 15 means payment due in 15 days, Net 30 in 30 days. Add a late fee clause (typically 1.5% monthly) and specify your preferred payment methods. Always include a kill fee for cancelled projects.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 Your invoice payment terms determine when and whether you get paid. Net 15, Net 30, and Net 60 are the standards, but each one affects your cash flow and your leverage differently. Most freelancers accept whatever the client offers. That is a mistake.

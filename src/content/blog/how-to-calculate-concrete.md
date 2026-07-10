@@ -7,6 +7,10 @@ relatedTool: /construction/concrete-calculator/
 relatedToolName: Free Concrete Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Multiply length (ft) × width (ft) × depth (in ÷ 12) to get cubic feet, then divide by 27 to get cubic yards. Add 10% waste. A 10×10 slab 4 inches thick needs about 1.24 cubic yards.
+</div>
+
 Concrete is ordered by the cubic yard, and getting the volume wrong is expensive. Too little means a cold joint and a ruined pour. Too much means paying for material you cannot return. Here is how to calculate exactly what you need.
 
 ## The basic formula

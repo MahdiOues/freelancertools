@@ -7,6 +7,10 @@ relatedTool: /freelancer/proposal-generator/
 relatedToolName: Free Proposal Generator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Start with a brief summary of the client's problem, then explain your approach, deliverables, timeline, and investment. Show you understand their specific situation. Keep it concise � decision-makers stop reading after two pages.
+</div>
+
 A great proposal is the difference between landing a client and getting ghosted. But most freelancers get proposals wrong. They write about themselves — their experience, their process, their portfolio. The client reads it and thinks "so what?"
 
 Winning proposals do the opposite. They focus entirely on the client — their problem, their goals, and exactly how you will solve their problem. Here is how to write proposals that get you hired.

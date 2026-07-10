@@ -7,6 +7,10 @@ relatedTool: /legal/contract-generator/
 relatedToolName: Free Contract Generator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> DIY legal documents work for simple, low-risk agreements between cooperative parties. Hire a lawyer when the stakes are high, the relationship is adversarial, or your situation doesn't fit a standard template.
+</div>
+
 Every freelancer and small business owner faces the same question: can I use a template for this legal document, or do I need to hire a lawyer? The answer depends on the complexity of the situation, what is at stake, and your tolerance for risk. Here is a practical guide to deciding between DIY legal documents and professional legal help.
 
 ## What DIY legal services do well

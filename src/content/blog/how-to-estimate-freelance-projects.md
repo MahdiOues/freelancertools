@@ -7,6 +7,10 @@ relatedTool: /freelancer/project-estimator/
 relatedToolName: Free Project Estimator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Break the project into individual tasks, estimate each one separately, add 25–50% buffer for surprises, and never give a firm price on the spot. Track your actual hours against estimates to calibrate future quotes.
+</div>
+
 Underquoting is the fastest way to lose money as a freelancer. You give a price based on your best guess, the project takes twice as long, and suddenly you are earning less than minimum wage. It happens to every freelancer at least once. The goal is to make it happen only once.
 
 Accurate project estimation is a skill you can learn. It requires breaking down the work, accounting for the hidden hours, and adding the right buffers. Here is how to estimate projects so you win the work and still make a profit.

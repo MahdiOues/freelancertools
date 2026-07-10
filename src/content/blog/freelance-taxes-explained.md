@@ -7,6 +7,10 @@ relatedTool: /finance/tax-deduction-finder/
 relatedToolName: Free Tax Deduction Finder
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Freelancers pay both the employee and employer portion of Social Security and Medicare taxes (15.3% total self-employment tax) plus income tax. Quarterly estimated payments are required if you expect to owe more than $1,000.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 Taxes are the single biggest surprise for new freelancers. As an employee, half your Social Security and Medicare taxes were paid by your employer. As a freelancer, you pay both halves. Here is what you need to know to avoid an expensive surprise.

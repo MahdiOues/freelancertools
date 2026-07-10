@@ -7,6 +7,10 @@ relatedTool: /finance/investment-return/
 relatedToolName: Free Investment Return Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Simple return divides total gain by initial investment. CAGR (Compound Annual Growth Rate) gives the annualized return assuming the investment grew at a steady rate each year. CAGR is more useful for comparing investments held for different time periods.
+</div>
+
 When you look at an investment statement, you see a percentage return. But that single number can be misleading. The difference between a simple return and a compound annual growth rate (CAGR) can change how you evaluate your investments entirely. Understanding both metrics helps you make better decisions with your money.
 
 ## Simple return: the straightforward measure

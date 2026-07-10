@@ -7,6 +7,10 @@ relatedTool: /health/tdee-calculator/
 relatedToolName: Free TDEE Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Your Total Daily Energy Expenditure (TDEE) is your basal metabolic rate plus calories burned through activity and digestion. Use the Mifflin-St Jeor equation with your age, weight, height, and activity level to calculate it.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 Every day your body burns a specific number of calories just to stay alive and function. That number is your Total Daily Energy Expenditure, or TDEE. Knowing it is the foundation of any weight management plan.

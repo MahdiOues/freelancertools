@@ -7,6 +7,10 @@ relatedTool: /finance/compound-interest/
 relatedToolName: Free Compound Interest Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Compound interest = Principal × (1 + Rate/n)^(n×t) where n is the number of times interest compounds per year and t is the number of years. The Rule of 72 gives a rough estimate: divide 72 by your annual rate to get years to double.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 Compound interest is often called the eighth wonder of the world. Whether or not Albert Einstein actually said that, the concept deserves the hype. When you earn interest on your interest, your money grows exponentially rather than linearly. Understanding how to calculate it by hand makes you appreciate why starting early matters more than starting rich.

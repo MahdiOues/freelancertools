@@ -7,6 +7,10 @@ relatedTool: /freelancer/late-fee-calculator/
 relatedToolName: Free Late Fee Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Send a friendly reminder on day 1 past due, a firmer notice at day 7, and pause work at day 14. Have a late fee clause in your contract and enforce it. For chronic late payers, switch to upfront or milestone payments.
+</div>
+
 Late payments are the most common frustration freelancers face. You did the work. You sent the invoice. Then the client goes silent. Days turn into weeks, and suddenly you are the one chasing money you already earned.
 
 The problem is not just the late payment itself — it is the awkwardness of asking for what you are owed without damaging the relationship. Handling late payments well is a skill. Here is how to prevent them, how to follow up without burning bridges, and how to charge late fees fairly.

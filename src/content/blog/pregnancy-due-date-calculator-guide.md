@@ -7,6 +7,10 @@ relatedTool: /health/due-date-calculator/
 relatedToolName: Free Due Date Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Due dates are calculated by adding 280 days (40 weeks) to the first day of the last menstrual period. Only about 5% of babies are born on their exact due date. Ultrasound measurements in the first trimester provide the most accurate estimate.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 An estimated due date gives expecting parents a target to plan around, but many do not realize how the date is calculated or how accurate it really is. Here is what you need to know about due dates.

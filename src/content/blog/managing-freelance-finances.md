@@ -7,6 +7,10 @@ relatedTool: /freelancer/invoice-generator/
 relatedToolName: Free Invoice Generator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Set aside 30% of every payment for taxes, maintain separate business and personal accounts, track every expense with accounting software, invoice immediately after completing work, and review your rates and finances quarterly.
+</div>
+
 Freelance finances are different from regular finances. When you have a salary, your income is predictable. You know exactly how much you will earn each month, and you can plan accordingly. As a freelancer, your income fluctuates wildly. Some months are great. Other months you wonder if you need to get a real job.
 
 The difference between freelancers who thrive and freelancers who burn out is often not about how much they earn — it is about how well they manage the money they have. Here is a complete guide to managing your finances as a freelancer.

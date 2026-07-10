@@ -7,6 +7,10 @@ relatedTool: /finance/credit-score-simulator/
 relatedToolName: Free Credit Score Simulator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Your credit score is calculated from payment history (35%), credit utilization (30%), length of credit history (15%), new credit inquiries (10%), and credit mix (10%). Pay bills on time and keep utilization below 30% to improve your score.
+</div>
+
 Your credit score affects more than just your ability to get a loan. It influences your mortgage rate, car payment, credit card approval, apartment rental, insurance premiums, and even some job applications. Understanding how it is calculated gives you the power to improve it. The system is transparent once you know the rules.
 
 ## FICO vs VantageScore

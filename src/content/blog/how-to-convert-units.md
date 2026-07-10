@@ -7,6 +7,10 @@ relatedTool: /math/unit-converter/
 relatedToolName: Free Unit Converter
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Multiply by the conversion factor to go from one unit to another. Use dimensional analysis: write the starting value times a fraction where the numerator and denominator are equal but in different units, so the original unit cancels out.
+</div>
+
 Unit conversion is one of those skills you use more often than you realize. Cooking a recipe from another country, calculating distance for a road trip, converting a temperature for travel, or comparing product sizes at the store all require unit conversions. Knowing how to do them quickly saves time and prevents mistakes.
 
 ## The basic principle

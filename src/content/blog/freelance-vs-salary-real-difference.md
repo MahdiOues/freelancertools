@@ -1,4 +1,4 @@
----
+﻿---
 title: "The real difference between an employee salary and freelance income"
 description: "Compare freelance income vs employee salary honestly. Factor in taxes, benefits, downtime, and overhead to see which comes out ahead."
 date: 2026-04-15
@@ -6,6 +6,10 @@ category: Freelancer
 relatedTool: /freelancer/salary-to-hourly/
 relatedToolName: Free Salary to Hourly Calculator
 ---
+
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> A freelancer needs to charge roughly 1.5 to 2 times an equivalent salary to account for taxes, unpaid time off, health insurance, retirement, and business expenses. An $80,000 salaried employee needs about $120,000—$160,000 in freelance revenue.
+</div>
 
 When comparing a job offer to freelance work, the headline numbers are misleading. A $100,000 salary is not the same as $100,000 in freelance revenue. The gap comes from taxes, benefits, downtime, and overhead.
 

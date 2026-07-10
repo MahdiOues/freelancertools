@@ -7,6 +7,10 @@ relatedTool: /finance/mortgage-calculator/
 relatedToolName: Free Mortgage Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> The true cost of a mortgage includes interest (which doubles the purchase price over 30 years at 7%), closing costs (2–5% of loan amount), PMI if down payment is under 20%, property taxes, insurance, and maintenance (1% of home value annually).
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 When you get a mortgage pre-approval, the lender quotes an interest rate and a monthly payment. But the real cost of owning a home includes many expenses banks do not prominently disclose. Understanding these costs is the difference between being house-rich and house-poor.

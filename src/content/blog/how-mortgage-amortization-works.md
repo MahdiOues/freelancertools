@@ -7,6 +7,10 @@ relatedTool: /finance/mortgage-calculator/
 relatedToolName: Free Mortgage Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Early mortgage payments go mostly toward interest, not principal. In year one of a 30-year loan at 7%, roughly 80% of each payment goes to interest. Extra principal payments early in the loan save the most interest over time.
+</div>
+
 When you take out a mortgage, your monthly payment stays the same for 30 years. But the split between interest and principal changes every single month. In the early years, almost all of your payment goes to interest. In the later years, most goes to principal. This is amortization, and understanding it can save you tens of thousands of dollars.
 
 ## What is amortization

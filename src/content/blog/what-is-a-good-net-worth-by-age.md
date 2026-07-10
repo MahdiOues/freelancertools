@@ -1,4 +1,4 @@
----
+﻿---
 title: "What is a good net worth by age in 2025?"
 description: "See average and median net worth by age in the US. Find out where you stand and what net worth target to aim for at every decade."
 date: 2026-02-15
@@ -6,6 +6,10 @@ category: Finance
 relatedTool: /finance/net-worth-calculator/
 relatedToolName: Free Net Worth Calculator
 ---
+
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Median net worth in the US by age group according to Federal Reserve data: under 35 ($39,000), 35–44 ($135,000), 45–54 ($246,000), 55–64 ($364,000), 65–74 ($410,000). These vary significantly by region, education, and income.
+</div>
 
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 

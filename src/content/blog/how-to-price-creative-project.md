@@ -7,6 +7,10 @@ relatedTool: /freelancer/project-estimator/
 relatedToolName: Free Project Estimator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Never give a price on the spot. Ask questions to understand scope, timeline, usage rights, and budget. Price based on the value to the client, not the hours it takes you. Always put the price in writing with clear deliverables.
+</div>
+
 Pricing creative work is harder than pricing technical work. A logo design might take 5 hours or 50 hours depending on how many directions the client wants. Here is how to price projects confidently without leaving money on the table.
 
 ## The three pricing models

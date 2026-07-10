@@ -7,6 +7,10 @@ relatedTool: /freelancer/rate-calculator/
 relatedToolName: Free Rate Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Charge hourly for unpredictable work where scope is unclear. Charge per project for well-defined deliverables. Many experienced freelancers use value-based pricing (what the work is worth to the client) rather than either hourly or per-project.
+</div>
+
 The debate between hourly and project-based pricing is one of the oldest in freelancing. Every freelancer has to pick a side — or learn to use both. The right choice depends on the type of work you do, your relationship with the client, and how well you understand the scope.
 
 Here is how to decide which model works for you and how to switch between them when it makes sense.

@@ -7,6 +7,10 @@ relatedTool: /health/water-intake/
 relatedToolName: Free Water Intake Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> The general recommendation is 3.7 liters (125 oz) per day for men and 2.7 liters (91 oz) for women from all sources, including food. Adjust based on activity level, climate, and thirst — urine color should be pale yellow.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 The eight-glasses-per-day rule is everywhere, but it is not backed by strong science. Your actual water needs depend on your body size, activity level, climate, and diet. Here is how to figure out how much water you really need.

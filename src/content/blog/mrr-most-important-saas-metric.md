@@ -7,6 +7,10 @@ relatedTool: /saas/mrr-calculator/
 relatedToolName: Free MRR Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Monthly Recurring Revenue (MRR) is the predictable revenue from subscriptions each month. Grow MRR by reducing churn, increasing average revenue per user through upsells, and acquiring new customers at a sustainable cost.
+</div>
+
 Monthly recurring revenue is the single most important metric in any subscription business. It tells you how much predictable revenue you can count on every month, which determines how much you can spend on growth, how much your business is worth, and whether you are heading in the right direction. Here is everything you need to know about MRR and how to grow it.
 
 ## What MRR actually measures

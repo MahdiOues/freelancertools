@@ -7,6 +7,10 @@ relatedTool: /freelancer/late-fee-calculator/
 relatedToolName: Free Late Fee Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> An overdue invoice email escalates in firmness: a friendly first notice at 1 day overdue, a direct second notice at 7 days, a final notice at 14 days with late fee mention, and a last-resort notice at 30 days threatening collection.
+</div>
+
 You sent the invoice. The client did not pay. Every day you wait to follow up, your chances of getting paid drop. Here is the exact sequence — four emails, calibrated by timing and tone — that collects payments without destroying relationships.
 
 ## How the sequence works

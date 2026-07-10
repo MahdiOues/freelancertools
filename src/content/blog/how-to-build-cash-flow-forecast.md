@@ -7,6 +7,10 @@ relatedTool: /finance/excel-tools/cash-flow-waterfall/
 relatedToolName: Free Cash Flow Waterfall Tool
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> List all expected cash inflows (revenue, receivables) and outflows (rent, payroll, supplies) by month. Subtract outflows from inflows to find your net cash position. Update weekly and always plan for a worst-case scenario.
+</div>
+
 Cash flow is the lifeblood of any small business. You can be profitable on paper and still go out of business if you run out of cash. A cash flow forecast helps you see the future so you can make decisions today that keep your business solvent.
 
 ## What is a cash flow forecast

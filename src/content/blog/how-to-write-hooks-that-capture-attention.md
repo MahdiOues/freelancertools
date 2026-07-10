@@ -7,6 +7,10 @@ relatedTool: /marketing/hook-analyzer/
 relatedToolName: Free Hook Analyzer
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Open with a bold claim, a surprising statistic, a relatable problem, or a direct question. Keep the first sentence under 20 words. The best hooks create a knowledge gap the reader needs to close by continuing to read.
+</div>
+
 You have five seconds — sometimes less — to convince someone to keep reading. Whether you are writing a social media post, an email subject line, or a blog introduction, the hook is what determines whether your content gets seen or scrolled past. Here is how to write hooks that actually work.
 
 ## The psychology behind a good hook

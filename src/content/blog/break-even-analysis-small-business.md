@@ -7,6 +7,10 @@ relatedTool: /finance/excel-tools/break-even/
 relatedToolName: Free Break-Even Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Break-even point is where total revenue equals total costs. Calculate it by dividing your fixed costs by your contribution margin (price per unit minus variable cost per unit).
+</div>
+
 Every business owner wants to know when they will start making money. That is what break-even analysis tells you. It calculates the point where your total revenue equals your total costs. Below that point, you lose money. Above it, you are profitable.
 
 ## The break-even formula

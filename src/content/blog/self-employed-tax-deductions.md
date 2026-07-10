@@ -7,6 +7,10 @@ relatedTool: /finance/tax-deduction-finder/
 relatedToolName: Free Tax Deduction Finder
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Common self-employed deductions include the home office deduction ($5 per square foot simplified or actual expenses), health insurance premiums, retirement plan contributions, business equipment (Section 179), vehicle mileage (67 cents per mile in 2024), and professional development.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 As a self-employed person, you are both the employee and the employer. That means you pay both halves of Social Security and Medicare taxes — 15.3% instead of 7.65%. But it also means you qualify for deductions most employees cannot touch. Here is how to claim every deduction you are entitled to.

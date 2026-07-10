@@ -7,6 +7,10 @@ relatedTool: /math/age-calculator/
 relatedToolName: Free Age Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Subtract your birth year from the current year, then subtract 1 if your birthday hasn't occurred yet this year. For exact age in years, months, and days, use an online date calculator or a spreadsheet with the DATEDIF function.
+</div>
+
 Knowing your exact age sounds simple. You were born on a certain date, and today is another date. The difference is your age. But calculating age precisely in years, months, and days requires accounting for leap years, varying month lengths, and the difference between calendar years and elapsed time.
 
 ## The basic method

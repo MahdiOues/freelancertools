@@ -7,6 +7,10 @@ relatedTool: /finance/loan-comparison/
 relatedToolName: Free Loan Comparison Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Divide your total monthly debt payments (mortgage, car loan, student loans, credit card minimums) by your gross monthly income. Lenders prefer a DTI below 36%, and the maximum for most mortgages is 43%.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 Your debt-to-income (DTI) ratio is one of the most important numbers in your financial life. Lenders use it to decide whether to approve you for a mortgage, car loan, or credit card. Understanding yours gives you power in the borrowing process.

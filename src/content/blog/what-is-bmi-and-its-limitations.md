@@ -7,6 +7,10 @@ relatedTool: /health/bmi-calculator/
 relatedToolName: Free BMI Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> BMI (Body Mass Index) is weight in kilograms divided by height in meters squared. It is a screening tool, not a diagnostic measure. BMI does not account for muscle mass, bone density, body composition, or distribution of fat, so athletes and older adults often get misleading results.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 Body Mass Index is a simple screening tool used by doctors and insurers to categorize weight relative to height. But BMI has serious limitations that are important to understand before drawing conclusions about your health.

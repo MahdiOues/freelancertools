@@ -7,6 +7,10 @@ relatedTool: /finance/paycheck-calculator/
 relatedToolName: Free Paycheck Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> A good salary covers your essential needs, allows for savings and discretionary spending, and aligns with market rates for your role and location. Compare using cost of living calculators and consider total compensation including benefits, not just base pay.
+</div>
+
 When you get a job offer, the first number you see is the base salary. That number matters, but it is only one piece of the puzzle. A good salary depends on where you live, what benefits come with it, and how the total compensation package compares to your current situation.
 
 ## What makes a salary good

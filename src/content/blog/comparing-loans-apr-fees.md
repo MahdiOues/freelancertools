@@ -7,6 +7,10 @@ relatedTool: /finance/loan-comparison/
 relatedToolName: Free Loan Comparison Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Compare loans by looking at the APR, which bundles interest rate plus fees into a single annual percentage. A lower APR means lower total cost, but also check for prepayment penalties and variable rate caps.
+</div>
+
 When you need a loan, the interest rate is the first number you see. But it is not the only number that matters. Two loans with the same interest rate can have dramatically different total costs depending on fees, terms, and how the interest is calculated. Comparing loans correctly saves you hundreds or thousands of dollars.
 
 ## Interest rate vs APR

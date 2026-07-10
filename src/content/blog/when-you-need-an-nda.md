@@ -7,6 +7,10 @@ relatedTool: /legal/nda-generator/
 relatedToolName: Free NDA Generator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Use an NDA when sharing proprietary information like source code, financial data, customer lists, or manufacturing processes. Skip the NDA for general business discussions, initial pitches, or when the other party's legal team refuses standard NDAs.
+</div>
+
 Non-disclosure agreements are one of the most common legal documents in business, and one of the most misunderstood. Many entrepreneurs and freelancers demand an NDA before every conversation. Others refuse to sign them on principle. The truth is somewhere in between. Here is when you actually need an NDA, when you are wasting your time, and how to handle both situations.
 
 ## What an NDA actually protects

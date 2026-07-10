@@ -7,6 +7,10 @@ relatedTool: /marketing/ad-profit-calculator/
 relatedToolName: Free Ad Profit Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> ROAS (Return on Ad Spend) measures gross revenue per dollar spent on ads. A profitable campaign typically needs a ROAS of 3:1 or higher after accounting for product costs, overhead, and fulfillment. Calculate profit separately from ROAS.
+</div>
+
 Most advertisers track the wrong number. They look at clicks, impressions, or cost per click and assume those metrics tell them whether their ads are working. They do not. The only number that matters is profitability. Here is how to measure ad profitability using ROAS, ROI, and profit margin — and why confusing them costs you money.
 
 ## What is ROAS?

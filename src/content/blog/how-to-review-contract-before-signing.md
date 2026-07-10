@@ -7,6 +7,10 @@ relatedTool: /legal/contract-summarizer/
 relatedToolName: Free Contract Summarizer
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Check the scope of work, payment terms, kill fee, intellectual property transfer, confidentiality, non-compete clause, and termination conditions. Watch for vague language, one-sided indemnification, and provisions that survive termination indefinitely.
+</div>
+
 Contracts are the foundation of every business relationship, yet most people sign them without reading them carefully. The fine print contains terms that can cost you thousands of dollars, lock you into unfavorable arrangements, or expose you to liability you did not know you were accepting. Here is how to review any contract before you sign it.
 
 ## The parties and effective date

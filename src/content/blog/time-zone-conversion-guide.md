@@ -7,6 +7,10 @@ relatedTool: /math/time-zone-converter/
 relatedToolName: Free Time Zone Converter
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Convert time zones by calculating the offset from UTC (Coordinated Universal Time). Add the destination offset to your local time, accounting for Daylight Saving Time where applicable. Use 24-hour format to avoid AM/PM confusion.
+</div>
+
 Time zone conversion trips up everyone from frequent travelers to remote team leaders. The good news is that the underlying math is simple once you understand a few core concepts. Here is how to convert time zones without the headache.
 
 ## UTC is the key

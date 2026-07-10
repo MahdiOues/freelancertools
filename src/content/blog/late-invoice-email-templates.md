@@ -7,6 +7,10 @@ relatedTool: /freelancer/late-fee-calculator/
 relatedToolName: Free Late Fee Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> A late invoice email should restate the invoice number and amount, the original due date, and current balance due. Keep the tone professional but firm. Include payment link or instructions and offer to discuss if there's an issue.
+</div>
+
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 
 Late invoice follow-ups feel awkward because freelancers often rewrite the message from scratch every time. That makes the email feel personal, emotional, and easy to delay.

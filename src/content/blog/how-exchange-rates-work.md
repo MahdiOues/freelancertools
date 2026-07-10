@@ -7,6 +7,10 @@ relatedTool: /finance/currency-converter/
 relatedToolName: Free Currency Converter
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Exchange rates fluctuate based on supply and demand, interest rates, inflation, and economic stability. Lock in a rate with a forward contract when you need certainty for a future transaction, such as an international invoice or payment.
+</div>
+
 Exchange rates determine how much your money is worth in another country. Whether you are traveling abroad, running a freelance business with international clients, or sending money to family overseas, understanding how rates work saves you real money. The difference between a fair rate and a bad one can cost you 5-10% on every transaction.
 
 ## What determines exchange rates

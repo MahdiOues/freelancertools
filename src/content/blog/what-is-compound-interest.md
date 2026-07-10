@@ -1,4 +1,4 @@
----
+﻿---
 title: "What is compound interest and why Einstein called it the 8th wonder"
 description: "Compound interest explained simply. Learn how earning interest on your interest makes your money grow faster. Examples, formulas, and strategies."
 date: 2026-03-01
@@ -6,6 +6,10 @@ category: Finance
 relatedTool: /finance/compound-interest/
 relatedToolName: Free Compound Interest Calculator
 ---
+
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Compound interest is interest earned on previously earned interest. If you invest $10,000 at 7% compounded annually, you earn $700 in year one, $749 in year two, and $19,672 after 10 years. Start early — time is the most powerful factor in compounding.
+</div>
 
 <!-- UNDER 600 WORDS - REVIEW NEEDED -->
 

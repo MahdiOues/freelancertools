@@ -7,6 +7,10 @@ relatedTool: /legal/contract-generator/
 relatedToolName: Free Contract Generator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Include scope of work, payment terms and schedule, revision limits, intellectual property rights, kill fee, confidentiality, and termination conditions. Keep language clear and specific. Both parties should sign before any work begins.
+</div>
+
 Every freelancer has done it — started a project with a handshake, a text message, or a vague email chain. Maybe it worked out. Maybe it didn't. When things go wrong, a written contract is the difference between a clean resolution and a costly headache.
 
 You do not need a lawyer to write a freelance contract. You need a template, a clear head, and the willingness to include eight specific clauses.

@@ -7,6 +7,10 @@ relatedTool: /freelancer/invoice-generator/
 relatedToolName: Free Invoice Generator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Include your contact info, client name, unique invoice number, invoice date, payment terms (Net 15 or Net 30), detailed line items with rates, total amount due, late fee policy, and payment instructions. Send as PDF for a professional look.
+</div>
+
 A good invoice does more than ask for money. It reinforces your professionalism, sets clear expectations, and includes everything the client needs to pay you without asking follow-up questions.
 
 ## The essential elements

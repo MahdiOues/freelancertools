@@ -7,6 +7,10 @@ relatedTool: /freelancer/rate-calculator/
 relatedToolName: Free Freelancer Rate Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> You need 1.3× your salary in freelance revenue to match take-home pay, plus 6 months of living expenses in savings. Health insurance, retirement contributions, paid time off, and equipment are now your responsibility. Start building your pipeline before quitting.
+</div>
+
 You are thinking about leaving your job to freelance full-time. The freedom sounds good. The finances are what scare you. Here is the real math â€” not motivation, not warnings, just the numbers you need to know before you give notice.
 
 ## What your salary actually costs you to replace

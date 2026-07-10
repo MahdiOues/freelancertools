@@ -7,6 +7,10 @@ relatedTool: /finance/paycheck-calculator/
 relatedToolName: Free Paycheck Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Your gross pay is what you earned before deductions. Net pay (take-home) is gross minus federal/state income tax, Social Security (6.2%), Medicare (1.45%), health insurance premiums, retirement contributions, and any garnishments.
+</div>
+
 Your paycheck arrives every two weeks. You glance at the bottom line. But between the gross pay and the net pay, a lot happens. Every line on your pay stub represents money going somewhere — taxes, benefits, retirement, or your bank account. Understanding each deduction helps you verify accuracy, plan your budget, and make informed decisions about your benefits.
 
 ## Gross pay: where it starts

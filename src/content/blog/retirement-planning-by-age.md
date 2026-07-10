@@ -7,6 +7,10 @@ relatedTool: /finance/retirement-calculator/
 relatedToolName: Free Retirement Calculator
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> In your 30s, focus on maximizing retirement account contributions and paying off high-interest debt. In your 40s, increase savings rate to 15–20% of income. In your 50s, max out catch-up contributions and create a detailed withdrawal strategy.
+</div>
+
 Retirement planning looks different at every stage of your career. The decisions you make in your 30s, 40s, and 50s have a compounding effect on your financial future. The earlier you start, the less you need to save each month to reach the same goal. But no matter where you are, the best time to adjust your plan is today.
 
 ## Your 30s: Build the foundation

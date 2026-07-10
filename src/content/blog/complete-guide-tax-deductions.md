@@ -7,6 +7,10 @@ relatedTool: /finance/tax-deduction-finder/
 relatedToolName: Free Tax Deduction Finder
 ---
 
+<div class="quick-answer">
+  <strong>Quick Answer:</strong> Self-employed professionals can deduct home office expenses (simplified or regular method), health insurance premiums, retirement contributions, business equipment, vehicle mileage, and a portion of internet and phone bills.
+</div>
+
 Self-employment offers freedom, flexibility, and significant tax advantages. Unlike W-2 employees, you can deduct a wide range of business expenses that reduce your taxable income. The key is knowing what is deductible and keeping proper records. The IRS allows deductions for ordinary and necessary expenses — ordinary means common in your industry, necessary means helpful and appropriate for your business.
 
 ## Home office deduction
