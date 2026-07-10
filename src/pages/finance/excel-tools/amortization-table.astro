@@ -1,4 +1,4 @@
----
+ï»¿---
 import Tool from '../../../layouts/ToolWithExcel.astro';
 
 const schema = {
@@ -24,7 +24,7 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "Can I model a loan with a balloon payment?",
-      "acceptedAnswer": { "@type": "Answer", "text": "This tool models fully amortizing loans — loans where the balance reaches zero at the end of the term. Balloon payment structures are not currently supported." }
+      "acceptedAnswer": { "@type": "Answer", "text": "This tool models fully amortizing loans â€” loans where the balance reaches zero at the end of the term. Balloon payment structures are not currently supported." }
     },
     {
       "@type": "Question",
@@ -60,12 +60,12 @@ const faqSchema = {
 >
   <fragment slot="hero">
     <div class="tool-page-hero">
-      <h1>Free Amortization Table Generator — Full Loan Repayment Schedule</h1>
-      <p class="subhead">Enter any loan and get a full month-by-month amortization schedule with principal, interest, and balance columns — exportable as Excel.</p>
+      <h1>Free Amortization Table Generator â€” Full Loan Repayment Schedule</h1>
+      <p class="subhead">Enter any loan and get a full month-by-month amortization schedule with principal, interest, and balance columns â€” exportable as Excel.</p>
     </div>
   </fragment>
   <div class="tool-intro" style="max-width:720px;margin:0 auto 28px;">
-    <p>Enter your loan amount, interest rate, and term to generate a complete month-by-month amortization schedule — showing exactly how much of each payment goes to principal, how much goes to interest, and what your remaining balance is after every payment. Works for mortgages, auto loans, personal loans, and business financing. Download the full schedule as an Excel file or PDF.</p>
+    <p>Enter your loan amount, interest rate, and term to generate a complete month-by-month amortization schedule â€” showing exactly how much of each payment goes to principal, how much goes to interest, and what your remaining balance is after every payment. Works for mortgages, auto loans, personal loans, and business financing. Download the full schedule as an Excel file or PDF.</p>
   </div>
   <fragment slot="tool">
     <div class="calculator-card">
@@ -91,7 +91,7 @@ const faqSchema = {
           <input type="month" id="startDate" />
         </div>
         <div class="field-full">
-          <label class="field-label">Extra Monthly Payment ($) — optional</label>
+          <label class="field-label">Extra Monthly Payment ($) â€” optional</label>
           <input type="number" id="extraPayment" value="0" min="0" step="50" />
         </div>
       </div>
@@ -116,14 +116,14 @@ const faqSchema = {
     <div class="seo-body">
       <h2>What is a loan amortization table?</h2>
       <p>An amortization table breaks every loan payment into its two components: the portion that reduces your principal balance and the portion that pays interest to the lender. In the early months of a loan, the majority of each payment is interest. Over time, as the principal decreases, more of each payment goes toward the balance. This shift is called amortization.</p>
-      <p>Understanding your amortization schedule matters because it shows you exactly how much of your money is actually reducing debt versus going to the lender as profit. A 30-year mortgage at 7% means your first payment is roughly 80% interest — a fact that changes how you evaluate refinancing, early repayment, and extra payments.</p>
+      <p>Understanding your amortization schedule matters because it shows you exactly how much of your money is actually reducing debt versus going to the lender as profit. A 30-year mortgage at 7% means your first payment is roughly 80% interest â€” a fact that changes how you evaluate refinancing, early repayment, and extra payments.</p>
 
       <h2>How extra monthly payments affect your loan</h2>
-      <p>Adding even a small extra payment each month has a dramatic effect on the total interest you pay over the life of a loan. On a $300,000 30-year mortgage at 6.5%, adding $200 per month to your payment cuts approximately 5 years from the loan term and saves over $80,000 in interest. This tool lets you model that scenario directly — enter your extra payment amount and see the new payoff date and total interest savings.</p>
+      <p>Adding even a small extra payment each month has a dramatic effect on the total interest you pay over the life of a loan. On a $300,000 30-year mortgage at 6.5%, adding $200 per month to your payment cuts approximately 5 years from the loan term and saves over $80,000 in interest. This tool lets you model that scenario directly â€” enter your extra payment amount and see the new payoff date and total interest savings.</p>
       <p>The key insight is that extra payments applied to principal are most valuable early in the loan, when the outstanding balance is highest and interest accrues fastest.</p>
 
       <h2>Mortgage vs auto loan vs business loan amortization</h2>
-      <p>All three loan types use the same amortization math, but the terms differ significantly. Mortgages run 15-30 years with relatively low rates (currently 6-8% in the US). Auto loans run 36-84 months at 5-12%. Business term loans typically run 3-10 years at 6-15%. Enter the specific parameters for your loan type and the table adjusts automatically — there is no separate mode for each loan type.</p>
+      <p>All three loan types use the same amortization math, but the terms differ significantly. Mortgages run 15-30 years with relatively low rates (currently 6-8% in the US). Auto loans run 36-84 months at 5-12%. Business term loans typically run 3-10 years at 6-15%. Enter the specific parameters for your loan type and the table adjusts automatically â€” there is no separate mode for each loan type.</p>
 
       <h2>How to export your amortization schedule to Excel</h2>
       <p>Click Export as Excel after generating your table. The download includes every month in the schedule as a row with five columns: payment number, date, payment amount, principal paid, interest paid, and remaining balance. The final row shows totals. You can use this file for further analysis, share it with a lender, or import it into accounting software.</p>
@@ -135,7 +135,7 @@ const faqSchema = {
       </div>
       <div class="faq-item">
         <h3>Can I model a loan with a balloon payment?</h3>
-        <p>This tool models fully amortizing loans — loans where the balance reaches zero at the end of the term. Balloon payment structures are not currently supported.</p>
+        <p>This tool models fully amortizing loans â€” loans where the balance reaches zero at the end of the term. Balloon payment structures are not currently supported.</p>
       </div>
       <div class="faq-item">
         <h3>What does extra monthly payment mean?</h3>

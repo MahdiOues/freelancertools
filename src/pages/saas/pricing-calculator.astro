@@ -1,4 +1,4 @@
----
+ï»¿---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -60,7 +60,7 @@ const schema = {
         </div>
       </div>
       <div class="field">
-        <label class="field-label"><KpiTooltip label="Customer acquisition cost ($)" tip="The total cost to acquire one new paying customer — ad spend, sales, and marketing costs divided by new customers gained." /></label>
+        <label class="field-label"><KpiTooltip label="Customer acquisition cost ($)" tip="The total cost to acquire one new paying customer â€” ad spend, sales, and marketing costs divided by new customers gained." /></label>
         <input type="number" id="cac" value="150" />
       </div>
       <button class="btn btn-primary btn-full" id="calculateBtn">Calculate</button>
@@ -105,19 +105,19 @@ function calculate() {
     <div class="metric-grid">
       <div class="metric-card">
         <div class="result-number">$${mrr.toLocaleString()}</div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">Monthly MRR<button class="kpi-info-btn" aria-label="What is Monthly MRR?" data-tip="Monthly Recurring Revenue — the total subscription revenue you collect every month. The core pulse metric for any subscription business." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Monthly Recurring Revenue — the total subscription revenue you collect every month. The core pulse metric for any subscription business.</span></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Monthly MRR<button class="kpi-info-btn" aria-label="What is Monthly MRR?" data-tip="Monthly Recurring Revenue â€” the total subscription revenue you collect every month. The core pulse metric for any subscription business." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Monthly Recurring Revenue â€” the total subscription revenue you collect every month. The core pulse metric for any subscription business.</span></span></div>
       </div>
       <div class="metric-card">
         <div class="result-number">$${arr.toLocaleString()}</div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">Annual ARR<button class="kpi-info-btn" aria-label="What is Annual ARR?" data-tip="Annual Recurring Revenue — MRR × 12. The standard top-line number used to measure SaaS scale and compare companies." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Annual Recurring Revenue — MRR × 12. The standard top-line number used to measure SaaS scale and compare companies.</span></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Annual ARR<button class="kpi-info-btn" aria-label="What is Annual ARR?" data-tip="Annual Recurring Revenue â€” MRR â€” 12. The standard top-line number used to measure SaaS scale and compare companies." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Annual Recurring Revenue â€” MRR â€” 12. The standard top-line number used to measure SaaS scale and compare companies.</span></span></div>
       </div>
       <div class="metric-card">
         <div class="result-number">$${ltv.toFixed(0)}</div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">LTV per customer<button class="kpi-info-btn" aria-label="What is LTV per customer?" data-tip="Customer Lifetime Value — the total revenue one average customer generates before they cancel. Higher LTV means you can afford to spend more to acquire each customer." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Customer Lifetime Value — the total revenue one average customer generates before they cancel. Higher LTV means you can afford to spend more to acquire each customer.</span></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">LTV per customer<button class="kpi-info-btn" aria-label="What is LTV per customer?" data-tip="Customer Lifetime Value â€” the total revenue one average customer generates before they cancel. Higher LTV means you can afford to spend more to acquire each customer." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Customer Lifetime Value â€” the total revenue one average customer generates before they cancel. Higher LTV means you can afford to spend more to acquire each customer.</span></span></div>
       </div>
       <div class="metric-card">
         <div class="result-number" style="font-size: 22px;">${ltvCac.toFixed(1)}x <span class="status-badge ${ltvClass}" style="font-size: 11px; vertical-align: middle;">${ltvLabel}</span></div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">LTV:CAC ratio<button class="kpi-info-btn" aria-label="What is LTV:CAC ratio?" data-tip="How many dollars you earn per dollar spent acquiring a customer. Above 3x is healthy, 1–3x is borderline, below 1x means you're losing money on every customer." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">How many dollars you earn per dollar spent acquiring a customer. Above 3x is healthy, 1–3x is borderline, below 1x means you're losing money on every customer.</span></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">LTV:CAC ratio<button class="kpi-info-btn" aria-label="What is LTV:CAC ratio?" data-tip="How many dollars you earn per dollar spent acquiring a customer. Above 3x is healthy, 1â€”3x is borderline, below 1x means you're losing money on every customer." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">How many dollars you earn per dollar spent acquiring a customer. Above 3x is healthy, 1â€”3x is borderline, below 1x means you're losing money on every customer.</span></span></div>
       </div>
       <div class="metric-card">
         <div class="result-number">${cacPayback.toFixed(1)} mo</div>

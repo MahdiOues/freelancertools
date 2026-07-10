@@ -1,4 +1,4 @@
----
+ï»¿---
 import Tool from '../../../layouts/Tool.astro';
 import { STATES } from '../../../data/states.js';
 
@@ -75,7 +75,7 @@ const schema = {
 >
   <fragment slot="hero">
     <div class="tool-page-hero">
-      <h1>{state.name} Paycheck Calculator — Estimate Your {year} Take-Home Pay</h1>
+      <h1>{state.name} Paycheck Calculator â€” Estimate Your {year} Take-Home Pay</h1>
       <p class="subhead">{state.notes} Enter your salary or hourly wage below to see your net pay per paycheck.</p>
     </div>
   </fragment>
@@ -164,7 +164,7 @@ const schema = {
       <p>Your W-4 withholding allowances determine how much federal tax is withheld from each paycheck. If you consistently receive large refunds, you may want to adjust your W-4 to increase your per-paycheck take-home pay instead of waiting for a refund.</p>
 
       <div class="state-facts">
-        <h2>{state.name} income tax — what you need to know</h2>
+        <h2>{state.name} income tax â€” what you need to know</h2>
         <p>{state.notes}</p>
         <ul>
           {state.uniqueFacts.map(fact => <li>{fact}</li>)}
@@ -183,8 +183,8 @@ const schema = {
       <div class="sources">
         <h3>Sources</h3>
         <ul>
-          <li><a href="https://www.irs.gov/pub/irs-pdf/p15t.pdf" rel="nofollow noopener" target="_blank">IRS Publication 15-T — Federal Income Tax Withholding Methods</a></li>
-          <li><a href="https://www.ssa.gov/oact/cola/cbb.html" rel="nofollow noopener" target="_blank">Social Security Administration — Contribution and Benefit Base</a></li>
+          <li><a href="https://www.irs.gov/pub/irs-pdf/p15t.pdf" rel="nofollow noopener" target="_blank">IRS Publication 15-T â€” Federal Income Tax Withholding Methods</a></li>
+          <li><a href="https://www.ssa.gov/oact/cola/cbb.html" rel="nofollow noopener" target="_blank">Social Security Administration â€” Contribution and Benefit Base</a></li>
           <li>State tax rates sourced from each state's department of revenue (2025)</li>
         </ul>
       </div>

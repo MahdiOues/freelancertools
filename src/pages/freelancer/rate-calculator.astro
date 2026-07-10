@@ -1,4 +1,4 @@
----
+ï»¿---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -45,27 +45,27 @@ const schema = {
           <input type="number" id="takeHome" value="80000" />
         </div>
         <div class="field">
-          <label class="field-label"><KpiTooltip label="Billable hours / week" tip="The number of hours per week you can realistically bill to clients — not your total working hours. Leave room for admin, marketing, and downtime." /></label>
+          <label class="field-label"><KpiTooltip label="Billable hours / week" tip="The number of hours per week you can realistically bill to clients â€” not your total working hours. Leave room for admin, marketing, and downtime." /></label>
           <input type="number" id="billableHours" value="25" step="0.5" />
         </div>
       </div>
       <div class="field-grid">
         <div class="field">
-          <label class="field-label"><KpiTooltip label="Weeks / year" tip="How many weeks per year you plan to work. 48 is common — leaves 4 weeks for vacation, sick days, and holidays." /></label>
+          <label class="field-label"><KpiTooltip label="Weeks / year" tip="How many weeks per year you plan to work. 48 is common â€” leaves 4 weeks for vacation, sick days, and holidays." /></label>
           <input type="number" id="weeksPerYear" value="48" />
         </div>
         <div class="field">
-          <label class="field-label"><KpiTooltip label="Monthly expenses ($)" tip="Your total monthly business costs — software, equipment, office, insurance, etc. Does not include personal living expenses." /></label>
+          <label class="field-label"><KpiTooltip label="Monthly expenses ($)" tip="Your total monthly business costs â€” software, equipment, office, insurance, etc. Does not include personal living expenses." /></label>
           <input type="number" id="expenses" value="2000" />
         </div>
       </div>
       <div class="field-grid">
         <div class="field">
-          <label class="field-label"><KpiTooltip label="Tax rate (%)" tip="Your estimated effective tax rate. If unsure, use 25–30% as a starting estimate and adjust based on your country." /></label>
+          <label class="field-label"><KpiTooltip label="Tax rate (%)" tip="Your estimated effective tax rate. If unsure, use 25â€”30% as a starting estimate and adjust based on your country." /></label>
           <input type="number" id="taxRate" value="30" step="0.5" />
         </div>
         <div class="field">
-          <label class="field-label"><KpiTooltip label="Profit buffer (%)" tip="An extra percentage added on top of your costs to cover slow months, scope creep, and unpaid invoices. 15–20% is recommended." /></label>
+          <label class="field-label"><KpiTooltip label="Profit buffer (%)" tip="An extra percentage added on top of your costs to cover slow months, scope creep, and unpaid invoices. 15â€”20% is recommended." /></label>
           <input type="number" id="buffer" value="10" step="0.5" />
         </div>
       </div>
@@ -116,14 +116,14 @@ function calculate() {
       </div>
       <div class="metric-card">
         <div class="result-number" style="font-size: 22px;">$${dayRate.toFixed(0)}</div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">Day Rate (8h)<button class="kpi-info-btn" aria-label="What is Day Rate (8h)?" data-tip="Your recommended hourly rate × 8. Useful when quoting day-rate projects or workshops." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your recommended hourly rate × 8. Useful when quoting day-rate projects or workshops.</span></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Day Rate (8h)<button class="kpi-info-btn" aria-label="What is Day Rate (8h)?" data-tip="Your recommended hourly rate â€” 8. Useful when quoting day-rate projects or workshops." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your recommended hourly rate â€” 8. Useful when quoting day-rate projects or workshops.</span></span></div>
       </div>
       <div class="metric-card">
         <div class="result-number" style="font-size: 22px;">$${weekRate.toFixed(0)}</div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">Week Rate (40h)<button class="kpi-info-btn" aria-label="What is Week Rate (40h)?" data-tip="Your recommended hourly rate × your billable hours per week. Use this for weekly retainer proposals." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your recommended hourly rate × your billable hours per week. Use this for weekly retainer proposals.</span></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Week Rate (40h)<button class="kpi-info-btn" aria-label="What is Week Rate (40h)?" data-tip="Your recommended hourly rate â€” your billable hours per week. Use this for weekly retainer proposals." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your recommended hourly rate â€” your billable hours per week. Use this for weekly retainer proposals.</span></span></div>
       </div>
     </div>
-    <p style="margin-top: 16px; font-size: 13px; color: var(--ink-3);">Based on ${totalHours} billable hours per year. Non-billable time (admin, marketing, learning) is not factored into the rate calculation — adjust your target billable hours accordingly.</p>
+    <p style="margin-top: 16px; font-size: 13px; color: var(--ink-3);">Based on ${totalHours} billable hours per year. Non-billable time (admin, marketing, learning) is not factored into the rate calculation â€” adjust your target billable hours accordingly.</p>
   `;
 }
 

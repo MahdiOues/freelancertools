@@ -1,4 +1,4 @@
----
+ï»¿---
 import Tool from '../../../layouts/Tool.astro';
 import { CONVERSION_PAIRS, convertValue } from '../../../data/conversions.js';
 
@@ -65,20 +65,20 @@ function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 const faqs = [
   {
     name: `How do I convert ${pair.fromFull} to ${pair.toFull}?`,
-    acceptedAnswer: { text: `To convert ${pair.fromFull} to ${pair.toFull}, ${factorDesc}. For example, ${pair.examples[0]} ${pair.from} × ${pair.factor || (pair.formula === 'c2f' ? '(9/5) + 32' : '(5/9) × (F - 32)')} = ${tableRows[0].to} ${pair.to}.` }
+    acceptedAnswer: { text: `To convert ${pair.fromFull} to ${pair.toFull}, ${factorDesc}. For example, ${pair.examples[0]} ${pair.from} â€” ${pair.factor || (pair.formula === 'c2f' ? '(9/5) + 32' : '(5/9) â€” (F - 32)')} = ${tableRows[0].to} ${pair.to}.` }
   },
   {
     name: `What is the formula to convert ${pair.fromFull} to ${pair.toFull}?`,
     acceptedAnswer: pair.formula === 'c2f'
-      ? { text: `The formula to convert Celsius to Fahrenheit is: °F = (°C × 9/5) + 32. For example, 25°C = (25 × 9/5) + 32 = 77°F.` }
+      ? { text: `The formula to convert Celsius to Fahrenheit is: â€”F = (â€”C â€” 9/5) + 32. For example, 25â€”C = (25 â€” 9/5) + 32 = 77â€”F.` }
       : pair.formula === 'f2c'
-      ? { text: `The formula to convert Fahrenheit to Celsius is: °C = (°F - 32) × 5/9. For example, 77°F = (77 - 32) × 5/9 = 25°C.` }
-      : { text: `The formula to convert ${pair.fromFull} to ${pair.toFull} is: ${pair.toFull} = ${pair.fromFull} × ${pair.factor}. Simply multiply the number of ${pair.fromFull} by ${pair.factor} to get the equivalent in ${pair.toFull}.` }
+      ? { text: `The formula to convert Fahrenheit to Celsius is: â€”C = (â€”F - 32) â€” 5/9. For example, 77â€”F = (77 - 32) â€” 5/9 = 25â€”C.` }
+      : { text: `The formula to convert ${pair.fromFull} to ${pair.toFull} is: ${pair.toFull} = ${pair.fromFull} â€” ${pair.factor}. Simply multiply the number of ${pair.fromFull} by ${pair.factor} to get the equivalent in ${pair.toFull}.` }
   },
   {
     name: `What is the difference between ${pair.fromFull} and ${pair.toFull}?`,
     acceptedAnswer: pair.category === 'temperature'
-      ? { text: `Celsius and Fahrenheit are two different temperature scales. Water freezes at 0°C (32°F) and boils at 100°C (212°F). Celsius is used in most countries worldwide, while Fahrenheit is primarily used in the United States. One degree Celsius is equivalent to 1.8 degrees Fahrenheit.` }
+      ? { text: `Celsius and Fahrenheit are two different temperature scales. Water freezes at 0â€”C (32â€”F) and boils at 100â€”C (212â€”F). Celsius is used in most countries worldwide, while Fahrenheit is primarily used in the United States. One degree Celsius is equivalent to 1.8 degrees Fahrenheit.` }
       : pair.category === 'weight'
       ? { text: `${capitalize(pair.fromFull)} and ${pair.toFull} are both units of weight or mass used in different measurement systems. ${capitalize(pair.fromFull)} are part of the metric system (used by most countries), while ${pair.toFull} are part of the imperial system (primarily used in the US and UK).` }
       : pair.category === 'volume'
@@ -105,7 +105,7 @@ const faqSchema = {
 ---
 
 <Tool
-  title={`Convert ${pair.from} to ${pair.to} — Free ${capitalize(pair.fromFull)} to ${capitalize(pair.toFull)} Calculator | MegaLancer`}
+  title={`Convert ${pair.from} to ${pair.to} â€” Free ${capitalize(pair.fromFull)} to ${capitalize(pair.toFull)} Calculator | MegaLancer`}
   description={`Convert ${pair.fromFull} to ${pair.toFull} instantly. Free online ${pair.from} to ${pair.to} calculator with formula, conversion table, and examples. Accurate and easy to use.`}
   canonicalUrl={`https://www.megalancer.online/math/convert/${pair.slug}/`}
   schema={[schema, faqSchema]}
@@ -114,7 +114,7 @@ const faqSchema = {
 >
   <fragment slot="hero">
     <div class="tool-page-hero">
-      <h1>Convert {pair.from} to {pair.to} — Free {capitalize(pair.fromFull)} to {capitalize(pair.toFull)} Calculator</h1>
+      <h1>Convert {pair.from} to {pair.to} â€” Free {capitalize(pair.fromFull)} to {capitalize(pair.toFull)} Calculator</h1>
       <p class="subhead">Convert {pair.fromFull} to {pair.toFull} instantly. Enter any value and get the exact conversion with the formula displayed. Accurate to 4 decimal places.</p>
     </div>
   </fragment>
@@ -151,7 +151,7 @@ const faqSchema = {
       <h2>The {pair.fromFull} to {pair.toFull} conversion formula</h2>
       <p>To convert {pair.fromFull} to {pair.toFull}, {factorDesc}. The formula is:</p>
       <div style="padding:16px;background:var(--bg-light);border-radius:8px;font-family:monospace;font-size:15px;text-align:center;margin:16px 0;">
-        {pair.toFull} = {pair.fromFull} × {pair.formula === 'c2f' ? '(9/5) + 32' : pair.formula === 'f2c' ? '(°F - 32) × 5/9' : pair.factor}
+        {pair.toFull} = {pair.fromFull} â€” {pair.formula === 'c2f' ? '(9/5) + 32' : pair.formula === 'f2c' ? '(â€”F - 32) â€” 5/9' : pair.factor}
       </div>
       <p>For example: <strong>{pair.examples[2]} {pair.from} = {tableRows[2].to} {pair.to}</strong>. This formula works for any value you enter in the calculator above.</p>
 
@@ -172,19 +172,19 @@ const faqSchema = {
 
       <h2>Why both {pair.fromFull} and {pair.toFull} are used</h2>
       {pair.category === 'temperature' ? (
-        <p>Celsius is the standard temperature scale used in almost every country worldwide, part of the metric (SI) system. Fahrenheit is primarily used in the United States and a few other territories. The Celsius scale sets 0° at the freezing point of water and 100° at boiling, making it intuitive for scientific work. The Fahrenheit scale sets 32° and 212° for the same points, offering finer granularity — 180 divisions between freezing and boiling vs 100 for Celsius. Understanding both is essential for travel, cooking, weather, and scientific communication.</p>
+        <p>Celsius is the standard temperature scale used in almost every country worldwide, part of the metric (SI) system. Fahrenheit is primarily used in the United States and a few other territories. The Celsius scale sets 0â€” at the freezing point of water and 100â€” at boiling, making it intuitive for scientific work. The Fahrenheit scale sets 32â€” and 212â€” for the same points, offering finer granularity â€” 180 divisions between freezing and boiling vs 100 for Celsius. Understanding both is essential for travel, cooking, weather, and scientific communication.</p>
       ) : pair.category === 'weight' ? (
         <p>The metric system (kilograms, grams) is the standard for most of the world, used in science, medicine, and everyday commerce. The imperial system (pounds, ounces) remains in use in the United States and, to a lesser extent, the United Kingdom. This dual-system world means that recipes, package labels, gym weights, and shipping measurements may use either system depending on the country. A reliable converter helps bridge the gap when dealing with international measurements.</p>
       ) : pair.category === 'volume' ? (
         <p>Volume measurements vary significantly between the metric and imperial systems. Liters and milliliters are used in most countries for beverages, fuel, and cooking. Fluid ounces, gallons, and other imperial units are standard in the US. This creates confusion when following international recipes, comparing product labels, or working with scientific measurements from different sources. An accurate converter eliminates guesswork when converting between systems.</p>
       ) : pair.category === 'speed' ? (
-        <p>Speed limits and vehicle speedometers differ around the world. Most countries use kilometers per hour (kph), while the United States and United Kingdom use miles per hour (mph). If you're driving abroad, renting a car, or comparing vehicle performance specs from different markets, you need to convert between these units. Understanding the relationship — 1 mph = 1.609 kph — helps you quickly estimate speed equivalents when traveling.</p>
+        <p>Speed limits and vehicle speedometers differ around the world. Most countries use kilometers per hour (kph), while the United States and United Kingdom use miles per hour (mph). If you're driving abroad, renting a car, or comparing vehicle performance specs from different markets, you need to convert between these units. Understanding the relationship â€” 1 mph = 1.609 kph â€” helps you quickly estimate speed equivalents when traveling.</p>
       ) : (
         <p>Different countries use different measurement systems for historical reasons. The metric system (meters, kilometers, centimeters) is used in most of the world and is the standard in science and international trade. The imperial system (feet, miles, inches) is primarily used in the United States. This means that professions like engineering, construction, aviation, and international shipping regularly need to convert between the two systems. Knowing both and having a reliable conversion tool is essential for cross-border work.</p>
       )}
 
       <h2>How to use this converter</h2>
-      <p>Simply type a value in either field — the converter instantly calculates the equivalent in the other unit. The conversion formula is shown below the inputs so you can see exactly how the result was calculated. Use the conversion table for quick reference of common values.</p>
+      <p>Simply type a value in either field â€” the converter instantly calculates the equivalent in the other unit. The conversion formula is shown below the inputs so you can see exactly how the result was calculated. Use the conversion table for quick reference of common values.</p>
 
       <p><strong>Need more conversions?</strong> Try the <a href="/math/unit-converter/">full unit converter</a> which supports {pair.category === 'length' ? 'length, weight, temperature, volume, speed, area, energy, and pressure conversions' : pair.category === 'weight' ? 'length, weight, temperature, volume, speed, area, energy, and pressure conversions' : 'multiple categories of units'} all in one page.</p>
     </div>
@@ -235,11 +235,11 @@ document.getElementById('fromValue').addEventListener('input', function() {
 
   let formulaStr;
   if (convFormula === 'c2f') {
-    formulaStr = val + '°C × 9/5 + 32 = ' + display + '°F';
+    formulaStr = val + 'â€”C â€” 9/5 + 32 = ' + display + 'â€”F';
   } else if (convFormula === 'f2c') {
-    formulaStr = val + '°F ? (' + val + ' - 32) × 5/9 = ' + display + '°C';
+    formulaStr = val + 'â€”F ? (' + val + ' - 32) â€” 5/9 = ' + display + 'â€”C';
   } else {
-    formulaStr = val + ' × ' + convFactor + ' = ' + display;
+    formulaStr = val + ' â€” ' + convFactor + ' = ' + display;
   }
   document.getElementById('formulaDisplay').innerHTML = '<strong>' + val + ' ' + convFromLabel + ' = ' + display + ' ' + convToLabel + '</strong><br><span style="font-family:monospace;font-size:12px;">' + formulaStr + '</span>';
 });
@@ -257,9 +257,9 @@ document.getElementById('toValue').addEventListener('input', function() {
 
   let formulaStr;
   if (convFormula === 'c2f') {
-    formulaStr = val + '°F ? (' + val + ' - 32) × 5/9 = ' + display + '°C';
+    formulaStr = val + 'â€”F ? (' + val + ' - 32) â€” 5/9 = ' + display + 'â€”C';
   } else if (convFormula === 'f2c') {
-    formulaStr = val + '°C × 9/5 + 32 = ' + display + '°F';
+    formulaStr = val + 'â€”C â€” 9/5 + 32 = ' + display + 'â€”F';
   } else {
     formulaStr = display + ' / ' + convFactor + ' = ' + val;
   }

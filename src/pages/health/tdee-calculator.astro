@@ -1,4 +1,4 @@
----
+ï»¿---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -15,7 +15,7 @@ const schema = {
 ---
 
 <Tool
-  title="TDEE Calculator — Daily Energy Needs"
+  title="TDEE Calculator â€” Daily Energy Needs"
   description="Calculate how many calories you burn daily. Get your BMR, TDEE, and personalized calorie targets for weight loss, maintenance, and muscle gain."
   canonicalUrl="https://www.megalancer.online/health/tdee-calculator/"
   schema={schema}
@@ -65,11 +65,11 @@ const schema = {
         <div class="field">
           <label class="field-label"><KpiTooltip label="Activity level" tip="How physically active you are in daily life and exercise." /></label>
           <select id="activity">
-            <option value="1.2">Sedentary — little or no exercise</option>
-            <option value="1.375">Light — 1-3 days/week</option>
-            <option value="1.55" selected>Moderate — 3-5 days/week</option>
-            <option value="1.725">Active — 6-7 days/week</option>
-            <option value="1.9">Very active — intense daily / physical job</option>
+            <option value="1.2">Sedentary â€” little or no exercise</option>
+            <option value="1.375">Light â€” 1-3 days/week</option>
+            <option value="1.55" selected>Moderate â€” 3-5 days/week</option>
+            <option value="1.725">Active â€” 6-7 days/week</option>
+            <option value="1.9">Very active â€” intense daily / physical job</option>
           </select>
         </div>
 
@@ -82,7 +82,7 @@ const schema = {
   <fragment slot="seo">
     <div class="seo-body">
       <h2>What is TDEE?</h2>
-      <p>Total Daily Energy Expenditure (TDEE) is the total number of calories your body burns in a day. It includes your Basal Metabolic Rate (BMR) — the calories you burn at rest — plus the calories you burn through physical activity and digestion.</p>
+      <p>Total Daily Energy Expenditure (TDEE) is the total number of calories your body burns in a day. It includes your Basal Metabolic Rate (BMR) â€” the calories you burn at rest â€” plus the calories you burn through physical activity and digestion.</p>
       <p>Your TDEE is the number you need to know for weight management. Eat more than your TDEE and you gain weight. Eat less and you lose weight. Eat the same and you maintain.</p>
       <h2>How to use this calculator</h2>
       <p>Enter your age, gender, height, and weight to calculate your BMR using the Mifflin-St Jeor equation, the most accurate formula for the general population. Then select your activity level to get your TDEE and three calorie targets: weight loss (TDEE minus 500), maintenance (TDEE), and muscle gain (TDEE plus 300).</p>
@@ -91,7 +91,7 @@ const schema = {
       <div class="sources">
         <h3>Sources</h3>
         <ul>
-          <li><a href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight" rel="nofollow noopener" target="_blank">World Health Organization — BMI Classification</a></li>
+          <li><a href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight" rel="nofollow noopener" target="_blank">World Health Organization â€” BMI Classification</a></li>
           <li>Mifflin-St Jeor equation: Mifflin MD et al. (1990). American Journal of Clinical Nutrition.</li>
         </ul>
       </div>
@@ -114,11 +114,11 @@ function calculate() {
     <div class="metric-grid">
       <div class="metric-card">
         <div class="result-number">${Math.round(bmr)}</div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">BMR<button class="kpi-info-btn" data-tip="Basal Metabolic Rate — calories your body burns at rest just to stay alive." tabindex="0" type="button">i</button></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">BMR<button class="kpi-info-btn" data-tip="Basal Metabolic Rate â€” calories your body burns at rest just to stay alive." tabindex="0" type="button">i</button></span></div>
       </div>
       <div class="metric-card">
         <div class="result-number">${Math.round(tdee)}</div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">TDEE<button class="kpi-info-btn" data-tip="Total Daily Energy Expenditure — total calories burned per day including activity." tabindex="0" type="button">i</button></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">TDEE<button class="kpi-info-btn" data-tip="Total Daily Energy Expenditure â€” total calories burned per day including activity." tabindex="0" type="button">i</button></span></div>
       </div>
     </div>
     <div style="margin-top:20px;">

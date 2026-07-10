@@ -1,4 +1,4 @@
----
+ï»¿---
 import Tool from '../../layouts/ToolWithCharts.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -15,7 +15,7 @@ const schema = {
 ---
 
 <Tool
-  title="Inflation Calculator — Purchasing Power"
+  title="Inflation Calculator â€” Purchasing Power"
   description="Calculate what money from the past is worth today. See how inflation erodes purchasing power over time with CPI data and interactive chart."
   canonicalUrl="https://www.megalancer.online/finance/inflation-calculator/"
   schema={schema}
@@ -30,7 +30,7 @@ const schema = {
   <fragment slot="hero">
     <div class="tool-page-hero">
       <h1>Inflation Calculator</h1>
-      <p class="subhead">See how inflation affects the purchasing power of your money over time. Data from the Bureau of Labor Statistics (1913–2024).</p>
+      <p class="subhead">See how inflation affects the purchasing power of your money over time. Data from the Bureau of Labor Statistics (1913â€”2024).</p>
     </div>
   </fragment>
   <fragment slot="tool">
@@ -68,14 +68,14 @@ const schema = {
     <div class="seo-body">
       <h2>What is inflation?</h2>
       <p>Inflation is the gradual increase in the price of goods and services over time. When inflation rises, each dollar you own buys a smaller percentage of a good or service. The inflation rate is measured by the Consumer Price Index (CPI), published monthly by the Bureau of Labor Statistics.</p>
-      <p>Since 1913, the US dollar has lost approximately 96% of its purchasing power. A dollar in 1913 is worth only about 3 cents today. This is why investing — rather than holding cash — is essential for long-term financial health.</p>
+      <p>Since 1913, the US dollar has lost approximately 96% of its purchasing power. A dollar in 1913 is worth only about 3 cents today. This is why investing â€” rather than holding cash â€” is essential for long-term financial health.</p>
       <h2>How to use this calculator</h2>
       <p>Enter an amount and select a start year and end year. The calculator uses historical CPI data from 1913 to 2024 to compute the inflation-adjusted value. It also shows the total inflation percentage and the purchasing power lost. The chart visualizes how the purchasing power of your amount changed over time.</p>
       <p>Data source: Bureau of Labor Statistics (public domain). This is a historical calculation. Future inflation cannot be predicted.</p>
       <div class="sources">
         <h3>Sources</h3>
         <ul>
-          <li><a href="https://www.bls.gov/cpi/" rel="nofollow noopener" target="_blank">Bureau of Labor Statistics — Consumer Price Index</a></li>
+          <li><a href="https://www.bls.gov/cpi/" rel="nofollow noopener" target="_blank">Bureau of Labor Statistics â€” Consumer Price Index</a></li>
         </ul>
       </div>
     </div>
@@ -135,7 +135,7 @@ function calculate() {
       </div>
       <div class="metric-card">
         <div class="result-number">${inflationRate.toFixed(1)}%</div>
-        <div class="result-label">Total inflation (${startYear}–${endYear})</div>
+        <div class="result-label">Total inflation (${startYear}â€”${endYear})</div>
       </div>
       <div class="metric-card">
         <div class="result-number" style="color:var(--danger);">$${lost.toFixed(2)}</div>

@@ -1,4 +1,4 @@
----
+ï»¿---
 import Tool from '../../layouts/ToolWithCharts.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -166,11 +166,11 @@ function update() {
     <div class="metric-grid">
       <div class="metric-card">
         <div class="result-number">${Math.round(simulated)}</div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">Simulated Score<button class="kpi-info-btn" aria-label="What is Simulated Score?" data-tip="A simulated FICO-style score based on your inputs. Not a real credit inquiry — use this to model how changes to your habits could affect your score range." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">A simulated FICO-style score based on your inputs. Not a real credit inquiry — use this to model how changes to your habits could affect your score range.</span></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Simulated Score<button class="kpi-info-btn" aria-label="What is Simulated Score?" data-tip="A simulated FICO-style score based on your inputs. Not a real credit inquiry â€” use this to model how changes to your habits could affect your score range." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">A simulated FICO-style score based on your inputs. Not a real credit inquiry â€” use this to model how changes to your habits could affect your score range.</span></span></div>
       </div>
       <div class="metric-card">
         <div class=""><span class="status-badge ${band.cls}">${band.label}</span></div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">Score Band<button class="kpi-info-btn" aria-label="What is Score Band?" data-tip="Your score category based on the simulated number. 300–579 Poor, 580–669 Fair, 670–739 Good, 740–799 Very Good, 800–850 Excellent." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your score category based on the simulated number. 300–579 Poor, 580–669 Fair, 670–739 Good, 740–799 Very Good, 800–850 Excellent.</span></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Score Band<button class="kpi-info-btn" aria-label="What is Score Band?" data-tip="Your score category based on the simulated number. 300â€”579 Poor, 580â€”669 Fair, 670â€”739 Good, 740â€”799 Very Good, 800â€”850 Excellent." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Your score category based on the simulated number. 300â€”579 Poor, 580â€”669 Fair, 670â€”739 Good, 740â€”799 Very Good, 800â€”850 Excellent.</span></span></div>
       </div>
       <div class="metric-card">
         <div class="result-number" style="${delta < 0 ? 'color: var(--danger)' : 'color: var(--success)'}">${delta > 0 ? '+' : ''}${Math.round(delta)}</div>

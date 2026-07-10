@@ -1,4 +1,4 @@
----
+﻿---
 import Tool from '../../layouts/Tool.astro';
 
 const schema = {
@@ -114,7 +114,7 @@ async function summarize() {
     resultArea.innerHTML = `<div style="font-size: 15px;"><p>${formatted}</p></div>`;
     resultArea.style.display = 'block';
   } catch (err) {
-    errorMsg.textContent = 'Something went wrong � please try again.';
+    errorMsg.textContent = 'Something went wrong — please try again.';
     errorMsg.style.display = 'block';
   } finally {
     btn.disabled = false;

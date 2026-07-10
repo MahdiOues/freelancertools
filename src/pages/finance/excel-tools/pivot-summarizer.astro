@@ -1,4 +1,4 @@
----
+ï»¿---
 import Tool from '../../../layouts/ToolWithExcel.astro';
 
 const schema = {
@@ -19,7 +19,7 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "How is this different from Excel's pivot table?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Excel's pivot table is more powerful — it supports multiple value fields, calculated fields, and drill-down. This tool covers the most common use case: one group-by column, one value column, one aggregation. For simple summaries it is faster and requires no software." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Excel's pivot table is more powerful â€” it supports multiple value fields, calculated fields, and drill-down. This tool covers the most common use case: one group-by column, one value column, one aggregation. For simple summaries it is faster and requires no software." }
     },
     {
       "@type": "Question",
@@ -28,7 +28,7 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      "name": "My numeric column is being treated as text — what do I do?",
+      "name": "My numeric column is being treated as text â€” what do I do?",
       "acceptedAnswer": { "@type": "Answer", "text": "Check that your values contain only digits, decimal points, and optionally a currency symbol or comma. The parser strips $ and commas before parsing. If a value contains letters or other characters it will be treated as text and excluded from numeric aggregations." }
     },
     {
@@ -46,7 +46,7 @@ const faqSchema = {
 ---
 
 <Tool
-  title="Pivot Table Tool — Summarise Data"
+  title="Pivot Table Tool â€” Summarise Data"
   description="Upload or paste any data table and create pivot-style summaries: group by any column, aggregate by sum, average, count, min, or max. No Excel, no formulas. Free and instant."
   canonicalUrl="https://www.megalancer.online/finance/excel-tools/pivot-summarizer/"
   schema={schema}
@@ -60,12 +60,12 @@ const faqSchema = {
 >
   <fragment slot="hero">
     <div class="tool-page-hero">
-      <h1>Free Online Pivot Table Tool — Summarise Any Data Without Excel</h1>
+      <h1>Free Online Pivot Table Tool â€” Summarise Any Data Without Excel</h1>
       <p class="subhead">Upload any data table and create pivot-style summaries: group by any column, aggregate by sum, average, count, min, or max on any numeric column.</p>
     </div>
   </fragment>
   <div class="tool-intro" style="max-width:720px;margin:0 auto 28px;">
-    <p>Upload a CSV or paste any tabular data and instantly create pivot-style summaries: group rows by any column, then aggregate a numeric column by sum, average, count, minimum, or maximum. Add a second grouping column to create a cross-tab view. No Excel knowledge required — results appear instantly and can be exported as Excel or PDF.</p>
+    <p>Upload a CSV or paste any tabular data and instantly create pivot-style summaries: group rows by any column, then aggregate a numeric column by sum, average, count, minimum, or maximum. Add a second grouping column to create a cross-tab view. No Excel knowledge required â€” results appear instantly and can be exported as Excel or PDF.</p>
   </div>
   <fragment slot="tool">
     <div class="calculator-card">
@@ -124,13 +124,13 @@ const faqSchema = {
   <fragment slot="seo">
     <div class="seo-body">
       <h2>What does a pivot table do and why do people use them?</h2>
-      <p>A pivot table groups all rows that share a common value in a chosen column, then aggregates a numeric column for each group. Instead of scanning 500 rows of sales data to see how much each region sold, you pivot on "Region" and sum the "Revenue" column — and you get a clean table showing total revenue per region. It is the most-used Excel feature for a reason: it turns raw data into actionable summaries in seconds.</p>
+      <p>A pivot table groups all rows that share a common value in a chosen column, then aggregates a numeric column for each group. Instead of scanning 500 rows of sales data to see how much each region sold, you pivot on "Region" and sum the "Revenue" column â€” and you get a clean table showing total revenue per region. It is the most-used Excel feature for a reason: it turns raw data into actionable summaries in seconds.</p>
 
       <h2>How to use the pivot summariser</h2>
-      <p>Paste your data or upload a CSV or Excel file. The tool reads the headers from your first row and populates the Group By and Aggregate Column dropdowns automatically. Select which column you want to group by (for example, "Category" or "Region"), which column you want to aggregate (for example, "Sales" or "Amount"), and which function to apply — Sum, Average, Count, Min, or Max. Optionally select a Sub-Group column to create a cross-tab that shows values broken down by two dimensions.</p>
+      <p>Paste your data or upload a CSV or Excel file. The tool reads the headers from your first row and populates the Group By and Aggregate Column dropdowns automatically. Select which column you want to group by (for example, "Category" or "Region"), which column you want to aggregate (for example, "Sales" or "Amount"), and which function to apply â€” Sum, Average, Count, Min, or Max. Optionally select a Sub-Group column to create a cross-tab that shows values broken down by two dimensions.</p>
 
-      <h2>Sum vs Average vs Count — which to use</h2>
-      <p>Use Sum when you need totals — total revenue by region, total costs by department. Use Average when you need typical values — average order value by category, average salary by role. Use Count when you need frequency — how many transactions per customer, how many employees per department. Use Min and Max when you need range analysis — lowest and highest temperature by month, smallest and largest deal size by sales rep.</p>
+      <h2>Sum vs Average vs Count â€” which to use</h2>
+      <p>Use Sum when you need totals â€” total revenue by region, total costs by department. Use Average when you need typical values â€” average order value by category, average salary by role. Use Count when you need frequency â€” how many transactions per customer, how many employees per department. Use Min and Max when you need range analysis â€” lowest and highest temperature by month, smallest and largest deal size by sales rep.</p>
 
       <h2>Exporting pivot results to Excel</h2>
       <p>Click Export as Excel to download the pivot summary as a properly formatted .xlsx file. The group labels are preserved exactly as shown on screen, with a bold header row and a grand total row at the bottom. Numeric values are formatted to two decimal places. You can use this file for further analysis, include it in a report, or send it to a colleague who works in Excel.</p>
@@ -138,14 +138,14 @@ const faqSchema = {
       <h2>Frequently asked questions</h2>
       <div class="faq-item">
         <h3>How is this different from Excel's pivot table?</h3>
-        <p>Excel's pivot table is more powerful — it supports multiple value fields, calculated fields, and drill-down. This tool covers the most common use case: one group-by column, one value column, one aggregation. For simple summaries it is faster and requires no software.</p>
+        <p>Excel's pivot table is more powerful â€” it supports multiple value fields, calculated fields, and drill-down. This tool covers the most common use case: one group-by column, one value column, one aggregation. For simple summaries it is faster and requires no software.</p>
       </div>
       <div class="faq-item">
         <h3>Can I group by multiple columns at once?</h3>
         <p>You can select a primary group and one secondary group (sub-group). The results show the combined key as a single label. Full multi-level grouping is a planned feature.</p>
       </div>
       <div class="faq-item">
-        <h3>My numeric column is being treated as text — what do I do?</h3>
+        <h3>My numeric column is being treated as text â€” what do I do?</h3>
         <p>Check that your values contain only digits, decimal points, and optionally a currency symbol or comma. The parser strips $ and commas before parsing. If a value contains letters or other characters it will be treated as text and excluded from numeric aggregations.</p>
       </div>
       <div class="faq-item">

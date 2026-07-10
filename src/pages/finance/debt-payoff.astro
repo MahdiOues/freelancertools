@@ -1,4 +1,4 @@
----
+ï»¿---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -15,7 +15,7 @@ const schema = {
 ---
 
 <Tool
-  title="Debt Payoff Calculator — Avalanche & Snowball"
+  title="Debt Payoff Calculator â€” Avalanche & Snowball"
   description="Compare avalanche (highest interest first) and snowball (lowest balance first) debt payoff strategies. See which saves you more money and time."
   canonicalUrl="https://www.megalancer.online/finance/debt-payoff/"
   schema={schema}
@@ -58,7 +58,7 @@ const schema = {
       <p>The <strong>avalanche method</strong> pays off debts in order of highest interest rate first. This saves you the most money in total interest paid and is mathematically optimal. The <strong>snowball method</strong> pays off debts in order of smallest balance first, giving you quick wins that build momentum and motivation.</p>
       <p>Research shows the snowball method has a higher success rate because the psychological boost of paying off a debt keeps people motivated. But the avalanche method can save thousands in interest. Use this calculator to compare both side by side.</p>
       <h2>How debt payoff works</h2>
-      <p>You make minimum payments on all debts, then put any extra money toward one target debt at a time (either highest rate or smallest balance). When that debt is paid off, you roll that payment to the next target — this is called "debt snowballing" your payments. The calculator shows the exact month-by-month schedule for both methods.</p>
+      <p>You make minimum payments on all debts, then put any extra money toward one target debt at a time (either highest rate or smallest balance). When that debt is paid off, you roll that payment to the next target â€” this is called "debt snowballing" your payments. The calculator shows the exact month-by-month schedule for both methods.</p>
     </div>
   </fragment>
 </Tool>
@@ -139,12 +139,12 @@ function calculate() {
     <div class="metric-grid">
       <div class="metric-card">
         <div class="result-number">${avalanche.months} mo</div>
-        <div class="result-label">Avalanche — payoff time</div>
+        <div class="result-label">Avalanche â€” payoff time</div>
         <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">$${avalanche.totalInterest.toFixed(0)} interest</div>
       </div>
       <div class="metric-card">
         <div class="result-number">${snowball.months} mo</div>
-        <div class="result-label">Snowball — payoff time</div>
+        <div class="result-label">Snowball â€” payoff time</div>
         <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">$${snowball.totalInterest.toFixed(0)} interest</div>
       </div>
     </div>

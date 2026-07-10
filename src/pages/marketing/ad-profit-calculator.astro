@@ -1,4 +1,4 @@
----
+ï»¿---
 import Tool from '../../layouts/Tool.astro';
 import KpiTooltip from '../../components/KpiTooltip.astro';
 
@@ -41,7 +41,7 @@ const schema = {
       <div class="calculator-card-body">
       <div class="field-grid">
         <div class="field">
-          <label class="field-label"><KpiTooltip label="Ad spend ($)" tip="The total amount you paid to run ads in the period you're analyzing — across all platforms combined." /></label>
+          <label class="field-label"><KpiTooltip label="Ad spend ($)" tip="The total amount you paid to run ads in the period you're analyzing â€” across all platforms combined." /></label>
           <input type="number" id="adSpend" value="5000" />
         </div>
         <div class="field">
@@ -51,7 +51,7 @@ const schema = {
       </div>
       <div class="field-grid">
         <div class="field">
-          <label class="field-label"><KpiTooltip label="COGS ($)" tip="Cost of Goods Sold — what it costs you to deliver the product or service for this revenue. Includes manufacturing, fulfillment, or delivery costs. Does not include ad spend." /></label>
+          <label class="field-label"><KpiTooltip label="COGS ($)" tip="Cost of Goods Sold â€” what it costs you to deliver the product or service for this revenue. Includes manufacturing, fulfillment, or delivery costs. Does not include ad spend." /></label>
           <input type="number" id="cogs" value="8000" />
         </div>
         <div class="field">
@@ -60,7 +60,7 @@ const schema = {
         </div>
       </div>
       <div class="field">
-        <label class="field-label"><KpiTooltip label="Payment processing fee (%)" tip="The percentage your payment processor (e.g. Stripe, PayPal) takes from each transaction. Stripe's standard rate is 2.9% + 30¢." /></label>
+        <label class="field-label"><KpiTooltip label="Payment processing fee (%)" tip="The percentage your payment processor (e.g. Stripe, PayPal) takes from each transaction. Stripe's standard rate is 2.9% + 30â€”." /></label>
         <input type="number" id="procFee" value="2.9" step="0.1" />
       </div>
       <button id="calcBtn" class="btn btn-primary btn-full">Calculate</button>
@@ -105,7 +105,7 @@ function calculate() {
     <div class="metric-grid">
       <div class="metric-card">
         <div class="result-number">$${grossProfit.toLocaleString()}</div>
-        <div class="result-label"><span class="kpi-tooltip-wrapper">Gross Profit<button class="kpi-info-btn" aria-label="What is Gross Profit?" data-tip="Revenue minus COGS, refunds, and payment processing fees — before subtracting your ad spend." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Revenue minus COGS, refunds, and payment processing fees — before subtracting your ad spend.</span></span></div>
+        <div class="result-label"><span class="kpi-tooltip-wrapper">Gross Profit<button class="kpi-info-btn" aria-label="What is Gross Profit?" data-tip="Revenue minus COGS, refunds, and payment processing fees â€” before subtracting your ad spend." tabindex="0" type="button">i</button><span class="kpi-tooltip" role="tooltip">Revenue minus COGS, refunds, and payment processing fees â€” before subtracting your ad spend.</span></span></div>
       </div>
       <div class="metric-card">
         <div class="result-number" style="${netProfit >= 0 ? 'color: var(--success)' : 'color: var(--danger)'}">${netProfit >= 0 ? '+' : ''}$${netProfit.toLocaleString()}</div>
